@@ -11,7 +11,8 @@ import Alamofire
 import SwiftSpinner
 
 class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
-
+    
+    let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -29,7 +30,7 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewWillAppear(_ animated: Bool) {
         // Pull Coin Data
-        Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
+        Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
                 if let coin = CoinEntry.init(json: coinJSON) {
                     entries.append(coin)
@@ -83,7 +84,7 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
             filteredEntries = entries
         } else {
             // Filter the results
-            filteredEntries = entries.filter { $0.name.lowercased().contains(searchController.searchBar.text!.lowercased()) }
+            filteredEntries = entries.filter { $0.name.lowercased().contains(searchController.searchBar.text!.lowercased()) || $0.symbol.lowercased().contains(searchController.searchBar.text!.lowercased()) }
         }
         
         self.tableView.reloadData()
@@ -97,7 +98,7 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
         entries.removeAll()
         
         // Pull Coin Data
-        Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
+        Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
                 if let coin = CoinEntry.init(json: coinJSON) {
                     entries.append(coin)
