@@ -7,7 +7,25 @@
 		<key>CoinAudit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>8</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>32AFAB7B1FF38FC6006B608D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>32AFAB911FF38FC7006B608D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>32AFAB9C1FF38FC7006B608D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
