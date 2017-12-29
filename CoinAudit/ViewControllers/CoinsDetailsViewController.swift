@@ -25,17 +25,12 @@ class CoinsDetailsViewController: UIViewController {
     var favorited: Bool = false
     var id: String = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.formatData(coin: entries.first(where: {$0.id == id})!)
         
         self.formatPercents(coin: entries.first(where: {$0.id == id})!)
         
-        if coins.contains(id) {
+        if favorites.contains(id) {
             self.favorited = true
         }
         
@@ -52,18 +47,18 @@ class CoinsDetailsViewController: UIViewController {
             favButton.backgroundColor = .black
             favButton.setTitle("Favorite", for: .normal)
             // remove
-            if let index = coins.index(of: id) {
-                coins.remove(at: index)
+            if let index = favorites.index(of: id) {
+                favorites.remove(at: index)
             }
-            defaults.set(coins, forKey: "Coins")
+            defaults.set(favorites, forKey: "favorites")
         } else {
             favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
             favButton.setTitle("Favorited", for: .normal)
             // save coin id to array
-            coins.append(id)
-            coins = coins.sorted()
-            defaults.set(coins, forKey: "Coins")
+            favorites.append(id)
+            favorites = favorites.sorted()
+            defaults.set(favorites, forKey: "favorites")
         }
     }
     

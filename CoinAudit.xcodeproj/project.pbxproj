@@ -16,6 +16,8 @@
 		324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE41FF4C61700FC5312 /* FeedCell.swift */; };
 		324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE61FF4C62300FC5312 /* FavCell.swift */; };
 		326999E41FF5F8A10059122D /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */; };
+		328F26801FF6354F002BB3E7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F267F1FF6354F002BB3E7 /* Data.swift */; };
+		328F26821FF63566002BB3E7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F26811FF63566002BB3E7 /* Extensions.swift */; };
 		32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFAB7F1FF38FC6006B608D /* AppDelegate.swift */; };
 		32AFAB871FF38FC6006B608D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32AFAB851FF38FC6006B608D /* Main.storyboard */; };
 		32AFAB891FF38FC6006B608D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32AFAB881FF38FC6006B608D /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		324F4AE41FF4C61700FC5312 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		324F4AE61FF4C62300FC5312 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
 		326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		328F267F1FF6354F002BB3E7 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		328F26811FF63566002BB3E7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		32AFAB7C1FF38FC6006B608D /* CoinAudit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinAudit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AFAB7F1FF38FC6006B608D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32AFAB861FF38FC6006B608D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				324F4AE41FF4C61700FC5312 /* FeedCell.swift */,
 				324F4AE61FF4C62300FC5312 /* FavCell.swift */,
 				3244A75A1FF594C800AB036A /* HexColors.swift */,
+				328F267F1FF6354F002BB3E7 /* Data.swift */,
+				328F26811FF63566002BB3E7 /* Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,6 +523,8 @@
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,
 				324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */,
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
+				328F26801FF6354F002BB3E7 /* Data.swift in Sources */,
+				328F26821FF63566002BB3E7 /* Extensions.swift in Sources */,
 				324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */,
 				3244A75B1FF594C800AB036A /* HexColors.swift in Sources */,
 				324F4AE31FF4C5C300FC5312 /* WalletCell.swift in Sources */,

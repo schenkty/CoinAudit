@@ -73,7 +73,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             filteredEntries = entries
         } else {
             // Filter the results
-            filteredEntries = entries.filter { $0.name.lowercased().contains(searchController.searchBar.text!.lowercased()) || $0.symbol.lowercased().contains(searchController.searchBar.text!.lowercased()) }
+            filteredEntries = entries.filter { $0.name.lowercased().contains(searchController.searchBar.text!.lowercased()) }
         }
         
         self.tableView.reloadData()

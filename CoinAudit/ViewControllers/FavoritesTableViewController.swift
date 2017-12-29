@@ -16,8 +16,8 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        coins = defaults.object(forKey:"Coins") as? [String] ?? [String]()
-        coins = coins.sorted()
+        favorites = defaults.object(forKey:"favorites") as? [String] ?? [String]()
+        favorites = favorites.sorted()
         self.tableView.reloadData()
     }
 
@@ -27,22 +27,22 @@ class FavoritesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coins.count
+        return favorites.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
-        coins = coins.sorted()
-        controller.id = coins[indexPath.row]
+        favorites = favorites.sorted()
+        controller.id = favorites[indexPath.row]
         self.show(controller, sender: self)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavCell
-        coins = coins.sorted()
-        let coin = entries.first(where: {$0.id == coins[indexPath.row]})
+        favorites = favorites.sorted()
+        let coin = entries.first(where: {$0.id == favorites[indexPath.row]})
     
         cell.nameLabel.text = coin!.name
         cell.symbolLabel.text = coin!.symbol
