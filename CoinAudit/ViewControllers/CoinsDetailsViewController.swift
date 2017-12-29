@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftSpinner
 
 class CoinsDetailsViewController: UIViewController {
     
@@ -30,21 +28,22 @@ class CoinsDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SwiftSpinner.show("Downloading Data...", animated: true)
-        self.self.formatData(coin: entries.first(where: {$0.id == id})!)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.formatData(coin: entries.first(where: {$0.id == id})!)
         
         self.formatPercents(coin: entries.first(where: {$0.id == id})!)
         
         if coins.contains(id) {
             self.favorited = true
         }
-    
+        
         // Set Fav Button
         if favorited == true {
             favButton.backgroundColor = UIColor(hexString: "D65465")
             favButton.setTitle("Favorited", for: .normal)
         }
-        SwiftSpinner.hide()
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
