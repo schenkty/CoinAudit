@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="1366" y="-291"/>
         </scene>
-        <!--Feed Details View Controller-->
+        <!--Coins Details View Controller-->
         <scene sceneID="VxR-vz-UYP">
             <objects>
-                <viewController storyboardIdentifier="feedDetails" id="FHl-Se-lrC" customClass="FeedDetailsViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="feedDetails" id="FHl-Se-lrC" customClass="CoinsDetailsViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JFG-2H-5rc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,7 +437,7 @@
         <!--Favorites-->
         <scene sceneID="Gez-J6-L7b">
             <objects>
-                <tableViewController id="ASx-Jh-Mz0" sceneMemberID="viewController">
+                <tableViewController id="ASx-Jh-Mz0" customClass="FavoritesTableViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YNK-nn-G5p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -450,20 +450,20 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kg1-AU-Dva">
-                                            <rect key="frame" x="10" y="6" width="29" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kg1-AU-Dva">
+                                            <rect key="frame" x="10" y="6" width="44" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQQ-ro-ZUp">
-                                            <rect key="frame" x="10" y="25" width="39" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQQ-ro-ZUp">
+                                            <rect key="frame" x="10" y="25" width="26" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000.14877536" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAN-hU-wIh">
-                                            <rect key="frame" x="248.5" y="12" width="120.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAN-hU-wIh">
+                                            <rect key="frame" x="345" y="12" width="24" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -493,9 +493,7 @@
                             <outlet property="delegate" destination="ASx-Jh-Mz0" id="ogd-h9-gdW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="G2f-nc-ntd">
-                        <barButtonItem key="rightBarButtonItem" image="plus" id="Fnx-Nj-1t7"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites" id="G2f-nc-ntd"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cI-fg-ztQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -581,7 +579,6 @@
     <resources>
         <image name="bar_chart" width="30" height="30"/>
         <image name="heart" width="30" height="30"/>
-        <image name="plus" width="30" height="30"/>
         <image name="refresh" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
         <image name="wallet" width="30" height="30"/>

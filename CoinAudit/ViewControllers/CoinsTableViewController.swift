@@ -61,8 +61,8 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! FeedDetailsViewController
-        controller.coin = self.filteredEntries[indexPath.row]
+        let controller = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
+        controller.id = self.filteredEntries[indexPath.row].id
         
         self.show(controller, sender: self)
     }
@@ -93,7 +93,6 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             self.tableView.reloadData()
         }
     }
-    
 
     @IBAction func updateFeed(_ sender: Any) {
         // Provide using with loading spinner

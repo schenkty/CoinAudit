@@ -1,5 +1,5 @@
 //
-//  FeedDetailsViewController.swift
+//  CoinsDetailsViewController.swift
 //  CoinAudit
 //
 //  Created by Ty Schenk on 12/28/17.
@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftSpinner
 
-class FeedDetailsViewController: UIViewController {
-
+class CoinsDetailsViewController: UIViewController {
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var marketCapLabel: UILabel!
     @IBOutlet var volumeLabel: UILabel!
@@ -20,23 +22,29 @@ class FeedDetailsViewController: UIViewController {
     @IBOutlet var favButton: UIButton!
     @IBOutlet var percent1Label: UILabel!
     @IBOutlet var percent24Label: UILabel!
-    @IBOutlet var percent7Label: UILabel!    
+    @IBOutlet var percent7Label: UILabel!
     
     var favorited: Bool = false
-    var coin = CoinEntry.init(id: "bitcoin", name: "Bitcoin", symbol: "BTC", rank: "1", priceUSD: "0.0", priceBTC: "1", volumeUSD: "0", marketCapUSD: "0", availableSupply: "0", totalSupply: "0", maxSupply: "0", percentChange1: "0", percentChange24: "0", percentChange7: "0")
+    var id: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set Data from coin
-        formatData()
-        formatPercents()
         
+        SwiftSpinner.show("Downloading Data...", animated: true)
+        self.self.formatData(coin: entries.first(where: {$0.id == id})!)
+        
+        self.formatPercents(coin: entries.first(where: {$0.id == id})!)
+        
+        if coins.contains(id) {
+            self.favorited = true
+        }
+    
         // Set Fav Button
         if favorited == true {
             favButton.backgroundColor = UIColor(hexString: "D65465")
             favButton.setTitle("Favorited", for: .normal)
         }
-        
+        SwiftSpinner.hide()
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
@@ -44,16 +52,23 @@ class FeedDetailsViewController: UIViewController {
             favorited = false
             favButton.backgroundColor = .black
             favButton.setTitle("Favorite", for: .normal)
-            
+            // remove
+            if let index = coins.index(of: id) {
+                coins.remove(at: index)
+            }
+            defaults.set(coins, forKey: "Coins")
         } else {
             favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
             favButton.setTitle("Favorited", for: .normal)
+            // save coin id to array
+            coins.append(id)
+            coins = coins.sorted()
+            defaults.set(coins, forKey: "Coins")
         }
     }
     
-    
-    func formatData() {
+    func formatData(coin: CoinEntry) {
         // set name of coin
         nameLabel.text = coin.name
         self.navigationItem.title = coin.symbol
@@ -87,7 +102,7 @@ class FeedDetailsViewController: UIViewController {
         }
     }
     
-    func formatPercents() {
+    func formatPercents(coin: CoinEntry) {
         let percent1 = Double(coin.percentChange1)!
         let percent24 = Double(coin.percentChange24)!
         let percent7 = Double(coin.percentChange7)!
