@@ -1,5 +1,5 @@
 //
-//  FeedTableViewController.swift
+//  CoinsTableViewController.swift
 //  CoinAudit
 //
 //  Created by Ty Schenk on 12/28/17.
@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftSpinner
 
-class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
+class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
@@ -23,23 +23,14 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
         searchController.searchBar.placeholder = "Bitcoin"
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-        
+        navigationItem.searchController = searchController
+    
         SwiftSpinner.show(duration: 1.5, title: "Downloading Data...")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Pull Coin Data
-        Alamofire.request(coinsURL).responseJSON { response in
-            for coinJSON in (response.result.value as? [[String : AnyObject]])! {
-                if let coin = CoinEntry.init(json: coinJSON) {
-                    entries.append(coin)
-                }
-            }
-            self.filteredEntries = entries
-            // Update Table Views
-            self.tableView.reloadData()
-        }
+        self.updateData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,12 +54,10 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
         // Configure the cell...
         cell.nameLabel.text = self.filteredEntries[indexPath.row].name
         cell.symbolLabel.text = self.filteredEntries[indexPath.row].symbol
-        cell.valueLabel.text = self.filteredEntries[indexPath.row].priceUSD.formatnumber()
+        cell.valueLabel.text = self.filteredEntries[indexPath.row].priceUSD.formatUSD()
         
         return cell
     }
-    
-    //feedDetails
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -89,14 +78,8 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
         
         self.tableView.reloadData()
     }
-
-    @IBAction func updateFeed(_ sender: Any) {
-        // Provide using with loading spinner
-        SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
-        
-        // Clear entries array
-        entries.removeAll()
-        
+    
+    func updateData() {
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -105,8 +88,21 @@ class FeedTableViewController: UITableViewController, UISearchResultsUpdating {
                 }
             }
             
+            self.filteredEntries = entries
             // Update Table Views
             self.tableView.reloadData()
         }
+    }
+    
+
+    @IBAction func updateFeed(_ sender: Any) {
+        // Provide using with loading spinner
+        SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
+        
+        // Clear entries array
+        entries.removeAll()
+        
+        // update data
+        self.updateData()
     }
 }

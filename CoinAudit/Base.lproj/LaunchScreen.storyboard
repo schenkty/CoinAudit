@@ -24,10 +24,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by CoinMarketCap" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZS-nU-aov">
-                                <rect key="frame" x="147" y="609" width="218" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by CoinMarketCap" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZS-nU-aov">
+                                <rect key="frame" x="220" y="609" width="145" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="k7E-8j-IVy"/>
+                                    <constraint firstAttribute="width" constant="145" id="xxZ-27-dSd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -39,7 +40,6 @@
                             <constraint firstItem="GSy-UZ-MwV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="1QU-Xp-wgJ"/>
                             <constraint firstItem="GSy-UZ-MwV" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BdJ-Cg-o41"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4ZS-nU-aov" secondAttribute="trailing" constant="10" id="IWq-jO-4NY"/>
-                            <constraint firstItem="4ZS-nU-aov" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfJ-7c-NIL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4ZS-nU-aov" secondAttribute="bottom" constant="8" id="WpY-p1-OJN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

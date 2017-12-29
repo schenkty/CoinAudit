@@ -11,7 +11,7 @@
 		3244A75B1FF594C800AB036A /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3244A75A1FF594C800AB036A /* HexColors.swift */; };
 		324F4ADD1FF4C1D400FC5312 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */; };
 		324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */; };
-		324F4AE11FF4C43000FC5312 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE01FF4C43000FC5312 /* FeedTableViewController.swift */; };
+		324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */; };
 		324F4AE31FF4C5C300FC5312 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE21FF4C5C300FC5312 /* WalletCell.swift */; };
 		324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE41FF4C61700FC5312 /* FeedCell.swift */; };
 		324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE61FF4C62300FC5312 /* FavCell.swift */; };
@@ -51,7 +51,7 @@
 		3244A75A1FF594C800AB036A /* HexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColors.swift; sourceTree = "<group>"; };
 		324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
-		324F4AE01FF4C43000FC5312 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableViewController.swift; sourceTree = "<group>"; };
 		324F4AE21FF4C5C300FC5312 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		324F4AE41FF4C61700FC5312 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		324F4AE61FF4C62300FC5312 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		32FCD4011FF4AEC200B7AD32 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				324F4AE01FF4C43000FC5312 /* FeedTableViewController.swift */,
+				324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */,
 				324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */,
 				324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */,
 				3244A7581FF58EF400AB036A /* FeedDetailsViewController.swift */,
@@ -355,6 +355,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -362,6 +363,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,7 +511,7 @@
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
 				32FCD4051FF4AF1600B7AD32 /* CoinEntry.swift in Sources */,
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,
-				324F4AE11FF4C43000FC5312 /* FeedTableViewController.swift in Sources */,
+				324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */,
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
 				324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */,
 				3244A75B1FF594C800AB036A /* HexColors.swift in Sources */,
@@ -688,6 +690,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CoinAudit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.coins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -708,6 +711,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = CoinAudit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.coins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
