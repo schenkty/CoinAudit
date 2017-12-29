@@ -25,20 +25,22 @@ class CoinsDetailsViewController: UIViewController {
     var favorited: Bool = false
     var id: String = ""
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.formatData(coin: entries.first(where: {$0.id == id})!)
-        
-        self.formatPercents(coin: entries.first(where: {$0.id == id})!)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         if favorites.contains(id) {
             self.favorited = true
-        }
-        
-        // Set Fav Button
-        if favorited == true {
             favButton.backgroundColor = UIColor(hexString: "D65465")
             favButton.setTitle("Favorited", for: .normal)
+        } else {
+            self.favorited = false
+            favButton.backgroundColor = .black
+            favButton.setTitle("Favorite", for: .normal)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.formatData(coin: entries.first(where: {$0.id == id})!)
+        self.formatPercents(coin: entries.first(where: {$0.id == id})!)
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
@@ -51,6 +53,7 @@ class CoinsDetailsViewController: UIViewController {
                 favorites.remove(at: index)
             }
             defaults.set(favorites, forKey: "favorites")
+            print("Deleted: \(id) from favorites")
         } else {
             favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
@@ -59,6 +62,7 @@ class CoinsDetailsViewController: UIViewController {
             favorites.append(id)
             favorites = favorites.sorted()
             defaults.set(favorites, forKey: "favorites")
+            print("Added: \(id) from favorites")
         }
     }
     

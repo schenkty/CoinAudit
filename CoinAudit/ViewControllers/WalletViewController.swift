@@ -20,11 +20,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
         walletTableView.delegate = self
         
-        if walletTotal == 0.0 {
-            totalLabel.text = "$0"
-        } else {
-            totalLabel.text = "$\(walletTotal)"
-        }
+        // format wallet total label to currency
+        totalLabel.text = "\(walletTotal)".formatUSD()
     }
 
     override func didReceiveMemoryWarning() {

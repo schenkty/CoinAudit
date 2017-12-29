@@ -7,15 +7,11 @@
 //
 
 import UIKit
-import Alamofire
 
 class FavoritesTableViewController: UITableViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
+        self.tableView.allowsSelectionDuringEditing = true
         favorites = defaults.object(forKey:"favorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
         self.tableView.reloadData()
@@ -28,6 +24,23 @@ class FavoritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favorites.count
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Action to delete data
+            favorites = favorites.sorted()
+            // remove
+            favorites.remove(at: indexPath.row)
+            defaults.set(favorites, forKey: "favorites")
+            let cell = tableView.cellForRow(at: indexPath) as! FavCell
+            print("Deleted: \(cell.nameLabel.text!) from favorites")
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
