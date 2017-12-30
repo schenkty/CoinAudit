@@ -11,6 +11,9 @@ import UIKit
 class FavoritesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
+        if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
+        }
         self.tableView.allowsSelectionDuringEditing = true
         favorites = defaults.object(forKey:"favorites") as? [String] ?? [String]()
         favorites = favorites.sorted()

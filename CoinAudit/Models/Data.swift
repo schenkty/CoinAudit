@@ -11,4 +11,20 @@ import Foundation
 let defaults = UserDefaults.standard
 var entries: [CoinEntry] = []
 var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
-var walletCoins: [WalletEntry] = defaults.object(forKey:"wallet") as? [WalletEntry] ?? [WalletEntry]()
+var walletCoins: [WalletEntry] = []
+
+
+func saveWallet() {
+    let encodedWallet = NSKeyedArchiver.archivedData(withRootObject: walletCoins)
+    defaults.set(encodedWallet, forKey: "wallet")
+}
+
+func loadWallet() {
+    if let walletData = defaults.data(forKey: "wallet"),
+        let walletItems = NSKeyedUnarchiver.unarchiveObject(with: walletData) as? [WalletEntry] {
+        walletCoins = walletItems
+        print("Wallet loaded")
+    } else {
+        print("There is an issue loading wallet")
+    }
+}

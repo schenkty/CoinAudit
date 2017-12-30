@@ -13,30 +13,37 @@ import NotificationCenter
 
 class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var bitcoinLabel: UILabel!
     @IBOutlet var totalLabel: UILabel!
     @IBOutlet var walletTableView: UITableView!
     
     var walletTotal: Double = 0.0
+    var bitcoinTotal: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
-        //walletCoins = defaults.object(forKey:"wallet") as? [WalletEntry] ?? [WalletEntry]()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
         
+        // load all
+        loadWallet()
+    
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoins))
         updateButton.image = #imageLiteral(resourceName: "refresh")
         self.navigationItem.leftBarButtonItem = updateButton
-
-        // Sample Entries
-        walletCoins.append(WalletEntry(name: "Bitcoin", id: "bitcoin", value: 0.25))
-        walletCoins.append(WalletEntry(name: "RaiBlocks", id: "raiblocks", value: 480.0))
-        walletCoins.append(WalletEntry(name: "Ethereum", id: "ethereum", value: 700.0))
-        
         
         walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
         self.calculateWallet()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
+            self.walletTableView.deselectRow(at: selectionIndexPath, animated: animated)
+        }
     }
 
     // MARK: - Table view data source
@@ -56,11 +63,14 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if editingStyle == .delete {
             // Action to delete data
             let cell = tableView.cellForRow(at: indexPath) as! WalletCell
+            
             // remove
             walletCoins.remove(at: indexPath.row)
-            //defaults.set(walletCoins, forKey: "wallet")
             
+            // save new version of walletCoins array
+            saveWallet()
             print("Deleted \(cell.nameLabel.text!) from wallet")
+            
             calculateWallet()
             self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -82,6 +92,19 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! WalletCell
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "addWallet") as! AddWalletViewController
+        // sort wallet
+        guard let name = cell.nameLabel.text else { return }
+        guard let value = cell.valueLabel.text else { return }
+        
+        controller.name = name
+        controller.value = value
+        self.show(controller, sender: self)
+    }
+    
     @IBAction func addCoin(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "addWallet") as! AddWalletViewController
@@ -91,14 +114,24 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func calculateWallet() {
         walletTotal = 0.0
+        bitcoinTotal = 0.0
         for localCoin in walletCoins {
             print("Calculating: \(localCoin.name)")
             
             let coin = entries.first(where: {$0.id == localCoin.id})
-            self.walletTotal = self.walletTotal + (Double(coin!.priceUSD)! * localCoin.value)
+            guard let value = Double(localCoin.value) else { return }
+            self.walletTotal = self.walletTotal + (Double(coin!.priceUSD)! * value)
+            self.bitcoinTotal = self.bitcoinTotal + (Double(coin!.priceBTC)! * value)
         }
         // format wallet total label to currency
-        totalLabel.text = "\(walletTotal)".formatUSD()
+        let text = "\(walletTotal)".formatUSD()
+        totalLabel.text = "\(text) USD"
+        bitcoinLabel.text = "\(bitcoinTotal) BTC"
+    }
+    
+    @objc func updateList() {
+        self.walletTableView.reloadData()
+        calculateWallet()
     }
     
     @objc func updateCoins() {
@@ -121,5 +154,4 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
         }
     }
-    
 }
