@@ -11,10 +11,22 @@ import SearchTextField
 
 class AddWalletViewController: UIViewController {
 
+    @IBOutlet var nameTextField: SearchTextField!
+    var names: [SearchTextFieldItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.title = "New Entry"
+        for item in entries {
+            let name = SearchTextFieldItem(title: item.name)
+            names.append(name)
+        }
+        
+        nameTextField.filterItems(names)
+        nameTextField.theme = .darkTheme()
+        nameTextField.inlineMode = true
+        nameTextField.startSuggestingInmediately = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +34,14 @@ class AddWalletViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func addButton(_ sender: Any) {
+        if names.contains(where: {$0.title == nameTextField.text}) {
+            print("Coin: \(nameTextField.text!) is Valid")
+        } else {
+            print("Coin: \(nameTextField.text!) is not Valid")
+            showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+        }
+    }
     /*
  // save coin id to array
  favorites.append(id)
