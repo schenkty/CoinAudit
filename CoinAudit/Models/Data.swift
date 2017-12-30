@@ -14,6 +14,10 @@ var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [S
 var walletCoins: [WalletEntry] = []
 
 
+func saveFavorites() {
+    defaults.set(favorites, forKey: "favorites")
+}
+
 func saveWallet() {
     let encodedWallet = NSKeyedArchiver.archivedData(withRootObject: walletCoins)
     defaults.set(encodedWallet, forKey: "wallet")

@@ -25,7 +25,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
-        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
         // load all
         loadWallet()
@@ -113,8 +113,11 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func calculateWallet() {
+        // zero out totals
         walletTotal = 0.0
         bitcoinTotal = 0.0
+        
+        
         for localCoin in walletCoins {
             print("Calculating: \(localCoin.name)")
             
@@ -123,6 +126,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.walletTotal = self.walletTotal + (Double(coin!.priceUSD)! * value)
             self.bitcoinTotal = self.bitcoinTotal + (Double(coin!.priceBTC)! * value)
         }
+        
         // format wallet total label to currency
         let text = "\(walletTotal)".formatUSD()
         totalLabel.text = "\(text) USD"

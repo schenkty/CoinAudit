@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import NotificationCenter
 import Alamofire
 import SwiftSpinner
-import NotificationCenter
 
 class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationCenter
 import SwiftSpinner
 import Alamofire
 
@@ -58,7 +59,7 @@ class CoinsDetailsViewController: UIViewController {
             if let index = favorites.index(of: id) {
                 favorites.remove(at: index)
             }
-            defaults.set(favorites, forKey: "favorites")
+            saveFavorites()
             print("Deleted: \(id) from favorites")
         } else {
             favorited = true
@@ -67,7 +68,7 @@ class CoinsDetailsViewController: UIViewController {
             // save coin id to array
             favorites.append(id)
             favorites = favorites.sorted()
-            defaults.set(favorites, forKey: "favorites")
+            saveFavorites()
             print("Added: \(id) from favorites")
         }
     }
@@ -164,6 +165,7 @@ class CoinsDetailsViewController: UIViewController {
                 }
             }
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
     
 }

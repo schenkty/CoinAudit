@@ -225,12 +225,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinAudit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77b-EV-ngi">
+                                <rect key="frame" x="0.0" y="191" width="375" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erW-j3-BZJ">
+                                <rect key="frame" x="0.0" y="295" width="375" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-ew-Vgy">
+                                <rect key="frame" x="0.0" y="240" width="375" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Developer: Ty Schenk"/>
+                                <connections>
+                                    <action selector="developerButton:" destination="nUc-0H-ibX" eventType="touchUpInside" id="D3j-Jo-pEJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqn-in-rsd">
+                                <rect key="frame" x="0.0" y="338" width="375" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Clear All Data"/>
+                                <connections>
+                                    <action selector="clearData:" destination="nUc-0H-ibX" eventType="touchUpInside" id="cHP-Ce-foS"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-Ud-Zw7">
-                                <rect key="frame" x="259" y="564" width="112" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="CNJ-TW-WyY"/>
-                                    <constraint firstAttribute="width" constant="112" id="qMX-72-msg"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="393" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Powered by CoinMarketCap"/>
                                 <connections>
@@ -240,12 +264,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Nx3-Ud-Zw7" secondAttribute="trailing" constant="4" id="5ye-nt-42L"/>
-                            <constraint firstItem="uRY-9G-w4R" firstAttribute="bottom" secondItem="Nx3-Ud-Zw7" secondAttribute="bottom" constant="4" id="tCm-H8-gVq"/>
+                            <constraint firstItem="erW-j3-BZJ" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="0di-Zr-6a1"/>
+                            <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="4y8-6R-TXR"/>
+                            <constraint firstItem="erW-j3-BZJ" firstAttribute="top" secondItem="Vba-ew-Vgy" secondAttribute="bottom" constant="20" id="8zO-uD-JaQ"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="erW-j3-BZJ" secondAttribute="trailing" id="EVo-zM-Eap"/>
+                            <constraint firstItem="Lqn-in-rsd" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="OT7-Ge-cTW"/>
+                            <constraint firstItem="77b-EV-ngi" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="75" id="Ory-oL-Gpw"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Lqn-in-rsd" secondAttribute="trailing" id="Qz5-xJ-003"/>
+                            <constraint firstItem="Vba-ew-Vgy" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="YUz-Jr-euz"/>
+                            <constraint firstItem="Vba-ew-Vgy" firstAttribute="top" secondItem="77b-EV-ngi" secondAttribute="bottom" constant="20" id="eEX-gX-ZRh"/>
+                            <constraint firstItem="77b-EV-ngi" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="gWi-Eo-rdJ"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="77b-EV-ngi" secondAttribute="trailing" id="n4m-6e-b2W"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Vba-ew-Vgy" secondAttribute="trailing" id="pHi-RD-V11"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Nx3-Ud-Zw7" secondAttribute="trailing" id="ph1-dX-akk"/>
+                            <constraint firstItem="Lqn-in-rsd" firstAttribute="top" secondItem="erW-j3-BZJ" secondAttribute="bottom" constant="20" id="tCe-Iv-JuF"/>
+                            <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="top" secondItem="Lqn-in-rsd" secondAttribute="bottom" constant="20" id="tYF-yV-sEB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uRY-9G-w4R"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Jf7-a6-yfQ"/>
+                    <connections>
+                        <outlet property="versionLabel" destination="erW-j3-BZJ" id="m4f-Tc-Kdv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rel-kf-fDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

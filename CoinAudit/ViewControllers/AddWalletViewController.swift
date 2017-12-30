@@ -76,7 +76,7 @@ class AddWalletViewController: UIViewController {
             saveWallet()
             
             print("\(name) Coin Updated")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
@@ -97,7 +97,7 @@ class AddWalletViewController: UIViewController {
             saveWallet()
             
             print("\(name) Coin Saved")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
