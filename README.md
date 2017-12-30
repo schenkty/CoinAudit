@@ -9,6 +9,8 @@ Favorite coins for easy checking
 
 Coin portfolio tracker for all of your coin investments.
 
+
+
 Screenshots:
 
 ![](1.png)
