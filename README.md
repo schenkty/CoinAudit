@@ -1,5 +1,10 @@
 # CoinAudit
-CryptoCurrency Investment Tracker Powered by CoinMarketCap
+CoinAudit is a simple to use cryptocurrency analysis tool. 
+
+Features:
+Price information lookup for most coins
+Favorite coins for easy checking
+Coin portfolio tracker for all of your coin investments.
 
 Screenshots:
 
