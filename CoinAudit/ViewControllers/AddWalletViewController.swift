@@ -21,5 +21,13 @@ class AddWalletViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*
+ // save coin id to array
+ favorites.append(id)
+ favorites = favorites.sorted()
+ defaults.set(favorites, forKey: "favorites")
+ print("Added: \(id) from favorites")
+ */
 
 }

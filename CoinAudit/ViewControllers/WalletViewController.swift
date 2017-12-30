@@ -22,16 +22,20 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         walletTableView.delegate = self
+        self.walletTableView.allowsSelectionDuringEditing = true
+        //walletCoins = defaults.object(forKey:"wallet") as? [WalletEntry] ?? [WalletEntry]()
         
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoins))
         updateButton.image = #imageLiteral(resourceName: "refresh")
         self.navigationItem.leftBarButtonItem = updateButton
 
-        // DEBUG ENTRIES
-        //walletCoins.append(WalletEntry(name: "Bitcoin", id: "bitcoin", value: 0.25))
-        //walletCoins.append(WalletEntry(name: "RaiBlocks", id: "raiblocks", value: 480.0))
-        //walletCoins.append(WalletEntry(name: "Ethereum", id: "ethereum", value: 700.0))
+        // Sample Entries
+        walletCoins.append(WalletEntry(name: "Bitcoin", id: "bitcoin", value: 0.25))
+        walletCoins.append(WalletEntry(name: "RaiBlocks", id: "raiblocks", value: 480.0))
+        walletCoins.append(WalletEntry(name: "Ethereum", id: "ethereum", value: 700.0))
         
+        
+        walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
         self.calculateWallet()
     }
 
@@ -44,11 +48,31 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return walletCoins.count
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Action to delete data
+            let cell = tableView.cellForRow(at: indexPath) as! WalletCell
+            // remove
+            walletCoins.remove(at: indexPath.row)
+            //defaults.set(walletCoins, forKey: "wallet")
+            
+            print("Deleted \(cell.nameLabel.text!) from wallet")
+            calculateWallet()
+            self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletCell", for: indexPath) as! WalletCell
         // Configure the cell...
+        // sort wallet
         walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
-        //walletCoins.sorted(by: walletCoins[indexPath.row].name)
+
+        // pull coin data from entries array
         let coin = entries.first(where: {$0.id == walletCoins[indexPath.row].id})
         
         cell.nameLabel.text = coin?.name
