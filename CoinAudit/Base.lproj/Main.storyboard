@@ -140,8 +140,8 @@
                                     <constraint firstAttribute="height" constant="40" id="i3t-sJ-fE1"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diM-Qo-4aI">
                                 <rect key="frame" x="15" y="272" width="345" height="21"/>
@@ -155,11 +155,11 @@
                                     <constraint firstAttribute="height" constant="40" id="vVh-9o-xVd"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmF-L0-Jqi">
-                                <rect key="frame" x="20" y="558" width="335" height="40"/>
+                                <rect key="frame" x="20" y="373" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Yan-8Y-phX"/>
@@ -191,7 +191,7 @@
                             <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="diM-Qo-4aI" secondAttribute="trailing" constant="15" id="Mqj-YE-fdp"/>
                             <constraint firstItem="sa2-Mk-Y65" firstAttribute="top" secondItem="t1c-5u-JWI" secondAttribute="top" constant="50" id="U0q-D3-stV"/>
                             <constraint firstItem="2jw-Dn-ylI" firstAttribute="top" secondItem="diM-Qo-4aI" secondAttribute="bottom" constant="10" id="X3T-AJ-mEy"/>
-                            <constraint firstItem="t1c-5u-JWI" firstAttribute="bottom" secondItem="RmF-L0-Jqi" secondAttribute="bottom" constant="20" id="a38-d8-rG3"/>
+                            <constraint firstItem="RmF-L0-Jqi" firstAttribute="top" secondItem="2jw-Dn-ylI" secondAttribute="bottom" constant="30" id="Xts-Y6-bZc"/>
                             <constraint firstItem="diM-Qo-4aI" firstAttribute="top" secondItem="uhB-mD-BpR" secondAttribute="bottom" constant="35" id="bAJ-vb-fIv"/>
                             <constraint firstItem="RmF-L0-Jqi" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" constant="20" id="tQx-Ce-PVf"/>
                             <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="RmF-L0-Jqi" secondAttribute="trailing" constant="20" id="tTE-TQ-YQa"/>
@@ -201,6 +201,7 @@
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="uhB-mD-BpR" id="5BW-b0-fIo"/>
+                        <outlet property="valueTexField" destination="2jw-Dn-ylI" id="onC-lg-xng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQj-2f-TdE" userLabel="First Responder" sceneMemberID="firstResponder"/>

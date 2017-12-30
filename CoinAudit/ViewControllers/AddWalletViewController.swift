@@ -12,19 +12,23 @@ import SearchTextField
 class AddWalletViewController: UIViewController {
 
     @IBOutlet var nameTextField: SearchTextField!
+    @IBOutlet var valueTexField: UITextField!
+    
     var names: [SearchTextFieldItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.title = "New Entry"
+        
+        valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
+        
         for item in entries {
             let name = SearchTextFieldItem(title: item.name)
             names.append(name)
         }
         
         nameTextField.filterItems(names)
-        nameTextField.theme = .darkTheme()
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true
     }
