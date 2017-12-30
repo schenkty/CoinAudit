@@ -11,5 +11,4 @@ import Foundation
 let defaults = UserDefaults.standard
 var entries: [CoinEntry] = []
 var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
-var walletCoins: [String] = defaults.object(forKey:"wallet") as? [String] ?? [String]()
-
+var walletCoins: [WalletEntry] = defaults.object(forKey:"wallet") as? [WalletEntry] ?? [WalletEntry]()

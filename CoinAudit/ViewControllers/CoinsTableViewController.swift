@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftSpinner
+import NotificationCenter
 
 class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
@@ -18,6 +19,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Bitcoin"
@@ -92,6 +94,10 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             // Update Table Views
             self.tableView.reloadData()
         }
+    }
+    
+    @objc func updateList() {
+        self.tableView.reloadData()
     }
 
     @IBAction func updateFeed(_ sender: Any) {

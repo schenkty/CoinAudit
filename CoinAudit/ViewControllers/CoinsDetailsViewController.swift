@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftSpinner
+import Alamofire
 
 class CoinsDetailsViewController: UIViewController {
     
@@ -27,6 +29,10 @@ class CoinsDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoin))
+        updateButton.image = #imageLiteral(resourceName: "refresh")
+        self.navigationItem.rightBarButtonItem = updateButton
+
         if favorites.contains(id) {
             self.favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
@@ -142,6 +148,21 @@ class CoinsDetailsViewController: UIViewController {
             // do negative stuff
             percent7Label.textColor = .red
             percent7Label.text = "\(percent7)%"
+        }
+    }
+    
+    @objc func updateCoin() {
+        SwiftSpinner.show(duration: 1.0, title: "Updating \(nameLabel.text!)...")
+        // Pull Coin Data
+        Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
+            for coinJSON in (response.result.value as? [[String : AnyObject]])! {
+                if let coin = CoinEntry.init(json: coinJSON) {
+                    let index = entries.index(where: {$0.id == self.id})
+                    entries[index!] = coin
+                    self.formatData(coin: coin)
+                    self.formatPercents(coin: coin)
+                }
+            }
         }
     }
     

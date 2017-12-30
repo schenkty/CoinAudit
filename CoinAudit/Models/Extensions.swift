@@ -12,7 +12,7 @@ import UIKit
 extension String {
     func formatUSD() -> String {
         let formatter = NumberFormatter()
-        formatter.locale = Locale.current // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
+        formatter.locale = Locale.current
         formatter.numberStyle = .currency
         
         return formatter.string(from: NSNumber(value: Double(self)!))!
@@ -20,7 +20,7 @@ extension String {
     
     func formatDecimal() -> String {
         let formatter = NumberFormatter()
-        formatter.locale = Locale.current // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
+        formatter.locale = Locale.current
         formatter.numberStyle = .decimal
         
         return formatter.string(from: NSNumber(value: Double(self)!))!

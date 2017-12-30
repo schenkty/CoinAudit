@@ -105,7 +105,11 @@
                         <viewLayoutGuide key="safeArea" id="fwg-om-4cG"/>
                     </view>
                     <navigationItem key="navigationItem" title="Wallet" id="s9e-UR-kyP">
-                        <barButtonItem key="rightBarButtonItem" image="plus" id="uN6-CR-o2U"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="uN6-CR-o2U">
+                            <connections>
+                                <action selector="addCoin:" destination="wH3-NK-QYb" id="ppC-Br-moH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="totalLabel" destination="wtH-PU-CYP" id="nCf-bL-7Ae"/>
@@ -116,20 +120,88 @@
             </objects>
             <point key="canvasLocation" x="1365.5999999999999" y="1090.704647676162"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Wallet View Controller-->
         <scene sceneID="R9d-vp-OTD">
             <objects>
-                <viewController id="doq-Ef-bbI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addWallet" id="doq-Ef-bbI" customClass="AddWalletViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OgX-Ti-d7p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa2-Mk-Y65">
+                                <rect key="frame" x="15" y="166" width="345" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bitcoin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uhB-mD-BpR">
+                                <rect key="frame" x="15" y="197" width="345" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="i3t-sJ-fE1"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diM-Qo-4aI">
+                                <rect key="frame" x="15" y="262" width="345" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="0.0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2jw-Dn-ylI">
+                                <rect key="frame" x="15" y="293" width="345" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vVh-9o-xVd"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmF-L0-Jqi">
+                                <rect key="frame" x="20" y="558" width="335" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.5607843137254902" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Yan-8Y-phX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="favoriteButton:" destination="FHl-Se-lrC" eventType="touchUpInside" id="EqF-jd-fgj"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2jw-Dn-ylI" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" constant="15" id="62x-wH-BJt"/>
+                            <constraint firstItem="sa2-Mk-Y65" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" constant="15" id="6qT-Vc-8r4"/>
+                            <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="2jw-Dn-ylI" secondAttribute="trailing" constant="15" id="9s0-0b-DfU"/>
+                            <constraint firstItem="uhB-mD-BpR" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" constant="15" id="AeR-Mz-V9N"/>
+                            <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="uhB-mD-BpR" secondAttribute="trailing" constant="15" id="CDs-QT-HGG"/>
+                            <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="sa2-Mk-Y65" secondAttribute="trailing" constant="15" id="H97-vB-cUj"/>
+                            <constraint firstItem="uhB-mD-BpR" firstAttribute="top" secondItem="sa2-Mk-Y65" secondAttribute="bottom" constant="10" id="Jvu-N4-Bve"/>
+                            <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="diM-Qo-4aI" secondAttribute="trailing" constant="15" id="Mqj-YE-fdp"/>
+                            <constraint firstItem="sa2-Mk-Y65" firstAttribute="top" secondItem="t1c-5u-JWI" secondAttribute="top" constant="50" id="U0q-D3-stV"/>
+                            <constraint firstItem="2jw-Dn-ylI" firstAttribute="top" secondItem="diM-Qo-4aI" secondAttribute="bottom" constant="10" id="X3T-AJ-mEy"/>
+                            <constraint firstItem="t1c-5u-JWI" firstAttribute="bottom" secondItem="RmF-L0-Jqi" secondAttribute="bottom" constant="20" id="a38-d8-rG3"/>
+                            <constraint firstItem="diM-Qo-4aI" firstAttribute="top" secondItem="uhB-mD-BpR" secondAttribute="bottom" constant="35" id="bAJ-vb-fIv"/>
+                            <constraint firstItem="RmF-L0-Jqi" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" constant="20" id="tQx-Ce-PVf"/>
+                            <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="RmF-L0-Jqi" secondAttribute="trailing" constant="20" id="tTE-TQ-YQa"/>
+                            <constraint firstItem="diM-Qo-4aI" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" constant="15" id="vri-OJ-GWa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="t1c-5u-JWI"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQj-2f-TdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2185" y="1349"/>
+            <point key="canvasLocation" x="2090" y="1091"/>
         </scene>
         <!--Settings-->
         <scene sceneID="krc-0r-6eW">
@@ -500,21 +572,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cI-fg-ztQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1366" y="394"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="qTw-TO-3wV">
-            <objects>
-                <viewController id="hKw-yS-prG" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EHC-WK-Vjr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="lNG-0Z-xaD"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rNb-U1-x2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2185" y="681"/>
         </scene>
         <!--Wallet-->
         <scene sceneID="Kcu-57-GyK">
