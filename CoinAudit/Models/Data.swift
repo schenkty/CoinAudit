@@ -8,9 +8,11 @@
 
 import Foundation
 
-let defaults = UserDefaults.standard
+let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 var entries: [CoinEntry] = []
 var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
+var widgetValue: String = defaults.object(forKey: "widget") as? String ?? String()
+var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? String()
 var walletCoins: [WalletEntry] = []
 
 
@@ -18,9 +20,14 @@ func saveFavorites() {
     defaults.set(favorites, forKey: "favorites")
 }
 
+func saveWidgetMode() {
+    defaults.set(widgetValue, forKey: "widget")
+}
+
 func saveWallet() {
     let encodedWallet = NSKeyedArchiver.archivedData(withRootObject: walletCoins)
     defaults.set(encodedWallet, forKey: "wallet")
+    defaults.set(walletValue, forKey: "walletMode")
 }
 
 func loadWallet() {
@@ -29,6 +36,6 @@ func loadWallet() {
         walletCoins = walletItems
         print("Wallet loaded")
     } else {
-        print("There is an issue loading wallet")
+        print("Failed: Can not load Wallet")
     }
 }

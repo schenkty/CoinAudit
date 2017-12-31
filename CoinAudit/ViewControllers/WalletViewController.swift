@@ -87,7 +87,15 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.nameLabel.text = coin?.name
         cell.symbolLabel.text = coin?.symbol
-        cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+        
+        if walletValue == "volume" {
+            cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+        } else if walletValue == "value" {
+           cell.valueLabel.text = "\(Double(walletCoins[indexPath.row].value)! * Double(coin!.priceUSD)!)".formatUSD()
+        } else {
+            print("Wallet Format not found")
+            cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+        }
         
         return cell
     }
@@ -98,10 +106,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let controller = storyboard.instantiateViewController(withIdentifier: "addWallet") as! AddWalletViewController
         // sort wallet
         guard let name = cell.nameLabel.text else { return }
-        guard let value = cell.valueLabel.text else { return }
         
         controller.name = name
-        controller.value = value
         self.show(controller, sender: self)
     }
     
@@ -116,7 +122,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // zero out totals
         walletTotal = 0.0
         bitcoinTotal = 0.0
-        
         
         for localCoin in walletCoins {
             print("Calculating: \(localCoin.name)")

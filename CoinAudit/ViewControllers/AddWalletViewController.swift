@@ -27,13 +27,14 @@ class AddWalletViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
+        index = walletCoins.index(where: {$0.name == name})!
+        value = walletCoins[index].value
         nameTextField.text = name
         valueTexField.text = value
         
-        if name != "" || value != "" {
+        if name != "" {
             new = false
             // pull coin index using provided name
-            index = walletCoins.index(where: {$0.name == name})!
             saveButton.setTitle("Update", for: .normal)
             self.navigationItem.title = "\(name) Entry"
         } else {

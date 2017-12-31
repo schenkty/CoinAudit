@@ -11,15 +11,27 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet var versionLabel: UILabel!
+    @IBOutlet var walletSelector: UISegmentedControl!
+    @IBOutlet var widgetSelector: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if widgetValue == "favorites" {
+            widgetSelector.selectedSegmentIndex = 0
+        } else if widgetValue == "wallet" {
+            widgetSelector.selectedSegmentIndex = 1
+        } else {
+            widgetSelector.selectedSegmentIndex = 0
+        }
+        
+        if walletValue == "volume" {
+            walletSelector.selectedSegmentIndex = 0
+        } else if walletValue == "value" {
+            walletSelector.selectedSegmentIndex = 1
+        } else {
+            walletSelector.selectedSegmentIndex = 0
+        }
     }
     
     @IBAction func clearData(_ sender: Any) {
@@ -41,5 +53,26 @@ class SettingsViewController: UIViewController {
         if let link = URL(string: "https://coinmarketcap.com") {
             UIApplication.shared.open(link)
         }
+    }
+    
+    @IBAction func widgetMode(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            widgetValue = "favorites"
+            saveWidgetMode()
+        } else {
+            widgetValue = "wallet"
+            saveWidgetMode()
+        }
+    }
+    
+    @IBAction func walletMode(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            walletValue = "volume"
+            saveWallet()
+        } else {
+            walletValue = "value"
+            saveWallet()
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
 }

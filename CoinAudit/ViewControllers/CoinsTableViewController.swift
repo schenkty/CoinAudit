@@ -81,6 +81,10 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         self.tableView.reloadData()
     }
     
+    @objc func updateList() {
+        self.tableView.reloadData()
+    }
+    
     func updateData() {
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
@@ -94,10 +98,6 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             // Update Table Views
             self.tableView.reloadData()
         }
-    }
-    
-    @objc func updateList() {
-        self.tableView.reloadData()
     }
 
     @IBAction func updateFeed(_ sender: Any) {
