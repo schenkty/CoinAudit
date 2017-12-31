@@ -10,10 +10,10 @@ import Foundation
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 
-var favorites: [String] = defaults.object(forKey: "favorites") as? [String] ?? [String]()
+var favorites: [String] = []
 var walletCoins: [WalletEntry] = []
 var widgetValue: String = defaults.object(forKey: "widget") as? String ?? String()
-
+var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? String()
 
 func loadWallet() {
     if let walletData = defaults.data(forKey: "wallet"),

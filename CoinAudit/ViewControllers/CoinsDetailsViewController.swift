@@ -165,7 +165,7 @@ class CoinsDetailsViewController: UIViewController {
                 }
             }
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
     }
     
 }

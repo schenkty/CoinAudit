@@ -34,10 +34,6 @@
 		32C1C4DA1FF8BD7C00DA69D3 /* CoinEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4D91FF8BD7C00DA69D3 /* CoinEntry.swift */; };
 		32C1C4E21FF8BFEC00DA69D3 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4E11FF8BFEC00DA69D3 /* FavoriteCell.swift */; };
 		32C1C4E41FF8C08000DA69D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4E31FF8C08000DA69D3 /* Extensions.swift */; };
-		32C1C4F31FF8C90E00DA69D3 /* CADataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */; };
-		32C1C4FF1FF8C90E00DA69D3 /* CADataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */; };
-		32C1C5001FF8C90E00DA69D3 /* CADataKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		32C1C5081FF8C93300DA69D3 /* CADataKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */; };
 		32C1C5091FF8CA0800DA69D3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4DD1FF8BECE00DA69D3 /* Data.swift */; };
 		32C1C50D1FF8DCB800DA69D3 /* WalletEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C50C1FF8DCB800DA69D3 /* WalletEntry.swift */; };
 		7F27E93D6F2D05410203D007 /* Pods_CoinAuditUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B101603DEA0C7F5CA4766F7C /* Pods_CoinAuditUITests.framework */; };
@@ -68,27 +64,6 @@
 			remoteGlobalIDString = 32AFAB7B1FF38FC6006B608D;
 			remoteInfo = CoinAudit;
 		};
-		32C1C4F41FF8C90E00DA69D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32AFAB741FF38FC6006B608D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 32C1C4E91FF8C90E00DA69D3;
-			remoteInfo = CADataKit;
-		};
-		32C1C4F61FF8C90E00DA69D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32AFAB741FF38FC6006B608D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 32AFAB7B1FF38FC6006B608D;
-			remoteInfo = CoinAudit;
-		};
-		32C1C4FD1FF8C90E00DA69D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32AFAB741FF38FC6006B608D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 32C1C4E91FF8C90E00DA69D3;
-			remoteInfo = CADataKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,7 +84,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				32C1C5001FF8C90E00DA69D3 /* CADataKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,8 +131,6 @@
 		32C1C4DD1FF8BECE00DA69D3 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		32C1C4E11FF8BFEC00DA69D3 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		32C1C4E31FF8C08000DA69D3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CADataKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32C1C4F21FF8C90E00DA69D3 /* CADataKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CADataKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinAudit.entitlements; sourceTree = "<group>"; };
 		32C1C50B1FF8CD8600DA69D3 /* CoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinWidget.entitlements; sourceTree = "<group>"; };
 		32C1C50C1FF8DCB800DA69D3 /* WalletEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEntry.swift; sourceTree = "<group>"; };
@@ -180,7 +152,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32C1C5081FF8C93300DA69D3 /* CADataKit.framework in Frameworks */,
 				328821371FF8AFEE002E365B /* NotificationCenter.framework in Frameworks */,
 				ADB349FF406D2901FE45E367 /* Pods_CoinAudit_CoinWidget.framework in Frameworks */,
 			);
@@ -191,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				98934ADDA1FC1991B916D94C /* Pods_CoinAudit.framework in Frameworks */,
-				32C1C4FF1FF8C90E00DA69D3 /* CADataKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,21 +178,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F27E93D6F2D05410203D007 /* Pods_CoinAuditUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		32C1C4E61FF8C90E00DA69D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		32C1C4EF1FF8C90E00DA69D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				32C1C4F31FF8C90E00DA69D3 /* CADataKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,8 +235,6 @@
 				32AFAB921FF38FC7006B608D /* CoinAuditTests.xctest */,
 				32AFAB9D1FF38FC7006B608D /* CoinAuditUITests.xctest */,
 				328821351FF8AFEE002E365B /* CoinWidget.appex */,
-				32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */,
-				32C1C4F21FF8C90E00DA69D3 /* CADataKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,16 +318,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		32C1C4E71FF8C90E00DA69D3 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		328821341FF8AFEE002E365B /* CoinWidget */ = {
 			isa = PBXNativeTarget;
@@ -412,7 +355,6 @@
 			);
 			dependencies = (
 				328821401FF8AFEE002E365B /* PBXTargetDependency */,
-				32C1C4FE1FF8C90E00DA69D3 /* PBXTargetDependency */,
 			);
 			name = CoinAudit;
 			productName = CoinAudit;
@@ -461,43 +403,6 @@
 			productReference = 32AFAB9D1FF38FC7006B608D /* CoinAuditUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		32C1C4E91FF8C90E00DA69D3 /* CADataKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 32C1C5011FF8C90E00DA69D3 /* Build configuration list for PBXNativeTarget "CADataKit" */;
-			buildPhases = (
-				32C1C4E51FF8C90E00DA69D3 /* Sources */,
-				32C1C4E61FF8C90E00DA69D3 /* Frameworks */,
-				32C1C4E71FF8C90E00DA69D3 /* Headers */,
-				32C1C4E81FF8C90E00DA69D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CADataKit;
-			productName = CADataKit;
-			productReference = 32C1C4EA1FF8C90E00DA69D3 /* CADataKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		32C1C4F11FF8C90E00DA69D3 /* CADataKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 32C1C5041FF8C90E00DA69D3 /* Build configuration list for PBXNativeTarget "CADataKitTests" */;
-			buildPhases = (
-				32C1C4EE1FF8C90E00DA69D3 /* Sources */,
-				32C1C4EF1FF8C90E00DA69D3 /* Frameworks */,
-				32C1C4F01FF8C90E00DA69D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				32C1C4F51FF8C90E00DA69D3 /* PBXTargetDependency */,
-				32C1C4F71FF8C90E00DA69D3 /* PBXTargetDependency */,
-			);
-			name = CADataKitTests;
-			productName = CADataKitTests;
-			productReference = 32C1C4F21FF8C90E00DA69D3 /* CADataKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -537,15 +442,6 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 32AFAB7B1FF38FC6006B608D;
 					};
-					32C1C4E91FF8C90E00DA69D3 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-					};
-					32C1C4F11FF8C90E00DA69D3 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 32AFAB7B1FF38FC6006B608D;
-					};
 				};
 			};
 			buildConfigurationList = 32AFAB771FF38FC6006B608D /* Build configuration list for PBXProject "CoinAudit" */;
@@ -565,8 +461,6 @@
 				32AFAB911FF38FC7006B608D /* CoinAuditTests */,
 				32AFAB9C1FF38FC7006B608D /* CoinAuditUITests */,
 				328821341FF8AFEE002E365B /* CoinWidget */,
-				32C1C4E91FF8C90E00DA69D3 /* CADataKit */,
-				32C1C4F11FF8C90E00DA69D3 /* CADataKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -598,20 +492,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		32AFAB9B1FF38FC7006B608D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		32C1C4E81FF8C90E00DA69D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		32C1C4F01FF8C90E00DA69D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -863,20 +743,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		32C1C4E51FF8C90E00DA69D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		32C1C4EE1FF8C90E00DA69D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -894,21 +760,6 @@
 			isa = PBXTargetDependency;
 			target = 32AFAB7B1FF38FC6006B608D /* CoinAudit */;
 			targetProxy = 32AFAB9E1FF38FC7006B608D /* PBXContainerItemProxy */;
-		};
-		32C1C4F51FF8C90E00DA69D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 32C1C4E91FF8C90E00DA69D3 /* CADataKit */;
-			targetProxy = 32C1C4F41FF8C90E00DA69D3 /* PBXContainerItemProxy */;
-		};
-		32C1C4F71FF8C90E00DA69D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 32AFAB7B1FF38FC6006B608D /* CoinAudit */;
-			targetProxy = 32C1C4F61FF8C90E00DA69D3 /* PBXContainerItemProxy */;
-		};
-		32C1C4FE1FF8C90E00DA69D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 32C1C4E91FF8C90E00DA69D3 /* CADataKit */;
-			targetProxy = 32C1C4FD1FF8C90E00DA69D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1199,84 +1050,6 @@
 			};
 			name = Release;
 		};
-		32C1C5021FF8C90E00DA69D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8AYF758EP8;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CADataKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.CADataKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		32C1C5031FF8C90E00DA69D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8AYF758EP8;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CADataKit/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.CADataKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		32C1C5051FF8C90E00DA69D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8AYF758EP8;
-				INFOPLIST_FILE = CADataKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.CADataKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinAudit.app/CoinAudit";
-			};
-			name = Debug;
-		};
-		32C1C5061FF8C90E00DA69D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8AYF758EP8;
-				INFOPLIST_FILE = CADataKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.CADataKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinAudit.app/CoinAudit";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1321,24 +1094,6 @@
 			buildConfigurations = (
 				32AFABAD1FF38FC7006B608D /* Debug */,
 				32AFABAE1FF38FC7006B608D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		32C1C5011FF8C90E00DA69D3 /* Build configuration list for PBXNativeTarget "CADataKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				32C1C5021FF8C90E00DA69D3 /* Debug */,
-				32C1C5031FF8C90E00DA69D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		32C1C5041FF8C90E00DA69D3 /* Build configuration list for PBXNativeTarget "CADataKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				32C1C5051FF8C90E00DA69D3 /* Debug */,
-				32C1C5061FF8C90E00DA69D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

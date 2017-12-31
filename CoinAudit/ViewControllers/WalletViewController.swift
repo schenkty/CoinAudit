@@ -25,7 +25,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
-        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reload"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
         
         // load all
         loadWallet()
@@ -160,7 +160,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Update data
             self.calculateWallet()
             self.walletTableView.reloadData()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
         }
     }
 }
