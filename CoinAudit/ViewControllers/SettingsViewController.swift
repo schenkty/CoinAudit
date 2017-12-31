@@ -13,10 +13,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var walletSelector: UISegmentedControl!
     @IBOutlet var widgetSelector: UISegmentedControl!
+    @IBOutlet var walletModeView: UIStackView!
+    @IBOutlet var widgetModeView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        widgetModeView.isHidden = true
         if widgetValue == "favorites" {
             widgetSelector.selectedSegmentIndex = 0
         } else if widgetValue == "wallet" {

@@ -18,6 +18,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if url.scheme == "coinaudit" {
+            
+            //TODO: Write your code here
+            print("url \(url)")
+            print("url host: \(url.host!)")
+            print("url path:\(url.path)")
+            
+            
+            var urlPath : String = url.path as String!
+            let urlHost : String = url.host as String!
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if(urlHost != "coin") {
+                print("Host is not correct")
+                return false
+            }
+            
+            if(urlPath != "") {
+                urlPath.remove(at: urlPath.startIndex)
+                
+                print("coin: \(urlPath)")
+                let coinController = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
+                coinController.id = urlPath
+                coinController.mode = "url"
+                self.window?.rootViewController = coinController
+            }
+            
+            self.window?.makeKeyAndVisible()
+            return true
+        }
+        return true
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

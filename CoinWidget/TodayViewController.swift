@@ -21,14 +21,21 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-        favoritesTableView.delegate = self
-    
-        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if widgetValue == "wallet" {
-            loadWallet()
+
+            // Move to a background thread to do some long running work
+            DispatchQueue.global(qos: .userInteractive).async {
+                favorites.removeAll()
+                walletCoins.removeAll()
+                
+                loadWallet()
+                // Bounce back to the main thread to update the UI
+                DispatchQueue.main.async {
+                    self.favoritesTableView.reloadData()
+                }
+            }
+            
+            walletValue = defaults.object(forKey: "walletMode") as? String ?? String()
             if walletCoins.count == 0 {
                 print("No Wallet Found")
                 self.errorLabel.text = "Please add coins to your wallet in CoinAudit"
@@ -36,8 +43,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             } else {
                 print("Found \(walletCoins.count) Coins from Wallet")
                 self.errorLabel.isHidden = true
+                self.favoritesTableView.reloadData()
             }
         } else {
+            walletCoins.removeAll()
             favorites = defaults.object(forKey: "favorites") as? [String] ?? [String]()
             if favorites.count == 0 {
                 print("No Favorites Found")
@@ -46,8 +55,15 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             } else {
                 print("Found \(favorites.count) Favorites")
                 self.errorLabel.isHidden = true
+                self.favoritesTableView.reloadData()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        favoritesTableView.delegate = self
+        widgetValue = defaults.object(forKey: "widget") as? String ?? String()
+        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -75,7 +91,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if updating == true { return }
-        let cell = tableView.cellForRow(at: indexPath) as! FavoriteCell
+        favorites = favorites.sorted()
+        let id = favorites[indexPath.row]
         
         if let selectionIndexPath = self.favoritesTableView.indexPathForSelectedRow {
             self.favoritesTableView.deselectRow(at: selectionIndexPath, animated: true)
@@ -88,10 +105,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             preferredContentSize = CGSize(width: 0, height: 118)
         }
         
-        if widgetValue == "wallet" {
-            print("open wallet")
-        } else {
-            print("open favorite coin")
+        if let link = URL(string: "coinaudit://coin/\(id)") {
+            self.extensionContext?.open(link, completionHandler:nil)
         }
     }
     
@@ -110,6 +125,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
             // pull id
             id = walletCoins[indexPath.row].id
+            cell.symbolLabel.text = walletCoins[indexPath.row].name
+            cell.valueLabel.text = walletCoins[indexPath.row].value
+            self.loadingIndicator.stopAnimating()
+            self.updating = false
             
             Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
                 for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -131,7 +150,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                     }
                 }
             }
-            print("can't load wallet")
         default:
             favorites = favorites.sorted()
             id = favorites[indexPath.row]

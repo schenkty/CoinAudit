@@ -12,13 +12,12 @@ let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 
 var favorites: [String] = []
 var walletCoins: [WalletEntry] = []
-var widgetValue: String = defaults.object(forKey: "widget") as? String ?? String()
-var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? String()
+var widgetValue: String = ""
+var walletValue: String = ""
 
 func loadWallet() {
-    if let walletData = defaults.data(forKey: "wallet"),
-        let walletItems = NSKeyedUnarchiver.unarchiveObject(with: walletData) as? [WalletEntry] {
-        walletCoins = walletItems
+    if let walletData = defaults.data(forKey: "wallet") {
+        walletCoins = (NSKeyedUnarchiver.unarchiveObject(with: walletData) as! [WalletEntry])
         print("Wallet loaded")
     } else {
         print("Failed: Can not load Wallet")

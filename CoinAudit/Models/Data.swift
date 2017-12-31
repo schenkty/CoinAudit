@@ -11,8 +11,8 @@ import Foundation
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 var entries: [CoinEntry] = []
 var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
-var widgetValue: String = defaults.object(forKey: "widget") as? String ?? String()
-var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? String()
+var widgetValue: String = defaults.object(forKey: "widget") as? String ?? "favorites"
+var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? "volume"
 var walletCoins: [WalletEntry] = []
 
 

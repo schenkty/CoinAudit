@@ -28,9 +28,6 @@ class AddWalletViewController: UIViewController {
         // Do any additional setup after loading the view.
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
         
-        nameTextField.text = name
-        valueTexField.text = value
-        
         if name != "" {
             new = false
             // pull coin index using provided name
@@ -49,6 +46,8 @@ class AddWalletViewController: UIViewController {
             names.append(name)
         }
         
+        nameTextField.text = name
+        valueTexField.text = value
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true

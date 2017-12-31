@@ -24,12 +24,23 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var percent1Label: UILabel!
     @IBOutlet var percent24Label: UILabel!
     @IBOutlet var percent7Label: UILabel!
+    @IBOutlet var navBar: UINavigationBar!
     
     var favorited: Bool = false
     var id: String = ""
+    var mode: String = "normal"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if mode == "url" {
+            navBar.isHidden = false
+        } else {
+            navBar.isHidden = true
+        }
+        
+        
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoin))
         updateButton.image = #imageLiteral(resourceName: "refresh")
         self.navigationItem.rightBarButtonItem = updateButton
@@ -166,6 +177,12 @@ class CoinsDetailsViewController: UIViewController {
             }
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+    }
+    
+    @IBAction func doneButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainController = storyboard.instantiateViewController(withIdentifier: "main")
+        self.present(mainController, animated: true, completion: nil)
     }
     
 }
