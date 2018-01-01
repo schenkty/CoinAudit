@@ -135,6 +135,13 @@
 		32C1C50B1FF8CD8600DA69D3 /* CoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinWidget.entitlements; sourceTree = "<group>"; };
 		32C1C50C1FF8DCB800DA69D3 /* WalletEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEntry.swift; sourceTree = "<group>"; };
 		32E84CDB1FF70EFA00D36D7C /* WalletEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEntry.swift; sourceTree = "<group>"; };
+		32F398421FF9E9C1001D6698 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		32F398441FF9E9C1001D6698 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		32F3984D1FF9E9C1001D6698 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		32F398501FF9E9C1001D6698 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		32F398521FF9E9C1001D6698 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32F398611FF9FC15001D6698 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		57E1A40F8088B201C70ADFDD /* Pods-CoinAuditTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAuditTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAuditTests/Pods-CoinAuditTests.release.xcconfig"; sourceTree = "<group>"; };
 		899E55754300B5DF50EBF466 /* Pods_CoinAudit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinAudit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9BC15EBEF16ED86EB0B136E /* Pods-CoinAuditTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAuditTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAuditTests/Pods-CoinAuditTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +229,8 @@
 				32AFAB951FF38FC7006B608D /* CoinAuditTests */,
 				32AFABA01FF38FC7006B608D /* CoinAuditUITests */,
 				328821381FF8AFEE002E365B /* CoinWidget */,
+				32F398411FF9E9C1001D6698 /* Intents Handler */,
+				32F3984C1FF9E9C1001D6698 /* Intents HandlerUI */,
 				32AFAB7D1FF38FC6006B608D /* Products */,
 				4277160C04D471DB9572BA65 /* Frameworks */,
 				0F5FF0537ACBA6DD939589B3 /* Pods */,
@@ -272,6 +281,25 @@
 			path = CoinAuditUITests;
 			sourceTree = "<group>";
 		};
+		32F398411FF9E9C1001D6698 /* Intents Handler */ = {
+			isa = PBXGroup;
+			children = (
+				32F398421FF9E9C1001D6698 /* IntentHandler.swift */,
+				32F398441FF9E9C1001D6698 /* Info.plist */,
+			);
+			path = "Intents Handler";
+			sourceTree = "<group>";
+		};
+		32F3984C1FF9E9C1001D6698 /* Intents HandlerUI */ = {
+			isa = PBXGroup;
+			children = (
+				32F3984D1FF9E9C1001D6698 /* IntentViewController.swift */,
+				32F3984F1FF9E9C1001D6698 /* MainInterface.storyboard */,
+				32F398521FF9E9C1001D6698 /* Info.plist */,
+			);
+			path = "Intents HandlerUI";
+			sourceTree = "<group>";
+		};
 		32FCD4011FF4AEC200B7AD32 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +331,7 @@
 		4277160C04D471DB9572BA65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32F398611FF9FC15001D6698 /* Intents.framework */,
 				32C1C4A61FF8B82D00DA69D3 /* Alamofire.framework */,
 				32C1C4A31FF8B7EA00DA69D3 /* Alamofire.framework */,
 				32421D681FF8B3F400F14061 /* CCKit.framework */,
@@ -312,6 +341,7 @@
 				B01AF1FC7F2027BBBDF00197 /* Pods_CoinAudit_CoinWidget.framework */,
 				B196CE76F237A2AB5214CA01 /* Pods_CoinAuditTests.framework */,
 				B101603DEA0C7F5CA4766F7C /* Pods_CoinAuditUITests.framework */,
+				32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -429,6 +459,9 @@
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 0;
 							};
 						};
 					};
@@ -786,6 +819,14 @@
 				32AFAB8B1FF38FC6006B608D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		32F3984F1FF9E9C1001D6698 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32F398501FF9E9C1001D6698 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

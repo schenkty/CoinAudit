@@ -14,12 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         if let url = launchOptions?[UIApplicationLaunchOptionsKey.url] as? URL {
-            //let sourceApp = launchOptions?[UIApplicationLaunchOptionsKey.sourceApplicationUIApplicationLaunchOptionsKey.sourceApplication] as? String
             let sourceApp = launchOptions![UIApplicationLaunchOptionsKey.sourceApplication] as? String
             let annotation = launchOptions![UIApplicationLaunchOptionsKey.annotation]
             self.application(application: application, open: url, sourceApplication: sourceApp, annotation: annotation!)
@@ -30,10 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if url.scheme == "coinaudit" {
-            
             //TODO: Write your code here
             print("loading: \(url)")
-            
             
             var urlPath: String = url.path
             let urlHost: String = url.host!
@@ -83,7 +79,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
