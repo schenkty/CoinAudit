@@ -107,7 +107,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         let appURL = URL(string: "coinaudit://coin/\(favorites[indexPath.row])")!
         self.extensionContext?.open(appURL, completionHandler: { (success) in
             if (!success) {
-                print("error: failed to open app from Today Extension")
+                print("Failed: Can not open app from Today Extension")
             }
         })
     }

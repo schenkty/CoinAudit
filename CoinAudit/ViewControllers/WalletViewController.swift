@@ -154,12 +154,9 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
                 if let coin = CoinEntry.init(json: coinJSON) {
-                    print("Downloaded: \(coin.name)")
                     entries.append(coin)
                 }
             }
-            
-            print(entries.count)
             
             // Update data
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)

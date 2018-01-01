@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if url.scheme == "coinaudit" {
-            //TODO: Write your code here
+            //TODO: Fix code for loading while app is closed
             print("loading: \(url)")
             
             var urlPath: String = url.path
