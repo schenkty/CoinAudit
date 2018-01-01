@@ -33,13 +33,11 @@ class CoinsDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if mode == "url" {
             navBar.isHidden = false
         } else {
             navBar.isHidden = true
         }
-        
         
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoin))
         updateButton.image = #imageLiteral(resourceName: "refresh")
@@ -143,46 +141,57 @@ class CoinsDetailsViewController: UIViewController {
         
         if (percent1 > 0.0) {
             // do positive stuff
-            percent1Label.textColor = UIColor(hexString: "008F00")
+            percent1Label.textColor = UIColor(hexString: "63DB37")
             percent1Label.text = "\(percent1)%"
         } else if (percent1 == 0.0) {
             // do zero stuff
+            percent1Label.textColor = UIColor(hexString: "63DB37")
             percent1Label.text = "\(percent1)%"
         } else {
             // do negative stuff
-            percent1Label.textColor = .red
+            percent1Label.textColor = UIColor(hexString: "FF483E")
             percent1Label.text = "\(percent1)%"
         }
         
         if (percent24 > 0.0) {
             // do positive stuff
-            percent24Label.textColor = UIColor(hexString: "008F00")
+            percent24Label.textColor = UIColor(hexString: "63DB37")
             percent24Label.text = "\(percent24)%"
         } else if (percent24 == 0.0) {
             // do zero stuff
+            percent24Label.textColor = UIColor(hexString: "63DB37")
             percent24Label.text = "\(percent24)%"
         } else {
             // do negative stuff
-            percent24Label.textColor = .red
+            percent24Label.textColor = UIColor(hexString: "FF483E")
             percent24Label.text = "\(percent24)%"
         }
         
         if (percent7 > 0.0) {
             // do positive stuff
-            percent7Label.textColor = UIColor(hexString: "008F00")
+            percent7Label.textColor = UIColor(hexString: "63DB37")
             percent7Label.text = "\(percent7)%"
         } else if (percent7 == 0.0) {
             // do zero stuff
+            percent7Label.textColor = UIColor(hexString: "63DB37")
             percent7Label.text = "\(percent7)%"
         } else {
             // do negative stuff
-            percent7Label.textColor = .red
+            percent7Label.textColor = UIColor(hexString: "FF483E")
             percent7Label.text = "\(percent7)%"
         }
     }
     
     @objc func updateCoin() {
-        SwiftSpinner.show(duration: 1.0, title: "Updating \(nameLabel.text!)...")
+        var name = ""
+        
+        if nameLabel.text != "" {
+            name = nameLabel.text!
+        } else {
+            name = "Unknown"
+        }
+        
+        SwiftSpinner.show(duration: 1.0, title: "Updating \(name)...")
         // Pull Coin Data
         Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -194,7 +203,7 @@ class CoinsDetailsViewController: UIViewController {
                 }
             }
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
     }
     
     @IBAction func doneButton(_ sender: Any) {

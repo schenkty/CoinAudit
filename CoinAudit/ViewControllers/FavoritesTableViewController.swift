@@ -12,7 +12,7 @@ import NotificationCenter
 class FavoritesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
@@ -61,11 +61,16 @@ class FavoritesTableViewController: UITableViewController {
         // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavCell
         favorites = favorites.sorted()
-        let coin = entries.first(where: {$0.id == favorites[indexPath.row]})
+        guard let coin = entries.first(where: {$0.id == favorites[indexPath.row]}) else {
+            cell.nameLabel.text = "Unknown"
+            cell.symbolLabel.text = "Unk"
+            cell.valueLabel.text = "0.0".formatUSD()
+            return cell
+        }
     
-        cell.nameLabel.text = coin!.name
-        cell.symbolLabel.text = coin!.symbol
-        cell.valueLabel.text = coin!.priceUSD.formatUSD()
+        cell.nameLabel.text = coin.name
+        cell.symbolLabel.text = coin.symbol
+        cell.valueLabel.text = coin.priceUSD.formatUSD()
 
         return cell
     }

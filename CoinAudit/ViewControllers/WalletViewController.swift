@@ -23,9 +23,13 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
+            self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
+        }
+        
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
-        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
         // load all
         loadWallet()
@@ -36,14 +40,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
         self.calculateWallet()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
-            self.walletTableView.deselectRow(at: selectionIndexPath, animated: animated)
-        }
     }
 
     // MARK: - Table view data source
@@ -83,15 +79,20 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
 
         // pull coin data from entries array
-        let coin = entries.first(where: {$0.id == walletCoins[indexPath.row].id})
+        guard let coin = entries.first(where: {$0.id == walletCoins[indexPath.row].id}) else {
+            cell.nameLabel.text = "Unknown"
+            cell.symbolLabel.text = "Unk"
+            cell.valueLabel.text = "0.0"
+            return cell
+        }
         
-        cell.nameLabel.text = coin?.name
-        cell.symbolLabel.text = coin?.symbol
+        cell.nameLabel.text = coin.name
+        cell.symbolLabel.text = coin.symbol
         
         if walletValue == "volume" {
             cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
         } else if walletValue == "value" {
-           cell.valueLabel.text = "\(Double(walletCoins[indexPath.row].value)! * Double(coin!.priceUSD)!)".formatUSD()
+            cell.valueLabel.text = "\(Double(walletCoins[indexPath.row].value)! * Double(coin.priceUSD)!)".formatUSD()
         } else {
             print("Wallet Format not found")
             cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
@@ -126,10 +127,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         for localCoin in walletCoins {
             print("Calculating: \(localCoin.name)")
             
-            let coin = entries.first(where: {$0.id == localCoin.id})
+            guard let coin = entries.first(where: {$0.id == localCoin.id}) else { return }
             guard let value = Double(localCoin.value) else { return }
-            self.walletTotal = self.walletTotal + (Double(coin!.priceUSD)! * value)
-            self.bitcoinTotal = self.bitcoinTotal + (Double(coin!.priceBTC)! * value)
+            self.walletTotal = self.walletTotal + (Double(coin.priceUSD)! * value)
+            self.bitcoinTotal = self.bitcoinTotal + (Double(coin.priceBTC)! * value)
         }
         
         // format wallet total label to currency
@@ -153,14 +154,15 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
                 if let coin = CoinEntry.init(json: coinJSON) {
+                    print("Downloaded: \(coin.name)")
                     entries.append(coin)
                 }
             }
             
+            print(entries.count)
+            
             // Update data
-            self.calculateWallet()
-            self.walletTableView.reloadData()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         }
     }
 }

@@ -12,7 +12,7 @@ import Alamofire
 
 class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var favoritesTableView: UITableView!
+    @IBOutlet var widgetTableView: UITableView!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var errorLabel: UILabel!
     
@@ -31,7 +31,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 loadWallet()
                 // Bounce back to the main thread to update the UI
                 DispatchQueue.main.async {
-                    self.favoritesTableView.reloadData()
+                    self.widgetTableView.reloadData()
                 }
             }
             
@@ -43,7 +43,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             } else {
                 print("Found \(walletCoins.count) Coins from Wallet")
                 self.errorLabel.isHidden = true
-                self.favoritesTableView.reloadData()
+                self.widgetTableView.reloadData()
             }
         } else {
             walletCoins.removeAll()
@@ -55,13 +55,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             } else {
                 print("Found \(favorites.count) Favorites")
                 self.errorLabel.isHidden = true
-                self.favoritesTableView.reloadData()
+                self.widgetTableView.reloadData()
             }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        favoritesTableView.delegate = self
+        widgetTableView.delegate = self
         widgetValue = defaults.object(forKey: "widget") as? String ?? String()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
@@ -71,7 +71,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        self.favoritesTableView.reloadData()
+        self.widgetTableView.reloadData()
         
         completionHandler(NCUpdateResult.newData)
     }
@@ -93,13 +93,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         if updating == true { return }
         favorites = favorites.sorted()
         
-        if let selectionIndexPath = self.favoritesTableView.indexPathForSelectedRow {
-            self.favoritesTableView.deselectRow(at: selectionIndexPath, animated: true)
+        if let selectionIndexPath = self.widgetTableView.indexPathForSelectedRow {
+            self.widgetTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
         
-        self.favoritesTableView.reloadData()
+        self.widgetTableView.reloadData()
         if extensionContext?.widgetActiveDisplayMode == .expanded {
-            preferredContentSize = CGSize(width: 0, height: (44 * favoritesTableView.numberOfRows(inSection: 0)) + 8)
+            preferredContentSize = CGSize(width: 0, height: (44 * widgetTableView.numberOfRows(inSection: 0)) + 8)
         } else {
             preferredContentSize = CGSize(width: 0, height: 118)
         }
@@ -113,7 +113,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavoriteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! WidgetCell
         // Configure the cell...
         var id = ""
         
@@ -155,6 +155,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         default:
             favorites = favorites.sorted()
             id = favorites[indexPath.row]
+            var percent = 0.0
             
             Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
                 for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -163,6 +164,27 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                         cell.symbolLabel.text = coin.symbol
                         cell.valueLabel.text = coin.priceUSD.formatUSD()
                         
+                        
+                        if coin.percentChange24 != "unknown" {
+                            percent = Double(coin.percentChange24)!
+                        } else {
+                            percent = 0.0
+                        }
+                        
+                        if (percent > 0.0) {
+                            // do positive stuff
+                            cell.percentLabel.backgroundColor = UIColor(hexString: "63DB37")
+                            cell.percentLabel.text = "\(percent)%"
+                        } else if (percent == 0.0) {
+                            // do zero stuff
+                            cell.percentLabel.backgroundColor = UIColor(hexString: "63DB37")
+                            cell.percentLabel.text = "\(percent)%"
+                        } else {
+                            // do negative stuff
+                            cell.percentLabel.backgroundColor = UIColor(hexString: "FF483E")
+                            cell.percentLabel.text = "\(percent)%"
+                        }
+                        
                         self.loadingIndicator.stopAnimating()
                         self.updating = false
                     }
@@ -170,8 +192,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             }
         }
         
-        if let selectionIndexPath = self.favoritesTableView.indexPathForSelectedRow {
-            self.favoritesTableView.deselectRow(at: selectionIndexPath, animated: true)
+        if let selectionIndexPath = self.widgetTableView.indexPathForSelectedRow {
+            self.widgetTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
         
         return cell
@@ -179,7 +201,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .expanded {
-            preferredContentSize = CGSize(width: 0, height: (44 * favoritesTableView.numberOfRows(inSection: 0)) + 8)
+            preferredContentSize = CGSize(width: 0, height: (44 * widgetTableView.numberOfRows(inSection: 0)) + 8)
         } else {
             preferredContentSize = CGSize(width: 0, height: 118)
         }

@@ -28,7 +28,9 @@ class AddWalletViewController: UIViewController {
         // Do any additional setup after loading the view.
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
         
-        if name != "" {
+        if name == "Unknown" {
+            self.navigationController?.popViewController(animated: true)
+        } else if name != "" {
             new = false
             // pull coin index using provided name
             saveButton.setTitle("Update", for: .normal)
@@ -77,7 +79,7 @@ class AddWalletViewController: UIViewController {
             saveWallet()
             
             print("\(name) Coin Updated")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
@@ -98,7 +100,7 @@ class AddWalletViewController: UIViewController {
             saveWallet()
             
             print("\(name) Coin Saved")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)

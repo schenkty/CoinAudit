@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         walletCoins.removeAll()
         saveWallet()
         saveFavorites()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         showAlert(title: "Data removed")
     }
     
@@ -76,6 +76,6 @@ class SettingsViewController: UIViewController {
             walletValue = "value"
             saveWallet()
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
     }
 }

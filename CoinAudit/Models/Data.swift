@@ -31,9 +31,8 @@ func saveWallet() {
 }
 
 func loadWallet() {
-    if let walletData = defaults.data(forKey: "wallet"),
-        let walletItems = NSKeyedUnarchiver.unarchiveObject(with: walletData) as? [WalletEntry] {
-        walletCoins = walletItems
+    if let walletData = defaults.data(forKey: "wallet") {
+        walletCoins = NSKeyedUnarchiver.unarchiveObject(with: walletData) as! [WalletEntry]
         print("Wallet loaded")
     } else {
         print("Failed: Can not load Wallet")

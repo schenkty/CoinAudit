@@ -19,10 +19,10 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Bitcoin"
+        searchController.searchBar.placeholder = "Search Coin Name"
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         navigationItem.searchController = searchController
@@ -32,7 +32,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewWillAppear(_ animated: Bool) {
         // Pull Coin Data
-        self.updateData()
+        self.updateList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,11 +82,17 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     @objc func updateList() {
-        // Provide using with loading spinner
-        self.updateFeed()
+        // update data
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func updateButton(_ sender: UIBarButtonItem) {
+       self.updateData()
     }
     
     func updateData() {
+        // Provide using with loading spinner
+        SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -97,18 +103,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             
             self.filteredEntries = entries
             // Update Table Views
-            self.tableView.reloadData()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         }
-    }
-
-    @IBAction func updateFeed() {
-        // Provide using with loading spinner
-        SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
-        
-        // Clear entries array
-        entries.removeAll()
-        
-        // update data
-        self.updateData()
     }
 }

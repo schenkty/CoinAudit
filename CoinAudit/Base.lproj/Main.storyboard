@@ -433,7 +433,7 @@
                     <navigationItem key="navigationItem" title="CoinAudit" id="L66-tm-Jnl">
                         <barButtonItem key="rightBarButtonItem" image="refresh" id="ZSE-d5-xzg">
                             <connections>
-                                <action selector="updateFeed" destination="k1y-KJ-3JR" id="j8C-lL-IwK"/>
+                                <action selector="updateButton:" destination="k1y-KJ-3JR" id="Mnt-m7-wRy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
