@@ -86,8 +86,8 @@ class CoinsDetailsViewController: UIViewController {
     
     func formatData(coin: CoinEntry) {
         // set name of coin
-        nameLabel.text = coin.name
-        self.navigationItem.title = coin.symbol
+        //nameLabel.text = coin.name
+        self.navigationItem.title = coin.name
         
         // format prices and set to labels
         priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())"
@@ -119,9 +119,27 @@ class CoinsDetailsViewController: UIViewController {
     }
     
     func formatPercents(coin: CoinEntry) {
-        let percent1 = Double(coin.percentChange1)!
-        let percent24 = Double(coin.percentChange24)!
-        let percent7 = Double(coin.percentChange7)!
+        var percent1 = 0.0
+        var percent24 = 0.0
+        var percent7 = 0.0
+        
+        if coin.percentChange1 != "unknown" {
+            percent1 = Double(coin.percentChange1)!
+        } else {
+            percent1 = 0.0
+        }
+        
+        if coin.percentChange24 != "unknown" {
+            percent24 = Double(coin.percentChange24)!
+        } else {
+            percent24 = 0.0
+        }
+        
+        if coin.percentChange7 != "unknown" {
+            percent7 = Double(coin.percentChange7)!
+        } else {
+            percent7 = 0.0
+        }
         
         if (percent1 > 0.0) {
             // do positive stuff

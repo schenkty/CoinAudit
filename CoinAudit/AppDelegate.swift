@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NotificationCenter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,20 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let url = launchOptions?[UIApplicationLaunchOptionsKey.url] as? URL {
+            //let sourceApp = launchOptions?[UIApplicationLaunchOptionsKey.sourceApplicationUIApplicationLaunchOptionsKey.sourceApplication] as? String
+            let sourceApp = launchOptions![UIApplicationLaunchOptionsKey.sourceApplication] as? String
+            let annotation = launchOptions![UIApplicationLaunchOptionsKey.annotation]
+            self.application(application: application, open: url, sourceApplication: sourceApp, annotation: annotation!)
+        }
+        
         return true
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    func application(application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if url.scheme == "coinaudit" {
             
             //TODO: Write your code here
-            print("url \(url)")
-            print("url host: \(url.host!)")
-            print("url path:\(url.path)")
+            print("loading: \(url)")
             
             
-            var urlPath : String = url.path as String!
-            let urlHost : String = url.host as String!
+            var urlPath: String = url.path
+            let urlHost: String = url.host!
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             if(urlHost != "coin") {
@@ -39,8 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if(urlPath != "") {
                 urlPath.remove(at: urlPath.startIndex)
-                
-                print("coin: \(urlPath)")
+    
                 let coinController = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
                 coinController.id = urlPath
                 coinController.mode = "url"
@@ -49,8 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.makeKeyAndVisible()
             return true
+        } else {
+            return false
         }
-        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -65,10 +72,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

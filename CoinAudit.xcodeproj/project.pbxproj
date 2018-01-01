@@ -795,7 +795,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE2E5BBEABD7DB2DED80A9A8 /* Pods-CoinAudit-CoinWidget.debug.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinWidget/CoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
@@ -813,7 +813,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3EECED5E5D398F7531267A6 /* Pods-CoinAudit-CoinWidget.release.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinWidget/CoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AYF758EP8;

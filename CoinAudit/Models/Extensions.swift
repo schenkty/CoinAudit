@@ -15,6 +15,10 @@ extension String {
         formatter.locale = Locale.current
         formatter.numberStyle = .currency
         
+        guard Double(self) != nil else {
+            return ""
+        }
+        
         return formatter.string(from: NSNumber(value: Double(self)!))!
     }
     

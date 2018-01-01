@@ -92,7 +92,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if updating == true { return }
         favorites = favorites.sorted()
-        let id = favorites[indexPath.row]
         
         if let selectionIndexPath = self.favoritesTableView.indexPathForSelectedRow {
             self.favoritesTableView.deselectRow(at: selectionIndexPath, animated: true)
@@ -105,9 +104,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             preferredContentSize = CGSize(width: 0, height: 118)
         }
         
-        if let link = URL(string: "coinaudit://coin/\(id)") {
-            self.extensionContext?.open(link, completionHandler:nil)
-        }
+        let appURL = URL(string: "coinaudit://coin/\(favorites[indexPath.row])")!
+        self.extensionContext?.open(appURL, completionHandler: { (success) in
+            if (!success) {
+                print("error: failed to open app from Today Extension")
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

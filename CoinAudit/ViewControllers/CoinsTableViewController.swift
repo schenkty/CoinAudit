@@ -82,7 +82,8 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     @objc func updateList() {
-        self.tableView.reloadData()
+        // Provide using with loading spinner
+        self.updateFeed()
     }
     
     func updateData() {
@@ -100,7 +101,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         }
     }
 
-    @IBAction func updateFeed(_ sender: Any) {
+    @IBAction func updateFeed() {
         // Provide using with loading spinner
         SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
         
