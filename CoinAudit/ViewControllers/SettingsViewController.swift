@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var walletSelector: UISegmentedControl!
     @IBOutlet var widgetSelector: UISegmentedControl!
+    
     @IBOutlet var walletModeView: UIStackView!
     @IBOutlet var widgetModeView: UIStackView!
     
@@ -66,6 +67,25 @@ class SettingsViewController: UIViewController {
             widgetValue = "wallet"
             saveWidgetMode()
         }
+    }
+    
+    
+    @IBAction func themeMode(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            themeValue = "light"
+            saveTheme()
+            changeColor()
+        } else {
+            widgetValue = "dark"
+            saveTheme()
+            changeColor()
+        }
+    }
+    
+    func changeColor() {
+        self.view.backgroundColor = viewsColor()
+        self.versionLabel.textColor = textColor()
+        self.walletSelector.tintColor = itemsColor()
     }
     
     @IBAction func walletMode(_ sender: UISegmentedControl) {

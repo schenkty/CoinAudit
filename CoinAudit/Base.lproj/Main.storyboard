@@ -233,7 +233,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-yu-G1o" userLabel="Main Settings">
-                                <rect key="frame" x="30" y="240" width="315" height="64"/>
+                                <rect key="frame" x="30" y="240" width="315" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tnN-tZ-jFU" userLabel="Widget Mode">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="28"/>
@@ -256,8 +256,30 @@
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Z8B-IY-iTS" userLabel="Wallet Mode">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HUt-nw-Oag" userLabel="Theme Mode">
                                         <rect key="frame" x="0.0" y="36" width="315" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUA-xi-UH2">
+                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9G7-ei-qWw">
+                                                <rect key="frame" x="138.5" y="0.0" width="176.5" height="29"/>
+                                                <segments>
+                                                    <segment title="Light"/>
+                                                    <segment title="Dark"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="themeMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="Vfk-kl-aEM"/>
+                                                    <action selector="walletMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="E1X-me-Zwy"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Z8B-IY-iTS" userLabel="Wallet Mode">
+                                        <rect key="frame" x="0.0" y="72" width="315" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-Kj-pjC">
                                                 <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
@@ -280,10 +302,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="k2G-BF-3d1" firstAttribute="width" secondItem="aW9-Ke-tFx" secondAttribute="width" id="9vv-on-9vH"/>
+                                    <constraint firstItem="9G7-ei-qWw" firstAttribute="width" secondItem="aW9-Ke-tFx" secondAttribute="width" id="yue-7T-J0P"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-ew-Vgy">
-                                <rect key="frame" x="0.0" y="324" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="360" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Developer: Ty Schenk"/>
                                 <connections>
@@ -291,13 +314,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erW-j3-BZJ">
-                                <rect key="frame" x="0.0" y="379" width="375" height="23"/>
+                                <rect key="frame" x="0.0" y="415" width="375" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqn-in-rsd">
-                                <rect key="frame" x="0.0" y="422" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="458" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Clear All Data"/>
                                 <connections>
@@ -305,7 +328,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-Ud-Zw7">
-                                <rect key="frame" x="0.0" y="477" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="513" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Powered by CoinMarketCap"/>
                                 <connections>

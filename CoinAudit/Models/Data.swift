@@ -13,6 +13,7 @@ var entries: [CoinEntry] = []
 var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
 var widgetValue: String = defaults.object(forKey: "widget") as? String ?? "favorites"
 var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? "volume"
+var themeValue: String = defaults.object(forKey: "theme") as? String ?? "light"
 var walletCoins: [WalletEntry] = []
 
 
@@ -22,6 +23,10 @@ func saveFavorites() {
 
 func saveWidgetMode() {
     defaults.set(widgetValue, forKey: "widget")
+}
+
+func saveTheme() {
+    defaults.set(widgetValue, forKey: "theme")
 }
 
 func saveWallet() {

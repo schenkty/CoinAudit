@@ -27,11 +27,11 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         definesPresentationContext = true
         navigationItem.searchController = searchController
     
-        SwiftSpinner.show(duration: 1.5, title: "Downloading Data...")
+        self.updateData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Pull Coin Data
+        // Update Coin Data
         self.updateList()
     }
 
@@ -92,7 +92,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     func updateData() {
         // Provide using with loading spinner
-        SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
+        SwiftSpinner.show(duration: 1.5, title: "Downloading Data...", animated: true)
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {

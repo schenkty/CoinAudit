@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,8 +76,8 @@
                                                 <constraint firstItem="qXn-gI-W3b" firstAttribute="centerY" secondItem="MU0-hr-YSn" secondAttribute="centerY" id="OJV-Ny-PW3"/>
                                                 <constraint firstItem="bev-kC-wdp" firstAttribute="top" secondItem="ofG-pB-V3Q" secondAttribute="bottom" constant="1" id="Rft-GU-8xl"/>
                                                 <constraint firstItem="bev-kC-wdp" firstAttribute="leading" secondItem="ofG-pB-V3Q" secondAttribute="leading" id="aMS-Ni-yDV"/>
-                                                <constraint firstItem="qXn-gI-W3b" firstAttribute="trailing" secondItem="MU0-hr-YSn" secondAttribute="trailingMargin" id="bJN-j0-cj0"/>
                                                 <constraint firstItem="egR-0Z-UNG" firstAttribute="centerY" secondItem="MU0-hr-YSn" secondAttribute="centerY" id="g3p-6d-dQg"/>
+                                                <constraint firstAttribute="trailing" secondItem="qXn-gI-W3b" secondAttribute="trailing" constant="15" id="g9L-KQ-lLH"/>
                                                 <constraint firstItem="ofG-pB-V3Q" firstAttribute="top" secondItem="MU0-hr-YSn" secondAttribute="top" constant="6" id="xJe-dV-r6m"/>
                                             </constraints>
                                         </tableViewCellContentView>
