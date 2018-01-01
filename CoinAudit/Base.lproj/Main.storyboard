@@ -361,6 +361,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Jf7-a6-yfQ"/>
                     <connections>
+                        <outlet property="themeSelector" destination="9G7-ei-qWw" id="eAP-EP-Zl7"/>
                         <outlet property="versionLabel" destination="erW-j3-BZJ" id="m4f-Tc-Kdv"/>
                         <outlet property="walletModeView" destination="Z8B-IY-iTS" id="Lzt-OI-2Of"/>
                         <outlet property="walletSelector" destination="k2G-BF-3d1" id="2A6-Hf-QDm"/>
@@ -441,6 +442,7 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sRX-lI-HJn" secondAttribute="trailing" constant="20" symbolic="YES" id="aBS-kc-43n"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="sRX-lI-HJn" id="JIi-og-NSh"/>
                                     <outlet property="symbolLabel" destination="AoL-bh-OoC" id="yuv-p7-cv5"/>

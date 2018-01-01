@@ -7,18 +7,20 @@
 //
 
 import Foundation
+import NotificationCenter
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 var entries: [CoinEntry] = []
 var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
-var widgetValue: String = defaults.object(forKey: "widget") as? String ?? "favorites"
-var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? "volume"
-var themeValue: String = defaults.object(forKey: "theme") as? String ?? "light"
+var widgetValue: String = defaults.object(forKey: "widget") as? String ?? String()
+var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? String()
+var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletCoins: [WalletEntry] = []
 
 
 func saveFavorites() {
     defaults.set(favorites, forKey: "favorites")
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
 }
 
 func saveWidgetMode() {
@@ -26,7 +28,9 @@ func saveWidgetMode() {
 }
 
 func saveTheme() {
-    defaults.set(widgetValue, forKey: "theme")
+    defaults.set(themeValue, forKey: "CoinAuditTheme")
+    print("Theme saved: \(themeValue)")
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
 }
 
 func saveWallet() {

@@ -41,6 +41,35 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
         self.calculateWallet()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
+        self.calculateWallet()
+        self.walletTableView.reloadData()
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            self.walletTableView.backgroundColor = UIColor.black
+            self.view.backgroundColor = UIColor.black
+            bitcoinLabel.textColor = UIColor.white
+            totalLabel.textColor = UIColor.white
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        default:
+            self.walletTableView.backgroundColor = UIColor.white
+            self.view.backgroundColor = UIColor.white
+            bitcoinLabel.textColor = UIColor.black
+            totalLabel.textColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+        }
+    }
 
     // MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,6 +125,20 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             print("Wallet Format not found")
             cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+        }
+        
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            cell.backgroundColor = UIColor.black
+            cell.nameLabel.textColor = UIColor.white
+            cell.symbolLabel.textColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.white
+        default:
+            cell.backgroundColor = UIColor.white
+            cell.nameLabel.textColor = UIColor.black
+            cell.symbolLabel.textColor = UIColor.black
+            cell.valueLabel.textColor = UIColor.black
         }
         
         return cell

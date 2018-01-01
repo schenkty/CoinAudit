@@ -28,7 +28,6 @@
 		32AFAB971FF38FC7006B608D /* CoinAuditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFAB961FF38FC7006B608D /* CoinAuditTests.swift */; };
 		32AFABA21FF38FC7006B608D /* CoinAuditUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFABA11FF38FC7006B608D /* CoinAuditUITests.swift */; };
 		32B9693A1FFA2EC700F921B9 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B969391FFA2EC700F921B9 /* HexColors.swift */; };
-		32B9693C1FFA448500F921B9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9693B1FFA448500F921B9 /* Theme.swift */; };
 		32C1C4D31FF8BCC000DA69D3 /* CoinEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32421D7C1FF8B62300F14061 /* CoinEntry.swift */; };
 		32C1C4D41FF8BCC300DA69D3 /* WalletEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E84CDB1FF70EFA00D36D7C /* WalletEntry.swift */; };
 		32C1C4D61FF8BCCB00DA69D3 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3244A75A1FF594C800AB036A /* HexColors.swift */; };
@@ -128,7 +127,6 @@
 		32AFABA11FF38FC7006B608D /* CoinAuditUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAuditUITests.swift; sourceTree = "<group>"; };
 		32AFABA31FF38FC7006B608D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32B969391FFA2EC700F921B9 /* HexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColors.swift; sourceTree = "<group>"; };
-		32B9693B1FFA448500F921B9 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		32C1C4A31FF8B7EA00DA69D3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C1C4A61FF8B82D00DA69D3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C1C4D91FF8BD7C00DA69D3 /* CoinEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinEntry.swift; sourceTree = "<group>"; };
@@ -303,7 +301,6 @@
 				3244A75A1FF594C800AB036A /* HexColors.swift */,
 				328F26811FF63566002BB3E7 /* Extensions.swift */,
 				32421D7D1FF8B62300F14061 /* Data.swift */,
-				32B9693B1FFA448500F921B9 /* Theme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -732,7 +729,6 @@
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
 				328F26821FF63566002BB3E7 /* Extensions.swift in Sources */,
 				32C1C4D61FF8BCCB00DA69D3 /* HexColors.swift in Sources */,
-				32B9693C1FFA448500F921B9 /* Theme.swift in Sources */,
 				322406191FF711BD0073555B /* AddWalletViewController.swift in Sources */,
 				32C1C4D41FF8BCC300DA69D3 /* WalletEntry.swift in Sources */,
 				324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */,

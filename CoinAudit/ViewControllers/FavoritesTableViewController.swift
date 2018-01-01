@@ -71,6 +71,20 @@ class FavoritesTableViewController: UITableViewController {
         cell.nameLabel.text = coin.name
         cell.symbolLabel.text = coin.symbol
         cell.valueLabel.text = coin.priceUSD.formatUSD()
+        
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            cell.backgroundColor = UIColor.black
+            cell.nameLabel.textColor = UIColor.white
+            cell.symbolLabel.textColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.white
+        default:
+            cell.backgroundColor = UIColor.white
+            cell.nameLabel.textColor = UIColor.black
+            cell.symbolLabel.textColor = UIColor.black
+            cell.valueLabel.textColor = UIColor.black
+        }
 
         return cell
     }

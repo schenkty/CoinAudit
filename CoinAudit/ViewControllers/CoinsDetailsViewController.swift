@@ -13,7 +13,6 @@ import Alamofire
 
 class CoinsDetailsViewController: UIViewController {
     
-    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var marketCapLabel: UILabel!
     @IBOutlet var volumeLabel: UILabel!
     @IBOutlet var circulatingSupplyLabel: UILabel!
@@ -46,10 +45,10 @@ class CoinsDetailsViewController: UIViewController {
         if favorites.contains(id) {
             self.favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
-            favButton.setTitle("Favorited", for: .normal)
+            favButton.setTitle("Remove Favorite", for: .normal)
         } else {
             self.favorited = false
-            favButton.backgroundColor = .black
+            favButton.backgroundColor = UIColor.gray
             favButton.setTitle("Favorite", for: .normal)
         }
     }
@@ -57,6 +56,46 @@ class CoinsDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.formatData(coin: entries.first(where: {$0.id == id})!)
         self.formatPercents(coin: entries.first(where: {$0.id == id})!)
+        
+        switch themeValue {
+        case "dark":
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
+            self.tabBarController?.tabBar.tintColor = UIColor.white
+            self.view.backgroundColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            marketCapLabel.textColor = UIColor.white
+            volumeLabel.textColor = UIColor.white
+            circulatingSupplyLabel.textColor = UIColor.white
+            maxSupplyLabel.textColor = UIColor.white
+            priceUSDLabel.textColor = UIColor.white
+            priceBTCLabel.textColor = UIColor.white
+            percent1Label.textColor = UIColor.white
+            percent24Label.textColor = UIColor.white
+            percent7Label.textColor = UIColor.white
+        default:
+            self.tabBarController?.tabBar.barTintColor = UIColor.white
+            self.tabBarController?.tabBar.tintColor = UIColor.black
+            self.view.backgroundColor = UIColor.white
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            
+            marketCapLabel.textColor = UIColor.black
+            volumeLabel.textColor = UIColor.black
+            circulatingSupplyLabel.textColor = UIColor.black
+            maxSupplyLabel.textColor = UIColor.black
+            priceUSDLabel.textColor = UIColor.black
+            priceBTCLabel.textColor = UIColor.black
+            percent1Label.textColor = UIColor.black
+            percent24Label.textColor = UIColor.black
+            percent7Label.textColor = UIColor.black
+        }
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
@@ -183,13 +222,7 @@ class CoinsDetailsViewController: UIViewController {
     }
     
     @objc func updateCoin() {
-        var name = ""
-        
-        if nameLabel.text != "" {
-            name = nameLabel.text!
-        } else {
-            name = "Unknown"
-        }
+        let name = self.navigationController?.navigationBar.topItem?.title
         
         SwiftSpinner.show(duration: 1.0, title: "Updating \(name)...")
         // Pull Coin Data

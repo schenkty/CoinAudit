@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var walletSelector: UISegmentedControl!
     @IBOutlet var widgetSelector: UISegmentedControl!
-    
+    @IBOutlet var themeSelector: UISegmentedControl!
     @IBOutlet var walletModeView: UIStackView!
     @IBOutlet var widgetModeView: UIStackView!
     
@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         widgetModeView.isHidden = true
+        
         if widgetValue == "favorites" {
             widgetSelector.selectedSegmentIndex = 0
         } else if widgetValue == "wallet" {
@@ -36,6 +37,17 @@ class SettingsViewController: UIViewController {
         } else {
             walletSelector.selectedSegmentIndex = 0
         }
+        
+        if themeValue == "light" {
+            themeSelector.selectedSegmentIndex = 0
+        } else if themeValue == "dark" {
+            themeSelector.selectedSegmentIndex = 1
+        } else {
+            themeSelector.selectedSegmentIndex = 0
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
     }
     
     @IBAction func clearData(_ sender: Any) {
@@ -62,40 +74,28 @@ class SettingsViewController: UIViewController {
     @IBAction func widgetMode(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             widgetValue = "favorites"
-            saveWidgetMode()
         } else {
             widgetValue = "wallet"
-            saveWidgetMode()
         }
+        saveWidgetMode()
     }
     
     
     @IBAction func themeMode(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             themeValue = "light"
-            saveTheme()
-            changeColor()
         } else {
-            widgetValue = "dark"
-            saveTheme()
-            changeColor()
+            themeValue = "dark"
         }
-    }
-    
-    func changeColor() {
-        self.view.backgroundColor = viewsColor()
-        self.versionLabel.textColor = textColor()
-        self.walletSelector.tintColor = itemsColor()
+        saveTheme()
     }
     
     @IBAction func walletMode(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             walletValue = "volume"
-            saveWallet()
         } else {
             walletValue = "value"
-            saveWallet()
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+        saveWallet()
     }
 }
