@@ -50,6 +50,9 @@ class SettingsViewController: UIViewController {
         } else {
             themeSelector.selectedSegmentIndex = 0
         }
+        
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
+        versionLabel.text = "Version \(appVersion)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,12 +123,9 @@ class SettingsViewController: UIViewController {
             
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            devButton.titleLabel?.textColor = UIColor.white
-            clearDataButton.titleLabel?.textColor = UIColor.white
-            poweredByButton.titleLabel?.textColor = UIColor.white
-            walletSelector.tintColor = UIColor.white
-            themeSelector.tintColor = UIColor.white
-            for item in textLabels {
+            self.walletSelector.tintColor = UIColor.white
+            self.themeSelector.tintColor = UIColor.white
+            for item in self.textLabels {
                 item.textColor = UIColor.white
             }
         default:
@@ -138,12 +138,9 @@ class SettingsViewController: UIViewController {
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            devButton.titleLabel?.textColor = UIColor(hexString: "017AFF")
-            clearDataButton.titleLabel?.textColor = UIColor(hexString: "017AFF")
-            poweredByButton.titleLabel?.textColor = UIColor(hexString: "017AFF")
-            walletSelector.tintColor = UIColor(hexString: "017AFF")
-            themeSelector.tintColor = UIColor(hexString: "017AFF")
-            for item in textLabels {
+            self.walletSelector.tintColor = UIColor(hexString: "017AFF")
+            self.themeSelector.tintColor = UIColor(hexString: "017AFF")
+            for item in self.textLabels {
                 item.textColor = UIColor.black
             }
         }

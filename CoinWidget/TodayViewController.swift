@@ -164,7 +164,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                         cell.symbolLabel.text = coin.symbol
                         cell.valueLabel.text = coin.priceUSD.formatUSD()
                         
-                        
                         if coin.percentChange24 != "unknown" {
                             percent = Double(coin.percentChange24)!
                         } else {

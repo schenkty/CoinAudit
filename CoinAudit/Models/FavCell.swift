@@ -13,6 +13,7 @@ class FavCell: UITableViewCell {
     @IBOutlet var symbolLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var valueLabel: UILabel!
+    @IBOutlet var rankLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

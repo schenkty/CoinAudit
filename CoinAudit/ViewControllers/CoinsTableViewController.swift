@@ -49,10 +49,12 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedCell
 
         // Configure the cell...
-        cell.nameLabel.text = self.filteredEntries[indexPath.row].name
-        cell.symbolLabel.text = self.filteredEntries[indexPath.row].symbol
-        cell.valueLabel.text = self.filteredEntries[indexPath.row].priceUSD.formatUSD()
-        print("Rank: \(self.filteredEntries[indexPath.row].rank). Coin: \(self.filteredEntries[indexPath.row].name)")
+        let coin = self.filteredEntries[indexPath.row]
+        cell.nameLabel.text = coin.name
+        cell.symbolLabel.text = coin.symbol
+        cell.valueLabel.text = coin.priceUSD.formatUSD()
+        cell.rankLabel.text = "\(coin.rank)."
+
         // Theme Drawing code
         switch themeValue {
         case "dark":
@@ -60,11 +62,13 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.nameLabel.textColor = UIColor.white
             cell.symbolLabel.textColor = UIColor.white
             cell.valueLabel.textColor = UIColor.white
+            cell.rankLabel.textColor = UIColor.white
         default:
             cell.backgroundColor = UIColor.white
             cell.nameLabel.textColor = UIColor.black
             cell.symbolLabel.textColor = UIColor.black
             cell.valueLabel.textColor = UIColor.black
+            cell.rankLabel.textColor = UIColor.black
         }
         
         return cell
@@ -116,7 +120,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         }
     }
     
-    func updateTheme() {
+    @objc func updateTheme() {
         switch themeValue {
         case "dark":
             self.tabBarController?.tabBar.barTintColor = UIColor.black

@@ -186,7 +186,7 @@ class CoinsDetailsViewController: UIViewController {
     @objc func updateCoin() {
         let name = self.navigationController?.navigationBar.topItem?.title
         
-        SwiftSpinner.show(duration: 1.0, title: "Updating \(name)...")
+        SwiftSpinner.show(duration: 1.0, title: "Updating \(name!)...")
         // Pull Coin Data
         Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {

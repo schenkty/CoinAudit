@@ -11,20 +11,20 @@ import NotificationCenter
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 var entries: [CoinEntry] = []
-var favorites: [String] = defaults.object(forKey:"favorites") as? [String] ?? [String]()
-var widgetValue: String = defaults.object(forKey: "widget") as? String ?? String()
-var walletValue: String = defaults.object(forKey: "walletMode") as? String ?? String()
+var favorites: [String] = []
+var widgetValue: String = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+var walletValue: String = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletCoins: [WalletEntry] = []
 
 
 func saveFavorites() {
-    defaults.set(favorites, forKey: "favorites")
+    defaults.set(favorites, forKey: "CoinAuditFavorites")
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
 }
 
 func saveWidgetMode() {
-    defaults.set(widgetValue, forKey: "widget")
+    defaults.set(widgetValue, forKey: "CoinAuditWidget")
 }
 
 func saveTheme() {
@@ -35,14 +35,14 @@ func saveTheme() {
 
 func saveWallet() {
     let encodedWallet = NSKeyedArchiver.archivedData(withRootObject: walletCoins)
-    defaults.set(encodedWallet, forKey: "wallet")
-    defaults.set(walletValue, forKey: "walletMode")
+    defaults.set(encodedWallet, forKey: "CoinAuditWallet")
+    defaults.set(walletValue, forKey: "CoinAuditWalletMode")
 }
 
 func loadWallet() {
-    if let walletData = defaults.data(forKey: "wallet") {
+    if let walletData = defaults.data(forKey: "CoinAuditWallet") {
         walletCoins = NSKeyedUnarchiver.unarchiveObject(with: walletData) as! [WalletEntry]
-        print("Wallet loaded")
+        print("Wallet loaded. \(walletCoins.count) coins Found")
     } else {
         print("Failed: Can not load Wallet")
     }

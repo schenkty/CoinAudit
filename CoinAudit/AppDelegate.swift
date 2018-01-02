@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         if let url = launchOptions?[UIApplicationLaunchOptionsKey.url] as? URL {
             let sourceApp = launchOptions![UIApplicationLaunchOptionsKey.sourceApplication] as? String
             let annotation = launchOptions![UIApplicationLaunchOptionsKey.annotation]

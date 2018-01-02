@@ -18,7 +18,7 @@ class FavoritesTableViewController: UITableViewController {
             self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
         self.tableView.allowsSelectionDuringEditing = true
-        favorites = defaults.object(forKey:"favorites") as? [String] ?? [String]()
+        favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
         self.tableView.reloadData()
         updateTheme()
@@ -43,7 +43,7 @@ class FavoritesTableViewController: UITableViewController {
             favorites = favorites.sorted()
             // remove
             favorites.remove(at: indexPath.row)
-            defaults.set(favorites, forKey: "favorites")
+            defaults.set(favorites, forKey: "CoinAuditFavorites")
             let cell = tableView.cellForRow(at: indexPath) as! FavCell
             print("Deleted: \(cell.nameLabel.text!) from favorites")
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -72,6 +72,7 @@ class FavoritesTableViewController: UITableViewController {
         cell.nameLabel.text = coin.name
         cell.symbolLabel.text = coin.symbol
         cell.valueLabel.text = coin.priceUSD.formatUSD()
+        cell.rankLabel.text = "\(coin.rank)."
         
         // Theme Drawing code
         switch themeValue {
@@ -80,11 +81,13 @@ class FavoritesTableViewController: UITableViewController {
             cell.nameLabel.textColor = UIColor.white
             cell.symbolLabel.textColor = UIColor.white
             cell.valueLabel.textColor = UIColor.white
+            cell.rankLabel.textColor = UIColor.white
         default:
             cell.backgroundColor = UIColor.white
             cell.nameLabel.textColor = UIColor.black
             cell.symbolLabel.textColor = UIColor.black
             cell.valueLabel.textColor = UIColor.black
+            cell.rankLabel.textColor = UIColor.black
         }
 
         return cell
