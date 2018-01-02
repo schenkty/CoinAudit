@@ -6,8 +6,8 @@ Features:
 * Price information lookup for most coins
 * Favorite coins for easy checking
 * Coin portfolio tracker for all of your coin investments.
-
-
+* Today Widget
+* Light and Dark theme support
 
 Screenshots:
 
