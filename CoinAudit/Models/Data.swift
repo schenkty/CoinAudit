@@ -41,8 +41,7 @@ func saveWalletSettings() {
 }
 
 
-// MARK: Get Context
-
+// MARK: Get Core Data Context
 func getContext () -> NSManagedObjectContext {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     return appDelegate.persistentContainer.viewContext

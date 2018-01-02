@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: UIViewController {
 
+    let managedObjectContext = getContext()
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var walletSelector: UISegmentedControl!
     @IBOutlet var widgetSelector: UISegmentedControl!
@@ -28,7 +30,11 @@ class SettingsViewController: UIViewController {
         walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
         widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
         widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+        
+        // force disable widget mode changes
         widgetModeView.isHidden = true
+        widgetValue = "favorites"
+        saveWidgetSettings()
         
         if widgetValue == "favorites" {
             widgetSelector.selectedSegmentIndex = 0
@@ -71,9 +77,31 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func clearData(_ sender: Any) {
-        //favorites.removeAll()
-        //walletCoins.removeAll()
-        //saveWallet()
+        favorites.removeAll()
+        var allCoins  = [WalletEntry]()
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+        
+        do {
+            try allCoins = managedObjectContext.fetch(fetchRequest) as! [WalletEntry]
+        } catch {
+            print("error. could not delete")
+        }
+        
+        for coin in allCoins {
+            managedObjectContext.delete(coin)
+        }
+       
+        do {
+            try managedObjectContext.save()
+            walletCoins.removeAll()
+            print("All coins have been deleted from the wallet")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        } catch {
+            
+        }
+        
         saveFavoriteSettings()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         showAlert(title: "Data removed")
@@ -146,6 +174,7 @@ class SettingsViewController: UIViewController {
             self.walletSelector.tintColor = UIColor.white
             self.themeSelector.tintColor = UIColor.white
             self.widgetPercentSelector.tintColor = UIColor.white
+            self.walletSelector.tintColor = UIColor.white
             for item in self.textLabels {
                 item.textColor = UIColor.white
             }
@@ -162,6 +191,7 @@ class SettingsViewController: UIViewController {
             self.walletSelector.tintColor = UIColor(hexString: "017AFF")
             self.themeSelector.tintColor = UIColor(hexString: "017AFF")
             self.widgetPercentSelector.tintColor = UIColor(hexString: "017AFF")
+            self.walletSelector.tintColor = UIColor(hexString: "017AFF")
             for item in self.textLabels {
                 item.textColor = UIColor.black
             }

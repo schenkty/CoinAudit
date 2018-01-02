@@ -7,20 +7,54 @@
 //
 
 import Foundation
+import CoreData
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 
 var favorites: [String] = []
-var walletCoins: [WalletEntry] = []
+var walletCoins: [NSManagedObject] = []
 var widgetValue: String = ""
 var walletValue: String = ""
 var widgetPercent: String = ""
 
+class CoreDataStack {
+    
+    static let sharedInstance = CoreDataStack()
+    
+    lazy var managedObjectContext: NSManagedObjectContext = {
+        let container = self.persistentContainer
+        return container.viewContext
+    }()
+    
+    fileprivate lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Wallet")
+        container.loadPersistentStores() { storeDescription, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error: \(error), \(error.userInfo)")
+            }
+        }
+        
+        return container
+    }()
+}
+
 func loadWallet() {
-    if let walletData = defaults.data(forKey: "CoinAuditWallet") {
-        walletCoins = (NSKeyedUnarchiver.unarchiveObject(with: walletData) as! [WalletEntry])
-        print("Wallet loaded")
-    } else {
-        print("Failed: Can not load Wallet")
+    let managedObjectContext = CoreDataStack.sharedInstance.managedObjectContext
+
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+    do {
+        
+        let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
+        
+        // reset wallet array
+        walletCoins.removeAll()
+        
+        // add newly fetched coins to wallet
+        for object in fetchedCoin {
+            walletCoins.append(object as! NSManagedObject)
+        }
+    } catch {
+        fatalError("Failed to fetch coins: \(error)")
     }
+    
 }

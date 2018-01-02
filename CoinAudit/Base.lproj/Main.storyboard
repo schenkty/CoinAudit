@@ -218,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQj-2f-TdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="1091"/>
+            <point key="canvasLocation" x="1881" y="1091"/>
         </scene>
         <!--Settings-->
         <scene sceneID="krc-0r-6eW">
@@ -228,14 +228,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinAudit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77b-EV-ngi">
-                                <rect key="frame" x="0.0" y="191" width="375" height="29"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-yu-G1o" userLabel="Main Settings">
-                                <rect key="frame" x="30" y="240" width="315" height="136"/>
+                                <rect key="frame" x="30" y="151" width="315" height="136"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tnN-tZ-jFU" userLabel="Widget Mode">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="28"/>
@@ -331,7 +325,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-ew-Vgy">
-                                <rect key="frame" x="0.0" y="396" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="307" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Developer: Ty Schenk"/>
                                 <connections>
@@ -339,13 +333,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erW-j3-BZJ">
-                                <rect key="frame" x="0.0" y="451" width="375" height="23"/>
+                                <rect key="frame" x="0.0" y="362" width="375" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqn-in-rsd">
-                                <rect key="frame" x="0.0" y="494" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="405" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Clear All Data"/>
                                 <connections>
@@ -353,7 +347,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-Ud-Zw7">
-                                <rect key="frame" x="0.0" y="549" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="460" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Powered by CoinMarketCap"/>
                                 <connections>
@@ -365,17 +359,14 @@
                         <constraints>
                             <constraint firstItem="erW-j3-BZJ" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="0di-Zr-6a1"/>
                             <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="4y8-6R-TXR"/>
-                            <constraint firstItem="W6A-yu-G1o" firstAttribute="top" secondItem="77b-EV-ngi" secondAttribute="bottom" constant="20" id="6VU-Fc-Nt1"/>
                             <constraint firstItem="erW-j3-BZJ" firstAttribute="top" secondItem="Vba-ew-Vgy" secondAttribute="bottom" constant="20" id="8zO-uD-JaQ"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="erW-j3-BZJ" secondAttribute="trailing" id="EVo-zM-Eap"/>
                             <constraint firstItem="W6A-yu-G1o" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" constant="30" id="Nlo-0c-PYn"/>
                             <constraint firstItem="Lqn-in-rsd" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="OT7-Ge-cTW"/>
-                            <constraint firstItem="77b-EV-ngi" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="75" id="Ory-oL-Gpw"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Lqn-in-rsd" secondAttribute="trailing" id="Qz5-xJ-003"/>
                             <constraint firstItem="Vba-ew-Vgy" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="YUz-Jr-euz"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="W6A-yu-G1o" secondAttribute="trailing" constant="30" id="ZYu-KC-g5S"/>
-                            <constraint firstItem="77b-EV-ngi" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="gWi-Eo-rdJ"/>
-                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="77b-EV-ngi" secondAttribute="trailing" id="n4m-6e-b2W"/>
+                            <constraint firstItem="W6A-yu-G1o" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="35" id="aBn-e5-hhe"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Vba-ew-Vgy" secondAttribute="trailing" id="pHi-RD-V11"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Nx3-Ud-Zw7" secondAttribute="trailing" id="ph1-dX-akk"/>
                             <constraint firstItem="Vba-ew-Vgy" firstAttribute="top" secondItem="W6A-yu-G1o" secondAttribute="bottom" constant="20" id="s8b-Og-l4r"/>
@@ -399,7 +390,6 @@
                         <outletCollection property="textLabels" destination="XpS-FN-CTd" collectionClass="NSMutableArray" id="Fpd-cF-Twg"/>
                         <outletCollection property="textLabels" destination="QUA-xi-UH2" collectionClass="NSMutableArray" id="oys-Vm-68p"/>
                         <outletCollection property="textLabels" destination="gmK-Kj-pjC" collectionClass="NSMutableArray" id="qhq-ix-cCH"/>
-                        <outletCollection property="textLabels" destination="77b-EV-ngi" collectionClass="NSMutableArray" id="bfN-Zq-2aY"/>
                         <outletCollection property="textLabels" destination="erW-j3-BZJ" collectionClass="NSMutableArray" id="k7G-Ps-K1I"/>
                         <outletCollection property="textLabels" destination="LEc-kA-oGo" collectionClass="NSMutableArray" id="Y3X-Cq-pFJ"/>
                     </connections>
@@ -700,7 +690,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ki9-y3-AdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2064.8000000000002" y="-291.00449775112446"/>
+            <point key="canvasLocation" x="1881" y="-292"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Gez-J6-L7b">

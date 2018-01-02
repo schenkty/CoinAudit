@@ -21,11 +21,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
+        widgetTableView.delegate = self
+        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
         if widgetValue == "wallet" {
-
             favorites.removeAll()
-            walletCoins.removeAll()
-            
             loadWallet()
             self.widgetTableView.reloadData()
             
@@ -34,6 +33,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 print("No Wallet Found")
                 self.errorLabel.text = "Please add coins to your wallet in CoinAudit"
                 self.errorLabel.isHidden = false
+                updating = false
+                loadingIndicator.stopAnimating()
             } else {
                 print("Found \(walletCoins.count) Coins from Wallet")
                 self.errorLabel.isHidden = true
@@ -47,6 +48,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 print("No Favorites Found")
                 self.errorLabel.text = "Please add a favorite in CoinAudit"
                 self.errorLabel.isHidden = false
+                updating = false
+                loadingIndicator.stopAnimating()
             } else {
                 print("Found \(favorites.count) Favorites")
                 self.errorLabel.isHidden = true
@@ -56,8 +59,6 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        widgetTableView.delegate = self
-        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
@@ -66,7 +67,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        self.widgetTableView.reloadData()
+        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+        //self.widgetTableView.reloadData()
         
         completionHandler(NCUpdateResult.newData)
     }
@@ -115,17 +117,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // Pull Coin Data
         loadingIndicator.startAnimating()
         loadingIndicator.isHidden = false
+        self.updating = true
         
         switch widgetValue {
         case "wallet":
-            /*// sort wallet
-            walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
             // pull id
-            id = walletCoins[indexPath.row].id
-            cell.symbolLabel.text = walletCoins[indexPath.row].name
-            cell.valueLabel.text = walletCoins[indexPath.row].value
-            self.loadingIndicator.stopAnimating()
-            self.updating = false
+            id = walletCoins[indexPath.row].value(forKey: "id") as! String
             
             Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
                 for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -134,20 +131,19 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                         cell.symbolLabel.text = coin.symbol
                         
                         if walletValue == "volume" {
-                            cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+                            cell.valueLabel.text = "\(walletCoins[indexPath.row].value(forKey: "value") as! String)"
                         } else if walletValue == "value" {
-                            cell.valueLabel.text = "\(Double(walletCoins[indexPath.row].value)! * Double(coin.priceUSD)!)".formatUSD()
+                            cell.valueLabel.text = "\(Double(walletCoins[indexPath.row].value(forKey: "value") as! String)! * Double(coin.priceUSD)!)".formatUSD()
                         } else {
                             print("Wallet Format not found")
-                            cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+                            cell.valueLabel.text = "\(walletCoins[indexPath.row].value(forKey: "value") as! String)"
                         }
                         
                         self.loadingIndicator.stopAnimating()
                         self.updating = false
                     }
                 }
-            }*/
-            print("failed")
+            }
         default:
             favorites = favorites.sorted()
             id = favorites[indexPath.row]
