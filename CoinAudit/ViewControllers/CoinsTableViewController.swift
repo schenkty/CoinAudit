@@ -31,6 +31,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateTheme()
         // Update Coin Data
         self.updateList()

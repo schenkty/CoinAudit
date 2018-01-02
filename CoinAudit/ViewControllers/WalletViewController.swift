@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
+import NotificationCenter
 import Alamofire
 import SwiftSpinner
-import NotificationCenter
 
 class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,34 +18,48 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var totalLabel: UILabel!
     @IBOutlet var walletTableView: UITableView!
     
+    let managedObjectContext = getContext()
     var walletTotal: Double = 0.0
     var bitcoinTotal: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
+        
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
             self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
-        
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
-        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
-        // load all
-        loadWallet()
+        // reload view observer
+        NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
     
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoins))
         updateButton.image = #imageLiteral(resourceName: "refresh")
         self.navigationItem.leftBarButtonItem = updateButton
         
-        walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
         self.calculateWallet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
-        walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+        
+        do {
+            let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
+            
+            // reset wallet array
+            walletCoins.removeAll()
+            
+            // add newly fetched coins to wallet
+            for object in fetchedCoin {
+                walletCoins.append(object as! NSManagedObject)
+            }
+        } catch {
+            fatalError("Failed to fetch coins: \(error)")
+        }
         self.calculateWallet()
         self.walletTableView.reloadData()
     }
@@ -67,26 +82,34 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Action to delete data
             let cell = tableView.cellForRow(at: indexPath) as! WalletCell
             
-            // remove
-            walletCoins.remove(at: indexPath.row)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
             
-            // save new version of walletCoins array
-            saveWallet()
-            print("Deleted \(cell.nameLabel.text!) from wallet")
+            let result = try? managedObjectContext.fetch(fetchRequest)
             
-            calculateWallet()
-            self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
+            for object in result! {
+                managedObjectContext.delete(object as! NSManagedObject)
+            }
+            
+            do {
+                try managedObjectContext.save()
+                print("Deleted \(cell.nameLabel.text!) from wallet")
+                walletCoins.remove(at: indexPath.row)
+                self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
+                calculateWallet()
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+                
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "walletCell", for: indexPath) as! WalletCell
         // Configure the cell...
-        // sort wallet
-        walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
-
+        
         // pull coin data from entries array
-        guard let coin = entries.first(where: {$0.id == walletCoins[indexPath.row].id}) else {
+        guard let coin = entries.first(where: { $0.id == walletCoins[indexPath.row].value(forKey: "id") as! String }) else {
             cell.nameLabel.text = "Unknown"
             cell.symbolLabel.text = "Unk"
             cell.valueLabel.text = "0.0"
@@ -95,14 +118,15 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.nameLabel.text = coin.name
         cell.symbolLabel.text = coin.symbol
+        let value = walletCoins[indexPath.row].value(forKey: "value") as! String
         
         if walletValue == "volume" {
-            cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+            cell.valueLabel.text = "\(value)"
         } else if walletValue == "value" {
-            cell.valueLabel.text = "\(Double(walletCoins[indexPath.row].value)! * Double(coin.priceUSD)!)".formatUSD()
+            cell.valueLabel.text = "\(Double(value)! * Double(coin.priceUSD)!)".formatUSD()
         } else {
             print("Wallet Format not found")
-            cell.valueLabel.text = "\(walletCoins[indexPath.row].value)"
+            cell.valueLabel.text = "\(value)"
         }
         
         // Theme Drawing code
@@ -123,19 +147,23 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! WalletCell
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "addWallet") as! AddWalletViewController
         // sort wallet
-        guard let name = cell.nameLabel.text else { return }
+        let coin = walletCoins[indexPath.row]
+
+        controller.managedObjectContext = managedObjectContext
+        controller.coinID = coin.objectID
+        controller.name = coin.value(forKey: "name") as! String
+        controller.value = coin.value(forKey: "value") as! String
         
-        controller.name = name
         self.show(controller, sender: self)
     }
     
     @IBAction func addCoin(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "addWallet") as! AddWalletViewController
+        controller.managedObjectContext = managedObjectContext
         
         self.show(controller, sender: self)
     }
@@ -146,8 +174,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bitcoinTotal = 0.0
         
         for localCoin in walletCoins {
-            guard let coin = entries.first(where: {$0.id == localCoin.id}) else { return }
-            guard let value = Double(localCoin.value) else { return }
+            guard let coin = entries.first(where: {$0.id == localCoin.value(forKey: "id") as! String }) else { return }
+            guard let value = Double(localCoin.value(forKey: "value") as! String) else { return }
             self.walletTotal = self.walletTotal + (Double(coin.priceUSD)! * value)
             self.bitcoinTotal = self.bitcoinTotal + (Double(coin.priceBTC)! * value)
         }

@@ -14,7 +14,7 @@ var favorites: [String] = []
 var walletCoins: [WalletEntry] = []
 var widgetValue: String = ""
 var walletValue: String = ""
-var widgetPercent: String = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
+var widgetPercent: String = ""
 
 func loadWallet() {
     if let walletData = defaults.data(forKey: "CoinAuditWallet") {

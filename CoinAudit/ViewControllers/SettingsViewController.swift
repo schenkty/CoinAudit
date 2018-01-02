@@ -25,6 +25,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
+        widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
+        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
         widgetModeView.isHidden = true
         
         if widgetValue == "favorites" {
@@ -68,9 +71,9 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func clearData(_ sender: Any) {
-        favorites.removeAll()
-        walletCoins.removeAll()
-        saveWallet()
+        //favorites.removeAll()
+        //walletCoins.removeAll()
+        //saveWallet()
         saveFavoriteSettings()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         showAlert(title: "Data removed")
@@ -114,7 +117,7 @@ class SettingsViewController: UIViewController {
         } else {
             walletValue = "value"
         }
-        saveWallet()
+        saveWalletSettings()
     }
     
     @IBAction func widgetPercentMode(_ sender: UISegmentedControl) {

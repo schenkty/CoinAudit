@@ -7,22 +7,23 @@
 //
 
 import UIKit
+import CoreData
 import SearchTextField
 
 class AddWalletViewController: UIViewController {
 
+    var managedObjectContext: NSManagedObjectContext!
     @IBOutlet var nameTextField: SearchTextField!
     @IBOutlet var valueTexField: UITextField!
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var textLabels: [UILabel]!
-    
+
     var name: String = ""
     var value: String = ""
+    var coinID: NSManagedObjectID!
     var new: Bool = false
-    
+    var indexValue: Int = Int()
     var names: [SearchTextFieldItem] = []
-    // pull coin index using provided name
-    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +32,11 @@ class AddWalletViewController: UIViewController {
         
         if name == "Unknown" {
             self.navigationController?.popViewController(animated: true)
-        } else if name != "" {
+        } else if name != "" && value != "" {
             new = false
             // pull coin index using provided name
             saveButton.setTitle("Update", for: .normal)
             self.navigationItem.title = "\(name) Entry"
-            index = walletCoins.index(where: {$0.name == name})!
-            value = walletCoins[index].value
         } else {
             new = true
             saveButton.setTitle("Add", for: .normal)
@@ -77,14 +76,19 @@ class AddWalletViewController: UIViewController {
         if names.contains(where: {$0.title == name}) {
             let id = entries.first(where: {$0.name == name})!.id
             
-            // update coin in walletCoins array
-            walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
-            walletCoins[index] = WalletEntry(name: name, id: id, value: value)
-            // save new version of walletCoins array
-            saveWallet()
+            //update coin in walletCoins array
+            let coin = managedObjectContext.object(with: coinID)
+
+            coin.setValue(id, forKey: "id")
+            coin.setValue(name, forKey: "name")
+            coin.setValue(value, forKey: "value")
             
-            print("\(name) Coin Updated")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+            do{
+                try managedObjectContext.save()
+                print("\(name) Coin Updated")
+            }catch let error as NSError {
+                print("Could not save \(error), \(error.userInfo)")
+            }
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
@@ -95,17 +99,24 @@ class AddWalletViewController: UIViewController {
         if names.contains(where: {$0.title == name}) {
             // pull coin info using provided name
             let id = entries.first(where: {$0.name == name})!.id
-            let newCoin: WalletEntry = WalletEntry(name: name, id: id, value: value)
             
-            // add new coin to walletCoins array
-            walletCoins.append(newCoin)
-            walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
+            // update coin in walletCoins array
+            let walletData = NSEntityDescription.insertNewObject(forEntityName: "WalletEntry", into: managedObjectContext)
             
-            // save new version of walletCoins array
-            saveWallet()
+            walletData.setValue(id, forKey: "id")
+            walletData.setValue(name, forKey: "name")
+            walletData.setValue(value, forKey: "value")
             
-            print("\(name) Coin Saved")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+            do {
+                try managedObjectContext.save()
+                print("\(name) Coin Saved")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+            } catch let error as NSError  {
+                print("Coin: \(name) could not save")
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+                
+            }
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)

@@ -29,7 +29,6 @@
 		32AFABA21FF38FC7006B608D /* CoinAuditUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFABA11FF38FC7006B608D /* CoinAuditUITests.swift */; };
 		32B9693A1FFA2EC700F921B9 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B969391FFA2EC700F921B9 /* HexColors.swift */; };
 		32C1C4D31FF8BCC000DA69D3 /* CoinEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32421D7C1FF8B62300F14061 /* CoinEntry.swift */; };
-		32C1C4D41FF8BCC300DA69D3 /* WalletEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E84CDB1FF70EFA00D36D7C /* WalletEntry.swift */; };
 		32C1C4D61FF8BCCB00DA69D3 /* HexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3244A75A1FF594C800AB036A /* HexColors.swift */; };
 		32C1C4D81FF8BD3600DA69D3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32421D7D1FF8B62300F14061 /* Data.swift */; };
 		32C1C4DA1FF8BD7C00DA69D3 /* CoinEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4D91FF8BD7C00DA69D3 /* CoinEntry.swift */; };
@@ -37,6 +36,8 @@
 		32C1C4E41FF8C08000DA69D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4E31FF8C08000DA69D3 /* Extensions.swift */; };
 		32C1C5091FF8CA0800DA69D3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4DD1FF8BECE00DA69D3 /* Data.swift */; };
 		32C1C50D1FF8DCB800DA69D3 /* WalletEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C50C1FF8DCB800DA69D3 /* WalletEntry.swift */; };
+		32D1D5951FFB4640000BD2E1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D1D5941FFB4640000BD2E1 /* CoreData.framework */; };
+		32D1D59A1FFB47DF000BD2E1 /* Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D5981FFB47DF000BD2E1 /* Wallet.xcdatamodeld */; };
 		7F27E93D6F2D05410203D007 /* Pods_CoinAuditUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B101603DEA0C7F5CA4766F7C /* Pods_CoinAuditUITests.framework */; };
 		98934ADDA1FC1991B916D94C /* Pods_CoinAudit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899E55754300B5DF50EBF466 /* Pods_CoinAudit.framework */; };
 		ADB349FF406D2901FE45E367 /* Pods_CoinAudit_CoinWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B01AF1FC7F2027BBBDF00197 /* Pods_CoinAudit_CoinWidget.framework */; };
@@ -136,7 +137,8 @@
 		32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinAudit.entitlements; sourceTree = "<group>"; };
 		32C1C50B1FF8CD8600DA69D3 /* CoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinWidget.entitlements; sourceTree = "<group>"; };
 		32C1C50C1FF8DCB800DA69D3 /* WalletEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEntry.swift; sourceTree = "<group>"; };
-		32E84CDB1FF70EFA00D36D7C /* WalletEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletEntry.swift; sourceTree = "<group>"; };
+		32D1D5941FFB4640000BD2E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wallet.xcdatamodel; sourceTree = "<group>"; };
 		32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		32F398611FF9FC15001D6698 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		57E1A40F8088B201C70ADFDD /* Pods-CoinAuditTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAuditTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAuditTests/Pods-CoinAuditTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D1D5951FFB4640000BD2E1 /* CoreData.framework in Frameworks */,
 				328821371FF8AFEE002E365B /* NotificationCenter.framework in Frameworks */,
 				ADB349FF406D2901FE45E367 /* Pods_CoinAudit_CoinWidget.framework in Frameworks */,
 			);
@@ -251,6 +254,7 @@
 				32AFAB7F1FF38FC6006B608D /* AppDelegate.swift */,
 				32FCD4011FF4AEC200B7AD32 /* ViewControllers */,
 				32FCD4031FF4AEE000B7AD32 /* Models */,
+				32D1D5971FFB475C000BD2E1 /* Core Data */,
 				32AFAB881FF38FC6006B608D /* Assets.xcassets */,
 				32AFAB851FF38FC6006B608D /* Main.storyboard */,
 				32AFAB8A1FF38FC6006B608D /* LaunchScreen.storyboard */,
@@ -277,6 +281,14 @@
 			path = CoinAuditUITests;
 			sourceTree = "<group>";
 		};
+		32D1D5971FFB475C000BD2E1 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				32D1D5981FFB47DF000BD2E1 /* Wallet.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		32FCD4011FF4AEC200B7AD32 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				32421D7C1FF8B62300F14061 /* CoinEntry.swift */,
-				32E84CDB1FF70EFA00D36D7C /* WalletEntry.swift */,
 				324F4AE21FF4C5C300FC5312 /* WalletCell.swift */,
 				324F4AE41FF4C61700FC5312 /* FeedCell.swift */,
 				324F4AE61FF4C62300FC5312 /* FavCell.swift */,
@@ -308,6 +319,7 @@
 		4277160C04D471DB9572BA65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32D1D5941FFB4640000BD2E1 /* CoreData.framework */,
 				32F398611FF9FC15001D6698 /* Intents.framework */,
 				32C1C4A61FF8B82D00DA69D3 /* Alamofire.framework */,
 				32C1C4A31FF8B7EA00DA69D3 /* Alamofire.framework */,
@@ -425,6 +437,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
 								enabled = 1;
 							};
 						};
@@ -724,13 +739,13 @@
 				32C1C4D81FF8BD3600DA69D3 /* Data.swift in Sources */,
 				326999E41FF5F8A10059122D /* FavoritesTableViewController.swift in Sources */,
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
+				32D1D59A1FFB47DF000BD2E1 /* Wallet.xcdatamodeld in Sources */,
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,
 				324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */,
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
 				328F26821FF63566002BB3E7 /* Extensions.swift in Sources */,
 				32C1C4D61FF8BCCB00DA69D3 /* HexColors.swift in Sources */,
 				322406191FF711BD0073555B /* AddWalletViewController.swift in Sources */,
-				32C1C4D41FF8BCC300DA69D3 /* WalletEntry.swift in Sources */,
 				324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */,
 				32C1C4D31FF8BCC000DA69D3 /* CoinEntry.swift in Sources */,
 				324F4AE31FF4C5C300FC5312 /* WalletCell.swift in Sources */,
@@ -1110,6 +1125,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		32D1D5981FFB47DF000BD2E1 /* Wallet.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */,
+			);
+			currentVersion = 32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */;
+			path = Wallet.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 32AFAB741FF38FC6006B608D /* Project object */;
 }

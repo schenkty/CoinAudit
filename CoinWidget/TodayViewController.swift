@@ -23,17 +23,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // Do any additional setup after loading the view from its nib.
         if widgetValue == "wallet" {
 
-            // Move to a background thread to do some long running work
-            DispatchQueue.global(qos: .userInteractive).async {
-                favorites.removeAll()
-                walletCoins.removeAll()
-                
-                loadWallet()
-                // Bounce back to the main thread to update the UI
-                DispatchQueue.main.async {
-                    self.widgetTableView.reloadData()
-                }
-            }
+            favorites.removeAll()
+            walletCoins.removeAll()
+            
+            loadWallet()
+            self.widgetTableView.reloadData()
             
             walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
             if walletCoins.count == 0 {
@@ -48,6 +42,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         } else {
             walletCoins.removeAll()
             favorites = defaults.object(forKey: "CoinAuditFavorites") as? [String] ?? [String]()
+            widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
             if favorites.count == 0 {
                 print("No Favorites Found")
                 self.errorLabel.text = "Please add a favorite in CoinAudit"
