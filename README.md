@@ -19,4 +19,4 @@ Screenshots:
 ![](4.png)
 
 
-CoinAudit is powered by the [CoinMarketCap API](https://coinmarketcap.com)
+CoinAudit is powered by [CoinMarketCap](https://coinmarketcap.com)
