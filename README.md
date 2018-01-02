@@ -17,3 +17,6 @@ Screenshots:
 ![](2.png)
 ![](3.png)
 ![](4.png)
+
+
+CoinAudit is powered by the [CoinMarketCap API](https://coinmarketcap.com)
