@@ -43,32 +43,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateTheme()
         walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
         self.calculateWallet()
         self.walletTableView.reloadData()
-        // Theme Drawing code
-        switch themeValue {
-        case "dark":
-            self.walletTableView.backgroundColor = UIColor.black
-            self.view.backgroundColor = UIColor.black
-            bitcoinLabel.textColor = UIColor.white
-            totalLabel.textColor = UIColor.white
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-        default:
-            self.walletTableView.backgroundColor = UIColor.white
-            self.view.backgroundColor = UIColor.white
-            bitcoinLabel.textColor = UIColor.black
-            totalLabel.textColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-        }
     }
 
     // MARK: - Table view data source
@@ -203,6 +181,32 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // Update data
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+        }
+    }
+    
+    func updateTheme() {
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            self.walletTableView.backgroundColor = UIColor.black
+            self.view.backgroundColor = UIColor.black
+            bitcoinLabel.textColor = UIColor.white
+            totalLabel.textColor = UIColor.white
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        default:
+            self.walletTableView.backgroundColor = UIColor.white
+            self.view.backgroundColor = UIColor.white
+            bitcoinLabel.textColor = UIColor.black
+            totalLabel.textColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
         }
     }
 }

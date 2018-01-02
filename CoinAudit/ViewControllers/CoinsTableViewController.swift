@@ -31,28 +31,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        switch themeValue {
-        case "dark":
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.tableView.backgroundColor = UIColor.black
-            self.view.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-        default:
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.tableView.backgroundColor = UIColor.white
-            self.view.backgroundColor = UIColor.white
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-        }
+        updateTheme()
         // Update Coin Data
         self.updateList()
     }
@@ -73,9 +52,8 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         cell.nameLabel.text = self.filteredEntries[indexPath.row].name
         cell.symbolLabel.text = self.filteredEntries[indexPath.row].symbol
         cell.valueLabel.text = self.filteredEntries[indexPath.row].priceUSD.formatUSD()
-        
+        print("Rank: \(self.filteredEntries[indexPath.row].rank). Coin: \(self.filteredEntries[indexPath.row].name)")
         // Theme Drawing code
-        print(themeValue)
         switch themeValue {
         case "dark":
             cell.backgroundColor = UIColor.black
@@ -135,6 +113,31 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             self.filteredEntries = entries
             // Update Table Views
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+        }
+    }
+    
+    func updateTheme() {
+        switch themeValue {
+        case "dark":
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
+            self.tabBarController?.tabBar.tintColor = UIColor.white
+            self.tableView.backgroundColor = UIColor.black
+            self.view.backgroundColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        default:
+            self.tabBarController?.tabBar.barTintColor = UIColor.white
+            self.tabBarController?.tabBar.tintColor = UIColor.black
+            self.tableView.backgroundColor = UIColor.white
+            self.view.backgroundColor = UIColor.white
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
         }
     }
 }

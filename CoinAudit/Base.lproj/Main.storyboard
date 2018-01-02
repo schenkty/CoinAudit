@@ -212,6 +212,8 @@
                         <outlet property="nameTextField" destination="uhB-mD-BpR" id="5BW-b0-fIo"/>
                         <outlet property="saveButton" destination="RmF-L0-Jqi" id="Vfh-iV-7AI"/>
                         <outlet property="valueTexField" destination="2jw-Dn-ylI" id="onC-lg-xng"/>
+                        <outletCollection property="textLabels" destination="sa2-Mk-Y65" collectionClass="NSMutableArray" id="0TM-Z1-P0p"/>
+                        <outletCollection property="textLabels" destination="diM-Qo-4aI" collectionClass="NSMutableArray" id="Lkw-x9-c5K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQj-2f-TdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,12 +363,20 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Jf7-a6-yfQ"/>
                     <connections>
+                        <outlet property="clearDataButton" destination="Lqn-in-rsd" id="wl4-Jd-YVD"/>
+                        <outlet property="devButton" destination="Vba-ew-Vgy" id="mXE-JO-hjo"/>
+                        <outlet property="poweredByButton" destination="Nx3-Ud-Zw7" id="UiZ-U9-LTn"/>
                         <outlet property="themeSelector" destination="9G7-ei-qWw" id="eAP-EP-Zl7"/>
                         <outlet property="versionLabel" destination="erW-j3-BZJ" id="m4f-Tc-Kdv"/>
                         <outlet property="walletModeView" destination="Z8B-IY-iTS" id="Lzt-OI-2Of"/>
                         <outlet property="walletSelector" destination="k2G-BF-3d1" id="2A6-Hf-QDm"/>
                         <outlet property="widgetModeView" destination="tnN-tZ-jFU" id="348-ZN-z51"/>
                         <outlet property="widgetSelector" destination="aW9-Ke-tFx" id="bC1-N6-qer"/>
+                        <outletCollection property="textLabels" destination="XpS-FN-CTd" collectionClass="NSMutableArray" id="Fpd-cF-Twg"/>
+                        <outletCollection property="textLabels" destination="QUA-xi-UH2" collectionClass="NSMutableArray" id="oys-Vm-68p"/>
+                        <outletCollection property="textLabels" destination="gmK-Kj-pjC" collectionClass="NSMutableArray" id="qhq-ix-cCH"/>
+                        <outletCollection property="textLabels" destination="77b-EV-ngi" collectionClass="NSMutableArray" id="bfN-Zq-2aY"/>
+                        <outletCollection property="textLabels" destination="erW-j3-BZJ" collectionClass="NSMutableArray" id="k7G-Ps-K1I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rel-kf-fDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -645,6 +655,9 @@
                         <outlet property="priceBTCLabel" destination="P5x-Lj-LrU" id="hIZ-yr-ZwP"/>
                         <outlet property="priceUSDLabel" destination="9oX-5X-Mwn" id="bEB-Ha-jgm"/>
                         <outlet property="volumeLabel" destination="THR-3k-jHH" id="Iid-7T-yE2"/>
+                        <outletCollection property="PercentChangeLabels" destination="GY3-zC-alh" collectionClass="NSMutableArray" id="4Jm-TQ-sxs"/>
+                        <outletCollection property="PercentChangeLabels" destination="LXL-aj-faO" collectionClass="NSMutableArray" id="Ov4-xt-2hq"/>
+                        <outletCollection property="PercentChangeLabels" destination="suC-MP-Jz2" collectionClass="NSMutableArray" id="CXu-JQ-50v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ki9-y3-AdV" userLabel="First Responder" sceneMemberID="firstResponder"/>

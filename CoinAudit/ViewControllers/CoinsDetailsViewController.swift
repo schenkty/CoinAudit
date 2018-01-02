@@ -24,6 +24,7 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var percent24Label: UILabel!
     @IBOutlet var percent7Label: UILabel!
     @IBOutlet var navBar: UINavigationBar!
+    @IBOutlet var PercentChangeLabels: [UILabel]!
     
     var favorited: Bool = false
     var id: String = ""
@@ -56,46 +57,7 @@ class CoinsDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.formatData(coin: entries.first(where: {$0.id == id})!)
         self.formatPercents(coin: entries.first(where: {$0.id == id})!)
-        
-        switch themeValue {
-        case "dark":
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.view.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            marketCapLabel.textColor = UIColor.white
-            volumeLabel.textColor = UIColor.white
-            circulatingSupplyLabel.textColor = UIColor.white
-            maxSupplyLabel.textColor = UIColor.white
-            priceUSDLabel.textColor = UIColor.white
-            priceBTCLabel.textColor = UIColor.white
-            percent1Label.textColor = UIColor.white
-            percent24Label.textColor = UIColor.white
-            percent7Label.textColor = UIColor.white
-        default:
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.view.backgroundColor = UIColor.white
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            
-            marketCapLabel.textColor = UIColor.black
-            volumeLabel.textColor = UIColor.black
-            circulatingSupplyLabel.textColor = UIColor.black
-            maxSupplyLabel.textColor = UIColor.black
-            priceUSDLabel.textColor = UIColor.black
-            priceBTCLabel.textColor = UIColor.black
-            percent1Label.textColor = UIColor.black
-            percent24Label.textColor = UIColor.black
-            percent7Label.textColor = UIColor.black
-        }
+        updateTheme()
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
@@ -243,6 +205,53 @@ class CoinsDetailsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainController = storyboard.instantiateViewController(withIdentifier: "main")
         self.present(mainController, animated: true, completion: nil)
+    }
+    
+    func updateTheme() {
+        switch themeValue {
+        case "dark":
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
+            self.tabBarController?.tabBar.tintColor = UIColor.white
+            self.view.backgroundColor = UIColor.black
+            
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            marketCapLabel.textColor = UIColor.white
+            volumeLabel.textColor = UIColor.white
+            circulatingSupplyLabel.textColor = UIColor.white
+            maxSupplyLabel.textColor = UIColor.white
+            priceUSDLabel.textColor = UIColor.white
+            priceBTCLabel.textColor = UIColor.white
+            for item in PercentChangeLabels {
+                item.textColor = UIColor.white
+            }
+        default:
+            self.tabBarController?.tabBar.barTintColor = UIColor.white
+            self.tabBarController?.tabBar.tintColor = UIColor.black
+            self.view.backgroundColor = UIColor.white
+            self.navBar.tintColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            
+            marketCapLabel.textColor = UIColor.black
+            volumeLabel.textColor = UIColor.black
+            circulatingSupplyLabel.textColor = UIColor.black
+            maxSupplyLabel.textColor = UIColor.black
+            priceUSDLabel.textColor = UIColor.black
+            priceBTCLabel.textColor = UIColor.black
+            for item in PercentChangeLabels {
+                item.textColor = UIColor.black
+            }
+        }
     }
     
 }

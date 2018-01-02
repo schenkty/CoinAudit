@@ -14,6 +14,7 @@ class AddWalletViewController: UIViewController {
     @IBOutlet var nameTextField: SearchTextField!
     @IBOutlet var valueTexField: UITextField!
     @IBOutlet var saveButton: UIButton!
+    @IBOutlet var textLabels: [UILabel]!
     
     var name: String = ""
     var value: String = ""
@@ -53,6 +54,10 @@ class AddWalletViewController: UIViewController {
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateTheme()
     }
     
     @IBAction func addButton(_ sender: Any) {
@@ -104,6 +109,43 @@ class AddWalletViewController: UIViewController {
         } else {
             print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+        }
+    }
+    
+    func updateTheme() {
+        switch themeValue {
+        case "dark":
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
+            self.tabBarController?.tabBar.tintColor = UIColor.white
+            self.view.backgroundColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            nameTextField.backgroundColor = UIColor.white
+            valueTexField.backgroundColor = UIColor.white
+            for item in textLabels {
+                item.textColor = UIColor.white
+            }
+        default:
+            self.tabBarController?.tabBar.barTintColor = UIColor.white
+            self.tabBarController?.tabBar.tintColor = UIColor.black
+            self.view.backgroundColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            nameTextField.backgroundColor = UIColor.white
+            valueTexField.backgroundColor = UIColor.white
+            for item in textLabels {
+                item.textColor = UIColor.black
+            }
         }
     }
 }

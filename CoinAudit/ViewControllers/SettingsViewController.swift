@@ -16,6 +16,11 @@ class SettingsViewController: UIViewController {
     @IBOutlet var themeSelector: UISegmentedControl!
     @IBOutlet var walletModeView: UIStackView!
     @IBOutlet var widgetModeView: UIStackView!
+    @IBOutlet var textLabels: [UILabel]!
+    @IBOutlet var devButton: UIButton!
+    @IBOutlet var clearDataButton: UIButton!
+    @IBOutlet var poweredByButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +53,7 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateTheme()
     }
     
     @IBAction func clearData(_ sender: Any) {
@@ -88,6 +94,7 @@ class SettingsViewController: UIViewController {
             themeValue = "dark"
         }
         saveTheme()
+        updateTheme()
     }
     
     @IBAction func walletMode(_ sender: UISegmentedControl) {
@@ -97,5 +104,48 @@ class SettingsViewController: UIViewController {
             walletValue = "value"
         }
         saveWallet()
+    }
+    
+    func updateTheme() {
+        switch themeValue {
+        case "dark":
+            self.tabBarController?.tabBar.barTintColor = UIColor.black
+            self.tabBarController?.tabBar.tintColor = UIColor.white
+            self.view.backgroundColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            self.navigationController?.navigationBar.barTintColor = UIColor.black
+            self.navigationController?.navigationBar.tintColor = UIColor.white
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            devButton.titleLabel?.textColor = UIColor.white
+            clearDataButton.titleLabel?.textColor = UIColor.white
+            poweredByButton.titleLabel?.textColor = UIColor.white
+            walletSelector.tintColor = UIColor.white
+            themeSelector.tintColor = UIColor.white
+            for item in textLabels {
+                item.textColor = UIColor.white
+            }
+        default:
+            self.tabBarController?.tabBar.barTintColor = UIColor.white
+            self.tabBarController?.tabBar.tintColor = UIColor.black
+            self.view.backgroundColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.black
+            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            devButton.titleLabel?.textColor = UIColor(hexString: "017AFF")
+            clearDataButton.titleLabel?.textColor = UIColor(hexString: "017AFF")
+            poweredByButton.titleLabel?.textColor = UIColor(hexString: "017AFF")
+            walletSelector.tintColor = UIColor(hexString: "017AFF")
+            themeSelector.tintColor = UIColor(hexString: "017AFF")
+            for item in textLabels {
+                item.textColor = UIColor.black
+            }
+        }
     }
 }
