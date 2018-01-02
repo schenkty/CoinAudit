@@ -123,6 +123,7 @@
                         <outlet property="bitcoinLabel" destination="Rny-04-UW4" id="za0-HF-98V"/>
                         <outlet property="totalLabel" destination="wtH-PU-CYP" id="nCf-bL-7Ae"/>
                         <outlet property="walletTableView" destination="j7r-Ug-4FL" id="s4d-jX-I8t"/>
+                        <outlet property="walletValueTotalLabel" destination="mQW-eV-xkM" id="FS6-9n-uHw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7M-Ke-gkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

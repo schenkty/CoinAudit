@@ -17,6 +17,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var bitcoinLabel: UILabel!
     @IBOutlet var totalLabel: UILabel!
     @IBOutlet var walletTableView: UITableView!
+    @IBOutlet var walletValueTotalLabel: UILabel!
     
     let managedObjectContext = getContext()
     var walletTotal: Double = 0.0
@@ -223,7 +224,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.barTintColor = UIColor.black
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            walletTotalValueLabel.textColor = UIColor.white
+            walletValueTotalLabel.textColor = UIColor.white
         default:
             self.walletTableView.backgroundColor = UIColor.white
             self.view.backgroundColor = UIColor.white
@@ -234,7 +235,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            walletTotalValueLabel.textColor = UIColor.black
+            walletValueTotalLabel.textColor = UIColor.black
         }
     }
 }
