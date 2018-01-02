@@ -16,6 +16,7 @@ var walletCoins: [NSManagedObject] = []
 var widgetValue: String = ""
 var walletValue: String = ""
 var widgetPercent: String = ""
+var themeValue: String = ""
 
 class CoreDataStack {
     

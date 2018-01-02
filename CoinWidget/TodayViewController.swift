@@ -23,6 +23,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // Do any additional setup after loading the view from its nib.
         widgetTableView.delegate = self
         widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+        themeValue = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
+        
         if widgetValue == "wallet" {
             favorites.removeAll()
             loadWallet()
@@ -59,6 +61,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateTheme()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
@@ -68,6 +71,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+        themeValue = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
         //self.widgetTableView.reloadData()
         
         completionHandler(NCUpdateResult.newData)
@@ -196,6 +200,20 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                     }
                 }
             }
+            
+            // Theme Drawing code
+            switch themeValue {
+            case "dark":
+                cell.backgroundColor = UIColor.black
+                cell.nameLabel.textColor = UIColor.white
+                cell.symbolLabel.textColor = UIColor.white
+                cell.valueLabel.textColor = UIColor.white
+            default:
+                cell.backgroundColor = UIColor.clear
+                cell.nameLabel.textColor = UIColor.black
+                cell.symbolLabel.textColor = UIColor.black
+                cell.valueLabel.textColor = UIColor.black
+            }
         }
         
         if let selectionIndexPath = self.widgetTableView.indexPathForSelectedRow {
@@ -212,5 +230,14 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             preferredContentSize = CGSize(width: 0, height: 118)
         }
     }
-
+    
+    func updateTheme() {
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            self.view.backgroundColor = UIColor.black
+        default:
+            self.view.backgroundColor = UIColor.clear
+        }
+    }
 }
