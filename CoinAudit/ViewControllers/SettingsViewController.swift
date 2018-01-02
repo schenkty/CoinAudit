@@ -14,13 +14,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet var walletSelector: UISegmentedControl!
     @IBOutlet var widgetSelector: UISegmentedControl!
     @IBOutlet var themeSelector: UISegmentedControl!
+    @IBOutlet var widgetPercentSelector: UISegmentedControl!
     @IBOutlet var walletModeView: UIStackView!
     @IBOutlet var widgetModeView: UIStackView!
     @IBOutlet var textLabels: [UILabel]!
     @IBOutlet var devButton: UIButton!
     @IBOutlet var clearDataButton: UIButton!
     @IBOutlet var poweredByButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,14 @@ class SettingsViewController: UIViewController {
             widgetSelector.selectedSegmentIndex = 1
         } else {
             widgetSelector.selectedSegmentIndex = 0
+        }
+        
+        if widgetPercent == "1h" {
+            widgetPercentSelector.selectedSegmentIndex = 0
+        } else if widgetPercent == "24h" {
+            widgetPercentSelector.selectedSegmentIndex = 1
+        } else {
+            widgetPercentSelector.selectedSegmentIndex = 0
         }
         
         if walletValue == "volume" {
@@ -63,7 +71,7 @@ class SettingsViewController: UIViewController {
         favorites.removeAll()
         walletCoins.removeAll()
         saveWallet()
-        saveFavorites()
+        saveFavoriteSettings()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         showAlert(title: "Data removed")
     }
@@ -86,7 +94,7 @@ class SettingsViewController: UIViewController {
         } else {
             widgetValue = "wallet"
         }
-        saveWidgetMode()
+        saveWidgetSettings()
     }
     
     
@@ -96,7 +104,7 @@ class SettingsViewController: UIViewController {
         } else {
             themeValue = "dark"
         }
-        saveTheme()
+        saveThemeSettings()
         updateTheme()
     }
     
@@ -109,6 +117,16 @@ class SettingsViewController: UIViewController {
         saveWallet()
     }
     
+    @IBAction func widgetPercentMode(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            widgetPercent = "1h"
+        } else {
+            widgetPercent = "24h"
+        }
+        saveWidgetSettings()
+    }
+    
+    
     func updateTheme() {
         switch themeValue {
         case "dark":
@@ -120,11 +138,11 @@ class SettingsViewController: UIViewController {
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barTintColor = UIColor.black
             self.navigationController?.navigationBar.tintColor = UIColor.white
-            
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.walletSelector.tintColor = UIColor.white
             self.themeSelector.tintColor = UIColor.white
+            self.widgetPercentSelector.tintColor = UIColor.white
             for item in self.textLabels {
                 item.textColor = UIColor.white
             }
@@ -140,6 +158,7 @@ class SettingsViewController: UIViewController {
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.walletSelector.tintColor = UIColor(hexString: "017AFF")
             self.themeSelector.tintColor = UIColor(hexString: "017AFF")
+            self.widgetPercentSelector.tintColor = UIColor(hexString: "017AFF")
             for item in self.textLabels {
                 item.textColor = UIColor.black
             }

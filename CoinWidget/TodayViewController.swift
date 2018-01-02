@@ -35,7 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 }
             }
             
-            walletValue = defaults.object(forKey: "walletMode") as? String ?? String()
+            walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
             if walletCoins.count == 0 {
                 print("No Wallet Found")
                 self.errorLabel.text = "Please add coins to your wallet in CoinAudit"
@@ -47,7 +47,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             }
         } else {
             walletCoins.removeAll()
-            favorites = defaults.object(forKey: "favorites") as? [String] ?? [String]()
+            favorites = defaults.object(forKey: "CoinAuditFavorites") as? [String] ?? [String]()
             if favorites.count == 0 {
                 print("No Favorites Found")
                 self.errorLabel.text = "Please add a favorite in CoinAudit"
@@ -62,7 +62,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         widgetTableView.delegate = self
-        widgetValue = defaults.object(forKey: "widget") as? String ?? String()
+        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
@@ -123,7 +123,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         
         switch widgetValue {
         case "wallet":
-            // sort wallet
+            /*// sort wallet
             walletCoins = walletCoins.sorted(by: { $0.id < $1.id })
             // pull id
             id = walletCoins[indexPath.row].id
@@ -151,7 +151,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                         self.updating = false
                     }
                 }
-            }
+            }*/
+            print("failed")
         default:
             favorites = favorites.sorted()
             id = favorites[indexPath.row]
@@ -164,10 +165,25 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                         cell.symbolLabel.text = coin.symbol
                         cell.valueLabel.text = coin.priceUSD.formatUSD()
                         
-                        if coin.percentChange24 != "unknown" {
-                            percent = Double(coin.percentChange24)!
+                        // handle for 1 hour and 24 hour percent modes
+                        if widgetPercent == "1h" {
+                            if coin.percentChange1 != "unknown" {
+                                percent = Double(coin.percentChange1)!
+                            } else {
+                                percent = 0.0
+                            }
+                        } else if widgetPercent == "24h" {
+                            if coin.percentChange24 != "unknown" {
+                                percent = Double(coin.percentChange24)!
+                            } else {
+                                percent = 0.0
+                            }
                         } else {
-                            percent = 0.0
+                            if coin.percentChange24 != "unknown" {
+                                percent = Double(coin.percentChange24)!
+                            } else {
+                                percent = 0.0
+                            }
                         }
                         
                         if (percent > 0.0) {

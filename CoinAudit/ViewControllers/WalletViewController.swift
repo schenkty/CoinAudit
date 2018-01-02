@@ -146,8 +146,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bitcoinTotal = 0.0
         
         for localCoin in walletCoins {
-            print("Calculating: \(localCoin.name)")
-            
             guard let coin = entries.first(where: {$0.id == localCoin.id}) else { return }
             guard let value = Double(localCoin.value) else { return }
             self.walletTotal = self.walletTotal + (Double(coin.priceUSD)! * value)

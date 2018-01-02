@@ -69,7 +69,7 @@ class CoinsDetailsViewController: UIViewController {
             if let index = favorites.index(of: id) {
                 favorites.remove(at: index)
             }
-            saveFavorites()
+            saveFavoriteSettings()
             print("Deleted: \(id) from favorites")
         } else {
             favorited = true
@@ -78,7 +78,7 @@ class CoinsDetailsViewController: UIViewController {
             // save coin id to array
             favorites.append(id)
             favorites = favorites.sorted()
-            saveFavorites()
+            saveFavoriteSettings()
             print("Added: \(id) from favorites")
         }
     }
