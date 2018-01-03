@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		322406191FF711BD0073555B /* AddWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322406181FF711BD0073555B /* AddWalletViewController.swift */; };
 		3244A7591FF58EF400AB036A /* CoinsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */; };
+		324AEA391FFCABA10053D95D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324AEA371FFCABA10053D95D /* Interface.storyboard */; };
+		324AEA3B1FFCABA10053D95D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324AEA3A1FFCABA10053D95D /* Assets.xcassets */; };
+		324AEA421FFCABA10053D95D /* CoinAuditWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 324AEA411FFCABA10053D95D /* CoinAuditWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		324AEA471FFCABA10053D95D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AEA461FFCABA10053D95D /* InterfaceController.swift */; };
+		324AEA491FFCABA10053D95D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AEA481FFCABA10053D95D /* ExtensionDelegate.swift */; };
+		324AEA4B1FFCABA10053D95D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AEA4A1FFCABA10053D95D /* NotificationController.swift */; };
+		324AEA4D1FFCABA10053D95D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324AEA4C1FFCABA10053D95D /* Assets.xcassets */; };
+		324AEA521FFCABA10053D95D /* CoinAuditWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 324AEA351FFCABA00053D95D /* CoinAuditWatch.app */; };
 		324F4ADD1FF4C1D400FC5312 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */; };
 		324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */; };
 		324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */; };
@@ -49,6 +57,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		324AEA431FFCABA10053D95D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32AFAB741FF38FC6006B608D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 324AEA401FFCABA10053D95D;
+			remoteInfo = "CoinAuditWatch Extension";
+		};
+		324AEA501FFCABA10053D95D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32AFAB741FF38FC6006B608D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 324AEA341FFCABA00053D95D;
+			remoteInfo = CoinAuditWatch;
+		};
 		3288213F1FF8AFEE002E365B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32AFAB741FF38FC6006B608D /* Project object */;
@@ -73,6 +95,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		324AEA581FFCABA10053D95D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				324AEA421FFCABA10053D95D /* CoinAuditWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		324AEA5A1FFCABA10053D95D /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				324AEA521FFCABA10053D95D /* CoinAuditWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		328821451FF8AFEE002E365B /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,6 +150,17 @@
 		32421D7D1FF8B62300F14061 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsDetailsViewController.swift; sourceTree = "<group>"; };
 		3244A75A1FF594C800AB036A /* HexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColors.swift; sourceTree = "<group>"; };
+		324AEA351FFCABA00053D95D /* CoinAuditWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinAuditWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		324AEA381FFCABA10053D95D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		324AEA3A1FFCABA10053D95D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		324AEA3C1FFCABA10053D95D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		324AEA411FFCABA10053D95D /* CoinAuditWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CoinAuditWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		324AEA461FFCABA10053D95D /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		324AEA481FFCABA10053D95D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		324AEA4A1FFCABA10053D95D /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		324AEA4C1FFCABA10053D95D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		324AEA4E1FFCABA10053D95D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		324AEA4F1FFCABA10053D95D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +214,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		324AEA3E1FFCABA10053D95D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		328821321FF8AFEE002E365B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +273,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		324AEA361FFCABA10053D95D /* CoinAuditWatch */ = {
+			isa = PBXGroup;
+			children = (
+				324AEA371FFCABA10053D95D /* Interface.storyboard */,
+				324AEA3A1FFCABA10053D95D /* Assets.xcassets */,
+				324AEA3C1FFCABA10053D95D /* Info.plist */,
+			);
+			path = CoinAuditWatch;
+			sourceTree = "<group>";
+		};
+		324AEA451FFCABA10053D95D /* CoinAuditWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				324AEA461FFCABA10053D95D /* InterfaceController.swift */,
+				324AEA481FFCABA10053D95D /* ExtensionDelegate.swift */,
+				324AEA4A1FFCABA10053D95D /* NotificationController.swift */,
+				324AEA4C1FFCABA10053D95D /* Assets.xcassets */,
+				324AEA4E1FFCABA10053D95D /* Info.plist */,
+				324AEA4F1FFCABA10053D95D /* PushNotificationPayload.apns */,
+			);
+			path = "CoinAuditWatch Extension";
+			sourceTree = "<group>";
+		};
 		328821381FF8AFEE002E365B /* CoinWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +319,8 @@
 				32AFAB951FF38FC7006B608D /* CoinAuditTests */,
 				32AFABA01FF38FC7006B608D /* CoinAuditUITests */,
 				328821381FF8AFEE002E365B /* CoinWidget */,
+				324AEA361FFCABA10053D95D /* CoinAuditWatch */,
+				324AEA451FFCABA10053D95D /* CoinAuditWatch Extension */,
 				32AFAB7D1FF38FC6006B608D /* Products */,
 				4277160C04D471DB9572BA65 /* Frameworks */,
 				0F5FF0537ACBA6DD939589B3 /* Pods */,
@@ -247,6 +334,8 @@
 				32AFAB921FF38FC7006B608D /* CoinAuditTests.xctest */,
 				32AFAB9D1FF38FC7006B608D /* CoinAuditUITests.xctest */,
 				328821351FF8AFEE002E365B /* CoinWidget.appex */,
+				324AEA351FFCABA00053D95D /* CoinAuditWatch.app */,
+				324AEA411FFCABA10053D95D /* CoinAuditWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +433,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		324AEA341FFCABA00053D95D /* CoinAuditWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 324AEA591FFCABA10053D95D /* Build configuration list for PBXNativeTarget "CoinAuditWatch" */;
+			buildPhases = (
+				324AEA331FFCABA00053D95D /* Resources */,
+				324AEA581FFCABA10053D95D /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				324AEA441FFCABA10053D95D /* PBXTargetDependency */,
+			);
+			name = CoinAuditWatch;
+			productName = CoinAuditWatch;
+			productReference = 324AEA351FFCABA00053D95D /* CoinAuditWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		324AEA401FFCABA10053D95D /* CoinAuditWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 324AEA571FFCABA10053D95D /* Build configuration list for PBXNativeTarget "CoinAuditWatch Extension" */;
+			buildPhases = (
+				324AEA3D1FFCABA10053D95D /* Sources */,
+				324AEA3E1FFCABA10053D95D /* Frameworks */,
+				324AEA3F1FFCABA10053D95D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CoinAuditWatch Extension";
+			productName = "CoinAuditWatch Extension";
+			productReference = 324AEA411FFCABA10053D95D /* CoinAuditWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		328821341FF8AFEE002E365B /* CoinWidget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 328821441FF8AFEE002E365B /* Build configuration list for PBXNativeTarget "CoinWidget" */;
@@ -375,11 +498,13 @@
 				32C1C4C81FF8BA0D00DA69D3 /* Embed Frameworks */,
 				20848CB87812652205F20C10 /* [CP] Embed Pods Frameworks */,
 				146AE6F5F6570FFB5722D757 /* [CP] Copy Pods Resources */,
+				324AEA5A1FFCABA10053D95D /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				328821401FF8AFEE002E365B /* PBXTargetDependency */,
+				324AEA511FFCABA10053D95D /* PBXTargetDependency */,
 			);
 			name = CoinAudit;
 			productName = CoinAudit;
@@ -438,6 +563,14 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Ty Schenk";
 				TargetAttributes = {
+					324AEA341FFCABA00053D95D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					324AEA401FFCABA10053D95D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					328821341FF8AFEE002E365B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -492,11 +625,30 @@
 				32AFAB911FF38FC7006B608D /* CoinAuditTests */,
 				32AFAB9C1FF38FC7006B608D /* CoinAuditUITests */,
 				328821341FF8AFEE002E365B /* CoinWidget */,
+				324AEA341FFCABA00053D95D /* CoinAuditWatch */,
+				324AEA401FFCABA10053D95D /* CoinAuditWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		324AEA331FFCABA00053D95D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				324AEA3B1FFCABA10053D95D /* Assets.xcassets in Resources */,
+				324AEA391FFCABA10053D95D /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		324AEA3F1FFCABA10053D95D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				324AEA4D1FFCABA10053D95D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		328821331FF8AFEE002E365B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -723,6 +875,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		324AEA3D1FFCABA10053D95D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				324AEA4B1FFCABA10053D95D /* NotificationController.swift in Sources */,
+				324AEA491FFCABA10053D95D /* ExtensionDelegate.swift in Sources */,
+				324AEA471FFCABA10053D95D /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		328821311FF8AFEE002E365B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -782,6 +944,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		324AEA441FFCABA10053D95D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 324AEA401FFCABA10053D95D /* CoinAuditWatch Extension */;
+			targetProxy = 324AEA431FFCABA10053D95D /* PBXContainerItemProxy */;
+		};
+		324AEA511FFCABA10053D95D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 324AEA341FFCABA00053D95D /* CoinAuditWatch */;
+			targetProxy = 324AEA501FFCABA10053D95D /* PBXContainerItemProxy */;
+		};
 		328821401FF8AFEE002E365B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 328821341FF8AFEE002E365B /* CoinWidget */;
@@ -800,6 +972,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		324AEA371FFCABA10053D95D /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				324AEA381FFCABA10053D95D /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		3288213B1FF8AFEE002E365B /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -827,6 +1007,80 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		324AEA531FFCABA10053D95D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8AYF758EP8;
+				IBSC_MODULE = CoinAuditWatch_Extension;
+				INFOPLIST_FILE = CoinAuditWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.coins.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		324AEA541FFCABA10053D95D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8AYF758EP8;
+				IBSC_MODULE = CoinAuditWatch_Extension;
+				INFOPLIST_FILE = CoinAuditWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.coins.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		324AEA551FFCABA10053D95D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8AYF758EP8;
+				INFOPLIST_FILE = "CoinAuditWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.coins.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		324AEA561FFCABA10053D95D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8AYF758EP8;
+				INFOPLIST_FILE = "CoinAuditWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tschenk.coins.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
 		328821421FF8AFEE002E365B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE2E5BBEABD7DB2DED80A9A8 /* Pods-CoinAudit-CoinWidget.debug.xcconfig */;
@@ -1089,6 +1343,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		324AEA571FFCABA10053D95D /* Build configuration list for PBXNativeTarget "CoinAuditWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				324AEA551FFCABA10053D95D /* Debug */,
+				324AEA561FFCABA10053D95D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		324AEA591FFCABA10053D95D /* Build configuration list for PBXNativeTarget "CoinAuditWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				324AEA531FFCABA10053D95D /* Debug */,
+				324AEA541FFCABA10053D95D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		328821441FF8AFEE002E365B /* Build configuration list for PBXNativeTarget "CoinWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
