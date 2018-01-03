@@ -10,15 +10,24 @@ import UIKit
 import NotificationCenter
 import Alamofire
 import SwiftSpinner
+import GoogleMobileAds
 
 class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
+    var bannerView: GADBannerView!
     let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Google Ads
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = GoogleAd.init().appID
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
         searchController.searchResultsUpdater = self
@@ -144,5 +153,26 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
         }
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
     }
 }

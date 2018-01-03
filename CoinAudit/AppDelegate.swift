@@ -9,6 +9,7 @@
 import UIKit
 import NotificationCenter
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Initialize the Google Mobile Ads SDK.
+        GADMobileAds.configure(withApplicationID: GoogleAd.init().appID)
+        
+        // Handle coin extension loading
         if let url = launchOptions?[UIApplicationLaunchOptionsKey.url] as? URL {
             let sourceApp = launchOptions![UIApplicationLaunchOptionsKey.sourceApplication] as? String
             let annotation = launchOptions![UIApplicationLaunchOptionsKey.annotation]
