@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SearchTextField
+import GoogleMobileAds
 
 class AddWalletViewController: UIViewController {
 

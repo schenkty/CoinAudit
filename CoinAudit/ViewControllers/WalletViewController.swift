@@ -11,6 +11,7 @@ import CoreData
 import NotificationCenter
 import Alamofire
 import SwiftSpinner
+import GoogleMobileAds
 
 class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

@@ -16,7 +16,7 @@
 		324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE41FF4C61700FC5312 /* FeedCell.swift */; };
 		324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE61FF4C62300FC5312 /* FavCell.swift */; };
 		32583A8A1FFD994E000E573F /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32583A891FFD994E000E573F /* Ads.swift */; };
-		326999E41FF5F8A10059122D /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */; };
+		326999E41FF5F8A10059122D /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326999E31FF5F8A10059122D /* FavoritesViewController.swift */; };
 		328821371FF8AFEE002E365B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328821361FF8AFEE002E365B /* NotificationCenter.framework */; };
 		3288213A1FF8AFEE002E365B /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328821391FF8AFEE002E365B /* TodayViewController.swift */; };
 		3288213D1FF8AFEE002E365B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3288213B1FF8AFEE002E365B /* MainInterface.storyboard */; };
@@ -118,7 +118,7 @@
 		324F4AE41FF4C61700FC5312 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		324F4AE61FF4C62300FC5312 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
 		32583A891FFD994E000E573F /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
-		326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		326999E31FF5F8A10059122D /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		328821351FF8AFEE002E365B /* CoinWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoinWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		328821361FF8AFEE002E365B /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		328821391FF8AFEE002E365B /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -249,7 +249,6 @@
 				32AFAB851FF38FC6006B608D /* Main.storyboard */,
 				32AFAB8A1FF38FC6006B608D /* LaunchScreen.storyboard */,
 				32AFAB8D1FF38FC6006B608D /* Info.plist */,
-				32583A891FFD994E000E573F /* Ads.swift */,
 			);
 			path = CoinAudit;
 			sourceTree = "<group>";
@@ -285,7 +284,7 @@
 			children = (
 				324F4AE01FF4C43000FC5312 /* CoinsFeedController.swift */,
 				3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */,
-				326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */,
+				326999E31FF5F8A10059122D /* FavoritesViewController.swift */,
 				324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */,
 				322406181FF711BD0073555B /* AddWalletViewController.swift */,
 				324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */,
@@ -303,6 +302,7 @@
 				3244A75A1FF594C800AB036A /* HexColors.swift */,
 				328F26811FF63566002BB3E7 /* Extensions.swift */,
 				32421D7D1FF8B62300F14061 /* Data.swift */,
+				32583A891FFD994E000E573F /* Ads.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -745,7 +745,7 @@
 				32583A8A1FFD994E000E573F /* Ads.swift in Sources */,
 				3244A7591FF58EF400AB036A /* CoinsDetailsViewController.swift in Sources */,
 				32C1C4D81FF8BD3600DA69D3 /* Data.swift in Sources */,
-				326999E41FF5F8A10059122D /* FavoritesTableViewController.swift in Sources */,
+				326999E41FF5F8A10059122D /* FavoritesViewController.swift in Sources */,
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
 				32D1D59A1FFB47DF000BD2E1 /* Wallet.xcdatamodeld in Sources */,
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,

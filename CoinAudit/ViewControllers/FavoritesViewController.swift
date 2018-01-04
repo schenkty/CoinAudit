@@ -1,5 +1,5 @@
 //
-//  FavoritesTableViewController.swift
+//  FavoritesViewController.swift
 //  CoinAudit
 //
 //  Created by Ty Schenk on 12/28/17.
@@ -8,29 +8,35 @@
 
 import UIKit
 import NotificationCenter
+import GoogleMobileAds
 
-class FavoritesTableViewController: UITableViewController {
+class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet var favTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        favTableView.delegate = self
+        favTableView.dataSource = self
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
-        if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
-            self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
+        if let selectionIndexPath = self.favTableView.indexPathForSelectedRow {
+            self.favTableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
         
-        self.tableView.allowsSelectionDuringEditing = true
+        self.favTableView.allowsSelectionDuringEditing = true
         favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
-        self.tableView.reloadData()
+        self.favTableView.reloadData()
         updateTheme()
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favorites.count != 0 && entries.count != 0 {
             return favorites.count
         } else {
@@ -38,11 +44,11 @@ class FavoritesTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Action to delete data
             favorites = favorites.sorted()
@@ -51,11 +57,11 @@ class FavoritesTableViewController: UITableViewController {
             defaults.set(favorites, forKey: "CoinAuditFavorites")
             let cell = tableView.cellForRow(at: indexPath) as! FavCell
             print("Deleted: \(cell.nameLabel.text!) from favorites")
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.favTableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
         favorites = favorites.sorted()
@@ -63,7 +69,7 @@ class FavoritesTableViewController: UITableViewController {
         self.show(controller, sender: self)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavCell
         favorites = favorites.sorted()
@@ -99,7 +105,7 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     @objc func updateList() {
-        self.tableView.reloadData()
+        self.favTableView.reloadData()
     }
     
     func updateTheme() {

@@ -10,6 +10,7 @@ import UIKit
 import NotificationCenter
 import SwiftSpinner
 import Alamofire
+import GoogleMobileAds
 
 class CoinsDetailsViewController: UIViewController {
     
