@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Alamofire
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 
@@ -17,6 +18,13 @@ var widgetValue: String = ""
 var walletValue: String = ""
 var widgetPercent: String = ""
 var themeValue: String = ""
+
+// MARK: Check Network
+class Connectivity {
+    class var isConnectedToInternet:Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
+}
 
 class CoreDataStack {
     
@@ -57,5 +65,4 @@ func loadWallet() {
     } catch {
         fatalError("Failed to fetch coins: \(error)")
     }
-    
 }

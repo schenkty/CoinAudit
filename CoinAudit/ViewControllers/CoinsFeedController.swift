@@ -1,5 +1,5 @@
 //
-//  CoinsTableViewController.swift
+//  CoinsFeedController.swift
 //  CoinAudit
 //
 //  Created by Ty Schenk on 12/28/17.
@@ -10,27 +10,20 @@ import UIKit
 import NotificationCenter
 import Alamofire
 import SwiftSpinner
-import GoogleMobileAds
 
-class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
+class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
     
-    var bannerView: GADBannerView!
     let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
+    var searchActive: Bool = false
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Google Ads
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = GoogleAd.init().appID
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
-        addBannerViewToView(bannerView)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-        
+    
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search Coin Name"
         searchController.dimsBackgroundDuringPresentation = false
@@ -45,7 +38,6 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         updateTheme()
         // Update Coin Data
         self.updateList()
@@ -85,7 +77,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             cell.valueLabel.textColor = UIColor.black
             cell.rankLabel.textColor = UIColor.black
         }
-        
+
         return cell
     }
     
@@ -114,7 +106,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         self.tableView.reloadData()
     }
     
-    @IBAction func updateButton(_ sender: UIBarButtonItem) {
+    @IBAction func updateButton(_ sender: Any) {
         if Connectivity.isConnectedToInternet {
             self.updateData()
         } else {
@@ -164,26 +156,5 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
         }
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: bottomLayoutGuide,
-                                attribute: .top,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-            ])
     }
 }

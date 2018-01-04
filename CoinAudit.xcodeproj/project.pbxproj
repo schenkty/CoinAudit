@@ -11,7 +11,7 @@
 		3244A7591FF58EF400AB036A /* CoinsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */; };
 		324F4ADD1FF4C1D400FC5312 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */; };
 		324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */; };
-		324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */; };
+		324F4AE11FF4C43000FC5312 /* CoinsFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE01FF4C43000FC5312 /* CoinsFeedController.swift */; };
 		324F4AE31FF4C5C300FC5312 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE21FF4C5C300FC5312 /* WalletCell.swift */; };
 		324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE41FF4C61700FC5312 /* FeedCell.swift */; };
 		324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE61FF4C62300FC5312 /* FavCell.swift */; };
@@ -118,7 +118,7 @@
 		3244A75A1FF594C800AB036A /* HexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColors.swift; sourceTree = "<group>"; };
 		324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
-		324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsTableViewController.swift; sourceTree = "<group>"; };
+		324F4AE01FF4C43000FC5312 /* CoinsFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsFeedController.swift; sourceTree = "<group>"; };
 		324F4AE21FF4C5C300FC5312 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		324F4AE41FF4C61700FC5312 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		324F4AE61FF4C62300FC5312 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		32FCD4011FF4AEC200B7AD32 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */,
+				324F4AE01FF4C43000FC5312 /* CoinsFeedController.swift */,
 				3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */,
 				326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */,
 				324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */,
@@ -759,7 +759,7 @@
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
 				32D1D59A1FFB47DF000BD2E1 /* Wallet.xcdatamodeld in Sources */,
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,
-				324F4AE11FF4C43000FC5312 /* CoinsTableViewController.swift in Sources */,
+				324F4AE11FF4C43000FC5312 /* CoinsFeedController.swift in Sources */,
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
 				32D1D59F1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift in Sources */,
 				328F26821FF63566002BB3E7 /* Extensions.swift in Sources */,

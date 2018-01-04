@@ -21,42 +21,49 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view from its nib.
-        widgetTableView.delegate = self
-        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
-        themeValue = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
-        
-        if widgetValue == "wallet" {
-            favorites.removeAll()
-            loadWallet()
-            self.widgetTableView.reloadData()
+        if Connectivity.isConnectedToInternet {
+            widgetTableView.delegate = self
+            widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+            themeValue = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
             
-            walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
-            if walletCoins.count == 0 {
-                print("No Wallet Found")
-                self.errorLabel.text = "Please add coins to your wallet in CoinAudit"
-                self.errorLabel.isHidden = false
-                updating = false
-                loadingIndicator.stopAnimating()
-            } else {
-                print("Found \(walletCoins.count) Coins from Wallet")
-                self.errorLabel.isHidden = true
+            if widgetValue == "wallet" {
+                favorites.removeAll()
+                loadWallet()
                 self.widgetTableView.reloadData()
+                
+                walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
+                if walletCoins.count == 0 {
+                    print("No Wallet Found")
+                    self.errorLabel.text = "Please add coins to your wallet in CoinAudit"
+                    self.errorLabel.isHidden = false
+                    updating = false
+                    loadingIndicator.stopAnimating()
+                } else {
+                    print("Found \(walletCoins.count) Coins from Wallet")
+                    self.errorLabel.isHidden = true
+                    self.widgetTableView.reloadData()
+                }
+            } else {
+                walletCoins.removeAll()
+                favorites = defaults.object(forKey: "CoinAuditFavorites") as? [String] ?? [String]()
+                widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
+                if favorites.count == 0 {
+                    print("No Favorites Found")
+                    self.errorLabel.text = "Please add a favorite in CoinAudit"
+                    self.errorLabel.isHidden = false
+                    updating = false
+                    loadingIndicator.stopAnimating()
+                } else {
+                    print("Found \(favorites.count) Favorites")
+                    self.errorLabel.isHidden = true
+                    self.widgetTableView.reloadData()
+                }
             }
         } else {
-            walletCoins.removeAll()
-            favorites = defaults.object(forKey: "CoinAuditFavorites") as? [String] ?? [String]()
-            widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
-            if favorites.count == 0 {
-                print("No Favorites Found")
-                self.errorLabel.text = "Please add a favorite in CoinAudit"
-                self.errorLabel.isHidden = false
-                updating = false
-                loadingIndicator.stopAnimating()
-            } else {
-                print("Found \(favorites.count) Favorites")
-                self.errorLabel.isHidden = true
-                self.widgetTableView.reloadData()
-            }
+            loadingIndicator.stopAnimating()
+            loadingIndicator.isHidden = true
+            self.errorLabel.isHidden = false
+            self.errorLabel.text = "Can not load CoinAudit. No Internet"
         }
     }
     

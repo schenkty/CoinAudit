@@ -87,7 +87,6 @@ class CoinsDetailsViewController: UIViewController {
     
     func formatData(coin: CoinEntry) {
         // set name of coin
-        //nameLabel.text = coin.name
         self.navigationItem.title = coin.name
         
         // format prices and set to labels
