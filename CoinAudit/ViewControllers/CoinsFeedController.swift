@@ -118,7 +118,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
         // Provide using with loading spinner
-        SwiftSpinner.show(duration: 1.5, title: "Downloading Data...", animated: true)
+        SwiftSpinner.show("Downloading Data...", animated: true)
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -130,6 +130,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
             self.filteredEntries = entries
             // Update Table Views
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+            SwiftSpinner.hide()
         }
     }
     

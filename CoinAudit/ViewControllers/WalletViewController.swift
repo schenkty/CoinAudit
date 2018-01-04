@@ -29,9 +29,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
         
-        if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
-            self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
-        }
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
         
@@ -46,8 +43,15 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
+            self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
+        }
+        
         updateTheme()
-        if Connectivity.isConnectedToInternet {
+        calculateWallet()
+        
+        if entries.count != 0 {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
             
             do {
@@ -67,6 +71,9 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } catch {
                 fatalError("Failed to fetch coins: \(error)")
             }
+        } else {
+            print("No coin entries")
+            showAlert(title: "No Coins Found", message: "Please refresh the Coins Feed", style: .alert)
         }
     }
 
@@ -135,7 +142,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if walletValue == "value" {
             cell.valueLabel.text = "\(Double(value)! * Double(coin.priceUSD)!)".formatUSD()
         } else {
-            print("Wallet Format not found")
+            print("Wallet Format not found. Using Default Format")
             cell.valueLabel.text = "\(value)"
         }
         
