@@ -136,6 +136,10 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
     @objc func updateTheme() {
         switch themeValue {
         case "dark":
+            // TextField Color Customization
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
+            
+            // Theme Color
             self.tabBarController?.tabBar.barTintColor = UIColor.black
             self.tabBarController?.tabBar.tintColor = UIColor.white
             self.tableView.backgroundColor = UIColor.black
@@ -146,6 +150,10 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         default:
+            // TextField Color Customization
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.black]
+
+            // Theme Color
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
             self.tableView.backgroundColor = UIColor.white
