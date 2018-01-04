@@ -24,10 +24,10 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         
         // Google Ads
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        addBannerViewToView(bannerView)
         bannerView.adUnitID = GoogleAd.init().appID
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
+        addBannerViewToView(bannerView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         

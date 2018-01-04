@@ -48,8 +48,25 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
         if Connectivity.isConnectedToInternet {
-            self.calculateWallet()
-            self.walletTableView.reloadData()
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+            
+            do {
+                let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
+                
+                // reset wallet array
+                walletCoins.removeAll()
+                self.walletTableView.reloadData()
+                
+                // add newly fetched coins to wallet
+                for object in fetchedCoin {
+                    walletCoins.append(object as! NSManagedObject)
+                }
+                
+                calculateWallet()
+                self.walletTableView.reloadData()
+            } catch {
+                fatalError("Failed to fetch coins: \(error)")
+            }
         }
     }
 

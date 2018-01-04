@@ -16,7 +16,6 @@
 		324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE41FF4C61700FC5312 /* FeedCell.swift */; };
 		324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4AE61FF4C62300FC5312 /* FavCell.swift */; };
 		32583A8A1FFD994E000E573F /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32583A891FFD994E000E573F /* Ads.swift */; };
-		326643861FFDCB5200569C3E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326643851FFDCB5200569C3E /* StartViewController.swift */; };
 		326999E41FF5F8A10059122D /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */; };
 		328821371FF8AFEE002E365B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328821361FF8AFEE002E365B /* NotificationCenter.framework */; };
 		3288213A1FF8AFEE002E365B /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328821391FF8AFEE002E365B /* TodayViewController.swift */; };
@@ -124,7 +123,6 @@
 		324F4AE41FF4C61700FC5312 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		324F4AE61FF4C62300FC5312 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
 		32583A891FFD994E000E573F /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
-		326643851FFDCB5200569C3E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		328821351FF8AFEE002E365B /* CoinWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoinWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		328821361FF8AFEE002E365B /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -294,7 +292,6 @@
 		32FCD4011FF4AEC200B7AD32 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				326643851FFDCB5200569C3E /* StartViewController.swift */,
 				324F4AE01FF4C43000FC5312 /* CoinsTableViewController.swift */,
 				3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */,
 				326999E31FF5F8A10059122D /* FavoritesTableViewController.swift */,
@@ -766,7 +763,6 @@
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
 				32D1D59F1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift in Sources */,
 				328F26821FF63566002BB3E7 /* Extensions.swift in Sources */,
-				326643861FFDCB5200569C3E /* StartViewController.swift in Sources */,
 				32D1D59D1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift in Sources */,
 				32C1C4D61FF8BCCB00DA69D3 /* HexColors.swift in Sources */,
 				322406191FF711BD0073555B /* AddWalletViewController.swift in Sources */,

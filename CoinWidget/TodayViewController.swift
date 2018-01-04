@@ -105,12 +105,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             preferredContentSize = CGSize(width: 0, height: 118)
         }
         
-        let appURL = URL(string: "coinaudit://coin/\(favorites[indexPath.row])")!
-        self.extensionContext?.open(appURL, completionHandler: { (success) in
-            if (!success) {
-                print("Failed: Can not open app from Today Extension")
-            }
-        })
+//        let appURL = URL(string: "coinaudit://coin/\(favorites[indexPath.row])")!
+//        self.extensionContext?.open(appURL, completionHandler: { (success) in
+//            if (!success) {
+//                print("Failed: Can not open app from Today Extension")
+//            }
+//        })
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
