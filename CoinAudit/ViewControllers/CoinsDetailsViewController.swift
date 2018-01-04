@@ -90,16 +90,9 @@ class CoinsDetailsViewController: UIViewController {
         // set name of coin
         self.navigationItem.title = coin.name
         
-        let max = Double(coin.maxSupply)!
-        let used = Double(coin.availableSupply)!
-        
-        let perCent = "\(100.0*used/max)"
-        
-        supplyUsed.text = "Supply Used: \(perCent.formatDecimal())%"
         // format prices and set to labels
         priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())"
         priceBTCLabel.text = "Price BTC: \(coin.priceBTC)"
-        circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply.formatDecimal())"
         
         if coin.marketCapUSD != "unknown" {
             marketCapLabel.text = "Market Cap: \(coin.marketCapUSD.formatUSD())"
@@ -117,6 +110,23 @@ class CoinsDetailsViewController: UIViewController {
             maxSupplyLabel.text = "Max Supply: \(coin.maxSupply.formatDecimal())"
         } else {
             maxSupplyLabel.text = "Max Supply: \(coin.maxSupply)"
+        }
+        
+        if coin.availableSupply != "unknown" {
+            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply.formatDecimal())"
+            
+            if coin.maxSupply != "unknown" {
+                let max = Double(coin.maxSupply)!
+                let used = Double(coin.availableSupply)!
+                
+                let perCent = "\(100.0*used/max)"
+                
+                supplyUsed.text = "Supply Used: \(perCent.formatDecimal())%"
+            } else {
+                supplyUsed.text = "Supply Used: Unknown"
+            }
+        } else {
+            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply)"
         }
     }
     
@@ -220,18 +230,17 @@ class CoinsDetailsViewController: UIViewController {
             self.tabBarController?.tabBar.barTintColor = UIColor.black
             self.tabBarController?.tabBar.tintColor = UIColor.white
             self.view.backgroundColor = UIColor.black
-            
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
             self.navBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barTintColor = UIColor.black
             self.navigationController?.navigationBar.tintColor = UIColor.white
-            
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             marketCapLabel.textColor = UIColor.white
             volumeLabel.textColor = UIColor.white
             circulatingSupplyLabel.textColor = UIColor.white
+            supplyUsed.textColor = UIColor.white
             maxSupplyLabel.textColor = UIColor.white
             priceUSDLabel.textColor = UIColor.white
             priceBTCLabel.textColor = UIColor.white
@@ -242,16 +251,17 @@ class CoinsDetailsViewController: UIViewController {
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
             self.view.backgroundColor = UIColor.white
-            self.navBar.tintColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+            self.navBar.tintColor = UIColor.black
             self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.black
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            
             marketCapLabel.textColor = UIColor.black
             volumeLabel.textColor = UIColor.black
             circulatingSupplyLabel.textColor = UIColor.black
+            supplyUsed.textColor = UIColor.black
             maxSupplyLabel.textColor = UIColor.black
             priceUSDLabel.textColor = UIColor.black
             priceBTCLabel.textColor = UIColor.black

@@ -205,7 +205,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // reset wallet array
             walletCoins.removeAll()
-            self.walletTableView.reloadData()
+            //self.walletTableView.reloadData()
             
             // add newly fetched coins to wallet
             for object in fetchedCoin {
