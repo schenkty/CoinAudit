@@ -21,6 +21,7 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Google Ads
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         addBannerViewToView(bannerView)
@@ -35,8 +36,12 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         navigationItem.searchController = searchController
-    
-        self.updateData()
+        
+        if Connectivity.isConnectedToInternet {
+            self.updateData()
+        } else {
+            showAlert(title: "No internet connection")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,10 +115,16 @@ class CoinsTableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     @IBAction func updateButton(_ sender: UIBarButtonItem) {
-       self.updateData()
+        if Connectivity.isConnectedToInternet {
+            self.updateData()
+        } else {
+            showAlert(title: "No internet connection")
+        }
     }
     
     func updateData() {
+        favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
+        favorites = favorites.sorted()
         // Provide using with loading spinner
         SwiftSpinner.show(duration: 1.5, title: "Downloading Data...", animated: true)
         // Pull Coin Data

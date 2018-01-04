@@ -17,6 +17,7 @@ class FavoritesTableViewController: UITableViewController {
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
+        
         self.tableView.allowsSelectionDuringEditing = true
         favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
@@ -30,7 +31,11 @@ class FavoritesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favorites.count
+        if favorites.count != 0 && entries.count != 0 {
+            return favorites.count
+        } else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

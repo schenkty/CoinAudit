@@ -773,6 +773,57 @@
             </objects>
             <point key="canvasLocation" x="1366" y="394"/>
         </scene>
+        <!--Start View Controller-->
+        <scene sceneID="njx-PV-wvK">
+            <objects>
+                <viewController storyboardIdentifier="start" id="JaO-LS-Kje" customClass="StartViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NkZ-64-25z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Network Connection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHc-Ju-BoE">
+                                <rect key="frame" x="0.0" y="165" width="375" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please connect to the Internet to continue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMC-wU-JEm">
+                                <rect key="frame" x="0.0" y="211.5" width="375" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUd-yk-9fx">
+                                <rect key="frame" x="0.0" y="373" width="375" height="30"/>
+                                <state key="normal" title="Retry Connection"/>
+                                <connections>
+                                    <action selector="retryButton" destination="JaO-LS-Kje" eventType="touchUpInside" id="TLe-HF-OES"/>
+                                    <action selector="retryButton:" destination="JaO-LS-Kje" eventType="touchUpInside" id="2h4-Ok-Tpf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="t4w-bT-XvA" firstAttribute="trailing" secondItem="PMC-wU-JEm" secondAttribute="trailing" id="3BR-Wz-8hy"/>
+                            <constraint firstItem="HHc-Ju-BoE" firstAttribute="top" secondItem="t4w-bT-XvA" secondAttribute="top" constant="145" id="FDl-kG-8zm"/>
+                            <constraint firstItem="t4w-bT-XvA" firstAttribute="trailing" secondItem="HHc-Ju-BoE" secondAttribute="trailing" id="Rqx-Yo-KMv"/>
+                            <constraint firstItem="WUd-yk-9fx" firstAttribute="leading" secondItem="t4w-bT-XvA" secondAttribute="leading" id="ZWm-eS-1qo"/>
+                            <constraint firstItem="t4w-bT-XvA" firstAttribute="trailing" secondItem="WUd-yk-9fx" secondAttribute="trailing" id="hSI-nf-TAo"/>
+                            <constraint firstItem="HHc-Ju-BoE" firstAttribute="leading" secondItem="t4w-bT-XvA" secondAttribute="leading" id="tcc-j2-gS2"/>
+                            <constraint firstItem="PMC-wU-JEm" firstAttribute="top" secondItem="HHc-Ju-BoE" secondAttribute="bottom" constant="15" id="vTr-iw-J6Z"/>
+                            <constraint firstItem="PMC-wU-JEm" firstAttribute="leading" secondItem="t4w-bT-XvA" secondAttribute="leading" id="xaJ-So-oGF"/>
+                            <constraint firstItem="WUd-yk-9fx" firstAttribute="top" secondItem="PMC-wU-JEm" secondAttribute="bottom" constant="140" id="zzE-ww-DET"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="t4w-bT-XvA"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainView" destination="NkZ-64-25z" id="YVs-lD-VpJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0w7-Qp-hDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1188" y="394"/>
+        </scene>
         <!--Wallet-->
         <scene sceneID="Kcu-57-GyK">
             <objects>
@@ -814,7 +865,7 @@
         <!--Coins-->
         <scene sceneID="L6z-N0-KNI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d6L-Ug-hFk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="feed" automaticallyAdjustsScrollViewInsets="NO" id="d6L-Ug-hFk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Coins" image="bar_chart" id="tei-H5-ylC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="9le-ql-CIr">

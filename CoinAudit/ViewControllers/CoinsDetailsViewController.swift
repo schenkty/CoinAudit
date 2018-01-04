@@ -32,7 +32,7 @@ class CoinsDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         if mode == "url" {
             navBar.isHidden = false
         } else {
@@ -55,9 +55,11 @@ class CoinsDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.formatData(coin: entries.first(where: {$0.id == id})!)
-        self.formatPercents(coin: entries.first(where: {$0.id == id})!)
-        updateTheme()
+        if entries.count != 0 {
+            self.formatData(coin: entries.first(where: {$0.id == id})!)
+            self.formatPercents(coin: entries.first(where: {$0.id == id})!)
+            updateTheme()
+        }
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
@@ -184,21 +186,25 @@ class CoinsDetailsViewController: UIViewController {
     }
     
     @objc func updateCoin() {
-        let name = self.navigationController?.navigationBar.topItem?.title
-        
-        SwiftSpinner.show(duration: 1.0, title: "Updating \(name!)...")
-        // Pull Coin Data
-        Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
-            for coinJSON in (response.result.value as? [[String : AnyObject]])! {
-                if let coin = CoinEntry.init(json: coinJSON) {
-                    let index = entries.index(where: {$0.id == self.id})
-                    entries[index!] = coin
-                    self.formatData(coin: coin)
-                    self.formatPercents(coin: coin)
+        if Connectivity.isConnectedToInternet {
+            let name = self.navigationController?.navigationBar.topItem?.title
+            
+            SwiftSpinner.show(duration: 1.0, title: "Updating \(name!)...")
+            // Pull Coin Data
+            Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
+                for coinJSON in (response.result.value as? [[String : AnyObject]])! {
+                    if let coin = CoinEntry.init(json: coinJSON) {
+                        let index = entries.index(where: {$0.id == self.id})
+                        entries[index!] = coin
+                        self.formatData(coin: coin)
+                        self.formatPercents(coin: coin)
+                    }
                 }
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+        } else {
+            showAlert(title: "No internet connection")
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
     }
     
     @IBAction func doneButton(_ sender: Any) {

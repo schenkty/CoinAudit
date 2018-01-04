@@ -26,6 +26,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
         
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
@@ -46,23 +47,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
-        
-        do {
-            let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
-            
-            // reset wallet array
-            walletCoins.removeAll()
-            
-            // add newly fetched coins to wallet
-            for object in fetchedCoin {
-                walletCoins.append(object as! NSManagedObject)
-            }
-        } catch {
-            fatalError("Failed to fetch coins: \(error)")
+        if Connectivity.isConnectedToInternet {
+            self.calculateWallet()
+            self.walletTableView.reloadData()
         }
-        self.calculateWallet()
-        self.walletTableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -71,7 +59,11 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletCoins.count
+        if walletCoins.count != 0 && entries.count != 0 {
+            return walletCoins.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -188,26 +180,43 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @objc func updateList() {
-        self.walletTableView.reloadData()
-        calculateWallet()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+        
+        do {
+            let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
+            
+            // reset wallet array
+            walletCoins.removeAll()
+            self.walletTableView.reloadData()
+            
+            // add newly fetched coins to wallet
+            for object in fetchedCoin {
+                walletCoins.append(object as! NSManagedObject)
+            }
+            self.walletTableView.reloadData()
+            calculateWallet()
+        } catch {
+            fatalError("Failed to fetch coins: \(error)")
+        }
     }
     
     @objc func updateCoins() {
-        SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
-        
-        // Clear entries array
-        entries.removeAll()
-        
-        // Pull Coin Data
-        Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
-            for coinJSON in (response.result.value as? [[String : AnyObject]])! {
-                if let coin = CoinEntry.init(json: coinJSON) {
-                    entries.append(coin)
+        if Connectivity.isConnectedToInternet {
+            SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
+            
+            // Clear entries array
+            entries.removeAll()
+            
+            // Pull Coin Data
+            Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
+                for coinJSON in (response.result.value as? [[String : AnyObject]])! {
+                    if let coin = CoinEntry.init(json: coinJSON) {
+                        entries.append(coin)
+                    }
                 }
             }
-            
-            // Update data
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+        } else {
+            showAlert(title: "No internet connection")
         }
     }
     

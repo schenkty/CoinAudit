@@ -9,6 +9,7 @@
 import Foundation
 import NotificationCenter
 import CoreData
+import Alamofire
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 var entries: [CoinEntry] = []
@@ -40,6 +41,13 @@ func saveWalletSettings() {
     defaults.set(walletValue, forKey: "CoinAuditWalletMode")
 }
 
+
+// MARK: Check Network
+class Connectivity {
+    class var isConnectedToInternet:Bool {
+        return NetworkReachabilityManager()!.isReachable
+    }
+}
 
 // MARK: Get Core Data Context
 func getContext () -> NSManagedObjectContext {

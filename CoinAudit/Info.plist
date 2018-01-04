@@ -34,8 +34,6 @@
 	<string>5</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSSiriUsageDescription</key>
-	<string>Request Cryptocurrency coin data with your voice</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
