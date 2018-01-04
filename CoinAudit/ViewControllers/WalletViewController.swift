@@ -26,8 +26,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //dropper.items = ["One", "Two", "Three", "Four", "Five"]
         
-        walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
+        walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
+        walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry")!
         
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true
@@ -43,7 +45,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
             self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
@@ -51,30 +52,22 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         updateTheme()
         calculateWallet()
         
+        if !holdWalletEntry {
+            changeWallet()
+        } else {
+            holdWalletEntry = false
+        }
+        
         if entries.count != 0 {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
-            
-            do {
-                let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
-                
-                // reset wallet array
-                walletCoins.removeAll()
-                self.walletTableView.reloadData()
-                
-                // add newly fetched coins to wallet
-                for object in fetchedCoin {
-                    walletCoins.append(object as! NSManagedObject)
-                }
-                
-                calculateWallet()
-                self.walletTableView.reloadData()
-            } catch {
-                fatalError("Failed to fetch coins: \(error)")
-            }
+            updateList()
         } else {
             print("No coin entries")
             showAlert(title: "No Coins Found", message: "Please refresh the Coins Feed", style: .alert)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        holdWalletEntry = true
     }
 
     // MARK: - Table view data source
@@ -99,7 +92,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Action to delete data
             let cell = tableView.cellForRow(at: indexPath) as! WalletCell
             
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: walletEntryValue)
             
             let result = try? managedObjectContext.fetch(fetchRequest)
             
@@ -203,8 +196,9 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bitcoinLabel.text = "\(bitcoinTotal) BTC"
     }
     
+    // MARK: Update CoreData Wallet
     @objc func updateList() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: walletEntryValue)
         
         do {
             let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
@@ -242,6 +236,32 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             showAlert(title: "No internet connection")
         }
+    }
+    
+    @IBAction func changeWallet() {
+        switch walletEntryValue {
+        case "WalletEntry1":
+            walletEntryValue = "WalletEntry2"
+            self.navigationItem.title = "Wallet 2"
+        case "WalletEntry2":
+            walletEntryValue = "WalletEntry3"
+            self.navigationItem.title = "Wallet 3"
+        case "WalletEntry3":
+            walletEntryValue = "WalletEntry4"
+            self.navigationItem.title = "Wallet 4"
+        case "WalletEntry4":
+            walletEntryValue = "WalletEntry5"
+            self.navigationItem.title = "Wallet 5"
+        case "WalletEntry5":
+            walletEntryValue = "WalletEntry1"
+            self.navigationItem.title = "Wallet 1"
+        default:
+            walletEntryValue = "WalletEntry1"
+            self.navigationItem.title = "Wallet 1"
+        }
+        
+        saveWalletSettings()
+        updateList()
     }
     
     func updateTheme() {

@@ -17,6 +17,8 @@ var favorites: [String] = []
 var widgetValue: String = ""
 var widgetPercent: String = ""
 var walletValue: String = ""
+var holdWalletEntry: Bool = false
+var walletEntryValue: String = "WalletEntry1"
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletCoins: [NSManagedObject] = []
 
@@ -39,6 +41,7 @@ func saveThemeSettings() {
 
 func saveWalletSettings() {
     defaults.set(walletValue, forKey: "CoinAuditWalletMode")
+    defaults.set(walletValue, forKey: "CoinAuditWalletEntry")
 }
 
 

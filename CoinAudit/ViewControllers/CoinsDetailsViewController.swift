@@ -25,6 +25,7 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var percent7Label: UILabel!
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var PercentChangeLabels: [UILabel]!
+    @IBOutlet var supplyUsed: UILabel!
     
     var favorited: Bool = false
     var id: String = ""
@@ -89,9 +90,16 @@ class CoinsDetailsViewController: UIViewController {
         // set name of coin
         self.navigationItem.title = coin.name
         
+        let max = Double(coin.maxSupply)!
+        let used = Double(coin.availableSupply)!
+        
+        let perCent = "\(100.0*used/max)"
+        
+        supplyUsed.text = "Supply Used: \(perCent.formatDecimal())%"
         // format prices and set to labels
         priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())"
         priceBTCLabel.text = "Price BTC: \(coin.priceBTC)"
+        circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply.formatDecimal())"
         
         if coin.marketCapUSD != "unknown" {
             marketCapLabel.text = "Market Cap: \(coin.marketCapUSD.formatUSD())"
@@ -103,12 +111,6 @@ class CoinsDetailsViewController: UIViewController {
             volumeLabel.text = "Volume (24h): \(coin.volumeUSD.formatUSD())"
         } else {
             volumeLabel.text = "Volume (24h): \(coin.volumeUSD)"
-        }
-        
-        if coin.availableSupply != "unknown" {
-            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply.formatUSD())"
-        } else {
-            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply)"
         }
         
         if coin.maxSupply != "unknown" {

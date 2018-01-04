@@ -27,9 +27,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        walletValue = defaults.object(forKey: "CoinAuditWalletMode") as? String ?? String()
-        widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
-        widgetValue = defaults.object(forKey: "CoinAuditWidget") as? String ?? String()
+        walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
+        widgetPercent = defaults.string(forKey: "CoinAuditWidgetPercent")!
+        widgetValue = defaults.string(forKey: "CoinAuditWidget")!
         
         // force disable widget mode changes
         widgetModeView.isHidden = true
@@ -78,12 +78,12 @@ class SettingsViewController: UIViewController {
     
     @IBAction func clearData(_ sender: Any) {
         favorites.removeAll()
-        var allCoins  = [WalletEntry]()
+        var allCoins : [NSManagedObject] = []
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
         
         do {
-            try allCoins = managedObjectContext.fetch(fetchRequest) as! [WalletEntry]
+            try allCoins = managedObjectContext.fetch(fetchRequest) as! [WalletEntry5]
         } catch {
             print("error. could not delete")
         }

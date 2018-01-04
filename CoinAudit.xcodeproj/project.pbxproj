@@ -38,11 +38,6 @@
 		32C1C5091FF8CA0800DA69D3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4DD1FF8BECE00DA69D3 /* Data.swift */; };
 		32D1D5951FFB4640000BD2E1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D1D5941FFB4640000BD2E1 /* CoreData.framework */; };
 		32D1D59A1FFB47DF000BD2E1 /* Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D5981FFB47DF000BD2E1 /* Wallet.xcdatamodeld */; };
-		32D1D59D1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D59C1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift */; };
-		32D1D59F1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D59E1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift */; };
-		32D844871FFB8004004D0D83 /* WalletEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D59C1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift */; };
-		32D844881FFB8007004D0D83 /* WalletEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D59E1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift */; };
-		32D844891FFB800F004D0D83 /* Wallet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D5981FFB47DF000BD2E1 /* Wallet.xcdatamodeld */; };
 		649F0B09A82A5EBC6C44D6FE /* Pods_CoinAudit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EC2EAEA18ECE0EF32B772F /* Pods_CoinAudit.framework */; };
 		76612B85BF2FF65D5A810E5D /* Pods_CoinAuditUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C0B3BD5EBAD34A689132BE /* Pods_CoinAuditUITests.framework */; };
 		8458DE70E39526C5F2A584EE /* Pods_CoinAudit_CoinWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3EA5C2677A235F1385D61F /* Pods_CoinAudit_CoinWidget.framework */; };
@@ -151,8 +146,6 @@
 		32C1C50B1FF8CD8600DA69D3 /* CoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinWidget.entitlements; sourceTree = "<group>"; };
 		32D1D5941FFB4640000BD2E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wallet.xcdatamodel; sourceTree = "<group>"; };
-		32D1D59C1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		32D1D59E1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		32F398611FF9FC15001D6698 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		364F69E6C97F3A41D91558FB /* Pods-CoinAuditUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAuditUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAuditUITests/Pods-CoinAuditUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -283,8 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				32D1D5981FFB47DF000BD2E1 /* Wallet.xcdatamodeld */,
-				32D1D59C1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift */,
-				32D1D59E1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -647,6 +638,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/Dropper/Dropper.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 			);
@@ -655,6 +647,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 			);
@@ -737,12 +730,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32C1C4E41FF8C08000DA69D3 /* Extensions.swift in Sources */,
-				32D844871FFB8004004D0D83 /* WalletEntry+CoreDataClass.swift in Sources */,
 				32C1C4E21FF8BFEC00DA69D3 /* WidgetCell.swift in Sources */,
 				32C1C4DA1FF8BD7C00DA69D3 /* CoinEntry.swift in Sources */,
 				32B9693A1FFA2EC700F921B9 /* HexColors.swift in Sources */,
-				32D844891FFB800F004D0D83 /* Wallet.xcdatamodeld in Sources */,
-				32D844881FFB8007004D0D83 /* WalletEntry+CoreDataProperties.swift in Sources */,
 				32C1C5091FF8CA0800DA69D3 /* Data.swift in Sources */,
 				3288213A1FF8AFEE002E365B /* TodayViewController.swift in Sources */,
 			);
@@ -761,9 +751,7 @@
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,
 				324F4AE11FF4C43000FC5312 /* CoinsFeedController.swift in Sources */,
 				32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */,
-				32D1D59F1FFB7CFD000BD2E1 /* WalletEntry+CoreDataProperties.swift in Sources */,
 				328F26821FF63566002BB3E7 /* Extensions.swift in Sources */,
-				32D1D59D1FFB7C5B000BD2E1 /* WalletEntry+CoreDataClass.swift in Sources */,
 				32C1C4D61FF8BCCB00DA69D3 /* HexColors.swift in Sources */,
 				322406191FF711BD0073555B /* AddWalletViewController.swift in Sources */,
 				324F4AE71FF4C62400FC5312 /* FavCell.swift in Sources */,

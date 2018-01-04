@@ -32,7 +32,7 @@
 		<key>CoinWidget.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>11</integer>
 		</dict>
 		<key>Intents Handler.xcscheme</key>
 		<dict>

@@ -17,9 +17,11 @@ class AddWalletViewController: UIViewController {
     @IBOutlet var valueTexField: UITextField!
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var textLabels: [UILabel]!
-
+    @IBOutlet var investmentTextField: UITextField!
+    
     var name: String = ""
     var value: String = ""
+    var start: String = ""
     var coinID: NSManagedObjectID!
     var new: Bool = false
     var indexValue: Int = Int()
@@ -28,6 +30,7 @@ class AddWalletViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        holdWalletEntry = true
         
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
         
@@ -63,17 +66,18 @@ class AddWalletViewController: UIViewController {
     @IBAction func addButton(_ sender: Any) {
         name = nameTextField.text!
         value = valueTexField.text!
+        start = investmentTextField.text!
         
         if new {
-            saveCoin(name: name, value: value)
+            saveCoin(name: name, value: value, start: start)
             self.navigationController?.popViewController(animated: true)
         } else {
-            updateCoin(name: name, value: value)
+            updateCoin(name: name, value: value, start: start)
             self.navigationController?.popViewController(animated: true)
         }
     }
     
-    func updateCoin(name: String, value: String) {
+    func updateCoin(name: String, value: String, start: String) {
         if names.contains(where: {$0.title == name}) {
             let id = entries.first(where: {$0.name == name})!.id
             
@@ -83,6 +87,7 @@ class AddWalletViewController: UIViewController {
             coin.setValue(id, forKey: "id")
             coin.setValue(name, forKey: "name")
             coin.setValue(value, forKey: "value")
+            coin.setValue(start, forKey: "startValue")
             
             do{
                 try managedObjectContext.save()
@@ -96,17 +101,18 @@ class AddWalletViewController: UIViewController {
         }
     }
     
-    func saveCoin(name: String, value: String) {
+    func saveCoin(name: String, value: String, start: String) {
         if names.contains(where: {$0.title == name}) {
             // pull coin info using provided name
             let id = entries.first(where: {$0.name == name})!.id
             
             // update coin in walletCoins array
-            let walletData = NSEntityDescription.insertNewObject(forEntityName: "WalletEntry", into: managedObjectContext)
+            let walletData = NSEntityDescription.insertNewObject(forEntityName: walletEntryValue, into: managedObjectContext)
             
             walletData.setValue(id, forKey: "id")
             walletData.setValue(name, forKey: "name")
             walletData.setValue(value, forKey: "value")
+            walletData.setValue(start, forKey: "startValue")
             
             do {
                 try managedObjectContext.save()
