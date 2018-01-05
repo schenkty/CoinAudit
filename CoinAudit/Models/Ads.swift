@@ -10,8 +10,8 @@ import Foundation
 
 // MARK: Remove Force String before Release
 // Yes = Show ads
-// No = Hide Ads
-var showAd: String = "Yes" //defaults.object(forKey: "CoinAuditAds") as? String ?? String()
+// No = Hide ads
+var showAd: String = "No" //defaults.object(forKey: "CoinAuditAds") as? String ?? String()
 
 // AdMob App ID
 struct GoogleAd {

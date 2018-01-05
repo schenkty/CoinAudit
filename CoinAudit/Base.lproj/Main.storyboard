@@ -320,6 +320,7 @@
                     <connections>
                         <outlet property="adView" destination="sux-CO-qTR" id="McO-hI-ivI"/>
                         <outlet property="investmentTextField" destination="txo-8M-kKi" id="K60-sQ-JnZ"/>
+                        <outlet property="investmentTextLabel" destination="lxA-Ql-L0V" id="2Fj-Qn-RaI"/>
                         <outlet property="nameTextField" destination="uhB-mD-BpR" id="5BW-b0-fIo"/>
                         <outlet property="saveButton" destination="RmF-L0-Jqi" id="Vfh-iV-7AI"/>
                         <outlet property="valueTexField" destination="2jw-Dn-ylI" id="onC-lg-xng"/>

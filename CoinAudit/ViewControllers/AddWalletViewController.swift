@@ -20,6 +20,7 @@ class AddWalletViewController: UIViewController {
     @IBOutlet var textLabels: [UILabel]!
     @IBOutlet var investmentTextField: UITextField!
     @IBOutlet var adView: GADBannerView!
+    @IBOutlet var investmentTextLabel: UILabel!
     
     var name: String = ""
     var value: String = ""
@@ -33,6 +34,8 @@ class AddWalletViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         holdWalletEntry = true
+        investmentTextField.isHidden = true
+        investmentTextLabel.isHidden = true
         
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
         investmentTextField.addDoneButtonToKeyboard(myAction: #selector(self.investmentTextField.resignFirstResponder))
