@@ -8,6 +8,9 @@
 
 import Foundation
 
+// MARK: Remove Force String before Release
+var showAd: String = "No" //defaults.object(forKey: "CoinAuditAds") as? String ?? String()
+
 // AdMob App ID
 struct GoogleAd {
     // release ID

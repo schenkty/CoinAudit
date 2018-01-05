@@ -35,11 +35,19 @@ class AddWalletViewController: UIViewController {
         holdWalletEntry = true
         
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
+        investmentTextField.addDoneButtonToKeyboard(myAction: #selector(self.investmentTextField.resignFirstResponder))
         
         // MARK: Ad View
-        adView.adUnitID = GoogleAd.appID
-        adView.rootViewController = self
-        adView.load(GADRequest())
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
         
         if showAd == "Yes" {
             adView.isHidden = false
@@ -69,6 +77,7 @@ class AddWalletViewController: UIViewController {
         
         nameTextField.text = name
         valueTexField.text = value
+        investmentTextField.text = start
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true
@@ -101,6 +110,17 @@ class AddWalletViewController: UIViewController {
     }
     
     func updateCoin(name: String, value: String, start: String) {
+        var newValue: String = ""
+        var newStart: String = ""
+        
+        if value == "" {
+            newValue = "0.0"
+        }
+        
+        if start == "" {
+            newStart = "0.0"
+        }
+        
         if names.contains(where: {$0.title == name}) {
             let id = entries.first(where: {$0.name == name})!.id
             
@@ -109,8 +129,8 @@ class AddWalletViewController: UIViewController {
 
             coin.setValue(id, forKey: "id")
             coin.setValue(name, forKey: "name")
-            coin.setValue(value, forKey: "value")
-            coin.setValue(start, forKey: "startValue")
+            coin.setValue(newValue, forKey: "value")
+            coin.setValue(newStart, forKey: "startValue")
             
             do{
                 try managedObjectContext.save()
@@ -125,6 +145,18 @@ class AddWalletViewController: UIViewController {
     }
     
     func saveCoin(name: String, value: String, start: String) {
+        
+        var newValue: String = ""
+        var newStart: String = ""
+        
+        if value == "" {
+            newValue = "0.0"
+        }
+        
+        if start == "" {
+            newStart = "0.0"
+        }
+        
         if names.contains(where: {$0.title == name}) {
             // pull coin info using provided name
             let id = entries.first(where: {$0.name == name})!.id
@@ -134,14 +166,13 @@ class AddWalletViewController: UIViewController {
             
             walletData.setValue(id, forKey: "id")
             walletData.setValue(name, forKey: "name")
-            walletData.setValue(value, forKey: "value")
-            walletData.setValue(start, forKey: "startValue")
+            walletData.setValue(newValue, forKey: "value")
+            walletData.setValue(newStart.formatDecimal(), forKey: "startValue")
             
             do {
                 try managedObjectContext.save()
                 print("\(name) Coin Saved")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-            } catch let error as NSError  {
+            } catch let error as NSError {
                 print("Coin: \(name) could not save")
                 print("Could not save \(error), \(error.userInfo)")
             } catch {
@@ -164,11 +195,11 @@ class AddWalletViewController: UIViewController {
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barTintColor = UIColor.black
             self.navigationController?.navigationBar.tintColor = UIColor.white
-            
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             nameTextField.backgroundColor = UIColor.white
             valueTexField.backgroundColor = UIColor.white
+            investmentTextField.backgroundColor = UIColor.white
             for item in textLabels {
                 item.textColor = UIColor.white
             }
@@ -184,6 +215,7 @@ class AddWalletViewController: UIViewController {
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             nameTextField.backgroundColor = UIColor.white
             valueTexField.backgroundColor = UIColor.white
+            investmentTextField.backgroundColor = UIColor.white
             for item in textLabels {
                 item.textColor = UIColor.black
             }

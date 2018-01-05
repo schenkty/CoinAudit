@@ -25,8 +25,14 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     override func viewDidLoad() {
         super.viewDidLoad()
         // MARK: Ad View
-        interstitial = createAndLoadInterstitial()
-        interstitial.delegate = self
+        if showAd == "Yes" {
+            interstitial = createAndLoadInterstitial()
+            interstitial.delegate = self
+        } else if showAd == "No" {
+        } else {
+            interstitial = createAndLoadInterstitial()
+            interstitial.delegate = self
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
@@ -58,7 +64,12 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: " ca-app-pub-8616771915576403/1551329017")
+
+        // MARK: Test ID
+        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/2934735716")
+        
+        // MARK: Release ID
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-8616771915576403/1551329017")
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
@@ -158,13 +169,16 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         }
         
-        // MARK: Ad View
-        if showAd == "Yes" {
-            showScreenAd()
-        } else if showAd == "No" {
-            print("Ad Unlocked")
-        } else {
-            showScreenAd()
+        let when = DispatchTime.now() + 3 // number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            // MARK: Ad View
+            if showAd == "Yes" {
+                self.showScreenAd()
+            } else if showAd == "No" {
+                print("Ad Unlocked")
+            } else {
+                self.showScreenAd()
+            }
         }
     }
     

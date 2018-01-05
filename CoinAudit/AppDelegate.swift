@@ -23,14 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.configure(withApplicationID: GoogleAd.appID)
         
         let builder = FlurrySessionBuilder.init()
-            .withAppVersion("1.0")
+            .withAppVersion(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
             .withLogLevel(FlurryLogLevelAll)
             .withCrashReporting(true)
             .withSessionContinueSeconds(10)
         
         // Replace YOUR_API_KEY with the api key in the downloaded package
         Flurry.startSession("VPXM6GR7BCDHRTQPP9TV", with: builder)
-        
+        Flurry.setSessionReportsOnCloseEnabled(true)
+        Flurry.setSessionReportsOnPauseEnabled(true)
+    
         return true
     }
     

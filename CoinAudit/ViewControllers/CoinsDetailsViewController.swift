@@ -37,9 +37,16 @@ class CoinsDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         // MARK: Ad View
-        adView.adUnitID = GoogleAd.appID
-        adView.rootViewController = self
-        adView.load(GADRequest())
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
     
         if mode == "url" {
             navBar.isHidden = false
@@ -81,7 +88,7 @@ class CoinsDetailsViewController: UIViewController {
     @IBAction func favoriteButton(_ sender: Any) {
         if favorited == true {
             favorited = false
-            favButton.backgroundColor = .black
+            favButton.backgroundColor = UIColor.lightGray
             favButton.setTitle("Favorite", for: .normal)
             // remove
             if let index = favorites.index(of: id) {
@@ -134,11 +141,30 @@ class CoinsDetailsViewController: UIViewController {
                 let max = Double(coin.maxSupply)!
                 let used = Double(coin.availableSupply)!
                 
-                let perCent = "\(100.0*used/max)"
+                let perCent = 100.0*used/max
+                let perString = "\(perCent)".formatDecimal()
                 
-                supplyUsed.text = "Supply Used: \(perCent.formatDecimal())%"
+                if (perCent > 0.0) {
+                    // do positive stuff
+                    supplyUsed.textColor = UIColor(hexString: "63DB37")
+                    supplyUsed.text = "\(perString)%"
+                } else if (perCent == 0.0) {
+                    // do zero stuff
+                    supplyUsed.textColor = UIColor(hexString: "63DB37")
+                    supplyUsed.text = "\(perString)%"
+                } else {
+                    // do negative stuff
+                    supplyUsed.textColor = UIColor(hexString: "FF483E")
+                    supplyUsed.text = "\(perString)%"
+                }
             } else {
-                supplyUsed.text = "Supply Used: Unknown"
+                supplyUsed.text = "Unknown"
+                
+                if themeValue == "dark" {
+                    supplyUsed.textColor = UIColor.white
+                } else {
+                    supplyUsed.textColor = UIColor.black
+                }
             }
         } else {
             circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply)"
@@ -215,7 +241,7 @@ class CoinsDetailsViewController: UIViewController {
         if Connectivity.isConnectedToInternet {
             let name = self.navigationController?.navigationBar.topItem?.title
             
-            SwiftSpinner.show(duration: 1.0, title: "Updating \(name!)...")
+            SwiftSpinner.show("Updating \(name!)...")
             // Pull Coin Data
             Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
                 for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -224,6 +250,7 @@ class CoinsDetailsViewController: UIViewController {
                         entries[index!] = coin
                         self.formatData(coin: coin)
                         self.formatPercents(coin: coin)
+                        SwiftSpinner.hide()
                     }
                 }
             }
@@ -255,7 +282,6 @@ class CoinsDetailsViewController: UIViewController {
             marketCapLabel.textColor = UIColor.white
             volumeLabel.textColor = UIColor.white
             circulatingSupplyLabel.textColor = UIColor.white
-            supplyUsed.textColor = UIColor.white
             maxSupplyLabel.textColor = UIColor.white
             priceUSDLabel.textColor = UIColor.white
             priceBTCLabel.textColor = UIColor.white
@@ -276,7 +302,6 @@ class CoinsDetailsViewController: UIViewController {
             marketCapLabel.textColor = UIColor.black
             volumeLabel.textColor = UIColor.black
             circulatingSupplyLabel.textColor = UIColor.black
-            supplyUsed.textColor = UIColor.black
             maxSupplyLabel.textColor = UIColor.black
             priceUSDLabel.textColor = UIColor.black
             priceBTCLabel.textColor = UIColor.black

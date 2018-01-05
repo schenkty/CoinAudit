@@ -20,8 +20,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var walletTableView: UITableView!
     @IBOutlet var walletValueTotalLabel: UILabel!
     @IBOutlet var adView: GADBannerView!
+    @IBOutlet var tableViewBottom: NSLayoutConstraint!
+    @IBOutlet var walletTotalView: UIView!
     
-    let managedObjectContext = getContext()
+    var managedObjectContext = getContext()
     var walletTotal: Double = 0.0
     var bitcoinTotal: Double = 0.0
     
@@ -29,9 +31,16 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // MARK: Ad View
-        adView.adUnitID = GoogleAd.appID
-        adView.rootViewController = self
-        adView.load(GADRequest())
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
         
         walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
         walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry")!
@@ -52,23 +61,40 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         if showAd == "Yes" {
             adView.isHidden = false
+            tableViewBottom.constant = 50.0
         } else if showAd == "No" {
             adView.isHidden = true
+            tableViewBottom.constant = 0.0
         } else {
             adView.isHidden = false
+            tableViewBottom.constant = 50.0
         }
         
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
             self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
-        
+    
         updateTheme()
         calculateWallet()
         
-        if !holdWalletEntry {
-            changeWallet()
-        } else {
+        if holdWalletEntry {
             holdWalletEntry = false
+        } else {
+            switch walletEntryValue {
+            case "WalletEntry1":
+                self.navigationItem.title = "Wallet 1"
+            case "WalletEntry2":
+                self.navigationItem.title = "Wallet 2"
+            case "WalletEntry3":
+                self.navigationItem.title = "Wallet 3"
+            case "WalletEntry4":
+                self.navigationItem.title = "Wallet 4"
+            case "WalletEntry5":
+                self.navigationItem.title = "Wallet 5"
+            default:
+                walletEntryValue = "WalletEntry1"
+                self.navigationItem.title = "Wallet 1"
+            }
         }
         
         if entries.count != 0 {
@@ -104,19 +130,20 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if editingStyle == .delete {
             // Action to delete data
             let cell = tableView.cellForRow(at: indexPath) as! WalletCell
-            
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: walletEntryValue)
-            
-            let result = try? managedObjectContext.fetch(fetchRequest)
-            
-            for object in result! {
-                managedObjectContext.delete(object as! NSManagedObject)
-            }
+        
+            // get object using indexPath.row and delete
+            let coin = walletCoins[indexPath.row]
+            managedObjectContext.delete(coin)
             
             do {
+                // try to save to CoreData
                 try managedObjectContext.save()
-                print("Deleted \(cell.nameLabel.text!) from wallet")
+                
+                // remove from walletCoins
                 walletCoins.remove(at: indexPath.row)
+                
+                // cleanup
+                print("Deleted \(cell.nameLabel.text!) from wallet")
                 self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
                 calculateWallet()
             } catch let error as NSError  {
@@ -179,6 +206,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         controller.coinID = coin.objectID
         controller.name = coin.value(forKey: "name") as! String
         controller.value = coin.value(forKey: "value") as! String
+        controller.start = coin.value(forKey: "startValue") as! String
         
         self.show(controller, sender: self)
     }
@@ -197,7 +225,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         bitcoinTotal = 0.0
         
         for localCoin in walletCoins {
-            guard let coin = entries.first(where: {$0.id == localCoin.value(forKey: "id") as! String }) else { return }
+            guard let id = localCoin.value(forKey: "id") else { return }
+            guard let coin = entries.first(where: {$0.id == "\(id)"}) else { return }
             guard let value = Double(localCoin.value(forKey: "value") as! String) else { return }
             self.walletTotal = self.walletTotal + (Double(coin.priceUSD)! * value)
             self.bitcoinTotal = self.bitcoinTotal + (Double(coin.priceBTC)! * value)
@@ -226,7 +255,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // reset wallet array
             walletCoins.removeAll()
-            //self.walletTableView.reloadData()
             
             // add newly fetched coins to wallet
             for object in fetchedCoin {
@@ -259,7 +287,34 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    @IBAction func changeWallet() {
+    @IBAction func previousWallet() {
+        switch walletEntryValue {
+        case "WalletEntry1":
+            walletEntryValue = "WalletEntry5"
+            self.navigationItem.title = "Wallet 5"
+        case "WalletEntry2":
+            walletEntryValue = "WalletEntry1"
+            self.navigationItem.title = "Wallet 1"
+        case "WalletEntry3":
+            walletEntryValue = "WalletEntry2"
+            self.navigationItem.title = "Wallet 2"
+        case "WalletEntry4":
+            walletEntryValue = "WalletEntry3"
+            self.navigationItem.title = "Wallet 3"
+        case "WalletEntry5":
+            walletEntryValue = "WalletEntry4"
+            self.navigationItem.title = "Wallet 4"
+        default:
+            walletEntryValue = "WalletEntry1"
+            self.navigationItem.title = "Wallet 1"
+        }
+        
+        managedObjectContext = getContext()
+        saveWalletSettings()
+        updateList()
+    }
+    
+    @IBAction func nextWallet() {
         switch walletEntryValue {
         case "WalletEntry1":
             walletEntryValue = "WalletEntry2"
@@ -281,6 +336,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationItem.title = "Wallet 1"
         }
         
+        managedObjectContext = getContext()
         saveWalletSettings()
         updateList()
     }
@@ -289,7 +345,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Theme Drawing code
         switch themeValue {
         case "dark":
-            self.walletTableView.backgroundColor = UIColor.black
             self.view.backgroundColor = UIColor.black
             bitcoinLabel.textColor = UIColor.white
             totalLabel.textColor = UIColor.white
@@ -299,7 +354,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             walletValueTotalLabel.textColor = UIColor.white
+            self.walletTableView.backgroundColor = UIColor.black
+            walletTotalView.backgroundColor = UIColor.black
         default:
+            walletTotalView.backgroundColor = UIColor.white
             self.walletTableView.backgroundColor = UIColor.white
             self.view.backgroundColor = UIColor.white
             bitcoinLabel.textColor = UIColor.black

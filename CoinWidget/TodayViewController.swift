@@ -49,6 +49,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
+        self.widgetTableView.reloadData()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
@@ -58,8 +59,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
         themeValue = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
-        //self.widgetTableView.reloadData()
-        
+
         completionHandler(NCUpdateResult.newData)
     }
     
@@ -86,9 +86,9 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         
         self.widgetTableView.reloadData()
         if extensionContext?.widgetActiveDisplayMode == .expanded {
-            preferredContentSize = CGSize(width: 0, height: (44 * widgetTableView.numberOfRows(inSection: 0)) + 8)
+            preferredContentSize = CGSize(width: 0, height: (44 * widgetTableView.numberOfRows(inSection: 0)))
         } else {
-            preferredContentSize = CGSize(width: 0, height: 118)
+            preferredContentSize = CGSize(width: 0, height: 88)
         }
     }
     
@@ -96,6 +96,18 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! WidgetCell
         // Configure the cell...
         var id = ""
+        
+        switch themeValue {
+        case "dark":
+            cell.nameLabel.textColor = UIColor.white
+            cell.symbolLabel.textColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.white
+        default:
+            cell.nameLabel.textColor = UIColor.black
+            cell.symbolLabel.textColor = UIColor.black
+            cell.valueLabel.textColor = UIColor.black
+        }
+        
         // Pull Coin Data
         loadingIndicator.startAnimating()
         loadingIndicator.isHidden = false
@@ -112,6 +124,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                     cell.nameLabel.text = coin.name
                     cell.symbolLabel.text = coin.symbol
                     cell.valueLabel.text = coin.priceUSD.formatUSD()
+                    
                     // handle for 1 hour and 24 hour percent modes
                     if widgetPercent == "1h" {
                         if coin.percentChange1 != "unknown" {

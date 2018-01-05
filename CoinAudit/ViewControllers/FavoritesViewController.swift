@@ -14,22 +14,33 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet var favTableView: UITableView!
     @IBOutlet var adView: GADBannerView!
+    @IBOutlet var tableViewBottom: NSLayoutConstraint!
     
     override func viewWillAppear(_ animated: Bool) {
         favTableView.delegate = self
         favTableView.dataSource = self
         
         // MARK: Ad View
-        adView.adUnitID = GoogleAd.appID
-        adView.rootViewController = self
-        adView.load(GADRequest())
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
         
         if showAd == "Yes" {
             adView.isHidden = false
+            tableViewBottom.constant = 50.0
         } else if showAd == "No" {
             adView.isHidden = true
+            tableViewBottom.constant = 0.0
         } else {
             adView.isHidden = false
+            tableViewBottom.constant = 50.0
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
@@ -135,18 +146,19 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             self.tabBarController?.tabBar.barTintColor = UIColor.black
             self.tabBarController?.tabBar.tintColor = UIColor.white
             self.view.backgroundColor = UIColor.black
+            self.favTableView.backgroundColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barTintColor = UIColor.black
             self.navigationController?.navigationBar.tintColor = UIColor.white
-            
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         default:
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
             self.view.backgroundColor = UIColor.white
+            self.favTableView.backgroundColor = UIColor.white
             self.navigationController?.navigationBar.tintColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black

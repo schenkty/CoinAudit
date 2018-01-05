@@ -25,6 +25,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var clearDataButton: UIButton!
     @IBOutlet var poweredByButton: UIButton!
     @IBOutlet var adView: GADBannerView!
+    var style: UIStatusBarStyle = .default
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +35,26 @@ class SettingsViewController: UIViewController {
         widgetValue = defaults.string(forKey: "CoinAuditWidget")!
         
         // MARK: Ad View
-        adView.adUnitID = GoogleAd.appID
-        adView.rootViewController = self
-        adView.load(GADRequest())
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
         
         if showAd == "Yes" {
             adView.isHidden = false
+            adView.adSize.size = CGSize(width: 375, height: 50)
         } else if showAd == "No" {
             adView.isHidden = true
+            adView.adSize.size = CGSize(width: 375, height: 0)
         } else {
             adView.isHidden = false
+            adView.adSize.size = CGSize(width: 375, height: 50)
         }
         
         // force disable widget mode changes
@@ -180,6 +191,14 @@ class SettingsViewController: UIViewController {
         saveWidgetSettings()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        switch themeValue {
+        case "dark":
+            return .lightContent
+        default:
+            return .default
+        }
+    }
     
     func updateTheme() {
         switch themeValue {
@@ -219,5 +238,6 @@ class SettingsViewController: UIViewController {
                 item.textColor = UIColor.black
             }
         }
+        UIApplication.shared.statusBarStyle = preferredStatusBarStyle
     }
 }
