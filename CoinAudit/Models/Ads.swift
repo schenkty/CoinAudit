@@ -10,6 +10,6 @@ import Foundation
 
 // AdMob App ID
 struct GoogleAd {
-    let appID: String = "ca-app-pub-8616771915576403~3066385383"
-    let bannerAdName: String = "Banner"
+    // release ID
+    static let appID: String = "ca-app-pub-8616771915576403/4256958375"
 }

@@ -13,10 +13,24 @@ import GoogleMobileAds
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var favTableView: UITableView!
+    @IBOutlet var adView: GADBannerView!
     
     override func viewWillAppear(_ animated: Bool) {
         favTableView.delegate = self
         favTableView.dataSource = self
+        
+        // MARK: Ad View
+        adView.adUnitID = GoogleAd.appID
+        adView.rootViewController = self
+        adView.load(GADRequest())
+        
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
@@ -105,6 +119,13 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func updateList() {
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
         self.favTableView.reloadData()
     }
     

@@ -99,10 +99,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="K9D-Wh-tCe"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-8616771915576403~3066385383"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,6 +140,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adView" destination="rBL-zg-Wfp" id="2tl-Tp-Fvo"/>
                         <outlet property="bitcoinLabel" destination="Rny-04-UW4" id="za0-HF-98V"/>
                         <outlet property="totalLabel" destination="wtH-PU-CYP" id="nCf-bL-7Ae"/>
                         <outlet property="walletTableView" destination="j7r-Ug-4FL" id="s4d-jX-I8t"/>
@@ -213,10 +210,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="SLW-N3-NPw"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-8616771915576403~3066385383"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmF-L0-Jqi">
                                 <rect key="frame" x="20" y="552" width="335" height="40"/>
@@ -269,6 +262,7 @@
                         <viewLayoutGuide key="safeArea" id="t1c-5u-JWI"/>
                     </view>
                     <connections>
+                        <outlet property="adView" destination="sux-CO-qTR" id="McO-hI-ivI"/>
                         <outlet property="investmentTextField" destination="txo-8M-kKi" id="K60-sQ-JnZ"/>
                         <outlet property="nameTextField" destination="uhB-mD-BpR" id="5BW-b0-fIo"/>
                         <outlet property="saveButton" destination="RmF-L0-Jqi" id="Vfh-iV-7AI"/>
@@ -415,16 +409,12 @@
                                     <action selector="poweredButton:" destination="nUc-0H-ibX" eventType="touchUpInside" id="lgs-St-4Dk"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvu-j6-7C7" customClass="GADBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqp-qA-SS1" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="1Zf-zM-HFX"/>
+                                    <constraint firstAttribute="height" constant="50" id="4ij-iF-LiZ"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-8616771915576403~3066385383"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -435,16 +425,17 @@
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="erW-j3-BZJ" secondAttribute="trailing" id="EVo-zM-Eap"/>
                             <constraint firstItem="W6A-yu-G1o" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" constant="30" id="Nlo-0c-PYn"/>
                             <constraint firstItem="Lqn-in-rsd" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="OT7-Ge-cTW"/>
-                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="cvu-j6-7C7" secondAttribute="trailing" id="Qfb-hO-cHw"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Lqn-in-rsd" secondAttribute="trailing" id="Qz5-xJ-003"/>
-                            <constraint firstItem="cvu-j6-7C7" firstAttribute="bottom" secondItem="uRY-9G-w4R" secondAttribute="bottom" id="WeS-UG-Q0E"/>
+                            <constraint firstItem="dqp-qA-SS1" firstAttribute="centerX" secondItem="ka7-hJ-oef" secondAttribute="centerX" id="Wvz-cN-0es"/>
                             <constraint firstItem="Vba-ew-Vgy" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="YUz-Jr-euz"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="W6A-yu-G1o" secondAttribute="trailing" constant="30" id="ZYu-KC-g5S"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="dqp-qA-SS1" secondAttribute="trailing" id="ZhH-BB-UgU"/>
                             <constraint firstItem="W6A-yu-G1o" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="35" id="aBn-e5-hhe"/>
-                            <constraint firstItem="cvu-j6-7C7" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="aTH-Un-i5G"/>
+                            <constraint firstItem="dqp-qA-SS1" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="h5T-8R-icL"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Vba-ew-Vgy" secondAttribute="trailing" id="pHi-RD-V11"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Nx3-Ud-Zw7" secondAttribute="trailing" id="ph1-dX-akk"/>
                             <constraint firstItem="Vba-ew-Vgy" firstAttribute="top" secondItem="W6A-yu-G1o" secondAttribute="bottom" constant="20" id="s8b-Og-l4r"/>
+                            <constraint firstItem="dqp-qA-SS1" firstAttribute="bottom" secondItem="uRY-9G-w4R" secondAttribute="bottom" id="t3E-4i-pep"/>
                             <constraint firstItem="Lqn-in-rsd" firstAttribute="top" secondItem="erW-j3-BZJ" secondAttribute="bottom" constant="20" id="tCe-Iv-JuF"/>
                             <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="top" secondItem="Lqn-in-rsd" secondAttribute="bottom" constant="20" id="tYF-yV-sEB"/>
                         </constraints>
@@ -452,6 +443,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Jf7-a6-yfQ"/>
                     <connections>
+                        <outlet property="adView" destination="dqp-qA-SS1" id="AXy-Gu-fFp"/>
                         <outlet property="clearDataButton" destination="Lqn-in-rsd" id="wl4-Jd-YVD"/>
                         <outlet property="devButton" destination="Vba-ew-Vgy" id="mXE-JO-hjo"/>
                         <outlet property="poweredByButton" destination="Nx3-Ud-Zw7" id="UiZ-U9-LTn"/>
@@ -677,7 +669,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgL-zr-Toh">
-                                <rect key="frame" x="20" y="607" width="335" height="40"/>
+                                <rect key="frame" x="20" y="552" width="335" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="fJv-Bm-nJj"/>
@@ -707,11 +699,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Apb-aM-t1f" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CAT-yw-ILJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="O6w-it-dGo" secondAttribute="trailing" id="0WK-wI-jGg"/>
                             <constraint firstItem="LXL-aj-faO" firstAttribute="top" secondItem="ElH-k7-j3N" secondAttribute="top" id="0vt-1l-bhp"/>
+                            <constraint firstItem="Apb-aM-t1f" firstAttribute="bottom" secondItem="hQ9-pJ-Aim" secondAttribute="bottom" id="2kK-gh-1zA"/>
+                            <constraint firstItem="Apb-aM-t1f" firstAttribute="top" secondItem="cgL-zr-Toh" secondAttribute="bottom" constant="25" id="3UM-BW-eiz"/>
                             <constraint firstItem="R2E-c7-A30" firstAttribute="top" secondItem="THR-3k-jHH" secondAttribute="bottom" constant="10" id="4Dj-ml-5Jr"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="gPa-oX-nXH" secondAttribute="trailing" id="5At-xN-kT3"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="ElH-k7-j3N" secondAttribute="trailing" id="69e-HN-n8g"/>
@@ -720,19 +721,20 @@
                             <constraint firstItem="bxX-Jz-9Cw" firstAttribute="top" secondItem="suC-MP-Jz2" secondAttribute="top" id="BgK-a6-9zm"/>
                             <constraint firstItem="LXL-aj-faO" firstAttribute="leading" secondItem="hQ9-pJ-Aim" secondAttribute="leading" constant="15" id="DkV-zL-qk5"/>
                             <constraint firstItem="THR-3k-jHH" firstAttribute="top" secondItem="0ab-kw-qu3" secondAttribute="bottom" constant="10" id="Hkg-hd-SKR"/>
+                            <constraint firstItem="Apb-aM-t1f" firstAttribute="leading" secondItem="hQ9-pJ-Aim" secondAttribute="leading" id="IWr-Ld-wi4"/>
                             <constraint firstItem="9oX-5X-Mwn" firstAttribute="top" secondItem="Qq1-2K-qJB" secondAttribute="bottom" constant="65" id="L93-lF-NQm"/>
                             <constraint firstItem="LXL-aj-faO" firstAttribute="top" secondItem="gPa-oX-nXH" secondAttribute="bottom" constant="10" id="LL5-vL-qk7"/>
                             <constraint firstItem="O6w-it-dGo" firstAttribute="top" secondItem="boK-sl-Nbz" secondAttribute="bottom" constant="10" id="Mh4-kQ-Ett"/>
                             <constraint firstItem="GY3-zC-alh" firstAttribute="leading" secondItem="hQ9-pJ-Aim" secondAttribute="leading" constant="15" id="MwS-ag-JQe"/>
                             <constraint firstItem="Qq1-2K-qJB" firstAttribute="leading" secondItem="hQ9-pJ-Aim" secondAttribute="leading" id="NAB-ZP-m1W"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="P5x-Lj-LrU" secondAttribute="trailing" id="NRV-5G-qG1"/>
-                            <constraint firstItem="hQ9-pJ-Aim" firstAttribute="bottom" secondItem="cgL-zr-Toh" secondAttribute="bottom" constant="20" id="NVV-5G-9fC"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="cgL-zr-Toh" secondAttribute="trailing" constant="20" id="OJz-gp-UGD"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="R2E-c7-A30" secondAttribute="trailing" id="Owd-R8-zgF"/>
                             <constraint firstItem="O6w-it-dGo" firstAttribute="leading" secondItem="hQ9-pJ-Aim" secondAttribute="leading" constant="15" id="QJz-e3-wQH"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="gPa-oX-nXH" secondAttribute="trailing" id="RM6-YB-7C1"/>
                             <constraint firstItem="bxX-Jz-9Cw" firstAttribute="leading" secondItem="suC-MP-Jz2" secondAttribute="trailing" id="SXB-Fl-7Lu"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="THR-3k-jHH" secondAttribute="trailing" id="T8s-hF-HRa"/>
+                            <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="Apb-aM-t1f" secondAttribute="trailing" id="Trc-hl-yEZ"/>
                             <constraint firstItem="9oX-5X-Mwn" firstAttribute="leading" secondItem="hQ9-pJ-Aim" secondAttribute="leading" constant="15" id="UEL-9V-bnu"/>
                             <constraint firstItem="hQ9-pJ-Aim" firstAttribute="trailing" secondItem="9oX-5X-Mwn" secondAttribute="trailing" id="WSf-fy-oGY"/>
                             <constraint firstItem="P5x-Lj-LrU" firstAttribute="top" secondItem="9oX-5X-Mwn" secondAttribute="bottom" constant="10" id="Z7s-ed-Wm2"/>
@@ -757,6 +759,7 @@
                         <viewLayoutGuide key="safeArea" id="hQ9-pJ-Aim"/>
                     </view>
                     <connections>
+                        <outlet property="adView" destination="Apb-aM-t1f" id="vCo-WY-2kO"/>
                         <outlet property="circulatingSupplyLabel" destination="R2E-c7-A30" id="QmF-Wt-0c5"/>
                         <outlet property="favButton" destination="cgL-zr-Toh" id="DwI-M5-7by"/>
                         <outlet property="marketCapLabel" destination="0ab-kw-qu3" id="Cfl-pF-hd8"/>
@@ -857,26 +860,23 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MN7-Bs-D9X"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-8616771915576403~3066385383"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="300-MO-hwm" firstAttribute="trailing" secondItem="MlR-Ly-emd" secondAttribute="trailing" id="29p-Lz-pSr"/>
-                            <constraint firstItem="300-MO-hwm" firstAttribute="trailing" secondItem="jjf-re-aF6" secondAttribute="trailing" id="2Sd-hB-Svf"/>
                             <constraint firstItem="MlR-Ly-emd" firstAttribute="top" secondItem="300-MO-hwm" secondAttribute="top" id="8jz-oh-FRi"/>
                             <constraint firstItem="MlR-Ly-emd" firstAttribute="leading" secondItem="300-MO-hwm" secondAttribute="leading" id="EiS-Zy-IDN"/>
-                            <constraint firstItem="jjf-re-aF6" firstAttribute="leading" secondItem="300-MO-hwm" secondAttribute="leading" id="Gz7-wC-qlN"/>
+                            <constraint firstItem="jjf-re-aF6" firstAttribute="leading" secondItem="300-MO-hwm" secondAttribute="leading" id="XaC-k3-PmG"/>
                             <constraint firstItem="jjf-re-aF6" firstAttribute="top" secondItem="MlR-Ly-emd" secondAttribute="bottom" id="ckc-MW-CCm"/>
+                            <constraint firstItem="jjf-re-aF6" firstAttribute="trailing" secondItem="300-MO-hwm" secondAttribute="trailing" id="pnN-LR-pe0"/>
                             <constraint firstItem="300-MO-hwm" firstAttribute="bottom" secondItem="jjf-re-aF6" secondAttribute="bottom" id="qBL-Tv-SC3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="300-MO-hwm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="W8O-A1-LtF"/>
                     <connections>
+                        <outlet property="adView" destination="jjf-re-aF6" id="bkC-uy-bm7"/>
                         <outlet property="favTableView" destination="MlR-Ly-emd" id="N4k-vF-67m"/>
                     </connections>
                 </viewController>

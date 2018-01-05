@@ -19,6 +19,7 @@ class AddWalletViewController: UIViewController {
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var textLabels: [UILabel]!
     @IBOutlet var investmentTextField: UITextField!
+    @IBOutlet var adView: GADBannerView!
     
     var name: String = ""
     var value: String = ""
@@ -34,6 +35,19 @@ class AddWalletViewController: UIViewController {
         holdWalletEntry = true
         
         valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
+        
+        // MARK: Ad View
+        adView.adUnitID = GoogleAd.appID
+        adView.rootViewController = self
+        adView.load(GADRequest())
+        
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
         
         if name == "Unknown" {
             self.navigationController?.popViewController(animated: true)
@@ -61,6 +75,14 @@ class AddWalletViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
+        
         updateTheme()
     }
     

@@ -24,6 +24,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var devButton: UIButton!
     @IBOutlet var clearDataButton: UIButton!
     @IBOutlet var poweredByButton: UIButton!
+    @IBOutlet var adView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,19 @@ class SettingsViewController: UIViewController {
         walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
         widgetPercent = defaults.string(forKey: "CoinAuditWidgetPercent")!
         widgetValue = defaults.string(forKey: "CoinAuditWidget")!
+        
+        // MARK: Ad View
+        adView.adUnitID = GoogleAd.appID
+        adView.rootViewController = self
+        adView.load(GADRequest())
+        
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
         
         // force disable widget mode changes
         widgetModeView.isHidden = true
@@ -74,6 +88,14 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
+        
         updateTheme()
     }
     

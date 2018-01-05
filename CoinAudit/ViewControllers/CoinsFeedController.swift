@@ -10,20 +10,26 @@ import UIKit
 import NotificationCenter
 import Alamofire
 import SwiftSpinner
+import GoogleMobileAds
 
-class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
+class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADInterstitialDelegate {
     
     let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
     var searchActive: Bool = false
+    // The interstitial ad.
+    var interstitial: GADInterstitial!
     
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // MARK: Ad View
+        interstitial = createAndLoadInterstitial()
+        interstitial.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-    
+        
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search Coin Name"
         searchController.dimsBackgroundDuringPresentation = false
@@ -42,7 +48,26 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         // Update Coin Data
         self.updateList()
     }
-
+    
+    func showScreenAd() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
+        }
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: " ca-app-pub-8616771915576403/1551329017")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
+    }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -118,7 +143,8 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
         // Provide using with loading spinner
-        SwiftSpinner.show("Downloading Data...", animated: true)
+        SwiftSpinner.show(duration: 1.5, title: "Downloading Data...", animated: true)
+        
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
             for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -130,7 +156,15 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
             self.filteredEntries = entries
             // Update Table Views
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-            SwiftSpinner.hide()
+        }
+        
+        // MARK: Ad View
+        if showAd == "Yes" {
+            showScreenAd()
+        } else if showAd == "No" {
+            print("Ad Unlocked")
+        } else {
+            showScreenAd()
         }
     }
     

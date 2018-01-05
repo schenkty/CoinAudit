@@ -20,8 +20,8 @@ var walletValue: String = ""
 var holdWalletEntry: Bool = false
 var walletEntryValue: String = "WalletEntry1"
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
+var showAd: String = "No" //defaults.object(forKey: "CoinAuditAds") as? String ?? String()
 var walletCoins: [NSManagedObject] = []
-
 
 func saveFavoriteSettings() {
     defaults.set(favorites, forKey: "CoinAuditFavorites")
@@ -44,6 +44,10 @@ func saveWalletSettings() {
     defaults.set(walletValue, forKey: "CoinAuditWalletEntry")
 }
 
+func saveAdsSettings() {
+    defaults.set(favorites, forKey: "CoinAuditAds")
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+}
 
 // MARK: Check Network
 class Connectivity {

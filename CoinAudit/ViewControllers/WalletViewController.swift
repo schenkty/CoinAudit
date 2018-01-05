@@ -19,6 +19,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var totalLabel: UILabel!
     @IBOutlet var walletTableView: UITableView!
     @IBOutlet var walletValueTotalLabel: UILabel!
+    @IBOutlet var adView: GADBannerView!
     
     let managedObjectContext = getContext()
     var walletTotal: Double = 0.0
@@ -27,7 +28,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //dropper.items = ["One", "Two", "Three", "Four", "Five"]
+        // MARK: Ad View
+        adView.adUnitID = GoogleAd.appID
+        adView.rootViewController = self
+        adView.load(GADRequest())
         
         walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
         walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry")!
@@ -46,6 +50,14 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
+        
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
             self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
@@ -199,6 +211,14 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: Update CoreData Wallet
     @objc func updateList() {
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: walletEntryValue)
         
         do {

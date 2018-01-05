@@ -10,6 +10,7 @@ import UIKit
 import NotificationCenter
 import CoreData
 import GoogleMobileAds
+import Flurry_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Initialize the Google Mobile Ads SDK.
-        GADMobileAds.configure(withApplicationID: GoogleAd.init().appID)
+        GADMobileAds.configure(withApplicationID: GoogleAd.appID)
+        
+        let builder = FlurrySessionBuilder.init()
+            .withAppVersion("1.0")
+            .withLogLevel(FlurryLogLevelAll)
+            .withCrashReporting(true)
+            .withSessionContinueSeconds(10)
+        
+        // Replace YOUR_API_KEY with the api key in the downloaded package
+        Flurry.startSession("VPXM6GR7BCDHRTQPP9TV", with: builder)
         
         return true
     }

@@ -27,6 +27,7 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var PercentChangeLabels: [UILabel]!
     @IBOutlet var supplyUsed: UILabel!
+    @IBOutlet var adView: GADBannerView!
     
     var favorited: Bool = false
     var id: String = ""
@@ -34,6 +35,11 @@ class CoinsDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // MARK: Ad View
+        adView.adUnitID = GoogleAd.appID
+        adView.rootViewController = self
+        adView.load(GADRequest())
     
         if mode == "url" {
             navBar.isHidden = false
@@ -57,6 +63,14 @@ class CoinsDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
+        
         if entries.count != 0 {
             self.formatData(coin: entries.first(where: {$0.id == id})!)
             self.formatPercents(coin: entries.first(where: {$0.id == id})!)
