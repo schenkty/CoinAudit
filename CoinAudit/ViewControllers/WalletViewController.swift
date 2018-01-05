@@ -22,6 +22,9 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var adView: GADBannerView!
     @IBOutlet var tableViewBottom: NSLayoutConstraint!
     @IBOutlet var walletTotalView: UIView!
+    @IBOutlet var leftbutton: UIButton!
+    @IBOutlet var rightButton: UIButton!
+    @IBOutlet var pageControl: UIPageControl!
     
     var managedObjectContext = getContext()
     var walletTotal: Double = 0.0
@@ -59,6 +62,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateTheme()
         if showAd == "Yes" {
             adView.isHidden = false
             tableViewBottom.constant = 50.0
@@ -73,8 +77,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
             self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
-    
-        updateTheme()
+
         calculateWallet()
         
         if holdWalletEntry {
@@ -99,6 +102,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if entries.count != 0 {
             updateList()
+            updateTheme()
         } else {
             print("No coin entries")
             showAlert(title: "No Coins Found", message: "Please refresh the Coins Feed", style: .alert)
@@ -220,6 +224,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func calculateWallet() {
+        updateTheme()
         // zero out totals
         walletTotal = 0.0
         bitcoinTotal = 0.0
@@ -292,21 +297,27 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case "WalletEntry1":
             walletEntryValue = "WalletEntry5"
             self.navigationItem.title = "Wallet 5"
+            pageControl.currentPage = 4
         case "WalletEntry2":
             walletEntryValue = "WalletEntry1"
             self.navigationItem.title = "Wallet 1"
+            pageControl.currentPage = 0
         case "WalletEntry3":
             walletEntryValue = "WalletEntry2"
             self.navigationItem.title = "Wallet 2"
+            pageControl.currentPage = 1
         case "WalletEntry4":
             walletEntryValue = "WalletEntry3"
             self.navigationItem.title = "Wallet 3"
+            pageControl.currentPage = 2
         case "WalletEntry5":
             walletEntryValue = "WalletEntry4"
             self.navigationItem.title = "Wallet 4"
+            pageControl.currentPage = 3
         default:
             walletEntryValue = "WalletEntry1"
             self.navigationItem.title = "Wallet 1"
+            pageControl.currentPage = 0
         }
         
         managedObjectContext = getContext()
@@ -319,21 +330,27 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case "WalletEntry1":
             walletEntryValue = "WalletEntry2"
             self.navigationItem.title = "Wallet 2"
+            pageControl.currentPage = 1
         case "WalletEntry2":
             walletEntryValue = "WalletEntry3"
             self.navigationItem.title = "Wallet 3"
+            pageControl.currentPage = 2
         case "WalletEntry3":
             walletEntryValue = "WalletEntry4"
             self.navigationItem.title = "Wallet 4"
+            pageControl.currentPage = 3
         case "WalletEntry4":
             walletEntryValue = "WalletEntry5"
             self.navigationItem.title = "Wallet 5"
+            pageControl.currentPage = 4
         case "WalletEntry5":
             walletEntryValue = "WalletEntry1"
             self.navigationItem.title = "Wallet 1"
+            pageControl.currentPage = 0
         default:
             walletEntryValue = "WalletEntry1"
             self.navigationItem.title = "Wallet 1"
+            pageControl.currentPage = 0
         }
         
         managedObjectContext = getContext()
@@ -356,6 +373,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             walletValueTotalLabel.textColor = UIColor.white
             self.walletTableView.backgroundColor = UIColor.black
             walletTotalView.backgroundColor = UIColor.black
+            leftbutton.tintColor = UIColor.white
+            rightButton.tintColor = UIColor.white
         default:
             walletTotalView.backgroundColor = UIColor.white
             self.walletTableView.backgroundColor = UIColor.white
@@ -368,6 +387,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             walletValueTotalLabel.textColor = UIColor.black
+            leftbutton.tintColor = UIColor.black
+            rightButton.tintColor = UIColor.black
         }
     }
 }

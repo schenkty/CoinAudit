@@ -33,22 +33,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQj-Z0-TAg">
-                                <rect key="frame" x="0.0" y="322" width="375" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="GSy-UZ-MwV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="1QU-Xp-wgJ"/>
                             <constraint firstItem="GSy-UZ-MwV" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BdJ-Cg-o41"/>
-                            <constraint firstItem="QQj-Z0-TAg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Bi3-Hh-PVC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QQj-Z0-TAg" secondAttribute="trailing" id="Fbf-aI-wye"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4ZS-nU-aov" secondAttribute="trailing" constant="10" id="IWq-jO-4NY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4ZS-nU-aov" secondAttribute="bottom" constant="8" id="WpY-p1-OJN"/>
-                            <constraint firstItem="QQj-Z0-TAg" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gbq-fm-K6m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

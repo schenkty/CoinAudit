@@ -96,19 +96,52 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHH-Sv-HJe">
+                                        <rect key="frame" x="337" y="8" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8br-SL-nTp"/>
+                                            <constraint firstAttribute="width" constant="30" id="YTP-UU-hal"/>
+                                        </constraints>
+                                        <state key="normal" title="&gt;"/>
+                                        <connections>
+                                            <action selector="nextWallet" destination="wH3-NK-QYb" eventType="touchUpInside" id="sVB-Zr-pbx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEr-fW-E9i">
+                                        <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="SbP-bw-Jyr"/>
+                                            <constraint firstAttribute="width" constant="30" id="aQi-BX-nK6"/>
+                                        </constraints>
+                                        <state key="normal" title="&lt;"/>
+                                        <connections>
+                                            <action selector="previousWallet" destination="wH3-NK-QYb" eventType="touchUpInside" id="FvO-cE-BS4"/>
+                                        </connections>
+                                    </button>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="aUk-zm-FSD">
+                                        <rect key="frame" x="152" y="0.0" width="71" height="37"/>
+                                        <color key="pageIndicatorTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="currentPageIndicatorTintColor" red="0.62434034369668523" green="0.62434034369668523" blue="0.62434034369668523" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </pageControl>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="GHH-Sv-HJe" secondAttribute="trailing" constant="8" id="1nx-7S-gAT"/>
                                     <constraint firstAttribute="trailing" secondItem="Rny-04-UW4" secondAttribute="trailing" id="5lo-EV-sFa"/>
+                                    <constraint firstItem="aUk-zm-FSD" firstAttribute="centerX" secondItem="42T-Ie-rCK" secondAttribute="centerX" id="AOz-T5-5wW"/>
                                     <constraint firstAttribute="trailing" secondItem="wtH-PU-CYP" secondAttribute="trailing" id="Fbg-9j-YOK"/>
                                     <constraint firstItem="wtH-PU-CYP" firstAttribute="leading" secondItem="42T-Ie-rCK" secondAttribute="leading" id="GPg-Wc-M9R"/>
                                     <constraint firstItem="mQW-eV-xkM" firstAttribute="leading" secondItem="42T-Ie-rCK" secondAttribute="leading" id="Lxu-M0-VJB"/>
                                     <constraint firstAttribute="height" constant="200" id="SJv-nA-Tc9"/>
+                                    <constraint firstItem="cEr-fW-E9i" firstAttribute="top" secondItem="42T-Ie-rCK" secondAttribute="top" constant="8" id="VaA-JF-qyy"/>
                                     <constraint firstItem="Rny-04-UW4" firstAttribute="top" secondItem="wtH-PU-CYP" secondAttribute="bottom" constant="8" id="aeq-0Y-rHe"/>
+                                    <constraint firstItem="GHH-Sv-HJe" firstAttribute="top" secondItem="42T-Ie-rCK" secondAttribute="top" constant="8" id="atp-zS-HmP"/>
                                     <constraint firstItem="mQW-eV-xkM" firstAttribute="top" secondItem="42T-Ie-rCK" secondAttribute="top" constant="35" id="cFq-kA-1Tk"/>
                                     <constraint firstItem="Rny-04-UW4" firstAttribute="leading" secondItem="42T-Ie-rCK" secondAttribute="leading" id="eYg-fZ-Zs2"/>
                                     <constraint firstAttribute="trailing" secondItem="mQW-eV-xkM" secondAttribute="trailing" id="lcX-I2-ebT"/>
+                                    <constraint firstItem="cEr-fW-E9i" firstAttribute="leading" secondItem="42T-Ie-rCK" secondAttribute="leading" constant="8" id="nS7-tZ-g8Z"/>
+                                    <constraint firstItem="aUk-zm-FSD" firstAttribute="top" secondItem="42T-Ie-rCK" secondAttribute="top" id="sQq-xp-ruO"/>
                                     <constraint firstItem="wtH-PU-CYP" firstAttribute="top" secondItem="mQW-eV-xkM" secondAttribute="bottom" constant="8" id="vxQ-yZ-Naz"/>
                                 </constraints>
                                 <connections>
@@ -150,6 +183,9 @@
                     <connections>
                         <outlet property="adView" destination="rBL-zg-Wfp" id="2tl-Tp-Fvo"/>
                         <outlet property="bitcoinLabel" destination="Rny-04-UW4" id="za0-HF-98V"/>
+                        <outlet property="leftbutton" destination="cEr-fW-E9i" id="zFT-fy-7Cc"/>
+                        <outlet property="pageControl" destination="aUk-zm-FSD" id="Ste-cg-85w"/>
+                        <outlet property="rightButton" destination="GHH-Sv-HJe" id="GZ1-ux-tMe"/>
                         <outlet property="tableViewBottom" destination="ucO-vj-465" id="cQF-Og-xaS"/>
                         <outlet property="totalLabel" destination="wtH-PU-CYP" id="nCf-bL-7Ae"/>
                         <outlet property="walletTableView" destination="j7r-Ug-4FL" id="s4d-jX-I8t"/>

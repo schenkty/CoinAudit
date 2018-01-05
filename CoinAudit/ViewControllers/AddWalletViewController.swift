@@ -110,8 +110,8 @@ class AddWalletViewController: UIViewController {
     }
     
     func updateCoin(name: String, value: String, start: String) {
-        var newValue: String = ""
-        var newStart: String = ""
+        var newValue: String = value
+        var newStart: String = start
         
         if value == "" {
             newValue = "0.0"
@@ -145,9 +145,8 @@ class AddWalletViewController: UIViewController {
     }
     
     func saveCoin(name: String, value: String, start: String) {
-        
-        var newValue: String = ""
-        var newStart: String = ""
+        var newValue: String = value
+        var newStart: String = start
         
         if value == "" {
             newValue = "0.0"
@@ -167,7 +166,7 @@ class AddWalletViewController: UIViewController {
             walletData.setValue(id, forKey: "id")
             walletData.setValue(name, forKey: "name")
             walletData.setValue(newValue, forKey: "value")
-            walletData.setValue(newStart.formatDecimal(), forKey: "startValue")
+            walletData.setValue(newStart, forKey: "startValue")
             
             do {
                 try managedObjectContext.save()
