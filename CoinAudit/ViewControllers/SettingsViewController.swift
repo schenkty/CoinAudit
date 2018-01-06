@@ -31,8 +31,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Volume"
-        widgetPercent = defaults.string(forKey: "CoinAuditWidgetPercent")!
-        widgetValue = defaults.string(forKey: "CoinAuditWidget")!
+        widgetPercent = defaults.string(forKey: "CoinAuditWidgetPercent") ?? "24h"
+        widgetValue = defaults.string(forKey: "CoinAuditWidget") ?? "favorites"
         
         // MARK: Ad View
         if showAd == "Yes" {

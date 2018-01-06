@@ -169,6 +169,24 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         }
         
+        // MARK: Download Alert data
+        
+        // reset alert array
+        alerts.removeAll()
+        
+        // get id of user
+        guard let id = notificationID else { return }
+        
+        // Pull Alert Data
+        Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/get.php?id=\(id)").responseJSON { response in
+            for alertJSON in (response.result.value as? [[String : AnyObject]])! {
+                if let alert = AlertEntry.init(json: alertJSON) {
+                    // do something here
+                    alerts.append(alert)
+                }
+            }
+        }
+        
         let when = DispatchTime.now() + 3 // number of seconds
         DispatchQueue.main.asyncAfter(deadline: when) {
             // MARK: Ad View

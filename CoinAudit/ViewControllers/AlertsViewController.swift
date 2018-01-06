@@ -9,17 +9,40 @@
 import UIKit
 import Alamofire
 import SwiftSpinner
+import NotificationCenter
+import UserNotifications
 
 class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var alertTableView: UITableView!
+    @IBOutlet var alertsFailedLabel: UILabel!
     
+    var show = false
+    let center = UNUserNotificationCenter.current()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.alertTableView.dataSource = self
+        self.alertTableView.delegate = self
+        
         // Do any additional setup after loading the view.
-        updateData()
+        if notificationID != "" {
+            show = true
+        } else {
+            show = false
+        }
+        
+        if show {
+            self.alertTableView.isHidden = false
+            if alerts.count == 0 {
+                self.updateData()
+            }
+        } else {
+            self.alertTableView.isHidden = true
+            self.showAlert(title: "Alerts Disabled", message: "Please allow notifications in your device settings and restart CoinAudit", style: .alert)
+        }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
     }
@@ -43,14 +66,25 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Action to delete data
-            alerts.remove(at: indexPath.row)
+            // grab alert id
+            let id = alerts[indexPath.row].id
             
             let cell = tableView.cellForRow(at: indexPath) as! AlertTableViewCell
             
-            print("Deleted: \(cell.nameLabel.text!) from alerts")
+            if Connectivity.isConnectedToInternet {
+                // delete from server
+                Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/delete.php?id=\(id)")
+                
+                // delete from array
+                alerts.remove(at: indexPath.row)
+                
+                // remove from table view
+                self.alertTableView.deleteRows(at: [indexPath], with: .automatic)
             
-            self.alertTableView.deleteRows(at: [indexPath], with: .automatic)
+                print("Deleted: \(cell.nameLabel.text!) from alerts")
+            } else {
+                showAlert(title: "No internet connection. Delete Failed")
+            }
         }
     }
     
@@ -68,24 +102,56 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Configure the cell...
         let cell = tableView.dequeueReusableCell(withIdentifier: "alertCell", for: indexPath) as! AlertTableViewCell
         
+        if let selectionIndexPath = self.alertTableView.indexPathForSelectedRow {
+            self.alertTableView.deselectRow(at: selectionIndexPath, animated: true)
+        }
+        
+        let alert = alerts[indexPath.row]
+        
+        cell.nameLabel.text = alert.coin
+        
+        switch alert.action {
+        case .Above:
+            cell.detailsLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+        case .Below:
+            cell.detailsLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+        default:
+            cell.detailsLabel.text = "Alert failed to load"
+        }
+        
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            cell.nameLabel.textColor = UIColor.white
+            cell.detailsLabel.textColor = UIColor.white
+        default:
+            cell.nameLabel.textColor = UIColor.black
+            cell.detailsLabel.textColor = UIColor.black
+        }
         
         return cell
     }
     
-    func updateData() {
-        // Provide using with loading spinner
-        SwiftSpinner.show(duration: 1.5, title: "Downloading Data...", animated: true)
-        
+    
+    @IBAction func updateData() {
         if Connectivity.isConnectedToInternet {
-            // Pull Coin Data
-            Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/get.php").responseJSON { response in
+            // Provide using with loading spinner
+            SwiftSpinner.show(duration: 1.5, title: "Downloading Alerts...", animated: true)
+            
+            // reset alert array
+            alerts.removeAll()
+            
+            // get id of user
+            guard let id = notificationID else { return }
+            
+            // Pull Alert Data
+            Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/get.php?id=\(id)").responseJSON { response in
                 for alertJSON in (response.result.value as? [[String : AnyObject]])! {
                     if let alert = AlertEntry.init(json: alertJSON) {
                         // do something here
                         alerts.append(alert)
                     }
                 }
-                
                 self.alertTableView.reloadData()
             }
         } else {
@@ -107,6 +173,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            alertsFailedLabel.textColor = UIColor.white
         default:
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
@@ -118,6 +185,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            alertsFailedLabel.textColor = UIColor.black
         }
     }
 

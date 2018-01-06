@@ -22,7 +22,7 @@ var holdWalletEntry: Bool = false
 var walletEntryValue: String = "WalletEntry1"
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletCoins: [NSManagedObject] = []
-var notificationID: String = defaults.object(forKey: "CoinAuditNotificationID") as? String ?? String()
+var notificationID: String? = defaults.object(forKey: "CoinAuditNotificationID") as? String ?? String()
 
 func saveFavoriteSettings() {
     defaults.set(favorites, forKey: "CoinAuditFavorites")
@@ -57,6 +57,20 @@ func saveAdsSettings() {
 class Connectivity {
     class var isConnectedToInternet:Bool {
         return NetworkReachabilityManager()!.isReachable
+    }
+}
+
+func pullData() {
+    // Clear entries array
+    entries.removeAll()
+    
+    // Pull Coin Data
+    Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
+        for coinJSON in (response.result.value as? [[String : AnyObject]])! {
+            if let coin = CoinEntry.init(json: coinJSON) {
+                entries.append(coin)
+            }
+        }
     }
 }
 

@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         OneSignal.add(self as OSSubscriptionObserver)
         
         if notificationID != "" {
-            print("Push ID: \(notificationID)")
+            print("Push ID: \(notificationID!)")
         } else {
             print("Push ID: Not Found")
         }
@@ -67,6 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
             print("Subscribed for OneSignal push notifications!")
             // get player ID
             notificationID = stateChanges.to.userId
+            
+            if notificationID != "" {
+                print("Push ID: \(notificationID!)")
+            } else {
+                print("Push ID: Not Found")
+            }
             saveNotificationSettings()
         }
     }

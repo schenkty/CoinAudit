@@ -9,9 +9,7 @@
 import Foundation
 
 enum AlertActions {
-    case AboveUSD
-    case AboveBTC
-    case BelowUSD
-    case BelowBTC
+    case Above
+    case Below
     case False
 }

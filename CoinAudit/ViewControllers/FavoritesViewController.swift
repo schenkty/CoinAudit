@@ -145,18 +145,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func updateCoins(_ sender: Any) {
         if Connectivity.isConnectedToInternet {
             SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
-            
-            // Clear entries array
-            entries.removeAll()
-            
-            // Pull Coin Data
-            Alamofire.request("https://api.coinmarketcap.com/v1/ticker/?limit=0").responseJSON { response in
-                for coinJSON in (response.result.value as? [[String : AnyObject]])! {
-                    if let coin = CoinEntry.init(json: coinJSON) {
-                        entries.append(coin)
-                    }
-                }
-            }
+            pullData()
         } else {
             showAlert(title: "No internet connection")
         }

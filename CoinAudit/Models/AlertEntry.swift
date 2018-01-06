@@ -14,10 +14,10 @@ struct AlertEntry {
     var id: String
     let coin: String
     let symbol: String
-    let below: String
-    let belowCurrency: String
-    let above: String
-    let aboveCurrency: String
+    var below: String
+    var belowCurrency: String
+    var above: String
+    var aboveCurrency: String
     var action: AlertActions = .False
 }
 
@@ -36,42 +36,38 @@ extension AlertEntry {
         
         if let id = json[Key.id] as? String,
             let coin = json[Key.coin] as? String,
-            let symbol = json[Key.symbol] as? String,
-            let below = json[Key.below] as? String,
-            let belowCurrency = json[Key.belowCurrency] as? String,
-            let above = json[Key.above] as? String,
-            let aboveCurrency = json[Key.aboveCurrency] as? String {
+            let symbol = json[Key.symbol] as? String {
             self.id = id
             self.coin = coin
             self.symbol = symbol
-            self.below = below
-            self.belowCurrency = belowCurrency
-            self.above = above
-            self.aboveCurrency = aboveCurrency
         } else {
             self.id = ""
             self.coin = "Failed"
             self.symbol = "Failed"
-            self.below = ""
             self.belowCurrency = ""
             self.above = ""
             self.aboveCurrency = ""
         }
         
+        let below = json[Key.below] as? String
+        let belowCurrency = json[Key.belowCurrency] as? String
+        let above = json[Key.above] as? String
+        let aboveCurrency = json[Key.aboveCurrency] as? String
+        
         var action: AlertActions = .False
         
-        if below != "" && belowCurrency == "USD" {
-            action = .BelowUSD
-        } else if below != "" && belowCurrency == "BTC" {
-            action = .BelowBTC
-        } else if above != "" && aboveCurrency == "USD" {
-            action = .AboveUSD
-        } else if above != "" && aboveCurrency == "BTC" {
-            action = .AboveBTC
+        if below != "" {
+            action = .Below
+        } else if above != "" {
+            action = .Above
         } else {
             action = .False
         }
         
         self.action = action
+        self.above = above!
+        self.aboveCurrency = aboveCurrency!
+        self.below = below!
+        self.belowCurrency = belowCurrency!
     }
 }
