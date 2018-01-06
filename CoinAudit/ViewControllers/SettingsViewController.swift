@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
+        walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Volume"
         widgetPercent = defaults.string(forKey: "CoinAuditWidgetPercent")!
         widgetValue = defaults.string(forKey: "CoinAuditWidget")!
         

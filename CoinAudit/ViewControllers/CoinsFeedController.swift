@@ -11,6 +11,7 @@ import NotificationCenter
 import Alamofire
 import SwiftSpinner
 import GoogleMobileAds
+import OneSignal
 
 class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADInterstitialDelegate {
     
@@ -64,7 +65,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-
         // MARK: Test ID
         //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/2934735716")
         
@@ -182,6 +182,15 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        switch themeValue {
+        case "dark":
+            return .lightContent
+        default:
+            return .default
+        }
+    }
+    
     @objc func updateTheme() {
         switch themeValue {
         case "dark":
@@ -201,7 +210,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         default:
             // TextField Color Customization
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.black]
-
             // Theme Color
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
@@ -213,5 +221,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
         }
+        UIApplication.shared.statusBarStyle = preferredStatusBarStyle
     }
 }

@@ -45,8 +45,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             adView.load(GADRequest())
         }
         
-        walletValue = defaults.string(forKey: "CoinAuditWalletMode")!
-        walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry")!
+        walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Volume"
+        walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry") ?? "WalletEntry1"
         
         walletTableView.delegate = self
         self.walletTableView.allowsSelectionDuringEditing = true

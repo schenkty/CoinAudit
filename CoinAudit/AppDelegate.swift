@@ -11,29 +11,64 @@ import NotificationCenter
 import CoreData
 import GoogleMobileAds
 import Flurry_iOS_SDK
+import OneSignal
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         // Initialize the Google Mobile Ads SDK.
         GADMobileAds.configure(withApplicationID: GoogleAd.appID)
         
+        // Flurry Framework Setup
         let builder = FlurrySessionBuilder.init()
             .withAppVersion(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)
             .withLogLevel(FlurryLogLevelAll)
             .withCrashReporting(true)
             .withSessionContinueSeconds(10)
         
-        // Replace YOUR_API_KEY with the api key in the downloaded package
         Flurry.startSession("VPXM6GR7BCDHRTQPP9TV", with: builder)
         Flurry.setSessionReportsOnCloseEnabled(true)
         Flurry.setSessionReportsOnPauseEnabled(true)
-    
+        
+        // OneSignal Framework Setup
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "7d06cefc-2472-4450-9513-2e1e4edd3aa2",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        // Recommend moving the below line to prompt for push after informing the user about
+        //   how your app will use them.
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+        })
+        OneSignal.add(self as OSSubscriptionObserver)
+        
+        if notificationID != "" {
+            print("Push ID: \(notificationID)")
+        } else {
+            print("Push ID: Not Found")
+        }
+        
         return true
+    }
+    
+    // OneSignal Push Notification delegate
+    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
+        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
+            print("Subscribed for OneSignal push notifications!")
+            // get player ID
+            notificationID = stateChanges.to.userId
+            saveNotificationSettings()
+        }
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -69,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-        let container = NSPersistentContainer(name: "Wallet")
+        let container = NSPersistentContainer(name: "Data")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

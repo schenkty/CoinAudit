@@ -333,6 +333,67 @@
             </objects>
             <point key="canvasLocation" x="2049" y="1091"/>
         </scene>
+        <!--Alerts-->
+        <scene sceneID="7Jf-c9-ygk">
+            <objects>
+                <viewController id="qU6-QI-csl" customClass="AlertsViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jdz-1C-oJf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-bh-zZL">
+                                <rect key="frame" x="0.0" y="116" width="375" height="502"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="alertCell" textLabel="aZu-sx-vGw" detailTextLabel="lYP-NJ-PCi" style="IBUITableViewCellStyleSubtitle" id="eLR-M9-bov" customClass="AlertTableViewCell" customModule="CoinAudit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eLR-M9-bov" id="LDP-v7-vv5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="RaiBlocks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aZu-sx-vGw">
+                                                    <rect key="frame" x="15" y="5" width="74" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Value is below: $15.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lYP-NJ-PCi">
+                                                    <rect key="frame" x="15" y="25.5" width="126" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailsLabel" destination="lYP-NJ-PCi" id="Y4i-Mq-ku6"/>
+                                            <outlet property="nameLabel" destination="aZu-sx-vGw" id="4PK-3C-qug"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cfm-bh-zZL" firstAttribute="top" secondItem="UaA-6e-X4e" secondAttribute="top" id="4M6-LF-bvH"/>
+                            <constraint firstItem="cfm-bh-zZL" firstAttribute="leading" secondItem="UaA-6e-X4e" secondAttribute="leading" id="arm-Ea-dze"/>
+                            <constraint firstItem="UaA-6e-X4e" firstAttribute="bottom" secondItem="cfm-bh-zZL" secondAttribute="bottom" id="qfP-V5-vHY"/>
+                            <constraint firstItem="UaA-6e-X4e" firstAttribute="trailing" secondItem="cfm-bh-zZL" secondAttribute="trailing" id="urh-k0-N7d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UaA-6e-X4e"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Alerts" id="5As-ta-8Z6"/>
+                    <connections>
+                        <outlet property="alertTableView" destination="cfm-bh-zZL" id="Kft-rP-QNI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A8i-Jf-Jvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1366" y="1771"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="krc-0r-6eW">
             <objects>
@@ -521,12 +582,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rel-kf-fDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365.5999999999999" y="1798.6506746626687"/>
+            <point key="canvasLocation" x="1366" y="2474"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="main" id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="main" id="49e-Tb-3d3" customClass="TabViewController" customModule="CoinAudit" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -536,6 +597,7 @@
                         <segue destination="03u-oq-keK" kind="relationship" relationship="viewControllers" id="pb3-EM-SOu"/>
                         <segue destination="JHF-az-mIg" kind="relationship" relationship="viewControllers" id="5Rb-20-JBH"/>
                         <segue destination="ELI-lu-Jdk" kind="relationship" relationship="viewControllers" id="tlV-ff-RcS"/>
+                        <segue destination="X42-Zb-uBC" kind="relationship" relationship="viewControllers" id="Wkp-IM-CCv"/>
                         <segue destination="r8K-KZ-pTg" kind="relationship" relationship="viewControllers" id="EoJ-Tf-sWt"/>
                     </connections>
                 </tabBarController>
@@ -620,7 +682,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="CoinAudit" id="2xg-X5-j6R">
-                        <barButtonItem key="rightBarButtonItem" image="refresh" id="TZm-FP-PgZ">
+                        <barButtonItem key="leftBarButtonItem" image="refresh" id="TZm-FP-PgZ">
                             <connections>
                                 <action selector="updateButton:" destination="SYW-Qb-dVK" id="6IB-FO-Mvh"/>
                             </connections>
@@ -946,7 +1008,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="300-MO-hwm"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" id="W8O-A1-LtF"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="W8O-A1-LtF">
+                        <barButtonItem key="leftBarButtonItem" image="refresh" id="2G2-6o-mRx">
+                            <connections>
+                                <action selector="updateCoins:" destination="Qwq-jf-UvH" id="Y6R-qL-uJS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="adView" destination="jjf-re-aF6" id="bkC-uy-bm7"/>
                         <outlet property="favTableView" destination="MlR-Ly-emd" id="N4k-vF-67m"/>
@@ -993,7 +1061,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bFN-hs-TeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="1799"/>
+            <point key="canvasLocation" x="710" y="2475"/>
         </scene>
         <!--Coins-->
         <scene sceneID="PJb-dw-lA2">
@@ -1033,9 +1101,29 @@
             </objects>
             <point key="canvasLocation" x="710" y="394"/>
         </scene>
+        <!--Alerts-->
+        <scene sceneID="Cxx-0R-3a6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X42-Zb-uBC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Alerts" image="bell" id="TMP-bD-Uec"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Rhf-Bz-JXz">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qU6-QI-csl" kind="relationship" relationship="rootViewController" id="m8D-f0-Opi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Og7-Ky-TBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="710" y="1771"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bar_chart" width="30" height="30"/>
+        <image name="bell" width="30" height="30"/>
         <image name="heart" width="30" height="30"/>
         <image name="plus" width="30" height="30"/>
         <image name="refresh" width="30" height="30"/>

@@ -12,6 +12,7 @@ import CoreData
 import Alamofire
 
 let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
+var alerts: [AlertEntry] = []
 var entries: [CoinEntry] = []
 var favorites: [String] = []
 var widgetValue: String = ""
@@ -21,6 +22,7 @@ var holdWalletEntry: Bool = false
 var walletEntryValue: String = "WalletEntry1"
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletCoins: [NSManagedObject] = []
+var notificationID: String = defaults.object(forKey: "CoinAuditNotificationID") as? String ?? String()
 
 func saveFavoriteSettings() {
     defaults.set(favorites, forKey: "CoinAuditFavorites")
@@ -34,8 +36,11 @@ func saveWidgetSettings() {
 
 func saveThemeSettings() {
     defaults.set(themeValue, forKey: "CoinAuditTheme")
-    print("Theme saved: \(themeValue)")
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+}
+
+func saveNotificationSettings() {
+    defaults.set(notificationID, forKey: "CoinAuditNotificationID")
 }
 
 func saveWalletSettings() {
