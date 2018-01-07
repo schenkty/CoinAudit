@@ -188,13 +188,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin Name " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa2-Mk-Y65">
-                                <rect key="frame" x="15" y="70" width="345" height="21"/>
+                                <rect key="frame" x="15" y="55" width="345" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bitcoin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uhB-mD-BpR" customClass="SearchTextField" customModule="SearchTextField">
-                                <rect key="frame" x="15" y="101" width="345" height="40"/>
+                                <rect key="frame" x="15" y="86" width="345" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="i3t-sJ-fE1"/>
                                 </constraints>
@@ -203,7 +203,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nfO-bC-7kj">
-                                <rect key="frame" x="0.0" y="240" width="375" height="427"/>
+                                <rect key="frame" x="0.0" y="225" width="375" height="442"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="walletValueCell" textLabel="cFf-q6-oK9" detailTextLabel="bsa-WB-qSq" style="IBUITableViewCellStyleSubtitle" id="zKc-C2-O3T" customClass="WalletValueCell" customModule="CoinAudit" customModuleProvider="target">
@@ -241,7 +241,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin Entries: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-76-h5S">
-                                <rect key="frame" x="15" y="211" width="360" height="21"/>
+                                <rect key="frame" x="15" y="196" width="360" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -267,7 +267,7 @@
                             <constraint firstItem="NwH-76-h5S" firstAttribute="leading" secondItem="sa2-Mk-Y65" secondAttribute="leading" id="OX3-EZ-Dsa"/>
                             <constraint firstItem="nfO-bC-7kj" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" id="TAq-j8-LRU"/>
                             <constraint firstItem="sa2-Mk-Y65" firstAttribute="centerX" secondItem="t1c-5u-JWI" secondAttribute="centerX" id="Tyg-Q3-YIh"/>
-                            <constraint firstItem="sa2-Mk-Y65" firstAttribute="top" secondItem="t1c-5u-JWI" secondAttribute="top" constant="50" id="U0q-D3-stV"/>
+                            <constraint firstItem="sa2-Mk-Y65" firstAttribute="top" secondItem="t1c-5u-JWI" secondAttribute="top" constant="35" id="U0q-D3-stV"/>
                             <constraint firstItem="sux-CO-qTR" firstAttribute="leading" secondItem="t1c-5u-JWI" secondAttribute="leading" id="ZnO-EF-6D8"/>
                             <constraint firstItem="t1c-5u-JWI" firstAttribute="trailing" secondItem="nfO-bC-7kj" secondAttribute="trailing" id="dBB-lL-JbQ"/>
                             <constraint firstItem="t1c-5u-JWI" firstAttribute="bottom" secondItem="sux-CO-qTR" secondAttribute="bottom" id="ddO-k6-93n"/>
@@ -468,31 +468,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-yu-G1o" userLabel="Main Settings">
-                                <rect key="frame" x="30" y="151" width="315" height="136"/>
+                                <rect key="frame" x="10" y="126" width="355" height="136"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tnN-tZ-jFU" userLabel="Widget Mode">
-                                        <rect key="frame" x="0.0" y="0.0" width="315" height="28"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpS-FN-CTd">
-                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aW9-Ke-tFx">
-                                                <rect key="frame" x="138.5" y="0.0" width="176.5" height="29"/>
-                                                <segments>
-                                                    <segment title="Favorites"/>
-                                                    <segment title="Wallet"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="widgetMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="1Bc-3Q-3Dx"/>
-                                                </connections>
-                                            </segmentedControl>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HUt-nw-Oag" userLabel="Theme Mode">
-                                        <rect key="frame" x="0.0" y="36" width="315" height="28"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUA-xi-UH2">
                                                 <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
@@ -501,7 +480,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9G7-ei-qWw">
-                                                <rect key="frame" x="138.5" y="0.0" width="176.5" height="29"/>
+                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
                                                 <segments>
                                                     <segment title="Light"/>
                                                     <segment title="Dark"/>
@@ -513,30 +492,8 @@
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="08V-Hc-tRD" userLabel="Widget Percent Mode">
-                                        <rect key="frame" x="0.0" y="72" width="315" height="28"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget Percent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEc-kA-oGo">
-                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-tD-K4Y">
-                                                <rect key="frame" x="138.5" y="0.0" width="176.5" height="29"/>
-                                                <segments>
-                                                    <segment title="1 Hour"/>
-                                                    <segment title="24 Hours"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="walletMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="bF0-dT-eSD"/>
-                                                    <action selector="widgetPercentMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="90l-hE-8Dk"/>
-                                                </connections>
-                                            </segmentedControl>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Z8B-IY-iTS" userLabel="Wallet Mode">
-                                        <rect key="frame" x="0.0" y="108" width="315" height="28"/>
+                                        <rect key="frame" x="0.0" y="36" width="355" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-Kj-pjC">
                                                 <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
@@ -545,13 +502,56 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k2G-BF-3d1">
-                                                <rect key="frame" x="138.5" y="0.0" width="176.5" height="29"/>
+                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
                                                 <segments>
                                                     <segment title="Volume"/>
                                                     <segment title="Value"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="walletMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="LYJ-K0-g2Q"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tnN-tZ-jFU" userLabel="Widget Mode">
+                                        <rect key="frame" x="0.0" y="72" width="355" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpS-FN-CTd">
+                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aW9-Ke-tFx">
+                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
+                                                <segments>
+                                                    <segment title="Favorites"/>
+                                                    <segment title="Wallet"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="widgetMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="1Bc-3Q-3Dx"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="08V-Hc-tRD" userLabel="Widget Percent Mode">
+                                        <rect key="frame" x="0.0" y="108" width="355" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget Percent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEc-kA-oGo">
+                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-tD-K4Y">
+                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
+                                                <segments>
+                                                    <segment title="1 Hour"/>
+                                                    <segment title="24 Hours"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="walletMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="bF0-dT-eSD"/>
+                                                    <action selector="widgetPercentMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="90l-hE-8Dk"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
@@ -564,7 +564,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-ew-Vgy">
-                                <rect key="frame" x="0.0" y="307" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="282" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Developer: Ty Schenk"/>
                                 <connections>
@@ -572,13 +572,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erW-j3-BZJ">
-                                <rect key="frame" x="0.0" y="362" width="375" height="23"/>
+                                <rect key="frame" x="0.0" y="337" width="375" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqn-in-rsd">
-                                <rect key="frame" x="0.0" y="405" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="380" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Clear All Data"/>
                                 <connections>
@@ -586,7 +586,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-Ud-Zw7">
-                                <rect key="frame" x="0.0" y="460" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="435" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Powered by CoinMarketCap"/>
                                 <connections>
@@ -607,14 +607,14 @@
                             <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="4y8-6R-TXR"/>
                             <constraint firstItem="erW-j3-BZJ" firstAttribute="top" secondItem="Vba-ew-Vgy" secondAttribute="bottom" constant="20" id="8zO-uD-JaQ"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="erW-j3-BZJ" secondAttribute="trailing" id="EVo-zM-Eap"/>
-                            <constraint firstItem="W6A-yu-G1o" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" constant="30" id="Nlo-0c-PYn"/>
+                            <constraint firstItem="W6A-yu-G1o" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" constant="10" id="Nlo-0c-PYn"/>
                             <constraint firstItem="Lqn-in-rsd" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="OT7-Ge-cTW"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Lqn-in-rsd" secondAttribute="trailing" id="Qz5-xJ-003"/>
                             <constraint firstItem="dqp-qA-SS1" firstAttribute="centerX" secondItem="ka7-hJ-oef" secondAttribute="centerX" id="Wvz-cN-0es"/>
                             <constraint firstItem="Vba-ew-Vgy" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="YUz-Jr-euz"/>
-                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="W6A-yu-G1o" secondAttribute="trailing" constant="30" id="ZYu-KC-g5S"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="W6A-yu-G1o" secondAttribute="trailing" constant="10" id="ZYu-KC-g5S"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="dqp-qA-SS1" secondAttribute="trailing" id="ZhH-BB-UgU"/>
-                            <constraint firstItem="W6A-yu-G1o" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="35" id="aBn-e5-hhe"/>
+                            <constraint firstItem="W6A-yu-G1o" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="10" id="aBn-e5-hhe"/>
                             <constraint firstItem="dqp-qA-SS1" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="h5T-8R-icL"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Vba-ew-Vgy" secondAttribute="trailing" id="pHi-RD-V11"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Nx3-Ud-Zw7" secondAttribute="trailing" id="ph1-dX-akk"/>

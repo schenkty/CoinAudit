@@ -168,25 +168,23 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         var coins: [WalletEntry] = []
-        var amount = "0.0"
+        let value = walletEntries[indexPath.row].value(forKey: "value") as! String
+        let data = walletEntries[indexPath.row].value(forKey: "data")
+        coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
+        var amount = 0.0
         
         cell.nameLabel.text = coin.name
         cell.symbolLabel.text = coin.symbol
         
         if walletValue == "volume" {
-            let data = walletEntries[indexPath.row].value(forKey: "data")
-            coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
-            
             for item in coins {
-                amount = amount + item.amount
+                amount = amount + Double(item.amount)!
             }
+        
             cell.valueLabel.text = "\(amount)"
         } else if walletValue == "value" {
-            let value = walletEntries[indexPath.row].value(forKey: "value") as! String
-            
             cell.valueLabel.text = "\(Double(value)! * Double(coin.priceUSD)!)".formatUSD()
         } else {
-            let value = walletEntries[indexPath.row].value(forKey: "value") as! String
             print("Wallet Format not found. Using Default Format")
             cell.valueLabel.text = "\(value)"
         }

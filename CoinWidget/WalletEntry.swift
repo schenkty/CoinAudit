@@ -9,8 +9,8 @@
 import Foundation
 
 class WalletEntry: NSObject, NSCoding {
-    let cost: String
-    let amount: String
+    var cost: String
+    var amount: String
     
     init(cost: String, amount: String) {
         self.cost = cost

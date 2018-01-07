@@ -155,8 +155,9 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let coin = coins[indexPath.row]
         
-        cell.amountLabel.text = coin.amount
-        cell.valueLabel.text = "\(Double(coin.amount)! * Double(coinData.priceUSD)!)".formatUSD()
+        cell.amountLabel.text = "\(coinData.name): \(coin.amount)"
+        let tempValue = "\(Double(coin.amount)! * Double(coinData.priceUSD)!)".formatUSD()
+        cell.valueLabel.text = "Cost: \(tempValue)"
         
         // Theme Drawing code
         switch themeValue {
@@ -174,7 +175,57 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // deselect row
         self.walletTableView.deselectRow(at: indexPath, animated: true)
+        
+        // make sure this is an update not new save
+        let tempNew = new
+        new = false
+        
+        // setup alert controller
+        let alert = UIAlertController(title: "Edit Coin", message: "Please edit the coin amount and price", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
+            let amountTextField = alert.textFields![0] as UITextField
+            let costTextField = alert.textFields![1] as UITextField
+            
+            let cost = costTextField.text!.replacingOccurrences(of: "$", with: "")
+            let amount = amountTextField.text!
+            
+            self.coins[indexPath.row].amount = amount
+            self.coins[indexPath.row].cost = cost
+            
+            print("Coin Updated. Amount: \(amount) @ \(cost) each")
+            self.saveButton()
+            self.new = tempNew
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            return
+        }
+        
+        alert.addTextField { (amountTextField) in
+            amountTextField.placeholder = "Amount 0.00"
+            amountTextField.keyboardType = .decimalPad
+            amountTextField.text = self.coins[indexPath.row].amount
+            
+            let heightConstraint = NSLayoutConstraint(item: amountTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+            amountTextField.addConstraint(heightConstraint)
+        }
+        
+        alert.addTextField { (costTextField) in
+            costTextField.placeholder = "Cost: $0.00"
+            costTextField.keyboardType = .decimalPad
+            costTextField.text = "$\(self.coins[indexPath.row].cost)"
+            
+            let heightConstraint = NSLayoutConstraint(item: costTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+            costTextField.addConstraint(heightConstraint)
+        }
+        
+        alert.addAction(save)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -259,17 +310,17 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             newValue = newValue + amount
         }
         
-        value = "\(newValue)"
-        
-        if value == "" {
-            value = "0.0"
-        }
-        
         if names.contains(where: {$0.title == name}) {
             let id = entries.first(where: {$0.name == name})!.id
             
             //update coin in walletCoins array
             let coin = managedObjectContext.object(with: coinID)
+            
+            value = "\(newValue)"
+            
+            if value == "" {
+                value = "0.0"
+            }
 
             coin.setValue(id, forKey: "id")
             coin.setValue(name, forKey: "name")
@@ -355,7 +406,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
             self.view.backgroundColor = UIColor.white
-            self.walletTableView.backgroundColor = UIColor.black
+            self.walletTableView.backgroundColor = UIColor.white
             self.navigationController?.navigationBar.tintColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black

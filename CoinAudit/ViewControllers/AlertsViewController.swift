@@ -45,6 +45,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
+        alertTableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -95,6 +96,8 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        controller.id = favorites[indexPath.row]
 //        self.show(controller, sender: self)
 //
+        // deselect row
+        self.alertTableView.deselectRow(at: indexPath, animated: true)
         print("cell selected: \(alerts[indexPath.row].coin)")
     }
     
