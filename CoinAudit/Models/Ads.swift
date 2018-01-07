@@ -12,6 +12,7 @@ import Foundation
 // Yes = Show ads
 // No = Hide ads
 var showAd: String = "No" //defaults.object(forKey: "CoinAuditAds") as? String ?? String()
+var fullAdCount: Int = 0
 
 // AdMob App ID
 struct GoogleAd {

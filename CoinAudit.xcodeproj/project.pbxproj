@@ -47,11 +47,11 @@
 		32FC12322000300800C35897 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC12312000300800C35897 /* NotificationViewController.swift */; };
 		32FC12352000300800C35897 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32FC12332000300800C35897 /* MainInterface.storyboard */; };
 		32FC12392000300800C35897 /* CoinAuditNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32FC122B2000300800C35897 /* CoinAuditNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		32FC124A200042B600C35897 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* sound.caf */; };
-		32FC124B200042B600C35897 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* sound.caf */; };
-		32FC124C200042B600C35897 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* sound.caf */; };
-		32FC124D200042B600C35897 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* sound.caf */; };
-		32FC124E200042B600C35897 /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* sound.caf */; };
+		32FC124A200042B600C35897 /* coin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* coin.caf */; };
+		32FC124B200042B600C35897 /* coin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* coin.caf */; };
+		32FC124C200042B600C35897 /* coin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* coin.caf */; };
+		32FC124D200042B600C35897 /* coin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* coin.caf */; };
+		32FC124E200042B600C35897 /* coin.caf in Resources */ = {isa = PBXBuildFile; fileRef = 32FC1249200042B600C35897 /* coin.caf */; };
 		649F0B09A82A5EBC6C44D6FE /* Pods_CoinAudit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99EC2EAEA18ECE0EF32B772F /* Pods_CoinAudit.framework */; };
 		76612B85BF2FF65D5A810E5D /* Pods_CoinAuditUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C0B3BD5EBAD34A689132BE /* Pods_CoinAuditUITests.framework */; };
 		77C8301F7EC4356097F9D2A0 /* Pods_CoinAudit_CoinAuditNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6421FF1CA4E02EA6BD1C7AE1 /* Pods_CoinAudit_CoinAuditNotificationServiceExtension.framework */; };
@@ -181,7 +181,7 @@
 		32FC12312000300800C35897 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		32FC12342000300800C35897 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		32FC12362000300800C35897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32FC1249200042B600C35897 /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
+		32FC1249200042B600C35897 /* coin.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = coin.caf; sourceTree = "<group>"; };
 		364F69E6C97F3A41D91558FB /* Pods-CoinAuditUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAuditUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAuditUITests/Pods-CoinAuditUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		528A386B29AD64C660866FC3 /* Pods-CoinAuditUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAuditUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAuditUITests/Pods-CoinAuditUITests.release.xcconfig"; sourceTree = "<group>"; };
 		593DAEA5DC89769FEE0241C0 /* Pods-CoinAudit-CoinAuditNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAudit-CoinAuditNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAudit-CoinAuditNotificationServiceExtension/Pods-CoinAudit-CoinAuditNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,7 +298,7 @@
 				32AFAB851FF38FC6006B608D /* Main.storyboard */,
 				32AFAB8A1FF38FC6006B608D /* LaunchScreen.storyboard */,
 				32AFAB8D1FF38FC6006B608D /* Info.plist */,
-				32FC1249200042B600C35897 /* sound.caf */,
+				32FC1249200042B600C35897 /* coin.caf */,
 			);
 			path = CoinAudit;
 			sourceTree = "<group>";
@@ -601,7 +601,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32FC124D200042B600C35897 /* sound.caf in Resources */,
+				32FC124D200042B600C35897 /* coin.caf in Resources */,
 				3288213D1FF8AFEE002E365B /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,7 +612,7 @@
 			files = (
 				32AFAB8C1FF38FC6006B608D /* LaunchScreen.storyboard in Resources */,
 				32AFAB891FF38FC6006B608D /* Assets.xcassets in Resources */,
-				32FC124A200042B600C35897 /* sound.caf in Resources */,
+				32FC124A200042B600C35897 /* coin.caf in Resources */,
 				32AFAB871FF38FC6006B608D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,7 +621,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32FC124B200042B600C35897 /* sound.caf in Resources */,
+				32FC124B200042B600C35897 /* coin.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +629,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32FC124C200042B600C35897 /* sound.caf in Resources */,
+				32FC124C200042B600C35897 /* coin.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,7 +637,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32FC124E200042B600C35897 /* sound.caf in Resources */,
+				32FC124E200042B600C35897 /* coin.caf in Resources */,
 				32FC12352000300800C35897 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,6 +33,9 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        leftbutton.isHidden = true
+        rightButton.isHidden = true
+        
         // MARK: Ad View
         if showAd == "Yes" {
             adView.adUnitID = GoogleAd.appID
@@ -282,6 +285,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func previousWallet() {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseIn], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { (finished: Bool) in })
+        
         switch walletEntryValue {
         case "WalletEntry1":
             walletEntryValue = "WalletEntry5"
@@ -315,6 +322,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func nextWallet() {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: [.curveEaseIn], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { (finished: Bool) in })
+        
         switch walletEntryValue {
         case "WalletEntry1":
             walletEntryValue = "WalletEntry2"

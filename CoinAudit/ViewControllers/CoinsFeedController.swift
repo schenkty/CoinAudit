@@ -20,6 +20,8 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     var searchActive: Bool = false
     // The interstitial ad.
     var interstitial: GADInterstitial!
+    var alertsLoaded: Bool = false
+    var entriesLoaded: Bool = false
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -57,17 +59,17 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     }
     
     func showScreenAd() {
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
-        } else {
-            print("Ad wasn't ready")
+        if fullAdCount == 0{
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+                fullAdCount = 1
+            } else {
+                print("Ad wasn't ready")
+            }
         }
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        // MARK: Test ID
-        //let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/2934735716")
-        
         // MARK: Release ID
         let interstitial = GADInterstitial(adUnitID: "ca-app-pub-8616771915576403/1551329017")
         interstitial.delegate = self
@@ -151,10 +153,17 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     }
     
     func updateData() {
+        // reset alert and entries array
+        alerts.removeAll()
+        entries.removeAll()
+        
+        // load favorites
         favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
-        // Provide using with loading spinner
-        SwiftSpinner.show(duration: 1.5, title: "Downloading Data...", animated: true)
+        
+        
+        // Provide loading spinner
+        SwiftSpinner.show("Downloading Data...", animated: true)
         
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in
@@ -163,17 +172,18 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
                     entries.append(coin)
                 }
             }
-            
+            self.entriesLoaded = true
             self.filteredEntries = entries
+            
+            if self.alertsLoaded && self.entriesLoaded {
+                SwiftSpinner.hide()
+            }
+            
             // Update Table Views
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         }
         
         // MARK: Download Alert data
-        
-        // reset alert array
-        alerts.removeAll()
-        
         // get id of user
         guard let id = notificationID else { return }
         
@@ -184,6 +194,10 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
                     // do something here
                     alerts.append(alert)
                 }
+            }
+            self.alertsLoaded = true
+            if self.alertsLoaded && self.entriesLoaded {
+                SwiftSpinner.hide()
             }
         }
         

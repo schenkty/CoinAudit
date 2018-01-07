@@ -124,9 +124,11 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case "dark":
             cell.nameLabel.textColor = UIColor.white
             cell.detailsLabel.textColor = UIColor.white
+            cell.backgroundColor = UIColor.black
         default:
             cell.nameLabel.textColor = UIColor.black
             cell.detailsLabel.textColor = UIColor.black
+            cell.backgroundColor = UIColor.white
         }
         
         return cell
