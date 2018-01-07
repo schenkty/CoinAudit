@@ -24,6 +24,8 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         self.alertTableView.dataSource = self
         self.alertTableView.delegate = self
+        self.alertTableView.rowHeight = UITableViewAutomaticDimension
+        self.alertTableView.estimatedRowHeight = 44.0
         
         // Do any additional setup after loading the view.
         if notificationID != "" {
@@ -45,7 +47,13 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
-        alertTableView.reloadData()
+        
+        if newAlertData == true {
+            updateData()
+            newAlertData = false
+        } else {
+            alertTableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
@@ -90,15 +98,17 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let controller = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
-//        favorites = favorites.sorted()
-//        controller.id = favorites[indexPath.row]
-//        self.show(controller, sender: self)
-//
         // deselect row
         self.alertTableView.deselectRow(at: indexPath, animated: true)
-        print("cell selected: \(alerts[indexPath.row].coin)")
+        
+        // push to add alert view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "addAlert") as! AddAlertViewController
+        controller.new = false
+        controller.alertID = alerts[indexPath.row].id
+        controller.index = indexPath.row
+        
+        self.show(controller, sender: self)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,35 +123,52 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.nameLabel.text = alert.coin
         
+        print("alert at id: \(alerts[indexPath.row].id)")
+        
         switch alert.action {
         case .Above:
-            cell.detailsLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+            cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+            cell.belowLabel.isHidden = true
         case .Below:
-            cell.detailsLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+            cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+            cell.aboveLabel.isHidden = true
+        case .Both:
+            cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+            cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
         default:
-            cell.detailsLabel.text = "Alert failed to load"
+            cell.aboveLabel.text = "Alert failed to load"
+            cell.belowLabel.isHidden = true
         }
         
         // Theme Drawing code
         switch themeValue {
         case "dark":
             cell.nameLabel.textColor = UIColor.white
-            cell.detailsLabel.textColor = UIColor.white
+            cell.aboveLabel.textColor = UIColor.white
+            cell.belowLabel.textColor = UIColor.white
             cell.backgroundColor = UIColor.black
         default:
             cell.nameLabel.textColor = UIColor.black
-            cell.detailsLabel.textColor = UIColor.black
+            cell.aboveLabel.textColor = UIColor.black
+            cell.belowLabel.textColor = UIColor.black
             cell.backgroundColor = UIColor.white
         }
         
         return cell
     }
     
+    @IBAction func newAlert(_ sender: UIBarButtonItem) {
+        // push to add alert view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "addAlert") as! AddAlertViewController
+        controller.new = true
+        self.show(controller, sender: self)
+    }
     
     @IBAction func updateData() {
         if Connectivity.isConnectedToInternet {
             // Provide using with loading spinner
-            SwiftSpinner.show(duration: 1.5, title: "Downloading Alerts...", animated: true)
+            SwiftSpinner.show("Updating Alerts...", animated: true)
             
             // reset alert array
             alerts.removeAll()
@@ -158,6 +185,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
                 self.alertTableView.reloadData()
+                SwiftSpinner.hide()
             }
         } else {
             showAlert(title: "No internet connection")

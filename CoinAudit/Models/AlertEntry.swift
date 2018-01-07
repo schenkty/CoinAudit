@@ -56,10 +56,12 @@ extension AlertEntry {
         
         var action: AlertActions = .False
         
-        if below != "" {
-            action = .Below
+        if above != "" && below != "" {
+            action = .Both
         } else if above != "" {
             action = .Above
+        } else if below != "" {
+            action = .Below
         } else {
             action = .False
         }

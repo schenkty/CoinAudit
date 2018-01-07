@@ -31,7 +31,6 @@ class CoinsDetailsViewController: UIViewController {
     
     var favorited: Bool = false
     var id: String = ""
-    var mode: String = "normal"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +45,6 @@ class CoinsDetailsViewController: UIViewController {
             adView.adUnitID = GoogleAd.appID
             adView.rootViewController = self
             adView.load(GADRequest())
-        }
-    
-        if mode == "url" {
-            navBar.isHidden = false
-        } else {
-            navBar.isHidden = true
         }
         
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoin))

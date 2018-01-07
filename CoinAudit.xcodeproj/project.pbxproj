@@ -28,6 +28,7 @@
 		3290928E2000988000D392CD /* AlertEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3290928D2000988000D392CD /* AlertEntry.swift */; };
 		32A49FD72001AEC4000A95A4 /* WalletEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A49FD62001AEC4000A95A4 /* WalletEntry.swift */; };
 		32A49FD92001B1F8000A95A4 /* WalletValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A49FD82001B1F8000A95A4 /* WalletValueCell.swift */; };
+		32A49FDB200206DC000A95A4 /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A49FDA200206DC000A95A4 /* AddAlertViewController.swift */; };
 		32AFAB801FF38FC6006B608D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFAB7F1FF38FC6006B608D /* AppDelegate.swift */; };
 		32AFAB871FF38FC6006B608D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32AFAB851FF38FC6006B608D /* Main.storyboard */; };
 		32AFAB891FF38FC6006B608D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32AFAB881FF38FC6006B608D /* Assets.xcassets */; };
@@ -156,6 +157,7 @@
 		3290928D2000988000D392CD /* AlertEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEntry.swift; sourceTree = "<group>"; };
 		32A49FD62001AEC4000A95A4 /* WalletEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletEntry.swift; path = CoinWidget/WalletEntry.swift; sourceTree = SOURCE_ROOT; };
 		32A49FD82001B1F8000A95A4 /* WalletValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletValueCell.swift; sourceTree = "<group>"; };
+		32A49FDA200206DC000A95A4 /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		32AFAB7C1FF38FC6006B608D /* CoinAudit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinAudit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AFAB7F1FF38FC6006B608D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32AFAB861FF38FC6006B608D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */,
 				322406181FF711BD0073555B /* AddWalletViewController.swift */,
 				3290928B2000982100D392CD /* AlertsViewController.swift */,
+				32A49FDA200206DC000A95A4 /* AddAlertViewController.swift */,
 				324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -360,6 +363,7 @@
 		32FCD4031FF4AEE000B7AD32 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				329092892000977600D392CD /* AlertData.swift */,
 				3290928D2000988000D392CD /* AlertEntry.swift */,
 				32421D7C1FF8B62300F14061 /* CoinEntry.swift */,
 				32A49FD62001AEC4000A95A4 /* WalletEntry.swift */,
@@ -372,7 +376,6 @@
 				328F26811FF63566002BB3E7 /* Extensions.swift */,
 				32421D7D1FF8B62300F14061 /* Data.swift */,
 				32583A891FFD994E000E573F /* Ads.swift */,
-				329092892000977600D392CD /* AlertData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				32C1C4D81FF8BD3600DA69D3 /* Data.swift in Sources */,
 				326999E41FF5F8A10059122D /* FavoritesViewController.swift in Sources */,
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
+				32A49FDB200206DC000A95A4 /* AddAlertViewController.swift in Sources */,
 				32D1D59A1FFB47DF000BD2E1 /* Data.xcdatamodeld in Sources */,
 				3290928C2000982100D392CD /* AlertsViewController.swift in Sources */,
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,

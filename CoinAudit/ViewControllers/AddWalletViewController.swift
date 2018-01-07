@@ -42,22 +42,17 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // MARK: Ad View
         if showAd == "Yes" {
-            adView.adUnitID = GoogleAd.appID
-            adView.rootViewController = self
-            adView.load(GADRequest())
-        } else if showAd == "No" {
-        } else {
-            adView.adUnitID = GoogleAd.appID
-            adView.rootViewController = self
-            adView.load(GADRequest())
-        }
-        
-        if showAd == "Yes" {
             adView.isHidden = false
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
         } else if showAd == "No" {
             adView.isHidden = true
         } else {
             adView.isHidden = false
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
         }
         
         if name == "Unknown" {
