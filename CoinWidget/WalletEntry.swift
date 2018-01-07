@@ -9,25 +9,21 @@
 import Foundation
 
 class WalletEntry: NSObject, NSCoding {
-    let name: String
-    let id: String
-    let value: String
+    let cost: String
+    let amount: String
     
-    init(name: String, id: String, value: String) {
-        self.name = name
-        self.id = id
-        self.value = value
+    init(cost: String, amount: String) {
+        self.cost = cost
+        self.amount = amount
     }
     
     required init(coder decoder: NSCoder) {
-        self.name = decoder.decodeObject(forKey: "name") as? String ?? ""
-        self.id = decoder.decodeObject(forKey: "id") as? String ?? ""
-        self.value = decoder.decodeObject(forKey: "value") as? String ?? ""
+        self.cost = decoder.decodeObject(forKey: "cost") as? String ?? ""
+        self.amount = decoder.decodeObject(forKey: "amount") as? String ?? ""
     }
     
     func encode(with coder: NSCoder) {
-        coder.encode(name, forKey: "name")
-        coder.encode(id, forKey: "id")
-        coder.encode(value, forKey: "value")
+        coder.encode(cost, forKey: "cost")
+        coder.encode(amount, forKey: "amount")
     }
 }

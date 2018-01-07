@@ -69,7 +69,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // grab alert id
             let id = alerts[indexPath.row].id
             
-            let cell = tableView.cellForRow(at: indexPath) as! AlertTableViewCell
+            let cell = tableView.cellForRow(at: indexPath) as! AlertCell
             
             if Connectivity.isConnectedToInternet {
                 // delete from server
@@ -100,7 +100,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
-        let cell = tableView.dequeueReusableCell(withIdentifier: "alertCell", for: indexPath) as! AlertTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "alertCell", for: indexPath) as! AlertCell
         
         if let selectionIndexPath = self.alertTableView.indexPathForSelectedRow {
             self.alertTableView.deselectRow(at: selectionIndexPath, animated: true)

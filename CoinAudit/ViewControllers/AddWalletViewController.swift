@@ -11,34 +11,34 @@ import CoreData
 import SearchTextField
 import GoogleMobileAds
 
-class AddWalletViewController: UIViewController {
+class AddWalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var managedObjectContext: NSManagedObjectContext!
     @IBOutlet var nameTextField: SearchTextField!
-    @IBOutlet var valueTexField: UITextField!
-    @IBOutlet var saveButton: UIButton!
-    @IBOutlet var textLabels: [UILabel]!
-    @IBOutlet var investmentTextField: UITextField!
     @IBOutlet var adView: GADBannerView!
-    @IBOutlet var investmentTextLabel: UILabel!
+    @IBOutlet var walletTableView: UITableView!
+    @IBOutlet var textLabels: [UILabel]!
+    @IBOutlet var tableViewBottom: NSLayoutConstraint!
     
     var name: String = ""
     var value: String = ""
-    var start: String = ""
     var coinID: NSManagedObjectID!
     var new: Bool = false
-    var indexValue: Int = Int()
     var names: [SearchTextFieldItem] = []
+    var coins: [WalletEntry] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         holdWalletEntry = true
-        investmentTextField.isHidden = true
-        investmentTextLabel.isHidden = true
+        walletTableView.delegate = self
+        walletTableView.dataSource = self
+        walletTableView.allowsSelectionDuringEditing = true
         
-        valueTexField.addDoneButtonToKeyboard(myAction: #selector(self.valueTexField.resignFirstResponder))
-        investmentTextField.addDoneButtonToKeyboard(myAction: #selector(self.investmentTextField.resignFirstResponder))
+        // new entry button
+        let newButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(addCoin))
+        newButton.image = #imageLiteral(resourceName: "plus")
+        self.navigationItem.rightBarButtonItem = newButton
         
         // MARK: Ad View
         if showAd == "Yes" {
@@ -62,14 +62,19 @@ class AddWalletViewController: UIViewController {
         
         if name == "Unknown" {
             self.navigationController?.popViewController(animated: true)
-        } else if name != "" && value != "" {
+        } else if name != "" {
             new = false
             // pull coin index using provided name
-            saveButton.setTitle("Update", for: .normal)
             self.navigationItem.title = "\(name) Entry"
+            
+            // core data
+            let coin = managedObjectContext.object(with: coinID)
+            let data = coin.value(forKey: "data")
+            coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
+            
+            walletTableView.reloadData()
         } else {
             new = true
-            saveButton.setTitle("Add", for: .normal)
             self.navigationItem.title = "New Entry"
         }
         
@@ -79,49 +84,185 @@ class AddWalletViewController: UIViewController {
         }
         
         nameTextField.text = name
-        valueTexField.text = value
-        investmentTextField.text = start
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true
     }
     
+    // MARK: - Table view data source
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return coins.count
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Action to delete data
+            let cell = tableView.cellForRow(at: indexPath) as! WalletValueCell
+            var newValue: Double = 0.0
+            
+            // remove from coins
+            coins.remove(at: indexPath.row)
+            let coin = managedObjectContext.object(with: coinID)
+            
+            let data = NSKeyedArchiver.archivedData(withRootObject: coins)
+            
+            for item in coins {
+                let amount = Double(item.amount)!
+                newValue = newValue + amount
+            }
+            
+            value = "\(newValue)"
+            
+            if value == "" {
+                value = "0.0"
+            }
+            
+            coin.setValue(data, forKey: "data")
+            coin.setValue(value, forKey: "value")
+            
+            do {
+                // try to save to CoreData
+                try managedObjectContext.save()
+                // cleanup
+                print("Deleted \(cell.amountLabel.text!) coins from your wallet")
+                self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+                
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "walletValueCell", for: indexPath) as! WalletValueCell
+        // Configure the cell...
+        
+        // pull coin data from entries array
+        guard let coinData = entries.first(where: { $0.name == name }) else {
+            cell.amountLabel.text = "0.0"
+            cell.valueLabel.text = "0.00".formatUSD()
+            return cell
+        }
+        
+        let coin = coins[indexPath.row]
+        
+        cell.amountLabel.text = coin.amount
+        cell.valueLabel.text = "\(Double(coin.amount)! * Double(coinData.priceUSD)!)".formatUSD()
+        
+        // Theme Drawing code
+        switch themeValue {
+        case "dark":
+            cell.backgroundColor = UIColor.black
+            cell.valueLabel.textColor = UIColor.white
+            cell.amountLabel.textColor = UIColor.white
+        default:
+            cell.backgroundColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.black
+            cell.amountLabel.textColor = UIColor.black
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.walletTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         if showAd == "Yes" {
             adView.isHidden = false
+            tableViewBottom.constant = 50.0
         } else if showAd == "No" {
             adView.isHidden = true
+            tableViewBottom.constant = 0.0
         } else {
             adView.isHidden = false
+            tableViewBottom.constant = 50.0
         }
         
         updateTheme()
     }
     
-    @IBAction func addButton(_ sender: Any) {
-        name = nameTextField.text!
-        value = valueTexField.text!
-        start = investmentTextField.text!
+    @objc func addCoin() {
+        var cost = "0.00"
+        var amount = "0.0"
         
-        if new {
-            saveCoin(name: name, value: value, start: start)
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            updateCoin(name: name, value: value, start: start)
-            self.navigationController?.popViewController(animated: true)
+        let alert = UIAlertController(title: "Add Coin", message: "Please add the coin amount and price when purchased", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
+            let amountTextField = alert.textFields![0] as UITextField
+            let costTextField = alert.textFields![1] as UITextField
+            
+            cost = costTextField.text!
+            amount = amountTextField.text!
+            
+            self.coins.append(WalletEntry(cost: cost, amount: amount))
+            print("Coin Added. Amount: \(amount) @ \(cost) each")
+            self.saveButton()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            return
+        }
+        
+        alert.addTextField { (amountTextField) in
+            amountTextField.placeholder = "Amount 0.00"
+            amountTextField.keyboardType = .decimalPad
+            
+            let heightConstraint = NSLayoutConstraint(item: amountTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+            amountTextField.addConstraint(heightConstraint)
+        }
+        
+        alert.addTextField { (costTextField) in
+            costTextField.placeholder = "Cost: $0.00"
+            costTextField.keyboardType = .decimalPad
+            
+            let heightConstraint = NSLayoutConstraint(item: costTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
+            costTextField.addConstraint(heightConstraint)
+        }
+        
+        alert.addAction(save)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveButton() {
+        name = nameTextField.text!
+        if name != "" {
+            if new {
+                print("trying to save coin")
+                saveCoin(name: name)
+            } else {
+                print("trying to update coin")
+                updateCoin(name: name)
+            }
         }
     }
     
-    func updateCoin(name: String, value: String, start: String) {
-        var newValue: String = value
-        var newStart: String = start
+    func updateCoin(name: String) {
+        let data = NSKeyedArchiver.archivedData(withRootObject: coins)
+
+        var newValue: Double = 0.0
         
-        if value == "" {
-            newValue = "0.0"
+        for item in coins {
+            let amount = Double(item.amount)!
+            newValue = newValue + amount
         }
         
-        if start == "" {
-            newStart = "0.0"
+        value = "\(newValue)"
+        
+        if value == "" {
+            value = "0.0"
         }
         
         if names.contains(where: {$0.title == name}) {
@@ -132,12 +273,13 @@ class AddWalletViewController: UIViewController {
 
             coin.setValue(id, forKey: "id")
             coin.setValue(name, forKey: "name")
-            coin.setValue(newValue, forKey: "value")
-            coin.setValue(newStart, forKey: "startValue")
+            coin.setValue(value, forKey: "value")
+            coin.setValue(data, forKey: "data")
             
             do{
                 try managedObjectContext.save()
                 print("\(name) Coin Updated")
+                walletTableView.reloadData()
             }catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
             }
@@ -147,16 +289,20 @@ class AddWalletViewController: UIViewController {
         }
     }
     
-    func saveCoin(name: String, value: String, start: String) {
-        var newValue: String = value
-        var newStart: String = start
+    func saveCoin(name: String) {
+        let data = NSKeyedArchiver.archivedData(withRootObject: coins)
         
-        if value == "" {
-            newValue = "0.0"
+        var newValue: Double = 0.0
+        
+        for item in coins {
+            let amount = Double(item.amount)!
+            newValue = newValue + amount
         }
         
-        if start == "" {
-            newStart = "0.0"
+        value = "\(newValue)"
+        
+        if value == "" {
+            value = "0.0"
         }
         
         if names.contains(where: {$0.title == name}) {
@@ -168,12 +314,13 @@ class AddWalletViewController: UIViewController {
             
             walletData.setValue(id, forKey: "id")
             walletData.setValue(name, forKey: "name")
-            walletData.setValue(newValue, forKey: "value")
-            walletData.setValue(newStart, forKey: "startValue")
+            walletData.setValue(value, forKey: "value")
+            walletData.setValue(data, forKey: "data")
             
             do {
                 try managedObjectContext.save()
                 print("\(name) Coin Saved")
+                walletTableView.reloadData()
             } catch let error as NSError {
                 print("Coin: \(name) could not save")
                 print("Could not save \(error), \(error.userInfo)")
@@ -192,6 +339,7 @@ class AddWalletViewController: UIViewController {
             self.tabBarController?.tabBar.barTintColor = UIColor.black
             self.tabBarController?.tabBar.tintColor = UIColor.white
             self.view.backgroundColor = UIColor.black
+            self.walletTableView.backgroundColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
             self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -200,8 +348,6 @@ class AddWalletViewController: UIViewController {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             nameTextField.backgroundColor = UIColor.white
-            valueTexField.backgroundColor = UIColor.white
-            investmentTextField.backgroundColor = UIColor.white
             for item in textLabels {
                 item.textColor = UIColor.white
             }
@@ -209,6 +355,7 @@ class AddWalletViewController: UIViewController {
             self.tabBarController?.tabBar.barTintColor = UIColor.white
             self.tabBarController?.tabBar.tintColor = UIColor.black
             self.view.backgroundColor = UIColor.white
+            self.walletTableView.backgroundColor = UIColor.black
             self.navigationController?.navigationBar.tintColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
@@ -216,8 +363,6 @@ class AddWalletViewController: UIViewController {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             nameTextField.backgroundColor = UIColor.white
-            valueTexField.backgroundColor = UIColor.white
-            investmentTextField.backgroundColor = UIColor.white
             for item in textLabels {
                 item.textColor = UIColor.black
             }

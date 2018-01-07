@@ -1,5 +1,5 @@
 //
-//  AlertTableViewCell.swift
+//  WalletValueCell.swift
 //  CoinAudit
 //
 //  Created by Ty Schenk on 1/6/18.
@@ -8,17 +8,14 @@
 
 import UIKit
 
-class AlertTableViewCell: UITableViewCell {
+class WalletValueCell: UITableViewCell {
 
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var detailsLabel: UILabel!
-    
-    var action: AlertActions = .False
+    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var valueLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

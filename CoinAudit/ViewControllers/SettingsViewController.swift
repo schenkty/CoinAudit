@@ -128,7 +128,7 @@ class SettingsViewController: UIViewController {
        
         do {
             try managedObjectContext.save()
-            walletCoins.removeAll()
+            walletEntries.removeAll()
             print("All coins have been deleted from the wallet")
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")

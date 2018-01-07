@@ -22,8 +22,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var adView: GADBannerView!
     @IBOutlet var tableViewBottom: NSLayoutConstraint!
     @IBOutlet var walletTotalView: UIView!
-    @IBOutlet var leftbutton: UIButton!
-    @IBOutlet var rightButton: UIButton!
     @IBOutlet var pageControl: UIPageControl!
     
     var managedObjectContext = getContext()
@@ -32,9 +30,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        leftbutton.isHidden = true
-        rightButton.isHidden = true
         
         // MARK: Ad View
         if showAd == "Yes" {
@@ -52,7 +47,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry") ?? "WalletEntry1"
         
         walletTableView.delegate = self
-        self.walletTableView.allowsSelectionDuringEditing = true
+        walletTableView.dataSource = self
+        walletTableView.allowsSelectionDuringEditing = true
         
         // reload view observer
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
@@ -66,6 +62,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
+        
         if showAd == "Yes" {
             adView.isHidden = false
             tableViewBottom.constant = 50.0
@@ -80,8 +77,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let selectionIndexPath = self.walletTableView.indexPathForSelectedRow {
             self.walletTableView.deselectRow(at: selectionIndexPath, animated: true)
         }
-
-        calculateWallet()
         
         if holdWalletEntry {
             holdWalletEntry = false
@@ -105,7 +100,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if entries.count != 0 {
             updateList()
-            updateTheme()
         } else {
             print("No coin entries")
             showAlert(title: "No Coins Found", message: "Please refresh the Coins Feed", style: .alert)
@@ -122,8 +116,8 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if walletCoins.count != 0 && entries.count != 0 {
-            return walletCoins.count
+        if walletEntries.count != 0 && entries.count != 0 {
+            return walletEntries.count
         } else {
             return 0
         }
@@ -139,7 +133,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let cell = tableView.cellForRow(at: indexPath) as! WalletCell
         
             // get object using indexPath.row and delete
-            let coin = walletCoins[indexPath.row]
+            let coin = walletEntries[indexPath.row]
             managedObjectContext.delete(coin)
             
             do {
@@ -147,7 +141,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 try managedObjectContext.save()
                 
                 // remove from walletCoins
-                walletCoins.remove(at: indexPath.row)
+                walletEntries.remove(at: indexPath.row)
                 
                 // cleanup
                 print("Deleted \(cell.nameLabel.text!) from wallet")
@@ -166,22 +160,33 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Configure the cell...
         
         // pull coin data from entries array
-        guard let coin = entries.first(where: { $0.id == walletCoins[indexPath.row].value(forKey: "id") as! String }) else {
+        guard let coin = entries.first(where: { $0.id == walletEntries[indexPath.row].value(forKey: "id") as! String }) else {
             cell.nameLabel.text = "Unknown"
             cell.symbolLabel.text = "Unk"
             cell.valueLabel.text = "0.0"
             return cell
         }
         
+        var coins: [WalletEntry] = []
+        var amount = "0.0"
+        
         cell.nameLabel.text = coin.name
         cell.symbolLabel.text = coin.symbol
-        let value = walletCoins[indexPath.row].value(forKey: "value") as! String
         
         if walletValue == "volume" {
-            cell.valueLabel.text = "\(value)"
+            let data = walletEntries[indexPath.row].value(forKey: "data")
+            coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
+            
+            for item in coins {
+                amount = amount + item.amount
+            }
+            cell.valueLabel.text = "\(amount)"
         } else if walletValue == "value" {
+            let value = walletEntries[indexPath.row].value(forKey: "value") as! String
+            
             cell.valueLabel.text = "\(Double(value)! * Double(coin.priceUSD)!)".formatUSD()
         } else {
+            let value = walletEntries[indexPath.row].value(forKey: "value") as! String
             print("Wallet Format not found. Using Default Format")
             cell.valueLabel.text = "\(value)"
         }
@@ -207,13 +212,11 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "addWallet") as! AddWalletViewController
         // sort wallet
-        let coin = walletCoins[indexPath.row]
+        let coin = walletEntries[indexPath.row]
 
         controller.managedObjectContext = managedObjectContext
         controller.coinID = coin.objectID
         controller.name = coin.value(forKey: "name") as! String
-        controller.value = coin.value(forKey: "value") as! String
-        controller.start = coin.value(forKey: "startValue") as! String
         
         self.show(controller, sender: self)
     }
@@ -227,12 +230,11 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func calculateWallet() {
-        updateTheme()
         // zero out totals
         walletTotal = 0.0
         bitcoinTotal = 0.0
         
-        for localCoin in walletCoins {
+        for localCoin in walletEntries {
             guard let id = localCoin.value(forKey: "id") else { return }
             guard let coin = entries.first(where: {$0.id == "\(id)"}) else { return }
             guard let value = Double(localCoin.value(forKey: "value") as! String) else { return }
@@ -262,11 +264,11 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let fetchedCoin = try managedObjectContext.fetch(fetchRequest)
             
             // reset wallet array
-            walletCoins.removeAll()
+            walletEntries.removeAll()
             
             // add newly fetched coins to wallet
             for object in fetchedCoin {
-                walletCoins.append(object as! NSManagedObject)
+                walletEntries.append(object as! NSManagedObject)
             }
             self.walletTableView.reloadData()
             calculateWallet()
@@ -373,8 +375,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             walletValueTotalLabel.textColor = UIColor.white
             self.walletTableView.backgroundColor = UIColor.black
             walletTotalView.backgroundColor = UIColor.black
-            leftbutton.tintColor = UIColor.white
-            rightButton.tintColor = UIColor.white
         default:
             walletTotalView.backgroundColor = UIColor.white
             self.walletTableView.backgroundColor = UIColor.white
@@ -387,8 +387,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             walletValueTotalLabel.textColor = UIColor.black
-            leftbutton.tintColor = UIColor.black
-            rightButton.tintColor = UIColor.black
         }
     }
 }
