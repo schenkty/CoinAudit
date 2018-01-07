@@ -10,16 +10,13 @@ import UIKit
 import NotificationCenter
 import Alamofire
 import SwiftSpinner
-import GoogleMobileAds
 import OneSignal
 
-class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADInterstitialDelegate {
+class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
     
     let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
     var searchActive: Bool = false
-    // The interstitial ad.
-    var interstitial: GADInterstitial!
     var alertsLoaded: Bool = false
     var entriesLoaded: Bool = false
     
@@ -27,15 +24,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: Ad View
-        if showAd == "Yes" {
-            interstitial = createAndLoadInterstitial()
-            interstitial.delegate = self
-        } else if showAd == "No" {
-        } else {
-            interstitial = createAndLoadInterstitial()
-            interstitial.delegate = self
-        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
@@ -56,29 +44,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         updateTheme()
         // Update Coin Data
         self.updateList()
-    }
-    
-    func showScreenAd() {
-        if fullAdCount == 0{
-            if interstitial.isReady {
-                interstitial.present(fromRootViewController: self)
-                fullAdCount = 1
-            } else {
-                print("Ad wasn't ready")
-            }
-        }
-    }
-    
-    func createAndLoadInterstitial() -> GADInterstitial {
-        // MARK: Release ID
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-8616771915576403/1551329017")
-        interstitial.delegate = self
-        interstitial.load(GADRequest())
-        return interstitial
-    }
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
     }
     
     // MARK: - Table view data source
@@ -198,18 +163,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
             self.alertsLoaded = true
             if self.alertsLoaded && self.entriesLoaded {
                 SwiftSpinner.hide()
-            }
-        }
-        
-        let when = DispatchTime.now() + 3 // number of seconds
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            // MARK: Ad View
-            if showAd == "Yes" {
-                self.showScreenAd()
-            } else if showAd == "No" {
-                print("Ad Unlocked")
-            } else {
-                self.showScreenAd()
             }
         }
     }

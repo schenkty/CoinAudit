@@ -48,11 +48,6 @@ func saveWalletSettings() {
     defaults.set(walletValue, forKey: "CoinAuditWalletEntry")
 }
 
-func saveAdsSettings() {
-    defaults.set(favorites, forKey: "CoinAuditAds")
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-}
-
 // MARK: Check Network
 class Connectivity {
     class var isConnectedToInternet:Bool {

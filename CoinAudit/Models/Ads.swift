@@ -8,14 +8,18 @@
 
 import Foundation
 
-// MARK: Remove Force String before Release
-// Yes = Show ads
-// No = Hide ads
-var showAd: String = "No" //defaults.object(forKey: "CoinAuditAds") as? String ?? String()
-var fullAdCount: Int = 0
-
 // AdMob App ID
 struct GoogleAd {
     // release ID
     static let appID: String = "ca-app-pub-8616771915576403/4256958375"
+}
+
+// MARK: Remove Force String before Release
+// Yes = Show ads
+// No = Hide ads
+var showAd: String = "Yes" //defaults.string(forKey: "CoinAuditAds") ?? "Yes"
+
+func saveAdsSettings() {
+    defaults.set(showAd, forKey: "CoinAuditAds")
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
 }
