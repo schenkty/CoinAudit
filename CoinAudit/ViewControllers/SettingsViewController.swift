@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import GoogleMobileAds
+import Alamofire
 
 class SettingsViewController: UIViewController {
 
@@ -113,29 +114,42 @@ class SettingsViewController: UIViewController {
     @IBAction func clearData(_ sender: Any) {
         favorites.removeAll()
         var allCoins : [NSManagedObject] = []
+        let allWallets: [String] = ["WalletEntry1", "WalletEntry2", "WalletEntry3", "WalletEntry4", "WalletEntry5"]
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry")
-        
-        do {
-            try allCoins = managedObjectContext.fetch(fetchRequest) as! [WalletEntry5]
-        } catch {
-            print("error. could not delete")
-        }
-        
-        for coin in allCoins {
-            managedObjectContext.delete(coin)
-        }
-       
-        do {
-            try managedObjectContext.save()
-            walletEntries.removeAll()
-            print("All coins have been deleted from the wallet")
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        } catch {
+        for wallet in allWallets {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry1")
             
+            do {
+                try allCoins = managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+            } catch {
+                print("error. could not delete")
+            }
+            
+            for coin in allCoins {
+                managedObjectContext.delete(coin)
+            }
+            
+            do {
+                try managedObjectContext.save()
+                walletEntries.removeAll()
+                print("All coins have been deleted from the \(wallet)")
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+                
+            }
         }
         
+        for alert in alerts {
+            if Connectivity.isConnectedToInternet {
+                // delete from server
+                Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/delete.php?id=\(alert.id)")
+                print("Alert \(alert.id) deleted from server")
+            }
+        }
+        
+        // delete all from alerts array
+        alerts.removeAll()
         saveFavoriteSettings()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         showAlert(title: "Data removed")

@@ -286,10 +286,8 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         name = nameTextField.text!
         if name != "" {
             if new {
-                print("trying to save coin")
                 saveCoin(name: name)
             } else {
-                print("trying to update coin")
                 updateCoin(name: name)
             }
         }
@@ -365,16 +363,13 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             
             do {
                 try managedObjectContext.save()
-                print("\(name) Coin Saved")
                 walletTableView.reloadData()
             } catch let error as NSError {
-                print("Coin: \(name) could not save")
                 print("Could not save \(error), \(error.userInfo)")
             } catch {
                 
             }
         } else {
-            print("Coin: \(name) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
         }
     }

@@ -149,16 +149,13 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
             
                 // add to server
                 Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/add.php?id=\(id)&coin=\(coin)&symbol=\(symbol)&below=\(below)&below_currency=\(belowCurrency)&above=\(above)&above_currency=\(aboveCurrency)")
-                
-                print("Added: \(nameTextField.text!) to alerts")
-                
+    
                 newAlertData = true
                 self.navigationController?.popViewController(animated: true)
             } else {
                 showAlert(title: "No internet connection. Alert could not be added")
             }
         } else {
-            print("Coin: \(nameTextField.text!) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
         }
     }
@@ -217,7 +214,6 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 // add to server
                 Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/update.php?id=\(id)&coin=\(coin)&symbol=\(symbol)&below=\(below)&below_currency=\(belowCurrency)&above=\(above)&above_currency=\(aboveCurrency)")
                 
-                print("Updated: \(nameTextField.text!) to alerts")
                 newAlertData = false
                 let action = alerts[index].action
                 alerts[index] = AlertEntry(id: id, coin: coin, symbol: symbol, below: below, belowCurrency: belowCurrency, above: above, aboveCurrency: aboveCurrency, action: action)
@@ -226,7 +222,6 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 showAlert(title: "No internet connection. Alert could not be added")
             }
         } else {
-            print("Coin: \(nameTextField.text!) is not Valid")
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
         }
     }

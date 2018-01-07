@@ -101,7 +101,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if entries.count != 0 {
             updateList()
         } else {
-            print("No coin entries")
             showAlert(title: "No Coins Found", message: "Please refresh the Coins Feed", style: .alert)
         }
     }

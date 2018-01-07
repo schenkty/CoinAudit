@@ -89,8 +89,6 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 // remove from table view
                 self.alertTableView.deleteRows(at: [indexPath], with: .automatic)
-            
-                print("Deleted: \(cell.nameLabel.text!) from alerts")
             } else {
                 showAlert(title: "No internet connection. Delete Failed")
             }
@@ -122,8 +120,6 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let alert = alerts[indexPath.row]
         
         cell.nameLabel.text = alert.coin
-        
-        print("alert at id: \(alerts[indexPath.row].id)")
         
         switch alert.action {
         case .Above:
