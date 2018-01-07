@@ -123,14 +123,31 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         switch alert.action {
         case .Above:
-            cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+            if alert.aboveCurrency == "USD" {
+                cell.aboveLabel.text = "Value is above: $\(alert.above) \(alert.aboveCurrency)"
+            } else {
+                cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+            }
             cell.belowLabel.isHidden = true
         case .Below:
-            cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+            if alert.belowCurrency == "USD" {
+                cell.belowLabel.text = "Value is below: $\(alert.below) \(alert.belowCurrency)"
+            } else {
+                cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+            }
             cell.aboveLabel.isHidden = true
         case .Both:
-            cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
-            cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+            if alert.aboveCurrency == "USD" {
+                cell.aboveLabel.text = "Value is above: $\(alert.above) \(alert.aboveCurrency)"
+            } else {
+                cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+            }
+            
+            if alert.belowCurrency == "USD" {
+                cell.belowLabel.text = "Value is below: $\(alert.below) \(alert.belowCurrency)"
+            } else {
+                cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+            }
         default:
             cell.aboveLabel.text = "Alert failed to load"
             cell.belowLabel.isHidden = true

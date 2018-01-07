@@ -149,7 +149,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
             
                 // add to server
                 Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/add.php?id=\(id)&coin=\(coin)&symbol=\(symbol)&below=\(below)&below_currency=\(belowCurrency)&above=\(above)&above_currency=\(aboveCurrency)")
-    
+                
                 newAlertData = true
                 self.navigationController?.popViewController(animated: true)
             } else {
@@ -181,7 +181,10 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         if names.contains(where: {$0.title == nameTextField.text!}) {
             if Connectivity.isConnectedToInternet {
                 // pull coin data from entries array using provided name
-                guard let coinData = entries.first(where: {$0.name == nameTextField.text!}) else { return }
+                guard let coinData = entries.first(where: {$0.name == nameTextField.text!}) else {
+                    return
+                }
+                
                 symbol = coinData.symbol
                 coin = coinData.name
                 
@@ -227,7 +230,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func addButton(_ sender: UIButton) {
-        if new {
+        if new == true {
             submitAlert()
         } else {
             editAlert()
