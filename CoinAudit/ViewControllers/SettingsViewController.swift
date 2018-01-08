@@ -19,6 +19,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var widgetSelector: UISegmentedControl!
     @IBOutlet var themeSelector: UISegmentedControl!
     @IBOutlet var widgetPercentSelector: UISegmentedControl!
+    @IBOutlet var feedFormatSelector: UISegmentedControl!
     @IBOutlet var walletModeView: UIStackView!
     @IBOutlet var widgetModeView: UIStackView!
     @IBOutlet var textLabels: [UILabel]!
@@ -93,6 +94,14 @@ class SettingsViewController: UIViewController {
             themeSelector.selectedSegmentIndex = 1
         } else {
             themeSelector.selectedSegmentIndex = 0
+        }
+        
+        if priceFormat == "USD" {
+            feedFormatSelector.selectedSegmentIndex = 0
+        } else if priceFormat == "BTC" {
+            feedFormatSelector.selectedSegmentIndex = 1
+        } else {
+            feedFormatSelector.selectedSegmentIndex = 0
         }
         
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
@@ -205,6 +214,15 @@ class SettingsViewController: UIViewController {
         saveWidgetSettings()
     }
     
+    @IBAction func feedFormatMode(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            priceFormat = "USD"
+        } else {
+            priceFormat = "BTC"
+        }
+        savePriceSettings()
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         switch themeValue {
         case "dark":
@@ -231,6 +249,7 @@ class SettingsViewController: UIViewController {
             self.themeSelector.tintColor = UIColor.white
             self.widgetPercentSelector.tintColor = UIColor.white
             self.walletSelector.tintColor = UIColor.white
+            self.feedFormatSelector.tintColor = UIColor.white
             for item in self.textLabels {
                 item.textColor = UIColor.white
             }
@@ -248,6 +267,7 @@ class SettingsViewController: UIViewController {
             self.themeSelector.tintColor = UIColor(hexString: "017AFF")
             self.widgetPercentSelector.tintColor = UIColor(hexString: "017AFF")
             self.walletSelector.tintColor = UIColor(hexString: "017AFF")
+            self.feedFormatSelector.tintColor = UIColor(hexString: "017AFF")
             for item in self.textLabels {
                 item.textColor = UIColor.black
             }

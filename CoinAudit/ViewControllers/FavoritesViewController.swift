@@ -109,8 +109,14 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
         cell.nameLabel.text = coin.name
         cell.symbolLabel.text = coin.symbol
-        cell.valueLabel.text = coin.priceUSD.formatUSD()
+        
         cell.rankLabel.text = "\(coin.rank)."
+        
+        if priceFormat == "USD" {
+            cell.valueLabel.text = coin.priceUSD.formatUSD()
+        } else {
+            cell.valueLabel.text = "\(coin.priceBTC) BTC"
+        }
         
         // Theme Drawing code
         switch themeValue {

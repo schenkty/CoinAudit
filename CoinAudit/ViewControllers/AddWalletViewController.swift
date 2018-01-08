@@ -19,6 +19,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var walletTableView: UITableView!
     @IBOutlet var textLabels: [UILabel]!
     @IBOutlet var tableViewBottom: NSLayoutConstraint!
+    @IBOutlet var valueLabel: UILabel!
     
     var name: String = ""
     var value: String = ""
@@ -68,6 +69,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
             
             walletTableView.reloadData()
+            calcValue()
         } else {
             new = true
             self.navigationItem.title = "New Entry"
@@ -128,6 +130,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 try managedObjectContext.save()
                 // cleanup
                 print("Deleted \(cell.amountLabel.text!) coins from your wallet")
+                calcValue()
                 self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
@@ -151,18 +154,67 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         let coin = coins[indexPath.row]
         
         cell.amountLabel.text = "\(coinData.name): \(coin.amount)"
-        let tempValue = "\(Double(coin.amount)! * Double(coinData.priceUSD)!)".formatUSD()
-        cell.valueLabel.text = "Cost: \(tempValue)"
+        
+        let coinCost: Double = (Double(coin.amount)! * Double(coin.cost)!)
+        let newValue: Double = (Double(coin.amount)! * Double(coinData.priceUSD)!)
+        
+        let total = (newValue - coinCost)
+        let entryValue  = "\(newValue)".formatUSD()
+        
+        if total > 0 {
+            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            switch themeValue {
+            case "dark":
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
+            default:
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            }
+            // Profit or gain
+            // Gain % = (gain / Cost Price × 100)%
+            let gain = (newValue) - (coinCost)
+            let gainPercent = "\(gain / newValue * 100)".formatDecimal()
+            
+            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
+            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
+            let attributedString2 = NSMutableAttributedString(string:"+\(gainPercent)%", attributes:attrs2)
+            attributedString1.append(attributedString2)
+            cell.valueLabel.attributedText = attributedString1
+        } else if total < 0 {
+            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            switch themeValue {
+            case "dark":
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
+            default:
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            }
+            // Loss
+            // Loss % = (loss/ Cost Price × 100)%
+            let loss = (coinCost) - (newValue)
+            let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
+
+            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
+            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
+            let attributedString2 = NSMutableAttributedString(string:"-\(lossPercent)%", attributes:attrs2)
+            attributedString1.append(attributedString2)
+            cell.valueLabel.attributedText = attributedString1
+        } else {
+            // Theme Drawing code
+            switch themeValue {
+            case "dark":
+                cell.valueLabel.textColor = UIColor.white
+            default:
+                cell.valueLabel.textColor = UIColor.black
+            }
+            cell.valueLabel.text = "Value: \(entryValue)"
+        }
         
         // Theme Drawing code
         switch themeValue {
         case "dark":
             cell.backgroundColor = UIColor.black
-            cell.valueLabel.textColor = UIColor.white
             cell.amountLabel.textColor = UIColor.white
         default:
             cell.backgroundColor = UIColor.white
-            cell.valueLabel.textColor = UIColor.black
             cell.amountLabel.textColor = UIColor.black
         }
         
@@ -224,6 +276,8 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         if showAd == "Yes" {
             adView.isHidden = false
             tableViewBottom.constant = 50.0
@@ -323,6 +377,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             do{
                 try managedObjectContext.save()
                 print("\(name) Coin Updated")
+                calcValue()
                 walletTableView.reloadData()
             }catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
@@ -363,6 +418,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             
             do {
                 try managedObjectContext.save()
+                calcValue()
                 walletTableView.reloadData()
             } catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
@@ -371,6 +427,74 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         } else {
             showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+        }
+    }
+    
+    func calcValue() {
+        // pull coin data from entries array
+        guard let coinData = entries.first(where: { $0.name == name }) else { return }
+        var coinCost: Double = 0.0
+        var newValue: Double = 0.0
+        
+        for item in coins {
+            let amount = Double(item.amount)!
+            let cost = Double(item.cost)!
+        
+            let calcCost = (amount * cost)
+            let calcValue = (amount * Double(coinData.priceUSD)!)
+            
+            newValue = newValue + calcValue
+            coinCost = coinCost + calcCost
+        }
+
+        
+        let total = (newValue - coinCost)
+        let entryValue  = "\(newValue)".formatUSD()
+        
+        if total > 0 {
+            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            switch themeValue {
+            case "dark":
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
+            default:
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            }
+            // Profit or gain
+            // Gain % = (gain / Cost Price × 100)%
+            let gain = (newValue) - (coinCost)
+            let gainPercent = "\(gain / newValue * 100)".formatDecimal()
+
+            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
+            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
+            let attributedString2 = NSMutableAttributedString(string:"+ \(gainPercent)%", attributes:attrs2)
+            attributedString1.append(attributedString2)
+            valueLabel.attributedText = attributedString1
+        } else if total < 0 {
+            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            switch themeValue {
+            case "dark":
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
+            default:
+                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
+            }
+            // Loss
+            // Loss % = (loss/ Cost Price × 100)%
+            let loss = (coinCost) - (newValue)
+            let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
+
+            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
+            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
+            let attributedString2 = NSMutableAttributedString(string:"- \(lossPercent)%", attributes:attrs2)
+            attributedString1.append(attributedString2)
+            valueLabel.attributedText = attributedString1
+        } else {
+            valueLabel.text = "Value: \(entryValue)"
+            switch themeValue {
+            case "dark":
+                valueLabel.textColor = UIColor.white
+            default:
+                valueLabel.textColor = UIColor.black
+            }
         }
     }
     

@@ -27,6 +27,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             themeValue = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
             favorites = defaults.object(forKey: "CoinAuditFavorites") as? [String] ?? [String]()
             widgetPercent = defaults.object(forKey: "CoinAuditWidgetPercent") as? String ?? String()
+            priceFormat = defaults.object(forKey: "CoinAuditPriceFormat") as? String ?? "USD"
             
             if favorites.count == 0 {
                 print("No Favorites Found")
@@ -123,7 +124,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 if let coin = CoinEntry.init(json: coinJSON) {
                     cell.nameLabel.text = coin.name
                     cell.symbolLabel.text = coin.symbol
-                    cell.valueLabel.text = coin.priceUSD.formatUSD()
+                    
+                    if priceFormat == "USD" {
+                        cell.valueLabel.text = coin.priceUSD.formatUSD()
+                    } else {
+                        cell.valueLabel.text = "\(coin.priceBTC) BTC"
+                    }
                     
                     // handle for 1 hour and 24 hour percent modes
                     if widgetPercent == "1h" {

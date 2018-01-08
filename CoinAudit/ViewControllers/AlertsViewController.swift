@@ -11,11 +11,14 @@ import Alamofire
 import SwiftSpinner
 import NotificationCenter
 import UserNotifications
+import GoogleMobileAds
 
 class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var alertTableView: UITableView!
     @IBOutlet var alertsFailedLabel: UILabel!
+    @IBOutlet var adView: GADBannerView!
+    @IBOutlet var tableViewBottom: NSLayoutConstraint!
     
     var show = false
     let center = UNUserNotificationCenter.current()
@@ -27,7 +30,19 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.alertTableView.rowHeight = UITableViewAutomaticDimension
         self.alertTableView.estimatedRowHeight = 44.0
         
-        // Do any additional setup after loading the view.
+        // MARK: Ad View
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
+        
+        // check for notificationID
         if notificationID != "" {
             show = true
         } else {
@@ -47,6 +62,17 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
+        
+        if showAd == "Yes" {
+            adView.isHidden = false
+            tableViewBottom.constant = 50.0
+        } else if showAd == "No" {
+            adView.isHidden = true
+            tableViewBottom.constant = 0.0
+        } else {
+            adView.isHidden = false
+            tableViewBottom.constant = 50.0
+        }
         
         if newAlertData == true {
             updateData()

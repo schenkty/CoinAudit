@@ -18,6 +18,7 @@ var widgetValue: String = ""
 var walletValue: String = ""
 var widgetPercent: String = ""
 var themeValue: String = ""
+var priceFormat: String = ""
 
 // MARK: Check Network
 class Connectivity {

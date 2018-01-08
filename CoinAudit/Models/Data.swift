@@ -23,6 +23,7 @@ var walletEntryValue: String = "WalletEntry1"
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletEntries: [NSManagedObject] = []
 var notificationID: String? = defaults.object(forKey: "CoinAuditNotificationID") as? String ?? String()
+var priceFormat: String? = defaults.object(forKey: "CoinAuditPriceFormat") as? String ?? "USD"
 
 func saveFavoriteSettings() {
     defaults.set(favorites, forKey: "CoinAuditFavorites")
@@ -46,6 +47,10 @@ func saveNotificationSettings() {
 func saveWalletSettings() {
     defaults.set(walletValue, forKey: "CoinAuditWalletMode")
     defaults.set(walletValue, forKey: "CoinAuditWalletEntry")
+}
+
+func savePriceSettings() {
+    defaults.set(priceFormat, forKey: "CoinAuditPriceFormat")
 }
 
 // MARK: Check Network

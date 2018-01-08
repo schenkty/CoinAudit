@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SearchTextField
+import GoogleMobileAds
 
 class AddAlertViewController: UIViewController, UITextFieldDelegate{
     
@@ -19,6 +20,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var belowSelector: UISegmentedControl!
     @IBOutlet var textLabels: [UILabel]!
     @IBOutlet var submitButton: UIButton!
+    @IBOutlet var adView: GADBannerView!
     
     var names: [SearchTextFieldItem] = []
     var new: Bool = true
@@ -27,6 +29,18 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // MARK: Ad View
+        if showAd == "Yes" {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        } else if showAd == "No" {
+        } else {
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
+        }
+        
         // setup names for text field
         for item in entries {
             let name = SearchTextFieldItem(title: item.name)
@@ -42,7 +56,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         nameTextField.addDoneButtonToKeyboard(myAction:  #selector(self.nameTextField.resignFirstResponder))
         belowTextField.addDoneButtonToKeyboard(myAction:  #selector(self.belowTextField.resignFirstResponder))
         aboveTextField.addDoneButtonToKeyboard(myAction:  #selector(self.aboveTextField.resignFirstResponder))
-        
+        belowTextField.keyboardType = .decimalPad
         
         if new {
             self.navigationItem.title = "New Alert"
@@ -94,6 +108,14 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
+        
+        if showAd == "Yes" {
+            adView.isHidden = false
+        } else if showAd == "No" {
+            adView.isHidden = true
+        } else {
+            adView.isHidden = false
+        }
     }
 
     func submitAlert() {
