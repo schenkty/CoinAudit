@@ -171,7 +171,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var coins: [WalletEntry] = []
         let data = walletEntries[indexPath.row].value(forKey: "data")
         coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
-        var amount = 0.0
         
         cell.nameLabel.text = coinData.name
         cell.symbolLabel.text = coinData.symbol
@@ -180,21 +179,37 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // pull coin data from entries array
         var coinCost: Double = 0.0
         var newValue: Double = 0.0
-        
-        for item in coins {
-            let amount = Double(item.amount)!
-            let cost = Double(item.cost)!
-            
-            let calcCost = (amount * cost)
-            let calcValue = (amount * Double(coinData.priceUSD)!)
-            
-            newValue = newValue + calcValue
-            coinCost = coinCost + calcCost
+        var amount = 0.0
+        var entryValue  = ""
+    
+        if priceFormat == "USD" {
+            for item in coins {
+                let amount = Double(item.amount)!
+                let cost = Double(item.cost)!
+                
+                let calcCost = (amount * cost)
+                let calcValue = (amount * Double(coinData.priceUSD)!)
+                
+                newValue = newValue + calcValue
+                coinCost = coinCost + calcCost
+            }
+            entryValue = "\(newValue)".formatUSD()
+        } else {
+            for item in coins {
+                let amount = Double(item.amount)!
+                let cost = Double(item.cost)!
+                
+                let calcCost = (amount * cost)
+                let calcValue = (amount * Double(coinData.priceBTC)!)
+                
+                newValue = newValue + calcValue
+                coinCost = coinCost + calcCost
+            }
+            entryValue = "\(newValue) BTC"
         }
         
-        
         let total = (newValue - coinCost)
-        let entryValue  = "\(newValue)".formatUSD()
+
         
         if walletValue == "volume" {
             for item in coins {
