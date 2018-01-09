@@ -14,7 +14,7 @@ let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 
 var favorites: [String] = []
 var walletCoins: [NSManagedObject] = []
-var widgetValue: String = ""
+//var widgetValue: String = ""
 var walletValue: String = ""
 var widgetPercent: String = ""
 var themeValue: String = ""

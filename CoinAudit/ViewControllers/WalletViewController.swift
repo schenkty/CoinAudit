@@ -103,7 +103,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             updateList()
         } else {
             walletPercent.isHidden = true
-            showAlert(title: "No Coins Found", message: "Please refresh the Coins Feed", style: .alert)
+            showAlert(title: "Coin Data Not  Found", message: "Please check your internet connection", style: .alert)
         }
     }
     
@@ -177,10 +177,24 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         // pull coin data from entries array
+        var percentCost: Double = 0.0
+        var percentValue: Double = 0.0
         var coinCost: Double = 0.0
-        var newValue: Double = 0.0
+        var coinValue: Double = 0.0
+        
         var amount = 0.0
         var entryValue  = ""
+        
+        for item in coins {
+            let amount = Double(item.amount)!
+            let cost = Double(item.cost)!
+            
+            let calcCost = (amount * cost)
+            let calcValue = (amount * Double(coinData.priceUSD)!)
+            
+            percentValue = percentValue + calcValue
+            percentCost = percentCost + calcCost
+        }
     
         if priceFormat == "USD" {
             for item in coins {
@@ -190,10 +204,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let calcCost = (amount * cost)
                 let calcValue = (amount * Double(coinData.priceUSD)!)
                 
-                newValue = newValue + calcValue
+                coinValue = coinValue + calcValue
                 coinCost = coinCost + calcCost
             }
-            entryValue = "\(newValue)".formatUSD()
+            entryValue = "\(coinValue)".formatUSD()
         } else {
             for item in coins {
                 let amount = Double(item.amount)!
@@ -202,157 +216,87 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let calcCost = (amount * cost)
                 let calcValue = (amount * Double(coinData.priceBTC)!)
                 
-                newValue = newValue + calcValue
+                coinValue = coinValue + calcValue
                 coinCost = coinCost + calcCost
             }
-            entryValue = "\(newValue) BTC"
+            entryValue = "\(coinValue) BTC"
         }
         
-        let total = (newValue - coinCost)
+        let total = (percentValue - percentCost)
 
-        
         if walletValue == "volume" {
             for item in coins {
                 amount = amount + Double(item.amount)!
             }
             
             if total > 0 {
-                var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                switch themeValue {
-                case "dark":
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-                default:
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                }
                 // Profit or gain
                 // Gain % = (gain / Cost Price × 100)%
-                let gain = (newValue) - (coinCost)
-                let gainPercent = "\(gain / newValue * 100)".formatDecimal()
-                
-                let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
-                let attributedString1 = NSMutableAttributedString(string:"\(amount)      ", attributes:attrs1)
-                let attributedString2 = NSMutableAttributedString(string:"+\(gainPercent)%", attributes:attrs2)
-                attributedString1.append(attributedString2)
-                cell.valueLabel.attributedText = attributedString1
+                let gain = (percentValue) - (percentCost)
+                let gainPercent = "\(gain / percentValue * 100)".formatDecimal()
+        
+                cell.valueLabel.text = "\(amount)"
+                cell.percentLabel.text = "+\(gainPercent)%"
+                cell.percentLabel.textColor = UIColor(hexString: "63DB37")
             } else if total < 0 {
-                var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                switch themeValue {
-                case "dark":
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-                default:
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                }
                 // Loss
                 // Loss % = (loss/ Cost Price × 100)%
-                let loss = (coinCost) - (newValue)
-                let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
-
-                let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
-                let attributedString1 = NSMutableAttributedString(string:"\(amount)      ", attributes:attrs1)
-                let attributedString2 = NSMutableAttributedString(string:"-\(lossPercent)%", attributes:attrs2)
-                attributedString1.append(attributedString2)
-                cell.valueLabel.attributedText = attributedString1
+                let loss = (coinCost) - (percentValue)
+                let lossPercent = "\(loss / percentCost * 100)".formatDecimal()
+                
+                cell.valueLabel.text = "\(amount)"
+                cell.percentLabel.text = "-\(lossPercent)%"
+                cell.percentLabel.textColor = UIColor(hexString: "FF483E")
             } else {
                 cell.valueLabel.text = "Volume: \(amount)"
-                switch themeValue {
-                case "dark":
-                    cell.valueLabel.textColor = UIColor.white
-                default:
-                    cell.valueLabel.textColor = UIColor.black
-                }
+                cell.percentLabel.text = ""
             }
         } else if walletValue == "value" {
             if total > 0 {
-                var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                switch themeValue {
-                case "dark":
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-                default:
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                }
                 // Profit or gain
                 // Gain % = (gain / Cost Price × 100)%
-                let gain = (newValue) - (coinCost)
-                let gainPercent = "\(gain / newValue * 100)".formatDecimal()
+                let gain = (percentValue) - (percentCost)
+                let gainPercent = "\(gain / percentValue * 100)".formatDecimal()
 
-                let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
-                let attributedString1 = NSMutableAttributedString(string:"\(entryValue)      ", attributes:attrs1)
-                let attributedString2 = NSMutableAttributedString(string:"+\(gainPercent)%", attributes:attrs2)
-                attributedString1.append(attributedString2)
-                cell.valueLabel.attributedText = attributedString1
+                cell.valueLabel.text = "\(entryValue)"
+                cell.percentLabel.text = "+\(gainPercent)%"
+                cell.percentLabel.textColor = UIColor(hexString: "63DB37")
             } else if total < 0 {
-                var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                switch themeValue {
-                case "dark":
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-                default:
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                }
                 // Loss
                 // Loss % = (loss/ Cost Price × 100)%
-                let loss = (coinCost) - (newValue)
-                let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
+                let loss = (percentCost) - (percentValue)
+                let lossPercent = "\(loss / percentCost * 100)".formatDecimal()
 
-                let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
-                let attributedString1 = NSMutableAttributedString(string:"\(entryValue)      ", attributes:attrs1)
-                let attributedString2 = NSMutableAttributedString(string:"-\(lossPercent)%", attributes:attrs2)
-                attributedString1.append(attributedString2)
-                cell.valueLabel.attributedText = attributedString1
+                cell.valueLabel.text = "\(entryValue)"
+                cell.percentLabel.text = "-\(lossPercent)%"
+                cell.percentLabel.textColor = UIColor(hexString: "FF483E")
             } else {
-                cell.valueLabel.text = "Value: \(entryValue)"
-                switch themeValue {
-                case "dark":
-                    cell.valueLabel.textColor = UIColor.white
-                default:
-                    cell.valueLabel.textColor = UIColor.black
-                }
+                cell.valueLabel.text = "Value: \(coinValue)"
+                cell.percentLabel.text = ""
             }
         } else {
             print("Wallet Format not found. Using Default Format")
             if total > 0 {
-                var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                switch themeValue {
-                case "dark":
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-                default:
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                }
                 // Profit or gain
                 // Gain % = (gain / Cost Price × 100)%
-                let gain = (newValue) - (coinCost)
-                let gainPercent = "\(gain / newValue * 100)".formatDecimal()
+                let gain = (percentValue) - (percentCost)
+                let gainPercent = "\(gain / percentValue * 100)".formatDecimal()
 
-                let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
-                let attributedString1 = NSMutableAttributedString(string:"\(entryValue)      ", attributes:attrs1)
-                let attributedString2 = NSMutableAttributedString(string:"+\(gainPercent)%", attributes:attrs2)
-                attributedString1.append(attributedString2)
-                cell.valueLabel.attributedText = attributedString1
+                cell.valueLabel.text = "\(entryValue)"
+                cell.percentLabel.text = "+\(gainPercent)%"
+                cell.percentLabel.textColor = UIColor(hexString: "63DB37")
             } else if total < 0 {
-                var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                switch themeValue {
-                case "dark":
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-                default:
-                    attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-                }
                 // Loss
                 // Loss % = (loss/ Cost Price × 100)%
-                let loss = (coinCost) - (newValue)
-                let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
+                let loss = (percentCost) - (percentValue)
+                let lossPercent = "\(loss / percentCost * 100)".formatDecimal()
                 
-                let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
-                let attributedString1 = NSMutableAttributedString(string:"\(entryValue)      ", attributes:attrs1)
-                let attributedString2 = NSMutableAttributedString(string:"-\(lossPercent)%", attributes:attrs2)
-                attributedString1.append(attributedString2)
-                cell.valueLabel.attributedText = attributedString1
+                cell.valueLabel.text = "\(entryValue)"
+                cell.percentLabel.text = "-\(lossPercent)%"
+                cell.percentLabel.textColor = UIColor(hexString: "FF483E")
             } else {
-                cell.valueLabel.text = "Value: \(entryValue)"
-                switch themeValue {
-                case "dark":
-                    cell.valueLabel.textColor = UIColor.white
-                default:
-                    cell.valueLabel.textColor = UIColor.black
-                }
+                cell.valueLabel.text = "Value: \(coinValue)"
+                cell.percentLabel.text = ""
             }
         }
         
@@ -362,10 +306,12 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.backgroundColor = UIColor.black
             cell.nameLabel.textColor = UIColor.white
             cell.symbolLabel.textColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.white
         default:
             cell.backgroundColor = UIColor.white
             cell.nameLabel.textColor = UIColor.black
             cell.symbolLabel.textColor = UIColor.black
+            cell.valueLabel.textColor = UIColor.black
         }
         
         return cell

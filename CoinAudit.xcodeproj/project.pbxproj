@@ -44,6 +44,7 @@
 		32C1C4E41FF8C08000DA69D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4E31FF8C08000DA69D3 /* Extensions.swift */; };
 		32C1C5091FF8CA0800DA69D3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4DD1FF8BECE00DA69D3 /* Data.swift */; };
 		32D17D6A200468C50031C7D6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D17D69200468C50031C7D6 /* WebViewController.swift */; };
+		32D17D6C200472960031C7D6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D17D6B200472960031C7D6 /* StoreKit.framework */; };
 		32D1D5951FFB4640000BD2E1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D1D5941FFB4640000BD2E1 /* CoreData.framework */; };
 		32D1D59A1FFB47DF000BD2E1 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D5981FFB47DF000BD2E1 /* Data.xcdatamodeld */; };
 		32FC122D2000300800C35897 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FC122C2000300800C35897 /* UserNotifications.framework */; };
@@ -179,6 +180,7 @@
 		32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinAudit.entitlements; sourceTree = "<group>"; };
 		32C1C50B1FF8CD8600DA69D3 /* CoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinWidget.entitlements; sourceTree = "<group>"; };
 		32D17D69200468C50031C7D6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		32D17D6B200472960031C7D6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32D1D5941FFB4640000BD2E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wallet.xcdatamodel; sourceTree = "<group>"; };
 		32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				649F0B09A82A5EBC6C44D6FE /* Pods_CoinAudit.framework in Frameworks */,
+				32D17D6C200472960031C7D6 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +389,7 @@
 		4277160C04D471DB9572BA65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32D17D6B200472960031C7D6 /* StoreKit.framework */,
 				32D1D5941FFB4640000BD2E1 /* CoreData.framework */,
 				32F398611FF9FC15001D6698 /* Intents.framework */,
 				328821361FF8AFEE002E365B /* NotificationCenter.framework */,
@@ -560,6 +564,9 @@
 								enabled = 1;
 							};
 							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 							com.apple.Push = {

@@ -70,7 +70,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             coins = NSKeyedUnarchiver.unarchiveObject(with: data as! Data) as! [WalletEntry]
             
             walletTableView.reloadData()
-            calcValue()
+            calculateValue()
         } else {
             new = true
             self.navigationItem.title = "New Entry"
@@ -101,7 +101,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.walletTableView.reloadData()
         updateTheme()
-        calcValue()
+        calculateValue()
     }
     
     // MARK: - Table view data source
@@ -148,7 +148,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 try managedObjectContext.save()
                 // cleanup
                 print("Deleted \(cell.amountLabel.text!) coins from your wallet")
-                calcValue()
+                calculateValue()
                 self.walletTableView.deleteRows(at: [indexPath], with: .automatic)
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
@@ -174,7 +174,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.amountLabel.text = "\(coinData.name): \(coin.amount)"
         
         let coinCost: Double = (Double(coin.amount)! * Double(coin.cost)!)
-        var newValue: Double = 0.0
+        var newValue: Double = (Double(coin.amount)! * Double(coinData.priceUSD)!)
         
         let total = (newValue - coinCost)
         
@@ -358,7 +358,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             do{
                 try managedObjectContext.save()
                 print("\(name) Coin Updated")
-                calcValue()
+                calculateValue()
                 walletTableView.reloadData()
             }catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
@@ -399,7 +399,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             
             do {
                 try managedObjectContext.save()
-                calcValue()
+                calculateValue()
                 walletTableView.reloadData()
             } catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
@@ -411,41 +411,34 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    func calcValue() {
+    func calculateValue() {
         // pull coin data from entries array
         guard let coinData = entries.first(where: { $0.name == name }) else { return }
         var coinCost: Double = 0.0
         var newValue: Double = 0.0
-        var entryValue = ""
+        var amount: Double = 0.0
         
-        if priceFormat == "USD" {
-            for item in coins {
-                let amount = Double(item.amount)!
-                let cost = Double(item.cost)!
-                
-                let calcCost = (amount * cost)
-                let calcValue = (amount * Double(coinData.priceUSD)!)
-                
-                newValue = newValue + calcValue
-                coinCost = coinCost + calcCost
-            }
-            entryValue = "\(newValue)".formatUSD()
-        } else {
-            for item in coins {
-                let amount = Double(item.amount)!
-                let cost = Double(item.cost)!
-                
-                let calcCost = (amount * cost)
-                let calcValue = (amount * Double(coinData.priceBTC)!)
-                
-                newValue = newValue + calcValue
-                coinCost = coinCost + calcCost
-            }
-            entryValue = "\(newValue)"
+        for item in coins {
+            let newAmount = Double(item.amount)!
+            let cost = Double(item.cost)!
+            
+            let calcCost = (newAmount * cost)
+            let calcValue = (newAmount * Double(coinData.priceUSD)!)
+            
+            newValue = newValue + calcValue
+            coinCost = coinCost + calcCost
+            amount = amount + newAmount
         }
         
         let total = (newValue - coinCost)
-        valueLabel.text = "Value: \(entryValue)"
+        
+        if priceFormat == "USD" {
+            let entryValue = (amount * Double(coinData.priceUSD)!)
+            valueLabel.text = "\(entryValue)".formatUSD()
+        } else {
+            let entryValue = (amount * Double(coinData.priceBTC)!)
+            valueLabel.text = "\(entryValue) BTC"
+        }
         
         if total > 0 {
             // Profit or gain

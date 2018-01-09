@@ -12,6 +12,7 @@ import CoreData
 import GoogleMobileAds
 import Flurry_iOS_SDK
 import OneSignal
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
@@ -56,6 +57,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
             print("Push ID: \(notificationID!)")
         } else {
             print("Push ID: Not Found")
+        }
+        
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                // Unlock content
+                showAd = "No"
+                saveAdsSettings()
+                print("Ads Unlocked")
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
         }
         
         return true

@@ -24,6 +24,9 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if showAd == "No" {
+            print("Ads Unlocked")
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         

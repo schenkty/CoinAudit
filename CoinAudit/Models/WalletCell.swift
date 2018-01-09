@@ -13,6 +13,7 @@ class WalletCell: UITableViewCell {
     @IBOutlet var symbolLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var valueLabel: UILabel!
+    @IBOutlet var percentLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

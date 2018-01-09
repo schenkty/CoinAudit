@@ -17,7 +17,7 @@ struct GoogleAd {
 // MARK: Remove Force String before Release
 // Yes = Show ads
 // No = Hide ads
-var showAd: String = "No" //defaults.string(forKey: "CoinAuditAds") ?? "Yes"
+var showAd: String =  defaults.string(forKey: "CoinAuditAds") ?? "Yes"
 
 func saveAdsSettings() {
     defaults.set(showAd, forKey: "CoinAuditAds")

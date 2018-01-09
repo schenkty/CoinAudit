@@ -42,8 +42,17 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="009.456%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX7-CG-uZM">
+                                                    <rect key="frame" x="275" y="12" width="85" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="Sjb-lY-8hv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000.14877536" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eB7-Gz-O6C">
-                                                    <rect key="frame" x="220" y="12" width="140" height="21"/>
+                                                    <rect key="frame" x="135" y="12" width="140" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="xoP-4w-edL"/>
                                                     </constraints>
@@ -56,15 +65,18 @@
                                                 <constraint firstItem="eB7-Gz-O6C" firstAttribute="centerY" secondItem="gMw-NY-voq" secondAttribute="centerY" id="8lP-hr-vCg"/>
                                                 <constraint firstItem="Mmf-vy-5ML" firstAttribute="leading" secondItem="gMw-NY-voq" secondAttribute="leading" constant="15" id="8zl-hp-j1X"/>
                                                 <constraint firstItem="KNG-UD-bNp" firstAttribute="leading" secondItem="Mmf-vy-5ML" secondAttribute="leading" id="HYb-ZK-TWL"/>
+                                                <constraint firstItem="sX7-CG-uZM" firstAttribute="leading" secondItem="eB7-Gz-O6C" secondAttribute="trailing" id="JcH-c3-EsT"/>
                                                 <constraint firstItem="KNG-UD-bNp" firstAttribute="top" secondItem="Mmf-vy-5ML" secondAttribute="bottom" constant="1" id="KNA-LJ-Hwq"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="eB7-Gz-O6C" secondAttribute="trailing" id="RBQ-6T-Fhn"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KNG-UD-bNp" secondAttribute="trailing" constant="20" symbolic="YES" id="RYQ-7b-Y63"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sX7-CG-uZM" secondAttribute="trailing" id="a7L-73-Iib"/>
+                                                <constraint firstItem="sX7-CG-uZM" firstAttribute="centerY" secondItem="gMw-NY-voq" secondAttribute="centerY" id="mg9-wr-Orz"/>
                                                 <constraint firstItem="Mmf-vy-5ML" firstAttribute="top" secondItem="gMw-NY-voq" secondAttribute="top" constant="6" id="vLp-Mf-CXR"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mmf-vy-5ML" secondAttribute="trailing" constant="20" symbolic="YES" id="x4F-pN-gyv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="KNG-UD-bNp" id="reo-Wl-Wqy"/>
+                                            <outlet property="percentLabel" destination="sX7-CG-uZM" id="HSg-PU-TGA"/>
                                             <outlet property="symbolLabel" destination="Mmf-vy-5ML" id="UaX-s6-9bA"/>
                                             <outlet property="valueLabel" destination="eB7-Gz-O6C" id="bhv-uX-IxP"/>
                                         </connections>
@@ -648,21 +660,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W6A-yu-G1o" userLabel="Main Settings">
-                                <rect key="frame" x="10" y="126" width="355" height="172"/>
+                                <rect key="frame" x="10" y="126" width="355" height="136"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HUt-nw-Oag" userLabel="Theme Mode">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUA-xi-UH2">
-                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9G7-ei-qWw">
-                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
+                                                <rect key="frame" x="180" y="0.0" width="175" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="175" id="Ugv-Yo-KRZ"/>
+                                                </constraints>
                                                 <segments>
-                                                    <segment title="Light"/>
+                                                    <segment title="Light" width="87"/>
                                                     <segment title="Dark"/>
                                                 </segments>
                                                 <connections>
@@ -676,15 +691,15 @@
                                         <rect key="frame" x="0.0" y="36" width="355" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmK-Kj-pjC">
-                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k2G-BF-3d1">
-                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
+                                                <rect key="frame" x="180" y="0.0" width="175" height="29"/>
                                                 <segments>
-                                                    <segment title="Volume"/>
+                                                    <segment title="Volume" width="87"/>
                                                     <segment title="Value"/>
                                                 </segments>
                                                 <connections>
@@ -693,40 +708,19 @@
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tnN-tZ-jFU" userLabel="Widget Mode">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="08V-Hc-tRD" userLabel="Widget Percent Mode">
                                         <rect key="frame" x="0.0" y="72" width="355" height="28"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XpS-FN-CTd">
-                                                <rect key="frame" x="0.0" y="0.0" width="118.5" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aW9-Ke-tFx">
-                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
-                                                <segments>
-                                                    <segment title="Favorites"/>
-                                                    <segment title="Wallet"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="widgetMode:" destination="nUc-0H-ibX" eventType="valueChanged" id="1Bc-3Q-3Dx"/>
-                                                </connections>
-                                            </segmentedControl>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="08V-Hc-tRD" userLabel="Widget Percent Mode">
-                                        <rect key="frame" x="0.0" y="108" width="355" height="28"/>
-                                        <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widget Percent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEc-kA-oGo">
-                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-tD-K4Y">
-                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
+                                                <rect key="frame" x="180" y="0.0" width="175" height="29"/>
                                                 <segments>
-                                                    <segment title="1 Hour"/>
+                                                    <segment title="1 Hour" width="87"/>
                                                     <segment title="24 Hours"/>
                                                 </segments>
                                                 <connections>
@@ -737,18 +731,18 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="95E-di-q6S" userLabel="Feed Format">
-                                        <rect key="frame" x="0.0" y="144" width="355" height="28"/>
+                                        <rect key="frame" x="0.0" y="108" width="355" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price Format:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0w-bd-4dU">
-                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-i0-XuM">
-                                                <rect key="frame" x="138.5" y="0.0" width="216.5" height="29"/>
+                                                <rect key="frame" x="180" y="0.0" width="175" height="29"/>
                                                 <segments>
-                                                    <segment title="USD"/>
+                                                    <segment title="USD" width="87"/>
                                                     <segment title="BTC"/>
                                                 </segments>
                                                 <connections>
@@ -762,14 +756,13 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="x1S-tD-K4Y" firstAttribute="width" secondItem="9G7-ei-qWw" secondAttribute="width" id="8Ib-NM-R4v"/>
-                                    <constraint firstItem="k2G-BF-3d1" firstAttribute="width" secondItem="aW9-Ke-tFx" secondAttribute="width" id="9vv-on-9vH"/>
                                     <constraint firstItem="Xe8-i0-XuM" firstAttribute="leading" secondItem="x1S-tD-K4Y" secondAttribute="leading" id="SLn-Om-y11"/>
                                     <constraint firstItem="Xe8-i0-XuM" firstAttribute="trailing" secondItem="x1S-tD-K4Y" secondAttribute="trailing" id="gb1-qB-JtG"/>
-                                    <constraint firstItem="9G7-ei-qWw" firstAttribute="width" secondItem="aW9-Ke-tFx" secondAttribute="width" id="yue-7T-J0P"/>
+                                    <constraint firstItem="k2G-BF-3d1" firstAttribute="leading" secondItem="9G7-ei-qWw" secondAttribute="leading" id="uWk-lc-HFo"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-ew-Vgy">
-                                <rect key="frame" x="0.0" y="318" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="282" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Developer: Ty Schenk"/>
                                 <connections>
@@ -777,13 +770,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erW-j3-BZJ">
-                                <rect key="frame" x="0.0" y="373" width="375" height="23"/>
+                                <rect key="frame" x="0.0" y="327" width="375" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqn-in-rsd">
-                                <rect key="frame" x="0.0" y="416" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="360" width="375" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Clear All Data"/>
                                 <connections>
@@ -791,7 +784,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-Ud-Zw7">
-                                <rect key="frame" x="0.0" y="471" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="405" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Powered by CoinMarketCap"/>
                                 <connections>
@@ -805,14 +798,32 @@
                                     <constraint firstAttribute="height" constant="50" id="4ij-iF-LiZ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynv-LA-YxT">
+                                <rect key="frame" x="0.0" y="445" width="375" height="30"/>
+                                <state key="normal" title="Remove Ads"/>
+                                <connections>
+                                    <action selector="removeButton:" destination="nUc-0H-ibX" eventType="touchUpInside" id="tpC-Ub-pkY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Na0-wg-XwX">
+                                <rect key="frame" x="0.0" y="485" width="375" height="30"/>
+                                <state key="normal" title="Restore Purchases"/>
+                                <connections>
+                                    <action selector="restoreButton:" destination="nUc-0H-ibX" eventType="touchUpInside" id="OTP-qf-1VF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="erW-j3-BZJ" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="0di-Zr-6a1"/>
+                            <constraint firstItem="Ynv-LA-YxT" firstAttribute="top" secondItem="Nx3-Ud-Zw7" secondAttribute="bottom" constant="10" id="4Dm-ty-xu6"/>
                             <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="4y8-6R-TXR"/>
-                            <constraint firstItem="erW-j3-BZJ" firstAttribute="top" secondItem="Vba-ew-Vgy" secondAttribute="bottom" constant="20" id="8zO-uD-JaQ"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Na0-wg-XwX" secondAttribute="trailing" id="8re-gK-mb9"/>
+                            <constraint firstItem="erW-j3-BZJ" firstAttribute="top" secondItem="Vba-ew-Vgy" secondAttribute="bottom" constant="10" id="8zO-uD-JaQ"/>
+                            <constraint firstItem="Na0-wg-XwX" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="CP8-V9-3rX"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="erW-j3-BZJ" secondAttribute="trailing" id="EVo-zM-Eap"/>
                             <constraint firstItem="W6A-yu-G1o" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" constant="10" id="Nlo-0c-PYn"/>
+                            <constraint firstItem="Ynv-LA-YxT" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="ONV-4t-8ac"/>
                             <constraint firstItem="Lqn-in-rsd" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="OT7-Ge-cTW"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Lqn-in-rsd" secondAttribute="trailing" id="Qz5-xJ-003"/>
                             <constraint firstItem="dqp-qA-SS1" firstAttribute="centerX" secondItem="ka7-hJ-oef" secondAttribute="centerX" id="Wvz-cN-0es"/>
@@ -821,12 +832,14 @@
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="dqp-qA-SS1" secondAttribute="trailing" id="ZhH-BB-UgU"/>
                             <constraint firstItem="W6A-yu-G1o" firstAttribute="top" secondItem="uRY-9G-w4R" secondAttribute="top" constant="10" id="aBn-e5-hhe"/>
                             <constraint firstItem="dqp-qA-SS1" firstAttribute="leading" secondItem="uRY-9G-w4R" secondAttribute="leading" id="h5T-8R-icL"/>
+                            <constraint firstItem="Na0-wg-XwX" firstAttribute="top" secondItem="Ynv-LA-YxT" secondAttribute="bottom" constant="10" id="kJz-i1-uTJ"/>
+                            <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Ynv-LA-YxT" secondAttribute="trailing" id="o57-OJ-QFU"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Vba-ew-Vgy" secondAttribute="trailing" id="pHi-RD-V11"/>
                             <constraint firstItem="uRY-9G-w4R" firstAttribute="trailing" secondItem="Nx3-Ud-Zw7" secondAttribute="trailing" id="ph1-dX-akk"/>
                             <constraint firstItem="Vba-ew-Vgy" firstAttribute="top" secondItem="W6A-yu-G1o" secondAttribute="bottom" constant="20" id="s8b-Og-l4r"/>
                             <constraint firstItem="dqp-qA-SS1" firstAttribute="bottom" secondItem="uRY-9G-w4R" secondAttribute="bottom" id="t3E-4i-pep"/>
-                            <constraint firstItem="Lqn-in-rsd" firstAttribute="top" secondItem="erW-j3-BZJ" secondAttribute="bottom" constant="20" id="tCe-Iv-JuF"/>
-                            <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="top" secondItem="Lqn-in-rsd" secondAttribute="bottom" constant="20" id="tYF-yV-sEB"/>
+                            <constraint firstItem="Lqn-in-rsd" firstAttribute="top" secondItem="erW-j3-BZJ" secondAttribute="bottom" constant="10" id="tCe-Iv-JuF"/>
+                            <constraint firstItem="Nx3-Ud-Zw7" firstAttribute="top" secondItem="Lqn-in-rsd" secondAttribute="bottom" constant="10" id="tYF-yV-sEB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uRY-9G-w4R"/>
                     </view>
@@ -837,18 +850,18 @@
                         <outlet property="devButton" destination="Vba-ew-Vgy" id="mXE-JO-hjo"/>
                         <outlet property="feedFormatSelector" destination="Xe8-i0-XuM" id="08h-UN-04f"/>
                         <outlet property="poweredByButton" destination="Nx3-Ud-Zw7" id="UiZ-U9-LTn"/>
+                        <outlet property="purchaseButton" destination="Ynv-LA-YxT" id="hiC-zK-uwp"/>
+                        <outlet property="restoreButton" destination="Na0-wg-XwX" id="GB5-kZ-BTi"/>
                         <outlet property="themeSelector" destination="9G7-ei-qWw" id="eAP-EP-Zl7"/>
                         <outlet property="versionLabel" destination="erW-j3-BZJ" id="m4f-Tc-Kdv"/>
                         <outlet property="walletModeView" destination="Z8B-IY-iTS" id="Lzt-OI-2Of"/>
                         <outlet property="walletSelector" destination="k2G-BF-3d1" id="2A6-Hf-QDm"/>
-                        <outlet property="widgetModeView" destination="tnN-tZ-jFU" id="348-ZN-z51"/>
                         <outlet property="widgetPercentSelector" destination="x1S-tD-K4Y" id="jt5-xw-3LG"/>
-                        <outlet property="widgetSelector" destination="aW9-Ke-tFx" id="bC1-N6-qer"/>
-                        <outletCollection property="textLabels" destination="XpS-FN-CTd" collectionClass="NSMutableArray" id="Fpd-cF-Twg"/>
                         <outletCollection property="textLabels" destination="QUA-xi-UH2" collectionClass="NSMutableArray" id="oys-Vm-68p"/>
                         <outletCollection property="textLabels" destination="gmK-Kj-pjC" collectionClass="NSMutableArray" id="qhq-ix-cCH"/>
                         <outletCollection property="textLabels" destination="erW-j3-BZJ" collectionClass="NSMutableArray" id="k7G-Ps-K1I"/>
                         <outletCollection property="textLabels" destination="LEc-kA-oGo" collectionClass="NSMutableArray" id="Y3X-Cq-pFJ"/>
+                        <outletCollection property="textLabels" destination="Y0w-bd-4dU" collectionClass="NSMutableArray" id="1M6-Iv-yEr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rel-kf-fDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
