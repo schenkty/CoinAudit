@@ -81,7 +81,7 @@ class SettingsViewController: UIViewController {
             feedFormatSelector.selectedSegmentIndex = 0
         }
         
-        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
+        let appVersion = "1.1"//Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
         versionLabel.text = "Version \(appVersion)"
     }
     
