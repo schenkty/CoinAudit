@@ -251,7 +251,7 @@ class CoinsDetailsViewController: UIViewController {
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         } else {
-            showAlert(title: "No internet connection")
+            SweetAlert().showAlert("No internet connection")
         }
     }
     

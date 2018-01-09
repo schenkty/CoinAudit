@@ -81,7 +81,7 @@ class SettingsViewController: UIViewController {
             feedFormatSelector.selectedSegmentIndex = 0
         }
         
-        let appVersion = "1.1"//Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
         versionLabel.text = "Version \(appVersion)"
     }
     
@@ -107,47 +107,54 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func clearData(_ sender: Any) {
-        favorites.removeAll()
-        var allCoins : [NSManagedObject] = []
-        let allWallets: [String] = ["WalletEntry1", "WalletEntry2", "WalletEntry3", "WalletEntry4", "WalletEntry5"]
-        
-        for wallet in allWallets {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "WalletEntry1")
-            
-            do {
-                try allCoins = managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
-            } catch {
-                print("error. could not delete")
+        SweetAlert().showAlert("Are you sure?", subTitle: "You data will permanently delete!", style: AlertStyle.warning, buttonTitle:"Cancel", buttonColor: UIColor.init(hexString: "C3C3C3") , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.init(hexString: "E0755F")) { (isOtherButton) -> Void in
+            if isOtherButton == true {
+                return
             }
-            
-            for coin in allCoins {
-                managedObjectContext.delete(coin)
-            }
-            
-            do {
-                try managedObjectContext.save()
-                walletEntries.removeAll()
-                print("All coins have been deleted from the \(wallet)")
-            } catch let error as NSError  {
-                print("Could not save \(error), \(error.userInfo)")
-            } catch {
+            else {
+                favorites.removeAll()
+                var allCoins : [NSManagedObject] = []
+                let allWallets: [String] = ["WalletEntry1", "WalletEntry2", "WalletEntry3", "WalletEntry4", "WalletEntry5"]
                 
+                for wallet in allWallets {
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: wallet)
+                    
+                    do {
+                        try allCoins = self.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+                    } catch {
+                        print("error. could not delete")
+                    }
+                    
+                    for coin in allCoins {
+                        self.managedObjectContext.delete(coin)
+                    }
+                    
+                    do {
+                        try self.managedObjectContext.save()
+                        walletEntries.removeAll()
+                        print("All coins have been deleted from the \(wallet)")
+                    } catch let error as NSError  {
+                        print("Could not save \(error), \(error.userInfo)")
+                    } catch {
+                        
+                    }
+                }
+                
+                for alert in alerts {
+                    if Connectivity.isConnectedToInternet {
+                        // delete from server
+                        Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/delete.php?id=\(alert.id)")
+                        print("Alert \(alert.id) deleted from server")
+                    }
+                }
+                
+                // delete all from alerts array
+                alerts.removeAll()
+                saveFavoriteSettings()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
+                SweetAlert().showAlert("Deleted!", subTitle: "All Coin Data has been removed", style: AlertStyle.success)
             }
         }
-        
-        for alert in alerts {
-            if Connectivity.isConnectedToInternet {
-                // delete from server
-                Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/delete.php?id=\(alert.id)")
-                print("Alert \(alert.id) deleted from server")
-            }
-        }
-        
-        // delete all from alerts array
-        alerts.removeAll()
-        saveFavoriteSettings()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-        showAlert(title: "Data removed")
     }
 
     @IBAction func removeButton(_ sender: UIButton) {

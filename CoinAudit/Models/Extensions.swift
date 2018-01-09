@@ -31,16 +31,6 @@ extension String {
     }
 }
 
-extension UIViewController {
-    // allows for simple handling of UIAlerts
-    func showAlert(title: String, message: String? = nil, style: UIAlertControllerStyle = .alert) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
-}
-
 extension UITextField{
     func addDoneButtonToKeyboard(myAction:Selector?){
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 300, height: 40))

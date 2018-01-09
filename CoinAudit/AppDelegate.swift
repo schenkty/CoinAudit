@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         Flurry.setSessionReportsOnPauseEnabled(true)
         
         // OneSignal Framework Setup
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: true]
         
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: "7d06cefc-2472-4450-9513-2e1e4edd3aa2",

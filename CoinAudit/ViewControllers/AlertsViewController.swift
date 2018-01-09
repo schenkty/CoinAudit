@@ -56,13 +56,13 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         } else {
             self.alertTableView.isHidden = true
-            self.showAlert(title: "Alerts Disabled", message: "Please allow notifications in your device settings and restart CoinAudit", style: .alert)
+            SweetAlert().showAlert("Alerts Disabled", subTitle: "Please allow notifications in your device settings and restart CoinAudit", style: AlertStyle.none)
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         updateTheme()
-        
+
         if showAd == "Yes" {
             adView.isHidden = false
             tableViewBottom.constant = 50.0
@@ -116,7 +116,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 // remove from table view
                 self.alertTableView.deleteRows(at: [indexPath], with: .automatic)
             } else {
-                showAlert(title: "No internet connection. Delete Failed")
+                SweetAlert().showAlert("No internet connection. Delete Failed")
             }
         }
     }
@@ -227,7 +227,8 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 SwiftSpinner.hide()
             }
         } else {
-            showAlert(title: "No internet connection")
+            SweetAlert().showAlert("No internet connection")
+            
         }
     }
     

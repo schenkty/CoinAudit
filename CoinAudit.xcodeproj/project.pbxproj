@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		322406191FF711BD0073555B /* AddWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322406181FF711BD0073555B /* AddWalletViewController.swift */; };
+		322F9AA120056689005A6CB9 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322F9AA020056689005A6CB9 /* SweetAlert.swift */; };
 		3244A7591FF58EF400AB036A /* CoinsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */; };
 		324F4ADD1FF4C1D400FC5312 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */; };
 		324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324F4ADE1FF4C26E00FC5312 /* WalletViewController.swift */; };
@@ -135,6 +136,7 @@
 		05C5C0DEEFB5E24705537C74 /* Pods-CoinAudit-CoinWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinAudit-CoinWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinAudit-CoinWidget/Pods-CoinAudit-CoinWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		1F8F663E44A3162FE24A307C /* Pods_CoinAuditTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinAuditTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		322406181FF711BD0073555B /* AddWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWalletViewController.swift; sourceTree = "<group>"; };
+		322F9AA020056689005A6CB9 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
 		32421D7C1FF8B62300F14061 /* CoinEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinEntry.swift; sourceTree = "<group>"; };
 		32421D7D1FF8B62300F14061 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		3244A7581FF58EF400AB036A /* CoinsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsDetailsViewController.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 				328F26811FF63566002BB3E7 /* Extensions.swift */,
 				32421D7D1FF8B62300F14061 /* Data.swift */,
 				32583A891FFD994E000E573F /* Ads.swift */,
+				322F9AA020056689005A6CB9 /* SweetAlert.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				32C1C4D81FF8BD3600DA69D3 /* Data.swift in Sources */,
 				326999E41FF5F8A10059122D /* FavoritesViewController.swift in Sources */,
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
+				322F9AA120056689005A6CB9 /* SweetAlert.swift in Sources */,
 				32A49FDB200206DC000A95A4 /* AddAlertViewController.swift in Sources */,
 				32D17D6A200468C50031C7D6 /* WebViewController.swift in Sources */,
 				32D1D59A1FFB47DF000BD2E1 /* Data.xcdatamodeld in Sources */,
@@ -1175,6 +1179,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_WARNINGS = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinAudit/CoinAudit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
@@ -1182,6 +1187,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
+				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = CoinAudit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1199,6 +1207,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_WARNINGS = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinAudit/CoinAudit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
@@ -1206,6 +1215,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
+				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = CoinAudit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

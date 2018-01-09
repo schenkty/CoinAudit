@@ -11,14 +11,16 @@ import NotificationCenter
 import Alamofire
 import SwiftSpinner
 import OneSignal
+import GoogleMobileAds
 
-class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
+class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADInterstitialDelegate {
     
     let coinsURL: String = "https://api.coinmarketcap.com/v1/ticker/?limit=0"
     var filteredEntries: [CoinEntry] = []
     var searchActive: Bool = false
     var alertsLoaded: Bool = false
     var entriesLoaded: Bool = false
+    var interstitial: GADInterstitial!
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -26,6 +28,8 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         if showAd == "No" {
             print("Ads Unlocked")
+        } else {
+            interstitial = createAndLoadInterstitial()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
@@ -39,7 +43,26 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         if Connectivity.isConnectedToInternet {
             self.updateData()
         } else {
-            showAlert(title: "No internet connection")
+            SweetAlert().showAlert("No internet connection")
+        }
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-8616771915576403/1551329017")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
+    }
+    
+    func displayAds() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
         }
     }
     
@@ -121,7 +144,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         if Connectivity.isConnectedToInternet {
             self.updateData()
         } else {
-            showAlert(title: "No internet connection")
+            SweetAlert().showAlert("No internet connection")
         }
     }
     
@@ -172,6 +195,12 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
             if self.alertsLoaded && self.entriesLoaded {
                 SwiftSpinner.hide()
             }
+        }
+        
+        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            // Your code with delay
+            self.displayAds()
         }
     }
     

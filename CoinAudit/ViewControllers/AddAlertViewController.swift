@@ -127,7 +127,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         var aboveCurrency: String = ""
         
         guard let id = notificationID else {
-            showAlert(title: "Alerts Disabled", message: "Please allow notifications in your device settings and restart CoinAudit", style: .alert)
+            SweetAlert().showAlert("Alerts Disabled", subTitle: "Please allow notifications in your device settings and restart CoinAudit", style: AlertStyle.none)
             return
         }
         
@@ -165,7 +165,8 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 
                 // name sure there is atleast one value setup
                 if belowTextField.text! == "" && aboveTextField.text! == "" {
-                    showAlert(title: "Alert Failed", message: "Please Enter an amount for above or below fields", style: .alert)
+                    
+                    SweetAlert().showAlert("Alert Failed", subTitle: "Please Enter an amount for above or below fields", style: AlertStyle.none)
                     return
                 }
             
@@ -173,12 +174,25 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 Alamofire.request("https://www.tyschenk.com/coinaudit/alerts/add.php?id=\(id)&coin=\(coin)&symbol=\(symbol)&below=\(below)&below_currency=\(belowCurrency)&above=\(above)&above_currency=\(aboveCurrency)")
                 
                 newAlertData = true
+                var action: AlertActions = .False
+                
+                if above != "" && below != "" {
+                    action = .Both
+                } else if above != "" {
+                    action = .Above
+                } else if below != "" {
+                    action = .Below
+                } else {
+                    action = .False
+                }
+                
+                alerts.append(AlertEntry(id: id, coin: coin, symbol: symbol, below: below, belowCurrency: belowCurrency, above: above, aboveCurrency: aboveCurrency, action: action))
                 self.navigationController?.popViewController(animated: true)
             } else {
-                showAlert(title: "No internet connection. Alert could not be added")
+                SweetAlert().showAlert("No internet connection. Alert could not be added")
             }
         } else {
-            showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
         }
     }
     
@@ -191,7 +205,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         var aboveCurrency: String = ""
         
         guard let id = notificationID else {
-            showAlert(title: "Alerts Disabled", message: "Please allow notifications in your device settings and restart CoinAudit", style: .alert)
+            SweetAlert().showAlert("Alerts Disabled", subTitle: "Please allow notifications in your device settings and restart CoinAudit", style: AlertStyle.none)
             return
         }
         
@@ -232,7 +246,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 
                 // name sure there is atlease one value setup
                 if belowTextField.text! == "" && aboveTextField.text! == "" {
-                    showAlert(title: "Alert Failed", message: "Please Enter an amount for above or below fields", style: .alert)
+                    SweetAlert().showAlert("Alert Failed", subTitle: "Please Enter an amount for above or below fields", style: AlertStyle.none)
                     return
                 }
     
@@ -244,10 +258,10 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 alerts[index] = AlertEntry(id: id, coin: coin, symbol: symbol, below: below, belowCurrency: belowCurrency, above: above, aboveCurrency: aboveCurrency, action: action)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                showAlert(title: "No internet connection. Alert could not be added")
+                SweetAlert().showAlert("No internet connection. Alert could not be added")
             }
         } else {
-            showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
         }
     }
     

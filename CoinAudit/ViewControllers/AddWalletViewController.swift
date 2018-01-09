@@ -366,7 +366,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         } else {
             print("Coin: \(name) is not Valid")
-            showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
         }
     }
     
@@ -410,7 +410,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 
             }
         } else {
-            showAlert(title: "Invalid Name", message: "Enter Valid Coin Name", style: .alert)
+            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
         }
     }
     

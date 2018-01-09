@@ -153,7 +153,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
             SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
             pullData()
         } else {
-            showAlert(title: "No internet connection")
+            SweetAlert().showAlert("No internet connection")
         }
     }
     
