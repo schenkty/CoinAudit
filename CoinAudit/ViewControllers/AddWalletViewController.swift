@@ -360,6 +360,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 print("\(name) Coin Updated")
                 calculateValue()
                 walletTableView.reloadData()
+                new = false
             }catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
             }
@@ -401,6 +402,8 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 try managedObjectContext.save()
                 calculateValue()
                 walletTableView.reloadData()
+                new = false
+                coinID = walletData.objectID
             } catch let error as NSError {
                 print("Could not save \(error), \(error.userInfo)")
             } catch {

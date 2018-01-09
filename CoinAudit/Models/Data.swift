@@ -15,7 +15,6 @@ let defaults = UserDefaults(suiteName: "group.coinaudit.data")!
 var alerts: [AlertEntry] = []
 var entries: [CoinEntry] = []
 var favorites: [String] = []
-//var widgetValue: String = ""
 var widgetPercent: String = ""
 var walletValue: String = ""
 var holdWalletEntry: Bool = false

@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Volume"
+        walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Value"
         widgetPercent = defaults.string(forKey: "CoinAuditWidgetPercent") ?? "24h"
         
         // MARK: Ad View

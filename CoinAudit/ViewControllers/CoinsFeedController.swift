@@ -72,7 +72,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating {
         } else {
             cell.valueLabel.text = "\(coin.priceBTC) BTC"
         }
-
+        
         // Theme Drawing code
         switch themeValue {
         case "dark":

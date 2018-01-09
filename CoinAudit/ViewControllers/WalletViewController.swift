@@ -44,7 +44,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             adView.load(GADRequest())
         }
         
-        walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Volume"
+        walletValue = defaults.string(forKey: "CoinAuditWalletMode") ?? "Value"
         walletEntryValue = defaults.string(forKey: "CoinAuditWalletEntry") ?? "WalletEntry1"
         
         walletTableView.delegate = self
