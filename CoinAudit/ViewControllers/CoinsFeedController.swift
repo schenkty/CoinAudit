@@ -26,6 +26,8 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAd = "No"
+        saveAdsSettings()
         if showAd == "No" {
             print("Ads Unlocked")
         } else {
@@ -59,10 +61,12 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     }
     
     func displayAds() {
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
-        } else {
-            print("Ad wasn't ready")
+        if showAd == "Yes" {
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
         }
     }
     
@@ -197,7 +201,8 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
             }
         }
         
-        let when = DispatchTime.now() + 2 // change 2 to desired number of seconds
+        // give ad a few seconds to load ad
+        let when = DispatchTime.now() + 3
         DispatchQueue.main.asyncAfter(deadline: when) {
             // Your code with delay
             self.displayAds()
