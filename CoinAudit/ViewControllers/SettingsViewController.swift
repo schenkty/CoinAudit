@@ -165,15 +165,19 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func developerButton(_ sender: Any) {
-        if let link = URL(string: "https://tyschenk.com") {
-            UIApplication.shared.open(link)
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "showWeb") as! WebViewController
+        controller.url = "https://tyschenk.com"
+        
+        self.show(controller, sender: self)
     }
     
     @IBAction func poweredButton(_ sender: Any) {
-        if let link = URL(string: "https://coinmarketcap.com") {
-            UIApplication.shared.open(link)
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "showWeb") as! WebViewController
+        controller.url = "https://coinmarketcap.com"
+        
+        self.show(controller, sender: self)
     }
     
     @IBAction func widgetMode(_ sender: UISegmentedControl) {

@@ -20,6 +20,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var textLabels: [UILabel]!
     @IBOutlet var tableViewBottom: NSLayoutConstraint!
     @IBOutlet var valueLabel: UILabel!
+    @IBOutlet var percentLabel: UILabel!
     
     var name: String = ""
     var value: String = ""
@@ -84,6 +85,23 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if showAd == "Yes" {
+            adView.isHidden = false
+            tableViewBottom.constant = 50.0
+        } else if showAd == "No" {
+            adView.isHidden = true
+            tableViewBottom.constant = 0.0
+        } else {
+            adView.isHidden = false
+            tableViewBottom.constant = 50.0
+        }
+        
+        self.walletTableView.reloadData()
+        updateTheme()
+        calcValue()
     }
     
     // MARK: - Table view data source
@@ -156,56 +174,34 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.amountLabel.text = "\(coinData.name): \(coin.amount)"
         
         let coinCost: Double = (Double(coin.amount)! * Double(coin.cost)!)
-        let newValue: Double = (Double(coin.amount)! * Double(coinData.priceUSD)!)
+        var newValue: Double = 0.0
         
         let total = (newValue - coinCost)
-        let entryValue  = "\(newValue)".formatUSD()
         
         if total > 0 {
-            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            switch themeValue {
-            case "dark":
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-            default:
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            }
             // Profit or gain
             // Gain % = (gain / Cost Price × 100)%
             let gain = (newValue) - (coinCost)
-            let gainPercent = "\(gain / newValue * 100)".formatDecimal()
+            let percent = "\(gain / newValue * 100)".formatDecimal()
             
-            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
-            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
-            let attributedString2 = NSMutableAttributedString(string:"+\(gainPercent)%", attributes:attrs2)
-            attributedString1.append(attributedString2)
-            cell.valueLabel.attributedText = attributedString1
+            cell.percentLabel.text = "+\(percent)%"
+            cell.percentLabel.textColor = UIColor(hexString: "63DB37")
         } else if total < 0 {
-            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            switch themeValue {
-            case "dark":
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-            default:
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            }
             // Loss
             // Loss % = (loss/ Cost Price × 100)%
             let loss = (coinCost) - (newValue)
-            let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
-
-            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
-            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
-            let attributedString2 = NSMutableAttributedString(string:"-\(lossPercent)%", attributes:attrs2)
-            attributedString1.append(attributedString2)
-            cell.valueLabel.attributedText = attributedString1
+            let percent = "\(loss / coinCost * 100)".formatDecimal()
+            
+            cell.percentLabel.text = "-\(percent)%"
+            cell.percentLabel.textColor = UIColor(hexString: "FF483E")
+        }
+        
+        if priceFormat == "USD" {
+            newValue = (Double(coin.amount)! * Double(coinData.priceUSD)!)
+            cell.valueLabel.text = "\(newValue)".formatUSD()
         } else {
-            // Theme Drawing code
-            switch themeValue {
-            case "dark":
-                cell.valueLabel.textColor = UIColor.white
-            default:
-                cell.valueLabel.textColor = UIColor.black
-            }
-            cell.valueLabel.text = "Value: \(entryValue)"
+            newValue = (Double(coin.amount)! * Double(coinData.priceBTC)!)
+            cell.valueLabel.text = "\(newValue) BTC"
         }
         
         // Theme Drawing code
@@ -213,9 +209,11 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         case "dark":
             cell.backgroundColor = UIColor.black
             cell.amountLabel.textColor = UIColor.white
+            cell.valueLabel.textColor = UIColor.white
         default:
             cell.backgroundColor = UIColor.white
             cell.amountLabel.textColor = UIColor.black
+            cell.valueLabel.textColor = UIColor.black
         }
         
         return cell
@@ -275,23 +273,6 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         self.present(alert, animated: true, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
-        if showAd == "Yes" {
-            adView.isHidden = false
-            tableViewBottom.constant = 50.0
-        } else if showAd == "No" {
-            adView.isHidden = true
-            tableViewBottom.constant = 0.0
-        } else {
-            adView.isHidden = false
-            tableViewBottom.constant = 50.0
-        }
-        
-        updateTheme()
-    }
-    
     @objc func addCoin() {
         var cost = "0.00"
         var amount = "0.0"
@@ -323,7 +304,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         alert.addTextField { (costTextField) in
-            costTextField.placeholder = "Cost: $0.00"
+            costTextField.placeholder = "Cost: 0.00"
             costTextField.keyboardType = .decimalPad
             
             let heightConstraint = NSLayoutConstraint(item: costTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
@@ -360,7 +341,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         if names.contains(where: {$0.title == name}) {
             let id = entries.first(where: {$0.name == name})!.id
             
-            //update coin in walletCoins array
+            // update coin in walletCoins array
             let coin = managedObjectContext.object(with: coinID)
             
             value = "\(newValue)"
@@ -435,66 +416,53 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         guard let coinData = entries.first(where: { $0.name == name }) else { return }
         var coinCost: Double = 0.0
         var newValue: Double = 0.0
+        var entryValue = ""
         
-        for item in coins {
-            let amount = Double(item.amount)!
-            let cost = Double(item.cost)!
-        
-            let calcCost = (amount * cost)
-            let calcValue = (amount * Double(coinData.priceUSD)!)
-            
-            newValue = newValue + calcValue
-            coinCost = coinCost + calcCost
+        if priceFormat == "USD" {
+            for item in coins {
+                let amount = Double(item.amount)!
+                let cost = Double(item.cost)!
+                
+                let calcCost = (amount * cost)
+                let calcValue = (amount * Double(coinData.priceUSD)!)
+                
+                newValue = newValue + calcValue
+                coinCost = coinCost + calcCost
+            }
+            entryValue = "\(newValue)".formatUSD()
+        } else {
+            for item in coins {
+                let amount = Double(item.amount)!
+                let cost = Double(item.cost)!
+                
+                let calcCost = (amount * cost)
+                let calcValue = (amount * Double(coinData.priceBTC)!)
+                
+                newValue = newValue + calcValue
+                coinCost = coinCost + calcCost
+            }
+            entryValue = "\(newValue)"
         }
-
         
         let total = (newValue - coinCost)
-        let entryValue  = "\(newValue)".formatUSD()
+        valueLabel.text = "Value: \(entryValue)"
         
         if total > 0 {
-            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            switch themeValue {
-            case "dark":
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-            default:
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            }
             // Profit or gain
             // Gain % = (gain / Cost Price × 100)%
             let gain = (newValue) - (coinCost)
             let gainPercent = "\(gain / newValue * 100)".formatDecimal()
 
-            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
-            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
-            let attributedString2 = NSMutableAttributedString(string:"+ \(gainPercent)%", attributes:attrs2)
-            attributedString1.append(attributedString2)
-            valueLabel.attributedText = attributedString1
+            percentLabel.text = "+ \(gainPercent)%"
+            percentLabel.textColor = UIColor(hexString: "63DB37")
         } else if total < 0 {
-            var attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            switch themeValue {
-            case "dark":
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.white]
-            default:
-                attrs1 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor.black]
-            }
             // Loss
             // Loss % = (loss/ Cost Price × 100)%
             let loss = (coinCost) - (newValue)
             let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
 
-            let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
-            let attributedString1 = NSMutableAttributedString(string:"Value: \(entryValue)      ", attributes:attrs1)
-            let attributedString2 = NSMutableAttributedString(string:"- \(lossPercent)%", attributes:attrs2)
-            attributedString1.append(attributedString2)
-            valueLabel.attributedText = attributedString1
-        } else {
-            valueLabel.text = "Value: \(entryValue)"
-            switch themeValue {
-            case "dark":
-                valueLabel.textColor = UIColor.white
-            default:
-                valueLabel.textColor = UIColor.black
-            }
+            percentLabel.text = "- \(lossPercent)%"
+            percentLabel.textColor = UIColor(hexString: "FF483E")
         }
     }
     
@@ -513,6 +481,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             nameTextField.backgroundColor = UIColor.white
+            valueLabel.textColor = UIColor.white
             for item in textLabels {
                 item.textColor = UIColor.white
             }
@@ -528,6 +497,8 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             nameTextField.backgroundColor = UIColor.white
+            valueLabel.textColor = UIColor.black
+            
             for item in textLabels {
                 item.textColor = UIColor.black
             }

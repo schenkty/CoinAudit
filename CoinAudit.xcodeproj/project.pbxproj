@@ -43,6 +43,7 @@
 		32C1C4E21FF8BFEC00DA69D3 /* WidgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4E11FF8BFEC00DA69D3 /* WidgetCell.swift */; };
 		32C1C4E41FF8C08000DA69D3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4E31FF8C08000DA69D3 /* Extensions.swift */; };
 		32C1C5091FF8CA0800DA69D3 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1C4DD1FF8BECE00DA69D3 /* Data.swift */; };
+		32D17D6A200468C50031C7D6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D17D69200468C50031C7D6 /* WebViewController.swift */; };
 		32D1D5951FFB4640000BD2E1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D1D5941FFB4640000BD2E1 /* CoreData.framework */; };
 		32D1D59A1FFB47DF000BD2E1 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D5981FFB47DF000BD2E1 /* Data.xcdatamodeld */; };
 		32FC122D2000300800C35897 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FC122C2000300800C35897 /* UserNotifications.framework */; };
@@ -177,6 +178,7 @@
 		32C1C4E31FF8C08000DA69D3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinAudit.entitlements; sourceTree = "<group>"; };
 		32C1C50B1FF8CD8600DA69D3 /* CoinWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoinWidget.entitlements; sourceTree = "<group>"; };
+		32D17D69200468C50031C7D6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		32D1D5941FFB4640000BD2E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wallet.xcdatamodel; sourceTree = "<group>"; };
 		32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -356,6 +358,7 @@
 				3290928B2000982100D392CD /* AlertsViewController.swift */,
 				32A49FDA200206DC000A95A4 /* AddAlertViewController.swift */,
 				324F4ADC1FF4C1D400FC5312 /* SettingsViewController.swift */,
+				32D17D69200468C50031C7D6 /* WebViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -906,6 +909,7 @@
 				326999E41FF5F8A10059122D /* FavoritesViewController.swift in Sources */,
 				324F4AE51FF4C61700FC5312 /* FeedCell.swift in Sources */,
 				32A49FDB200206DC000A95A4 /* AddAlertViewController.swift in Sources */,
+				32D17D6A200468C50031C7D6 /* WebViewController.swift in Sources */,
 				32D1D59A1FFB47DF000BD2E1 /* Data.xcdatamodeld in Sources */,
 				3290928C2000982100D392CD /* AlertsViewController.swift in Sources */,
 				324F4ADF1FF4C26E00FC5312 /* WalletViewController.swift in Sources */,

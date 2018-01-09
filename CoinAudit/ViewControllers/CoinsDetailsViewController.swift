@@ -31,6 +31,7 @@ class CoinsDetailsViewController: UIViewController {
     
     var favorited: Bool = false
     var id: String = ""
+    var url: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +109,7 @@ class CoinsDetailsViewController: UIViewController {
         // format prices and set to labels
         priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())"
         priceBTCLabel.text = "Price BTC: \(coin.priceBTC)"
+        url = "https://coinmarketcap.com/currencies/\(coin.id)/"
         
         if coin.marketCapUSD != "unknown" {
             marketCapLabel.text = "Market Cap: \(coin.marketCapUSD.formatUSD())"
@@ -257,6 +259,14 @@ class CoinsDetailsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainController = storyboard.instantiateViewController(withIdentifier: "main")
         self.present(mainController, animated: true, completion: nil)
+    }
+    
+    @IBAction func moreInfo(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "showWeb") as! WebViewController
+        controller.url = url
+        
+        self.show(controller, sender: self)
     }
     
     func updateTheme() {
