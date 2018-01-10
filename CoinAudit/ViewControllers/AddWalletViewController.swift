@@ -283,8 +283,9 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             let amountTextField = alert.textFields![0] as UITextField
             let costTextField = alert.textFields![1] as UITextField
             
-            cost = costTextField.text!
-            amount = amountTextField.text!
+            
+            guard let cost = costTextField.text else { return }
+            guard let amount = amountTextField.text else { return }
             
             self.coins.append(WalletEntry(cost: cost, amount: amount))
             print("Coin Added. Amount: \(amount) @ \(cost) each")
