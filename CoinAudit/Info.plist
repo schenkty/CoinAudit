@@ -21,14 +21,15 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
 			<key>CFBundleURLName</key>
-			<string>com.tschenk.coins</string>
+			<string>com.tschenk.coins.urls</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>coinaudit</string>
 			</array>
 		</dict>
-		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>395</string>

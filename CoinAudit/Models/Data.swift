@@ -21,7 +21,7 @@ var holdWalletEntry: Bool = false
 var walletEntryValue: String = "WalletEntry1"
 var themeValue: String = defaults.object(forKey: "CoinAuditTheme") as? String ?? String()
 var walletEntries: [NSManagedObject] = []
-var notificationID: String? = defaults.object(forKey: "CoinAuditNotificationID") as? String ?? String()
+var notificationID: String? = "7efc0637-ca6d-4f63-8b84-9bf18e7f805c" //defaults.object(forKey: "CoinAuditNotificationID") as? String ?? String()
 var priceFormat: String? = defaults.object(forKey: "CoinAuditPriceFormat") as? String ?? "USD"
 
 func saveFavoriteSettings() {

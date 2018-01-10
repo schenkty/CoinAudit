@@ -48,6 +48,7 @@
 		32D17D6C200472960031C7D6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D17D6B200472960031C7D6 /* StoreKit.framework */; };
 		32D1D5951FFB4640000BD2E1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D1D5941FFB4640000BD2E1 /* CoreData.framework */; };
 		32D1D59A1FFB47DF000BD2E1 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D1D5981FFB47DF000BD2E1 /* Data.xcdatamodeld */; };
+		32E18CE92005974E00E4A43E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E18CE82005974E00E4A43E /* logo.png */; };
 		32FC122D2000300800C35897 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FC122C2000300800C35897 /* UserNotifications.framework */; };
 		32FC122F2000300800C35897 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FC122E2000300800C35897 /* UserNotificationsUI.framework */; };
 		32FC12322000300800C35897 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FC12312000300800C35897 /* NotificationViewController.swift */; };
@@ -185,6 +186,7 @@
 		32D17D6B200472960031C7D6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32D1D5941FFB4640000BD2E1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		32D1D5991FFB47DF000BD2E1 /* Wallet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Wallet.xcdatamodel; sourceTree = "<group>"; };
+		32E18CE82005974E00E4A43E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		32F3984A1FF9E9C1001D6698 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		32F398611FF9FC15001D6698 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		32FC122B2000300800C35897 /* CoinAuditNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoinAuditNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,6 +278,7 @@
 		32AFAB731FF38FC6006B608D = {
 			isa = PBXGroup;
 			children = (
+				32E18CE82005974E00E4A43E /* logo.png */,
 				32AFAB7E1FF38FC6006B608D /* CoinAudit */,
 				32AFAB951FF38FC7006B608D /* CoinAuditTests */,
 				32AFABA01FF38FC7006B608D /* CoinAuditUITests */,
@@ -302,7 +305,6 @@
 		32AFAB7E1FF38FC6006B608D /* CoinAudit */ = {
 			isa = PBXGroup;
 			children = (
-				32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */,
 				32AFAB7F1FF38FC6006B608D /* AppDelegate.swift */,
 				32FCD4011FF4AEC200B7AD32 /* ViewControllers */,
 				32FCD4031FF4AEE000B7AD32 /* Models */,
@@ -312,6 +314,7 @@
 				32AFAB8A1FF38FC6006B608D /* LaunchScreen.storyboard */,
 				32AFAB8D1FF38FC6006B608D /* Info.plist */,
 				32FC1249200042B600C35897 /* coin.caf */,
+				32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */,
 			);
 			path = CoinAudit;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32AFAB8C1FF38FC6006B608D /* LaunchScreen.storyboard in Resources */,
+				32E18CE92005974E00E4A43E /* logo.png in Resources */,
 				32AFAB891FF38FC6006B608D /* Assets.xcassets in Resources */,
 				32FC124A200042B600C35897 /* coin.caf in Resources */,
 				32AFAB871FF38FC6006B608D /* Main.storyboard in Resources */,

@@ -96,6 +96,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         }
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let id = url.host!
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "feedDetails") as! CoinsDetailsViewController
+        vc.id = id
+        print(id)
+        if themeValue == "dark" {
+            vc.view.backgroundColor = UIColor.black
+        } else {
+            vc.view.backgroundColor = UIColor.white
+        }
+
+        vc.title = id
+        vc.viewer = true
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.window?.rootViewController?.present(navController, animated: true, completion: nil)
+        return true
+    }
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CoinAuditReload"), object: nil)

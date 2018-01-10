@@ -24,7 +24,6 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var percent1Label: UILabel!
     @IBOutlet var percent24Label: UILabel!
     @IBOutlet var percent7Label: UILabel!
-    @IBOutlet var navBar: UINavigationBar!
     @IBOutlet var PercentChangeLabels: [UILabel]!
     @IBOutlet var supplyUsed: UILabel!
     @IBOutlet var adView: GADBannerView!
@@ -32,9 +31,13 @@ class CoinsDetailsViewController: UIViewController {
     var favorited: Bool = false
     var id: String = ""
     var url: String = ""
+    var viewer: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // load favorites
+        favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
+        favorites = favorites.sorted()
         
         // MARK: Ad View
         if showAd == "Yes" {
@@ -51,7 +54,7 @@ class CoinsDetailsViewController: UIViewController {
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoin))
         updateButton.image = #imageLiteral(resourceName: "refresh")
         self.navigationItem.rightBarButtonItem = updateButton
-
+        
         if favorites.contains(id) {
             self.favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
@@ -72,11 +75,44 @@ class CoinsDetailsViewController: UIViewController {
             adView.isHidden = false
         }
         
-        if entries.count != 0 {
+        if entries.count != 0 && viewer == false {
             self.formatData(coin: entries.first(where: {$0.id == id})!)
             self.formatPercents(coin: entries.first(where: {$0.id == id})!)
             updateTheme()
         }
+        
+        if viewer {
+            let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButton))
+            self.navigationItem.leftBarButtonItem = done
+            self.navigationController?.navigationItem.leftBarButtonItem = done
+            
+            if Connectivity.isConnectedToInternet {
+                SwiftSpinner.show("Updating \(id)...")
+                // Pull Coin Data
+                Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
+                    for coinJSON in (response.result.value as? [[String : AnyObject]])! {
+                        if let coin = CoinEntry.init(json: coinJSON) {
+                            if entries.count != 0 {
+                                let index = entries.index(where: {$0.id == self.id})
+                                entries[index!] = coin
+                            } else {
+                                entries.append(coin)
+                            }
+                            self.formatData(coin: coin)
+                            self.formatPercents(coin: coin)
+                            self.updateTheme()
+                            SwiftSpinner.hide()
+                        }
+                    }
+                }
+            } else {
+                SweetAlert().showAlert("No internet connection")
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        viewer = false
     }
 
     @IBAction func favoriteButton(_ sender: Any) {
@@ -255,7 +291,7 @@ class CoinsDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func doneButton(_ sender: Any) {
+    @objc func doneButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainController = storyboard.instantiateViewController(withIdentifier: "main")
         self.present(mainController, animated: true, completion: nil)
@@ -277,7 +313,6 @@ class CoinsDetailsViewController: UIViewController {
             self.view.backgroundColor = UIColor.black
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.barTintColor = UIColor.black
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
@@ -297,7 +332,6 @@ class CoinsDetailsViewController: UIViewController {
             self.view.backgroundColor = UIColor.white
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navBar.tintColor = UIColor.black
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             self.navigationController?.navigationBar.tintColor = UIColor.black
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]

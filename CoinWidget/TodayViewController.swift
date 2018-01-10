@@ -91,6 +91,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         } else {
             preferredContentSize = CGSize(width: 0, height: 88)
         }
+        
+        if let url = URL(string: "coinaudit://\(favorites[indexPath.row])") {
+            self.extensionContext?.open(url, completionHandler: {success in print("url complete: \(success)")})
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
