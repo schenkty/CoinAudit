@@ -90,6 +90,11 @@ class CoinsDetailsViewController: UIViewController {
                 SwiftSpinner.show("Updating \(id)...")
                 // Pull Coin Data
                 Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
+                    if (response.result.value as? [[String : AnyObject]])?.count == 0 {
+                        SweetAlert().showAlert("No coin data found")
+                        self.doneButton()
+                        return
+                    }
                     for coinJSON in (response.result.value as? [[String : AnyObject]])! {
                         if let coin = CoinEntry.init(json: coinJSON) {
                             if entries.count != 0 {

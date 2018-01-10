@@ -13,6 +13,7 @@ import GoogleMobileAds
 import Flurry_iOS_SDK
 import OneSignal
 import SwiftyStoreKit
+import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
@@ -35,6 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         Flurry.startSession("VPXM6GR7BCDHRTQPP9TV", with: builder)
         Flurry.setSessionReportsOnCloseEnabled(true)
         Flurry.setSessionReportsOnPauseEnabled(true)
+        
+        // Create a Sentry client and start crash handler
+        do {
+            Client.shared = try Client(dsn: "https://f0c1e51e5d2c4cb49d381934c6ae6324:44e3c915dc7a420ba7a23b68f3ef42ef@sentry.io/269336")
+            try Client.shared?.startCrashHandler()
+        } catch let error {
+            print("\(error)")
+            // Wrong DSN or KSCrash not installed
+        }
         
         // OneSignal Framework Setup
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: true]

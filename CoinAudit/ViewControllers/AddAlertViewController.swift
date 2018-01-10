@@ -166,7 +166,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 // name sure there is atleast one value setup
                 if belowTextField.text! == "" && aboveTextField.text! == "" {
                     
-                    SweetAlert().showAlert("Alert Failed", subTitle: "Please Enter an amount for above or below fields", style: AlertStyle.none)
+                    SweetAlert().showAlert("Alert Failed", subTitle: "Please enter an amount for above or below fields", style: AlertStyle.none)
                     return
                 }
             
@@ -246,7 +246,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 
                 // name sure there is atlease one value setup
                 if belowTextField.text! == "" && aboveTextField.text! == "" {
-                    SweetAlert().showAlert("Alert Failed", subTitle: "Please Enter an amount for above or below fields", style: AlertStyle.none)
+                    SweetAlert().showAlert("Alert Failed", subTitle: "Please enter an amount for above or below fields", style: AlertStyle.none)
                     return
                 }
     

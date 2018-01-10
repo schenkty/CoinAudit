@@ -278,7 +278,6 @@
 		32AFAB731FF38FC6006B608D = {
 			isa = PBXGroup;
 			children = (
-				32E18CE82005974E00E4A43E /* logo.png */,
 				32AFAB7E1FF38FC6006B608D /* CoinAudit */,
 				32AFAB951FF38FC7006B608D /* CoinAuditTests */,
 				32AFABA01FF38FC7006B608D /* CoinAuditUITests */,
@@ -315,6 +314,7 @@
 				32AFAB8D1FF38FC6006B608D /* Info.plist */,
 				32FC1249200042B600C35897 /* coin.caf */,
 				32C1C50A1FF8CC5A00DA69D3 /* CoinAudit.entitlements */,
+				32E18CE82005974E00E4A43E /* logo.png */,
 			);
 			path = CoinAudit;
 			sourceTree = "<group>";
@@ -793,7 +793,9 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
+				"${BUILT_PRODUCTS_DIR}/KSCrash/KSCrash.framework",
 				"${BUILT_PRODUCTS_DIR}/SearchTextField/SearchTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 			);
@@ -803,7 +805,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSCrash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SearchTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 			);
@@ -1186,6 +1190,7 @@
 				ASSETCATALOG_WARNINGS = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinAudit/CoinAudit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.1;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1201,6 +1206,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1214,6 +1220,7 @@
 				ASSETCATALOG_WARNINGS = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinAudit/CoinAudit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.1;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1229,6 +1236,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

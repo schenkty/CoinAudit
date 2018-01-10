@@ -237,6 +237,18 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             let cost = costTextField.text!.replacingOccurrences(of: "$", with: "")
             let amount = amountTextField.text!
             
+            if cost == "" {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+                SweetAlert().showAlert("Cost Missing", subTitle: "Can not add coin data without a coin cost", style: AlertStyle.error)
+                return
+            }
+            
+            if amount == "" {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+                SweetAlert().showAlert("Amount Missing", subTitle: "Can not add coin data without a coin amount", style: AlertStyle.error)
+                return
+            }
+            
             self.coins[indexPath.row].amount = amount
             self.coins[indexPath.row].cost = cost
             
@@ -246,6 +258,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
             return
         }
         
@@ -277,15 +290,32 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         var cost = "0.00"
         var amount = "0.0"
         
+        if self.nameTextField.text! == "" {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+            SweetAlert().showAlert("Name Missing", subTitle: "Can not add coin data without a coin name", style: AlertStyle.error)
+            return
+        }
+        
         let alert = UIAlertController(title: "Add Coin", message: "Please add the coin amount and price when purchased", preferredStyle: UIAlertControllerStyle.alert)
         
         let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
             let amountTextField = alert.textFields![0] as UITextField
             let costTextField = alert.textFields![1] as UITextField
+        
+            cost = costTextField.text!
+            amount = amountTextField.text!
             
+            if cost == "" {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+                SweetAlert().showAlert("Cost Missing", subTitle: "Can not add coin data without a coin cost", style: AlertStyle.error)
+                return
+            }
             
-            guard let cost = costTextField.text else { return }
-            guard let amount = amountTextField.text else { return }
+            if amount == "" {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+                SweetAlert().showAlert("Amount Missing", subTitle: "Can not add coin data without a coin amount", style: AlertStyle.error)
+                return
+            }
             
             self.coins.append(WalletEntry(cost: cost, amount: amount))
             print("Coin Added. Amount: \(amount) @ \(cost) each")
@@ -293,6 +323,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            UIApplication.shared.sendAction("resignFirstResponder", to:nil, from:nil, for:nil)
             return
         }
         
