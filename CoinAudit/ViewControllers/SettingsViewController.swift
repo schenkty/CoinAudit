@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController {
         }
         
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
-        versionLabel.text = "Version \(appVersion)".localizedUppercase
+        versionLabel.text = "Version \(appVersion)"//.localized()
     }
     
     override func viewWillAppear(_ animated: Bool) {

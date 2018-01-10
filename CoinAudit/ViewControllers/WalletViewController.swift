@@ -176,7 +176,6 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.nameLabel.text = coinData.name
         cell.symbolLabel.text = coinData.symbol
         
-        
         // pull coin data from entries array
         var percentCost: Double = 0.0
         var percentValue: Double = 0.0
@@ -187,8 +186,19 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var entryValue  = ""
         
         for item in coins {
-            let amount = Double(item.amount)!
-            let cost = Double(item.cost)!
+            var amount = 0.0
+            var cost = 0.0
+            if item.amount == "" {
+                amount = 0.0
+            } else {
+                amount = Double(item.amount)!
+            }
+            
+            if item.cost == "" {
+                cost = 0.0
+            } else {
+                cost = Double(item.cost)!
+            }
             
             let calcCost = (amount * cost)
             let calcValue = (amount * Double(coinData.priceUSD)!)
@@ -199,8 +209,19 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
         if priceFormat == "USD" {
             for item in coins {
-                let amount = Double(item.amount)!
-                let cost = Double(item.cost)!
+                var amount = 0.0
+                var cost = 0.0
+                if item.amount == "" {
+                    amount = 0.0
+                } else {
+                    amount = Double(item.amount)!
+                }
+                
+                if item.cost == "" {
+                    cost = 0.0
+                } else {
+                    cost = Double(item.cost)!
+                }
                 
                 let calcCost = (amount * cost)
                 let calcValue = (amount * Double(coinData.priceUSD)!)
@@ -211,8 +232,19 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             entryValue = "\(coinValue)".formatUSD()
         } else {
             for item in coins {
-                let amount = Double(item.amount)!
-                let cost = Double(item.cost)!
+                var amount = 0.0
+                var cost = 0.0
+                if item.amount == "" {
+                    amount = 0.0
+                } else {
+                    amount = Double(item.amount)!
+                }
+                
+                if item.cost == "" {
+                    cost = 0.0
+                } else {
+                    cost = Double(item.cost)!
+                }
                 
                 let calcCost = (amount * cost)
                 let calcValue = (amount * Double(coinData.priceBTC)!)
@@ -364,8 +396,19 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             for item in tempCosts {
-                let amount = Double(item.amount)!
-                let cost = Double(item.cost)!
+                var amount = 0.0
+                var cost = 0.0
+                if item.amount == "" {
+                    amount = 0.0
+                } else {
+                    amount = Double(item.amount)!
+                }
+                
+                if item.cost == "" {
+                    cost = 0.0
+                } else {
+                    cost = Double(item.cost)!
+                }
                 
                 let calcCost = (amount * cost)
                 let calcValue = (amount * Double(coinData.priceUSD)!)

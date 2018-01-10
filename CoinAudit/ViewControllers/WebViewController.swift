@@ -18,7 +18,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.load(URLRequest(url: URL(string: url)!))
-        self.navigationItem.title = "Web".localizedUppercase
+        self.navigationItem.title = "Web"//.localized()
     }
     
     override func viewWillAppear(_ animated: Bool) {

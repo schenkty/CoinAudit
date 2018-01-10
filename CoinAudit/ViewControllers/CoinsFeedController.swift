@@ -27,8 +27,6 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAd = "No"
-        saveAdsSettings()
         if showAd == "No" {
             print("Ads Unlocked")
         } else {
