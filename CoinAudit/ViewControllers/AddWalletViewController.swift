@@ -85,6 +85,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true
         nameTextField.startSuggestingInmediately = true
+        nameTextField.addDoneButtonToKeyboard(myAction:  #selector(self.nameTextField.resignFirstResponder))
     }
     
     override func viewWillAppear(_ animated: Bool) {

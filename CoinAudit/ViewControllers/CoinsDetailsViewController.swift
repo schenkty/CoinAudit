@@ -11,6 +11,7 @@ import NotificationCenter
 import SwiftSpinner
 import Alamofire
 import GoogleMobileAds
+import Sentry
 
 class CoinsDetailsViewController: UIViewController {
     

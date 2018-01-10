@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
         
         // Create a Sentry client and start crash handler
         do {
-            Client.shared = try Client(dsn: "https://f0c1e51e5d2c4cb49d381934c6ae6324:44e3c915dc7a420ba7a23b68f3ef42ef@sentry.io/269336")
+            Client.shared = try Client(dsn: "https://c546fb9d179f422897867891de5033a5:82bcd7e141b84ed4b5430e5a41dd00ec@sentry.io/269381")
             try Client.shared?.startCrashHandler()
         } catch let error {
             print("\(error)")
