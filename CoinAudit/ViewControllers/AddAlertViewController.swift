@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SearchTextField
 import GoogleMobileAds
+import Localize_Swift
 
 class AddAlertViewController: UIViewController, UITextFieldDelegate{
     

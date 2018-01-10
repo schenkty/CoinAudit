@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import SearchTextField
 import GoogleMobileAds
+import Localize_Swift
 
 class AddWalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 

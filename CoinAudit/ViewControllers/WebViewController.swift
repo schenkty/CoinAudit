@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Localize_Swift
 
 class WebViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.load(URLRequest(url: URL(string: url)!))
-        self.navigationItem.title = "Web"
+        self.navigationItem.title = "Web".localizedUppercase
     }
     
     override func viewWillAppear(_ animated: Bool) {

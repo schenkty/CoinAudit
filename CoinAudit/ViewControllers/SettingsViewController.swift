@@ -11,6 +11,7 @@ import CoreData
 import GoogleMobileAds
 import Alamofire
 import SwiftyStoreKit
+import Localize_Swift
 
 class SettingsViewController: UIViewController {
 
@@ -82,7 +83,7 @@ class SettingsViewController: UIViewController {
         }
         
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
-        versionLabel.text = "Version \(appVersion)"
+        versionLabel.text = "Version \(appVersion)".localizedUppercase
     }
     
     override func viewWillAppear(_ animated: Bool) {

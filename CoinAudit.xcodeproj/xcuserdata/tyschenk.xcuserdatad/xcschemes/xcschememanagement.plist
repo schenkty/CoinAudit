@@ -22,7 +22,7 @@
 		<key>CoinAuditNotificationServiceExtension.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>18</integer>
 		</dict>
 		<key>CoinAuditWatch (Notification).xcscheme</key>
 		<dict>
@@ -37,7 +37,7 @@
 		<key>CoinWidget.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>17</integer>
 		</dict>
 		<key>Intents Handler.xcscheme</key>
 		<dict>

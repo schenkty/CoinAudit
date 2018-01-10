@@ -12,6 +12,7 @@ import SwiftSpinner
 import Alamofire
 import GoogleMobileAds
 import Sentry
+import Localize_Swift
 
 class CoinsDetailsViewController: UIViewController {
     

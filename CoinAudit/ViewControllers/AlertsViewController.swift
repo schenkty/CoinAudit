@@ -12,6 +12,7 @@ import SwiftSpinner
 import NotificationCenter
 import UserNotifications
 import GoogleMobileAds
+import Localize_Swift
 
 class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 

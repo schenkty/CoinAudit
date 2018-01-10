@@ -12,6 +12,7 @@ import NotificationCenter
 import Alamofire
 import SwiftSpinner
 import GoogleMobileAds
+import Localize_Swift
 
 class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

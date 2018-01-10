@@ -12,6 +12,7 @@ import Alamofire
 import SwiftSpinner
 import OneSignal
 import GoogleMobileAds
+import Localize_Swift
 
 class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADInterstitialDelegate {
     

@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Error"; ObjectID = "GcN-lo-r42"; */
+"GcN-lo-r42.text" = "Error";
+
+/* Class = "UILabel"; text = "Coin"; ObjectID = "bev-kC-wdp"; */
+"bev-kC-wdp.text" = "Coin";
+
+/* Class = "UILabel"; text = "0.0"; ObjectID = "egR-0Z-UNG"; */
+"egR-0Z-UNG.text" = "0.0";
+
+/* Class = "UILabel"; text = "Empty"; ObjectID = "ofG-pB-V3Q"; */
+"ofG-pB-V3Q.text" = "Empty";
+
+/* Class = "UILabel"; text = "4.75%"; ObjectID = "qXn-gI-W3b"; */
+"qXn-gI-W3b.text" = "4.75%";

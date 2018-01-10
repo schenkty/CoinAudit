@@ -11,6 +11,7 @@ import Alamofire
 import SwiftSpinner
 import NotificationCenter
 import GoogleMobileAds
+import Localize_Swift
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

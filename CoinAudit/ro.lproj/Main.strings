@@ -1,0 +1,249 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0NL-Wz-UIP"; */
+"0NL-Wz-UIP.text" = "Label";
+
+/* Class = "UILabel"; text = "Market Cap:"; ObjectID = "0ab-kw-qu3"; */
+"0ab-kw-qu3.text" = "Market Cap:";
+
+/* Class = "UILabel"; text = "009.456%"; ObjectID = "2Wn-IA-GOZ"; */
+"2Wn-IA-GOZ.text" = "009.456%";
+
+/* Class = "UINavigationItem"; title = "CoinAudit"; ObjectID = "2xg-X5-j6R"; */
+"2xg-X5-j6R.title" = "CoinAudit";
+
+/* Class = "UILabel"; text = "1000."; ObjectID = "3Lt-Pu-GZ5"; */
+"3Lt-Pu-GZ5.text" = "1000.";
+
+/* Class = "UINavigationItem"; title = "Alerts"; ObjectID = "5As-ta-8Z6"; */
+"5As-ta-8Z6.title" = "Alerts";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "5PU-2N-2Pr"; */
+"5PU-2N-2Pr.title" = "Settings";
+
+/* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "6mt-iV-JlV"; */
+"6mt-iV-JlV.title" = "Favorites";
+
+/* Class = "UISegmentedControl"; 9G7-ei-qWw.segmentTitles[0] = "Light"; ObjectID = "9G7-ei-qWw"; */
+"9G7-ei-qWw.segmentTitles[0]" = "Light";
+
+/* Class = "UISegmentedControl"; 9G7-ei-qWw.segmentTitles[1] = "Dark"; ObjectID = "9G7-ei-qWw"; */
+"9G7-ei-qWw.segmentTitles[1]" = "Dark";
+
+/* Class = "UILabel"; text = "Price USD:"; ObjectID = "9oX-5X-Mwn"; */
+"9oX-5X-Mwn.text" = "Price USD:";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "AoL-bh-OoC"; */
+"AoL-bh-OoC.text" = "BTC";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "BEm-9h-CEt"; */
+"BEm-9h-CEt.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "1000.14877536"; ObjectID = "BQA-CP-t4C"; */
+"BQA-CP-t4C.text" = "1000.14877536";
+
+/* Class = "UITextField"; placeholder = "$0.00"; ObjectID = "CdH-QH-tHX"; */
+"CdH-QH-tHX.placeholder" = "$0.00";
+
+/* Class = "UILabel"; text = "Value: "; ObjectID = "D6i-Kw-9vM"; */
+"D6i-Kw-9vM.text" = "Value: ";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "ElH-k7-j3N"; */
+"ElH-k7-j3N.text" = "0.0%";
+
+/* Class = "UILabel"; text = "Supply Used: "; ObjectID = "GCd-vH-me1"; */
+"GCd-vH-me1.text" = "Supply Used: ";
+
+/* Class = "UILabel"; text = "Percent Change (1h):  "; ObjectID = "GY3-zC-alh"; */
+"GY3-zC-alh.text" = "Percent Change (1h):  ";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Jf7-a6-yfQ"; */
+"Jf7-a6-yfQ.title" = "Settings";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "KNG-UD-bNp"; */
+"KNG-UD-bNp.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "Widget Percent:"; ObjectID = "LEc-kA-oGo"; */
+"LEc-kA-oGo.text" = "Widget Percent:";
+
+/* Class = "UILabel"; text = "Percent Change (24h): "; ObjectID = "LXL-aj-faO"; */
+"LXL-aj-faO.text" = "Percent Change (24h): ";
+
+/* Class = "UIButton"; normalTitle = "Clear All Data"; ObjectID = "Lqn-in-rsd"; */
+"Lqn-in-rsd.normalTitle" = "Clear All Data";
+
+/* Class = "UILabel"; text = "And/or when price is below:"; ObjectID = "MA2-NY-yb2"; */
+"MA2-NY-yb2.text" = "And/or when price is below:";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "MQd-3H-f0o"; */
+"MQd-3H-f0o.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "Mmf-vy-5ML"; */
+"Mmf-vy-5ML.text" = "BTC";
+
+/* Class = "UITabBarItem"; title = "Coins"; ObjectID = "NON-NQ-EMe"; */
+"NON-NQ-EMe.title" = "Coins";
+
+/* Class = "UIButton"; normalTitle = "Restore Purchases"; ObjectID = "Na0-wg-XwX"; */
+"Na0-wg-XwX.normalTitle" = "Restore Purchases";
+
+/* Class = "UILabel"; text = "Coin Entries: "; ObjectID = "NwH-76-h5S"; */
+"NwH-76-h5S.text" = "Coin Entries: ";
+
+/* Class = "UIButton"; normalTitle = "Powered by CoinMarketCap"; ObjectID = "Nx3-Ud-Zw7"; */
+"Nx3-Ud-Zw7.normalTitle" = "Powered by CoinMarketCap";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "O6w-it-dGo"; */
+"O6w-it-dGo.text" = "0.0%";
+
+/* Class = "UILabel"; text = "Total Gain: +13.692%"; ObjectID = "OT4-ws-k5U"; */
+"OT4-ws-k5U.text" = "Total Gain: +13.692%";
+
+/* Class = "UILabel"; text = "Price BTC:"; ObjectID = "P5x-Lj-LrU"; */
+"P5x-Lj-LrU.text" = "Price BTC:";
+
+/* Class = "UISegmentedControl"; PYv-T9-BWA.segmentTitles[0] = "USD"; ObjectID = "PYv-T9-BWA"; */
+"PYv-T9-BWA.segmentTitles[0]" = "USD";
+
+/* Class = "UISegmentedControl"; PYv-T9-BWA.segmentTitles[1] = "BTC"; ObjectID = "PYv-T9-BWA"; */
+"PYv-T9-BWA.segmentTitles[1]" = "BTC";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Pbz-qJ-pZ7"; */
+"Pbz-qJ-pZ7.text" = "Label";
+
+/* Class = "UILabel"; text = "Theme:"; ObjectID = "QUA-xi-UH2"; */
+"QUA-xi-UH2.text" = "Theme:";
+
+/* Class = "UILabel"; text = "Circulating Supply:"; ObjectID = "R2E-c7-A30"; */
+"R2E-c7-A30.text" = "Circulating Supply:";
+
+/* Class = "UILabel"; text = "Alerts Disabled"; ObjectID = "RQ7-eg-6qW"; */
+"RQ7-eg-6qW.text" = "Alerts Disabled";
+
+/* Class = "UILabel"; text = "102,190,107,890.99 BTC"; ObjectID = "Rny-04-UW4"; */
+"Rny-04-UW4.text" = "102,190,107,890.99 BTC";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "ShF-gZ-YDI"; */
+"ShF-gZ-YDI.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "Volume (24h):"; ObjectID = "THR-3k-jHH"; */
+"THR-3k-jHH.text" = "Volume (24h):";
+
+/* Class = "UITabBarItem"; title = "Alerts"; ObjectID = "TMP-bD-Uec"; */
+"TMP-bD-Uec.title" = "Alerts";
+
+/* Class = "UIButton"; normalTitle = "Developer: Ty Schenk"; ObjectID = "Vba-ew-Vgy"; */
+"Vba-ew-Vgy.normalTitle" = "Developer: Ty Schenk";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VsB-uN-Hv0"; */
+"VsB-uN-Hv0.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "W8O-A1-LtF"; */
+"W8O-A1-LtF.title" = "Favorites";
+
+/* Class = "UISegmentedControl"; Xe8-i0-XuM.segmentTitles[0] = "USD"; ObjectID = "Xe8-i0-XuM"; */
+"Xe8-i0-XuM.segmentTitles[0]" = "USD";
+
+/* Class = "UISegmentedControl"; Xe8-i0-XuM.segmentTitles[1] = "BTC"; ObjectID = "Xe8-i0-XuM"; */
+"Xe8-i0-XuM.segmentTitles[1]" = "BTC";
+
+/* Class = "UILabel"; text = "Price Format:"; ObjectID = "Y0w-bd-4dU"; */
+"Y0w-bd-4dU.text" = "Price Format:";
+
+/* Class = "UILabel"; text = "BTC"; ObjectID = "Yfh-vW-c2O"; */
+"Yfh-vW-c2O.text" = "BTC";
+
+/* Class = "UIButton"; normalTitle = "Remove Ads"; ObjectID = "Ynv-LA-YxT"; */
+"Ynv-LA-YxT.normalTitle" = "Remove Ads";
+
+/* Class = "UILabel"; text = "Raiblocks"; ObjectID = "ZFx-id-twB"; */
+"ZFx-id-twB.text" = "Raiblocks";
+
+/* Class = "UILabel"; text = "Max Supply:"; ObjectID = "boK-sl-Nbz"; */
+"boK-sl-Nbz.text" = "Max Supply:";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "bxX-Jz-9Cw"; */
+"bxX-Jz-9Cw.text" = "0.0%";
+
+/* Class = "UILabel"; text = "1000.14877536"; ObjectID = "cao-qF-ku0"; */
+"cao-qF-ku0.text" = "1000.14877536";
+
+/* Class = "UIButton"; normalTitle = "Favorite"; ObjectID = "cgL-zr-Toh"; */
+"cgL-zr-Toh.normalTitle" = "Favorite";
+
+/* Class = "UILabel"; text = "1000.14877536"; ObjectID = "eB7-Gz-O6C"; */
+"eB7-Gz-O6C.text" = "1000.14877536";
+
+/* Class = "UITextField"; placeholder = "Bitcoin"; ObjectID = "eRf-kU-3Kw"; */
+"eRf-kU-3Kw.placeholder" = "Bitcoin";
+
+/* Class = "UILabel"; text = "Version 1.0"; ObjectID = "erW-j3-BZJ"; */
+"erW-j3-BZJ.text" = "Version 1.0";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "gPa-oX-nXH"; */
+"gPa-oX-nXH.text" = "0.0%";
+
+/* Class = "UILabel"; text = "Wallet Format:"; ObjectID = "gmK-Kj-pjC"; */
+"gmK-Kj-pjC.text" = "Wallet Format:";
+
+/* Class = "UIButton"; normalTitle = "More infomation"; ObjectID = "hNA-Z3-4Uk"; */
+"hNA-Z3-4Uk.normalTitle" = "More infomation";
+
+/* Class = "UISegmentedControl"; k2G-BF-3d1.segmentTitles[0] = "Volume"; ObjectID = "k2G-BF-3d1"; */
+"k2G-BF-3d1.segmentTitles[0]" = "Volume";
+
+/* Class = "UISegmentedControl"; k2G-BF-3d1.segmentTitles[1] = "Value"; ObjectID = "k2G-BF-3d1"; */
+"k2G-BF-3d1.segmentTitles[1]" = "Value";
+
+/* Class = "UITabBarItem"; title = "Wallet"; ObjectID = "kbW-UQ-9SJ"; */
+"kbW-UQ-9SJ.title" = "Wallet";
+
+/* Class = "UILabel"; text = "Wallet Value"; ObjectID = "mQW-eV-xkM"; */
+"mQW-eV-xkM.text" = "Wallet Value";
+
+/* Class = "UILabel"; text = "Coin Name "; ObjectID = "npO-oa-2E0"; */
+"npO-oa-2E0.text" = "Coin Name ";
+
+/* Class = "UINavigationItem"; title = "Wallet"; ObjectID = "s9e-UR-kyP"; */
+"s9e-UR-kyP.title" = "Wallet";
+
+/* Class = "UILabel"; text = "Bitcoin"; ObjectID = "sRX-lI-HJn"; */
+"sRX-lI-HJn.text" = "Bitcoin";
+
+/* Class = "UILabel"; text = "009.456%"; ObjectID = "sX7-CG-uZM"; */
+"sX7-CG-uZM.text" = "009.456%";
+
+/* Class = "UILabel"; text = "Coin Name "; ObjectID = "sa2-Mk-Y65"; */
+"sa2-Mk-Y65.text" = "Coin Name ";
+
+/* Class = "UILabel"; text = "Percent Change (7d): "; ObjectID = "suC-MP-Jz2"; */
+"suC-MP-Jz2.text" = "Percent Change (7d): ";
+
+/* Class = "UITextField"; placeholder = "Bitcoin"; ObjectID = "uhB-mD-BpR"; */
+"uhB-mD-BpR.placeholder" = "Bitcoin";
+
+/* Class = "UILabel"; text = "1000."; ObjectID = "wUo-1G-HEO"; */
+"wUo-1G-HEO.text" = "1000.";
+
+/* Class = "UISegmentedControl"; wZQ-C6-95c.segmentTitles[0] = "USD"; ObjectID = "wZQ-C6-95c"; */
+"wZQ-C6-95c.segmentTitles[0]" = "USD";
+
+/* Class = "UISegmentedControl"; wZQ-C6-95c.segmentTitles[1] = "BTC"; ObjectID = "wZQ-C6-95c"; */
+"wZQ-C6-95c.segmentTitles[1]" = "BTC";
+
+/* Class = "UILabel"; text = "$102,190,107,890.99 USD"; ObjectID = "wtH-PU-CYP"; */
+"wtH-PU-CYP.text" = "$102,190,107,890.99 USD";
+
+/* Class = "UILabel"; text = "009.456%"; ObjectID = "wtt-dj-0Np"; */
+"wtt-dj-0Np.text" = "009.456%";
+
+/* Class = "UISegmentedControl"; x1S-tD-K4Y.segmentTitles[0] = "1 Hour"; ObjectID = "x1S-tD-K4Y"; */
+"x1S-tD-K4Y.segmentTitles[0]" = "1 Hour";
+
+/* Class = "UISegmentedControl"; x1S-tD-K4Y.segmentTitles[1] = "24 Hours"; ObjectID = "x1S-tD-K4Y"; */
+"x1S-tD-K4Y.segmentTitles[1]" = "24 Hours";
+
+/* Class = "UITextField"; placeholder = "$0.00"; ObjectID = "xGA-QD-lfH"; */
+"xGA-QD-lfH.placeholder" = "$0.00";
+
+/* Class = "UILabel"; text = "Alert when price is above:"; ObjectID = "xd1-wD-pog"; */
+"xd1-wD-pog.text" = "Alert when price is above:";
