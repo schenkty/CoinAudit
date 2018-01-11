@@ -75,13 +75,14 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             new = true
             self.navigationItem.title = "New Entry"
+            percentLabel.text = ""
         }
         
         for item in entries {
             let name = SearchTextFieldItem(title: item.name)
             names.append(name)
         }
-        
+    
         nameTextField.text = name
         nameTextField.filterItems(names)
         nameTextField.inlineMode = true

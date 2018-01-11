@@ -468,7 +468,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // format wallet total label to currency
         let text = "\(walletTotal)".formatUSD()
-        totalLabel.text = "\(text) USD"
+        totalLabel.text = "\(text)"
         bitcoinLabel.text = "\(bitcoinTotal) BTC"
     }
     

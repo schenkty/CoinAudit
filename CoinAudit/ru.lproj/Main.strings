@@ -185,8 +185,8 @@
 /* Class = "UILabel"; text = "Wallet Format:"; ObjectID = "gmK-Kj-pjC"; */
 "gmK-Kj-pjC.text" = "Wallet Format:";
 
-/* Class = "UIButton"; normalTitle = "More infomation"; ObjectID = "hNA-Z3-4Uk"; */
-"hNA-Z3-4Uk.normalTitle" = "More infomation";
+/* Class = "UIButton"; normalTitle = "More information"; ObjectID = "hNA-Z3-4Uk"; */
+"hNA-Z3-4Uk.normalTitle" = "More information";
 
 /* Class = "UISegmentedControl"; k2G-BF-3d1.segmentTitles[0] = "Volume"; ObjectID = "k2G-BF-3d1"; */
 "k2G-BF-3d1.segmentTitles[0]" = "Volume";

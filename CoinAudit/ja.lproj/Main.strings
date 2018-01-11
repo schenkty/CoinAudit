@@ -3,7 +3,7 @@
 "0NL-Wz-UIP.text" = "Label";
 
 /* Class = "UILabel"; text = "Market Cap:"; ObjectID = "0ab-kw-qu3"; */
-"0ab-kw-qu3.text" = "Market Cap:";
+"0ab-kw-qu3.text" = "時価総額：";
 
 /* Class = "UILabel"; text = "009.456%"; ObjectID = "2Wn-IA-GOZ"; */
 "2Wn-IA-GOZ.text" = "009.456%";
@@ -15,22 +15,22 @@
 "3Lt-Pu-GZ5.text" = "1000.";
 
 /* Class = "UINavigationItem"; title = "Alerts"; ObjectID = "5As-ta-8Z6"; */
-"5As-ta-8Z6.title" = "Alerts";
+"5As-ta-8Z6.title" = "アラート";
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "5PU-2N-2Pr"; */
-"5PU-2N-2Pr.title" = "Settings";
+"5PU-2N-2Pr.title" = "設定";
 
 /* Class = "UITabBarItem"; title = "Favorites"; ObjectID = "6mt-iV-JlV"; */
-"6mt-iV-JlV.title" = "Favorites";
+"6mt-iV-JlV.title" = "お気に入り";
 
 /* Class = "UISegmentedControl"; 9G7-ei-qWw.segmentTitles[0] = "Light"; ObjectID = "9G7-ei-qWw"; */
-"9G7-ei-qWw.segmentTitles[0]" = "Light";
+"9G7-ei-qWw.segmentTitles[0]" = "光";
 
 /* Class = "UISegmentedControl"; 9G7-ei-qWw.segmentTitles[1] = "Dark"; ObjectID = "9G7-ei-qWw"; */
-"9G7-ei-qWw.segmentTitles[1]" = "Dark";
+"9G7-ei-qWw.segmentTitles[1]" = "ダーク";
 
 /* Class = "UILabel"; text = "Price USD:"; ObjectID = "9oX-5X-Mwn"; */
-"9oX-5X-Mwn.text" = "Price USD:";
+"9oX-5X-Mwn.text" = "価格USD：";
 
 /* Class = "UILabel"; text = "BTC"; ObjectID = "AoL-bh-OoC"; */
 "AoL-bh-OoC.text" = "BTC";
@@ -42,67 +42,67 @@
 "BQA-CP-t4C.text" = "1000.14877536";
 
 /* Class = "UITextField"; placeholder = "$0.00"; ObjectID = "CdH-QH-tHX"; */
-"CdH-QH-tHX.placeholder" = "$0.00";
+"CdH-QH-tHX.placeholder" = "$ 0.00";
 
 /* Class = "UILabel"; text = "Value: "; ObjectID = "D6i-Kw-9vM"; */
-"D6i-Kw-9vM.text" = "Value: ";
+"D6i-Kw-9vM.text" = "値：";
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "ElH-k7-j3N"; */
 "ElH-k7-j3N.text" = "0.0%";
 
 /* Class = "UILabel"; text = "Supply Used: "; ObjectID = "GCd-vH-me1"; */
-"GCd-vH-me1.text" = "Supply Used: ";
+"GCd-vH-me1.text" = "使用された供給：";
 
 /* Class = "UILabel"; text = "Percent Change (1h):  "; ObjectID = "GY3-zC-alh"; */
-"GY3-zC-alh.text" = "Percent Change (1h):  ";
+"GY3-zC-alh.text" = "変化率（1時間）：";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Jf7-a6-yfQ"; */
-"Jf7-a6-yfQ.title" = "Settings";
+"Jf7-a6-yfQ.title" = "設定";
 
 /* Class = "UILabel"; text = "Bitcoin"; ObjectID = "KNG-UD-bNp"; */
 "KNG-UD-bNp.text" = "Bitcoin";
 
 /* Class = "UILabel"; text = "Widget Percent:"; ObjectID = "LEc-kA-oGo"; */
-"LEc-kA-oGo.text" = "Widget Percent:";
+"LEc-kA-oGo.text" = "ウィジェット率：";
 
 /* Class = "UILabel"; text = "Percent Change (24h): "; ObjectID = "LXL-aj-faO"; */
-"LXL-aj-faO.text" = "Percent Change (24h): ";
+"LXL-aj-faO.text" = "変化率（24時間）：";
 
 /* Class = "UIButton"; normalTitle = "Clear All Data"; ObjectID = "Lqn-in-rsd"; */
-"Lqn-in-rsd.normalTitle" = "Clear All Data";
+"Lqn-in-rsd.normalTitle" = "すべてのデータをクリア";
 
 /* Class = "UILabel"; text = "And/or when price is below:"; ObjectID = "MA2-NY-yb2"; */
-"MA2-NY-yb2.text" = "And/or when price is below:";
+"MA2-NY-yb2.text" = "そして/または価格が以下の場合：";
 
 /* Class = "UIButton"; normalTitle = "Add"; ObjectID = "MQd-3H-f0o"; */
-"MQd-3H-f0o.normalTitle" = "Add";
+"MQd-3H-f0o.normalTitle" = "追加";
 
 /* Class = "UILabel"; text = "BTC"; ObjectID = "Mmf-vy-5ML"; */
 "Mmf-vy-5ML.text" = "BTC";
 
 /* Class = "UITabBarItem"; title = "Coins"; ObjectID = "NON-NQ-EMe"; */
-"NON-NQ-EMe.title" = "Coins";
+"NON-NQ-EMe.title" = "コイン";
 
 /* Class = "UIButton"; normalTitle = "Restore Purchases"; ObjectID = "Na0-wg-XwX"; */
-"Na0-wg-XwX.normalTitle" = "Restore Purchases";
+"Na0-wg-XwX.normalTitle" = "購入を復元";
 
 /* Class = "UILabel"; text = "Coin Entries: "; ObjectID = "NwH-76-h5S"; */
-"NwH-76-h5S.text" = "Coin Entries: ";
+"NwH-76-h5S.text" = "コインエントリー：";
 
 /* Class = "UIButton"; normalTitle = "Powered by CoinMarketCap"; ObjectID = "Nx3-Ud-Zw7"; */
-"Nx3-Ud-Zw7.normalTitle" = "Powered by CoinMarketCap";
+"Nx3-Ud-Zw7.normalTitle" = "CoinMarketCapによって供給";
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "O6w-it-dGo"; */
 "O6w-it-dGo.text" = "0.0%";
 
 /* Class = "UILabel"; text = "Total Gain: +13.692%"; ObjectID = "OT4-ws-k5U"; */
-"OT4-ws-k5U.text" = "Total Gain: +13.692%";
+"OT4-ws-k5U.text" = "総利益：+ 13.692％";
 
 /* Class = "UILabel"; text = "Price BTC:"; ObjectID = "P5x-Lj-LrU"; */
-"P5x-Lj-LrU.text" = "Price BTC:";
+"P5x-Lj-LrU.text" = "価格 BTC:";
 
 /* Class = "UISegmentedControl"; PYv-T9-BWA.segmentTitles[0] = "USD"; ObjectID = "PYv-T9-BWA"; */
-"PYv-T9-BWA.segmentTitles[0]" = "USD";
+"PYv-T9-BWA.segmentTitles[0]" = "米ドル";
 
 /* Class = "UISegmentedControl"; PYv-T9-BWA.segmentTitles[1] = "BTC"; ObjectID = "PYv-T9-BWA"; */
 "PYv-T9-BWA.segmentTitles[1]" = "BTC";
@@ -111,13 +111,13 @@
 "Pbz-qJ-pZ7.text" = "Label";
 
 /* Class = "UILabel"; text = "Theme:"; ObjectID = "QUA-xi-UH2"; */
-"QUA-xi-UH2.text" = "Theme:";
+"QUA-xi-UH2.text" = "テーマ：";
 
 /* Class = "UILabel"; text = "Circulating Supply:"; ObjectID = "R2E-c7-A30"; */
-"R2E-c7-A30.text" = "Circulating Supply:";
+"R2E-c7-A30.text" = "循環供給：";
 
 /* Class = "UILabel"; text = "Alerts Disabled"; ObjectID = "RQ7-eg-6qW"; */
-"RQ7-eg-6qW.text" = "Alerts Disabled";
+"RQ7-eg-6qW.text" = "アラートを無効にする";
 
 /* Class = "UILabel"; text = "102,190,107,890.99 BTC"; ObjectID = "Rny-04-UW4"; */
 "Rny-04-UW4.text" = "102,190,107,890.99 BTC";
@@ -126,40 +126,40 @@
 "ShF-gZ-YDI.text" = "Bitcoin";
 
 /* Class = "UILabel"; text = "Volume (24h):"; ObjectID = "THR-3k-jHH"; */
-"THR-3k-jHH.text" = "Volume (24h):";
+"THR-3k-jHH.text" = "容量（24時間）：";
 
 /* Class = "UITabBarItem"; title = "Alerts"; ObjectID = "TMP-bD-Uec"; */
-"TMP-bD-Uec.title" = "Alerts";
+"TMP-bD-Uec.title" = "アラート";
 
 /* Class = "UIButton"; normalTitle = "Developer: Ty Schenk"; ObjectID = "Vba-ew-Vgy"; */
-"Vba-ew-Vgy.normalTitle" = "Developer: Ty Schenk";
+"Vba-ew-Vgy.normalTitle" = "開発者：Ty Schenk";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "VsB-uN-Hv0"; */
 "VsB-uN-Hv0.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "Favorites"; ObjectID = "W8O-A1-LtF"; */
-"W8O-A1-LtF.title" = "Favorites";
+"W8O-A1-LtF.title" = "お気に入り";
 
 /* Class = "UISegmentedControl"; Xe8-i0-XuM.segmentTitles[0] = "USD"; ObjectID = "Xe8-i0-XuM"; */
-"Xe8-i0-XuM.segmentTitles[0]" = "USD";
+"Xe8-i0-XuM.segmentTitles[0]" = "米ドル";
 
 /* Class = "UISegmentedControl"; Xe8-i0-XuM.segmentTitles[1] = "BTC"; ObjectID = "Xe8-i0-XuM"; */
 "Xe8-i0-XuM.segmentTitles[1]" = "BTC";
 
 /* Class = "UILabel"; text = "Price Format:"; ObjectID = "Y0w-bd-4dU"; */
-"Y0w-bd-4dU.text" = "Price Format:";
+"Y0w-bd-4dU.text" = "価格形式：";
 
 /* Class = "UILabel"; text = "BTC"; ObjectID = "Yfh-vW-c2O"; */
 "Yfh-vW-c2O.text" = "BTC";
 
 /* Class = "UIButton"; normalTitle = "Remove Ads"; ObjectID = "Ynv-LA-YxT"; */
-"Ynv-LA-YxT.normalTitle" = "Remove Ads";
+"Ynv-LA-YxT.normalTitle" = "広告を削除";
 
 /* Class = "UILabel"; text = "Raiblocks"; ObjectID = "ZFx-id-twB"; */
 "ZFx-id-twB.text" = "Raiblocks";
 
 /* Class = "UILabel"; text = "Max Supply:"; ObjectID = "boK-sl-Nbz"; */
-"boK-sl-Nbz.text" = "Max Supply:";
+"boK-sl-Nbz.text" = "最大供給：";
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "bxX-Jz-9Cw"; */
 "bxX-Jz-9Cw.text" = "0.0%";
@@ -168,7 +168,7 @@
 "cao-qF-ku0.text" = "1000.14877536";
 
 /* Class = "UIButton"; normalTitle = "Favorite"; ObjectID = "cgL-zr-Toh"; */
-"cgL-zr-Toh.normalTitle" = "Favorite";
+"cgL-zr-Toh.normalTitle" = "お気に入り";
 
 /* Class = "UILabel"; text = "1000.14877536"; ObjectID = "eB7-Gz-O6C"; */
 "eB7-Gz-O6C.text" = "1000.14877536";
@@ -177,34 +177,34 @@
 "eRf-kU-3Kw.placeholder" = "Bitcoin";
 
 /* Class = "UILabel"; text = "Version 1.0"; ObjectID = "erW-j3-BZJ"; */
-"erW-j3-BZJ.text" = "Version 1.0";
+"erW-j3-BZJ.text" = "バージョン1.0";
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "gPa-oX-nXH"; */
 "gPa-oX-nXH.text" = "0.0%";
 
 /* Class = "UILabel"; text = "Wallet Format:"; ObjectID = "gmK-Kj-pjC"; */
-"gmK-Kj-pjC.text" = "Wallet Format:";
+"gmK-Kj-pjC.text" = "ウォレットのフォーマット：";
 
 /* Class = "UIButton"; normalTitle = "More infomation"; ObjectID = "hNA-Z3-4Uk"; */
-"hNA-Z3-4Uk.normalTitle" = "More infomation";
+"hNA-Z3-4Uk.normalTitle" = "詳しくは";
 
 /* Class = "UISegmentedControl"; k2G-BF-3d1.segmentTitles[0] = "Volume"; ObjectID = "k2G-BF-3d1"; */
-"k2G-BF-3d1.segmentTitles[0]" = "Volume";
+"k2G-BF-3d1.segmentTitles[0]" = "ボリューム";
 
 /* Class = "UISegmentedControl"; k2G-BF-3d1.segmentTitles[1] = "Value"; ObjectID = "k2G-BF-3d1"; */
-"k2G-BF-3d1.segmentTitles[1]" = "Value";
+"k2G-BF-3d1.segmentTitles[1]" = "値";
 
 /* Class = "UITabBarItem"; title = "Wallet"; ObjectID = "kbW-UQ-9SJ"; */
-"kbW-UQ-9SJ.title" = "Wallet";
+"kbW-UQ-9SJ.title" = "財布";
 
 /* Class = "UILabel"; text = "Wallet Value"; ObjectID = "mQW-eV-xkM"; */
-"mQW-eV-xkM.text" = "Wallet Value";
+"mQW-eV-xkM.text" = "ウォレットの値";
 
 /* Class = "UILabel"; text = "Coin Name "; ObjectID = "npO-oa-2E0"; */
-"npO-oa-2E0.text" = "Coin Name ";
+"npO-oa-2E0.text" = "コイン名";
 
 /* Class = "UINavigationItem"; title = "Wallet"; ObjectID = "s9e-UR-kyP"; */
-"s9e-UR-kyP.title" = "Wallet";
+"s9e-UR-kyP.title" = "財布";
 
 /* Class = "UILabel"; text = "Bitcoin"; ObjectID = "sRX-lI-HJn"; */
 "sRX-lI-HJn.text" = "Bitcoin";
@@ -213,10 +213,10 @@
 "sX7-CG-uZM.text" = "009.456%";
 
 /* Class = "UILabel"; text = "Coin Name "; ObjectID = "sa2-Mk-Y65"; */
-"sa2-Mk-Y65.text" = "Coin Name ";
+"sa2-Mk-Y65.text" = "コイン名";
 
 /* Class = "UILabel"; text = "Percent Change (7d): "; ObjectID = "suC-MP-Jz2"; */
-"suC-MP-Jz2.text" = "Percent Change (7d): ";
+"suC-MP-Jz2.text" = "変化率（7d）：";
 
 /* Class = "UITextField"; placeholder = "Bitcoin"; ObjectID = "uhB-mD-BpR"; */
 "uhB-mD-BpR.placeholder" = "Bitcoin";
@@ -225,7 +225,7 @@
 "wUo-1G-HEO.text" = "1000.";
 
 /* Class = "UISegmentedControl"; wZQ-C6-95c.segmentTitles[0] = "USD"; ObjectID = "wZQ-C6-95c"; */
-"wZQ-C6-95c.segmentTitles[0]" = "USD";
+"wZQ-C6-95c.segmentTitles[0]" = "米ドル";
 
 /* Class = "UISegmentedControl"; wZQ-C6-95c.segmentTitles[1] = "BTC"; ObjectID = "wZQ-C6-95c"; */
 "wZQ-C6-95c.segmentTitles[1]" = "BTC";
@@ -237,13 +237,13 @@
 "wtt-dj-0Np.text" = "009.456%";
 
 /* Class = "UISegmentedControl"; x1S-tD-K4Y.segmentTitles[0] = "1 Hour"; ObjectID = "x1S-tD-K4Y"; */
-"x1S-tD-K4Y.segmentTitles[0]" = "1 Hour";
+"x1S-tD-K4Y.segmentTitles[0]" = "1時間";
 
 /* Class = "UISegmentedControl"; x1S-tD-K4Y.segmentTitles[1] = "24 Hours"; ObjectID = "x1S-tD-K4Y"; */
-"x1S-tD-K4Y.segmentTitles[1]" = "24 Hours";
+"x1S-tD-K4Y.segmentTitles[1]" = "24時間";
 
 /* Class = "UITextField"; placeholder = "$0.00"; ObjectID = "xGA-QD-lfH"; */
-"xGA-QD-lfH.placeholder" = "$0.00";
+"xGA-QD-lfH.placeholder" = "$ 0.00";
 
 /* Class = "UILabel"; text = "Alert when price is above:"; ObjectID = "xd1-wD-pog"; */
-"xd1-wD-pog.text" = "Alert when price is above:";
+"xd1-wD-pog.text" = "価格が上の場合の警告：";

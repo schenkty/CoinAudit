@@ -27,6 +27,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if showAd == "No" {
             print("Ads Unlocked")
         } else {
@@ -36,7 +37,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         NotificationCenter.default.addObserver(self, selector: #selector(updateList), name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search Coin Name"
+        searchController.searchBar.placeholder = "Search Coin Name".localized()
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         navigationItem.searchController = searchController
@@ -96,7 +97,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         if priceFormat == "USD" {
             cell.valueLabel.text = coin.priceUSD.formatUSD()
         } else {
-            cell.valueLabel.text = "\(coin.priceBTC) BTC"
+            cell.valueLabel.text = "\(coin.priceBTC) BTC".localized()
         }
         
         // Theme Drawing code
@@ -147,7 +148,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         if Connectivity.isConnectedToInternet {
             self.updateData()
         } else {
-            SweetAlert().showAlert("No internet connection")
+            SweetAlert().showAlert("No internet connection".localized())
         }
     }
     
@@ -162,7 +163,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         
         
         // Provide loading spinner
-        SwiftSpinner.show("Downloading Data...", animated: true)
+        SwiftSpinner.show("Downloading Data...".localized(), animated: true)
         
         // Pull Coin Data
         Alamofire.request(coinsURL).responseJSON { response in

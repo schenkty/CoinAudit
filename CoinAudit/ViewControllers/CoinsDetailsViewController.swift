@@ -60,11 +60,11 @@ class CoinsDetailsViewController: UIViewController {
         if favorites.contains(id) {
             self.favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
-            favButton.setTitle("Remove Favorite", for: .normal)
+            favButton.setTitle("Remove Favorite".localized(), for: .normal)
         } else {
             self.favorited = false
             favButton.backgroundColor = UIColor.gray
-            favButton.setTitle("Favorite", for: .normal)
+            favButton.setTitle("Favorite".localized(), for: .normal)
         }
     }
     
@@ -84,16 +84,16 @@ class CoinsDetailsViewController: UIViewController {
         }
         
         if viewer {
-            let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButton))
+            let done = UIBarButtonItem(title: "Done".localized(), style: .plain, target: self, action: #selector(doneButton))
             self.navigationItem.leftBarButtonItem = done
             self.navigationController?.navigationItem.leftBarButtonItem = done
             
             if Connectivity.isConnectedToInternet {
-                SwiftSpinner.show("Updating \(id)...")
+                SwiftSpinner.show("Updating \(id)...".localized())
                 // Pull Coin Data
                 Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
                     if (response.result.value as? [[String : AnyObject]])?.count == 0 {
-                        SweetAlert().showAlert("No coin data found")
+                        SweetAlert().showAlert("No coin data found".localized())
                         self.doneButton()
                         return
                     }
@@ -113,7 +113,7 @@ class CoinsDetailsViewController: UIViewController {
                     }
                 }
             } else {
-                SweetAlert().showAlert("No internet connection")
+                SweetAlert().showAlert("No internet connection".localized())
             }
         }
     }
@@ -126,7 +126,7 @@ class CoinsDetailsViewController: UIViewController {
         if favorited == true {
             favorited = false
             favButton.backgroundColor = UIColor.lightGray
-            favButton.setTitle("Favorite", for: .normal)
+            favButton.setTitle("Favorite".localized(), for: .normal)
             // remove
             if let index = favorites.index(of: id) {
                 favorites.remove(at: index)
@@ -150,30 +150,30 @@ class CoinsDetailsViewController: UIViewController {
         self.navigationItem.title = coin.name
         
         // format prices and set to labels
-        priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())"
-        priceBTCLabel.text = "Price BTC: \(coin.priceBTC)"
+        priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())".localized()
+        priceBTCLabel.text = "Price BTC: \(coin.priceBTC)".localized()
         url = "https://coinmarketcap.com/currencies/\(coin.id)/"
         
         if coin.marketCapUSD != "unknown" {
-            marketCapLabel.text = "Market Cap: \(coin.marketCapUSD.formatUSD())"
+            marketCapLabel.text = "Market Cap: \(coin.marketCapUSD.formatUSD())".localized()
         } else {
-            marketCapLabel.text = "Market Cap: \(coin.marketCapUSD)"
+            marketCapLabel.text = "Market Cap: \(coin.marketCapUSD)".localized()
         }
         
         if coin.volumeUSD != "unknown" {
-            volumeLabel.text = "Volume (24h): \(coin.volumeUSD.formatUSD())"
+            volumeLabel.text = "Volume (24h): \(coin.volumeUSD.formatUSD())".localized()
         } else {
-            volumeLabel.text = "Volume (24h): \(coin.volumeUSD)"
+            volumeLabel.text = "Volume (24h): \(coin.volumeUSD)".localized()
         }
         
         if coin.maxSupply != "unknown" {
-            maxSupplyLabel.text = "Max Supply: \(coin.maxSupply.formatDecimal())"
+            maxSupplyLabel.text = "Max Supply: \(coin.maxSupply.formatDecimal())".localized()
         } else {
-            maxSupplyLabel.text = "Max Supply: \(coin.maxSupply)"
+            maxSupplyLabel.text = "Max Supply: \(coin.maxSupply)".localized()
         }
         
         if coin.availableSupply != "unknown" {
-            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply.formatDecimal())"
+            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply.formatDecimal())".localized()
             
             if coin.maxSupply != "unknown" {
                 let max = Double(coin.maxSupply)!
@@ -185,15 +185,15 @@ class CoinsDetailsViewController: UIViewController {
                 if (perCent > 0.0) {
                     // do positive stuff
                     supplyUsed.textColor = UIColor(hexString: "63DB37")
-                    supplyUsed.text = "\(perString)%"
+                    supplyUsed.text = "\(perString)%".localized()
                 } else if (perCent == 0.0) {
                     // do zero stuff
                     supplyUsed.textColor = UIColor(hexString: "63DB37")
-                    supplyUsed.text = "\(perString)%"
+                    supplyUsed.text = "\(perString)%".localized()
                 } else {
                     // do negative stuff
                     supplyUsed.textColor = UIColor(hexString: "FF483E")
-                    supplyUsed.text = "\(perString)%"
+                    supplyUsed.text = "\(perString)%".localized()
                 }
             } else {
                 supplyUsed.text = "Unknown"
@@ -205,7 +205,7 @@ class CoinsDetailsViewController: UIViewController {
                 }
             }
         } else {
-            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply)"
+            circulatingSupplyLabel.text = "Circulating Supply: \(coin.availableSupply)".localized()
         }
     }
     

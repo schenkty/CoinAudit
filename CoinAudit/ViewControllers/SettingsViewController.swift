@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController {
         }
         
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "0"
-        versionLabel.text = "Version \(appVersion)"//.localized()
+        versionLabel.text = "Version \(appVersion)".localized()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,7 +108,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func clearData(_ sender: Any) {
-        SweetAlert().showAlert("Are you sure?", subTitle: "You data will permanently delete!", style: AlertStyle.warning, buttonTitle:"Cancel", buttonColor: UIColor.init(hexString: "C3C3C3") , otherButtonTitle:  "Yes, delete it!", otherButtonColor: UIColor.init(hexString: "E0755F")) { (isOtherButton) -> Void in
+        SweetAlert().showAlert("Are you sure?".localized(), subTitle: "You data will permanently delete!".localized(), style: AlertStyle.warning, buttonTitle:"Cancel".localized(), buttonColor: UIColor.init(hexString: "C3C3C3") , otherButtonTitle:  "Yes, delete it!".localized(), otherButtonColor: UIColor.init(hexString: "E0755F")) { (isOtherButton) -> Void in
             if isOtherButton == true {
                 return
             }
@@ -153,7 +153,7 @@ class SettingsViewController: UIViewController {
                 alerts.removeAll()
                 saveFavoriteSettings()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
-                SweetAlert().showAlert("Deleted!", subTitle: "All Coin Data has been removed", style: AlertStyle.success)
+                SweetAlert().showAlert("Deleted!".localized(), subTitle: "All Coin Data has been removed".localized(), style: AlertStyle.success)
             }
         }
     }
