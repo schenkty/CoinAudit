@@ -302,7 +302,7 @@ class SettingsViewController: UIViewController {
         }
         savePriceSettings()
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         switch themeValue {
         case "dark":

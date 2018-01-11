@@ -24,6 +24,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     var interstitial: GADInterstitial!
     
     let searchController = UISearchController(searchResultsController: nil)
+    let availableLanguages = Localize.availableLanguages()
     
     override func viewDidLoad() {
         super.viewDidLoad()

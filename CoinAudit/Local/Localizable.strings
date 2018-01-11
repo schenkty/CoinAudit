@@ -5,3 +5,29 @@
   Created by Ty Schenk on 1/10/18.
   Copyright © 2018 Ty Schenk. All rights reserved.
 */
+"Web" = "Web";
+"Are you sure?" = "Are you sure?";
+"You data will permanently delete!" = "You data will permanently delete!";
+"Cancel" = "Cancel";
+"Yes, delete it!" = "Yes, delete it!";
+"Deleted!" = "Deleted!";
+"All Coin Data has been removed" = "All Coin Data has been removed";
+"Add" = "Add";
+"New Alert" = "New Alert";
+"Alert" = "Alert";
+"Update Alert" = "Update Alert";
+"Alerts Disabled" = "Alerts Disabled"
+"Please allow notifications in your device settings and restart CoinAudit" = "Please allow notifications in your device settings and restart CoinAudit";
+"Alert Failed" = "Alert Failed";
+"Please enter an amount for above or below fields" = "Please enter an amount for above or below fields";
+"No internet connection. Alert could not be added" = "No internet connection. Alert could not be added";
+"Invalid Name" = "Invalid Name";
+"Enter Valid Coin Name" = "Enter Valid Coin Name";
+"No internet connection. Delete Failed" = "No internet connection. Delete Failed";
+"Value is above:" = "Value is above:";
+"Value is below:" = "Value is below:";
+"Alert failed to load" = "Alert failed to load";
+"Updating Alerts..." = "Updating Alerts...";
+"No internet connection" = "No internet connection";
+"New Entry" = "New Entry";
+"Entry" = "Entry";
