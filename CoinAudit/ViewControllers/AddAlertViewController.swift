@@ -60,9 +60,9 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         belowTextField.keyboardType = .decimalPad
         
         if new {
-            self.navigationItem.title = "New Alert"
+            self.navigationItem.title = "New Alert".localized()
             submitButton.backgroundColor = UIColor(hexString: "029C00")
-            submitButton.setTitle("Add", for: .normal)
+            submitButton.setTitle("Add".localized(), for: .normal)
         } else {
             let alert = alerts[index]
             nameTextField.text = alert.coin
@@ -101,9 +101,9 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 }
             }
             
-            self.navigationItem.title = "\(alert.coin) Alert"
+            self.navigationItem.title = "\(alert.coin) Alert".localized()
             submitButton.backgroundColor = UIColor(hexString: "029C00")
-            submitButton.setTitle("Update Alert", for: .normal)
+            submitButton.setTitle("Update Alert".localized(), for: .normal)
         }
     }
     
@@ -128,7 +128,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         var aboveCurrency: String = ""
         
         guard let id = notificationID else {
-            SweetAlert().showAlert("Alerts Disabled", subTitle: "Please allow notifications in your device settings and restart CoinAudit", style: AlertStyle.none)
+            SweetAlert().showAlert("Alerts Disabled".localized(), subTitle: "Please allow notifications in your device settings and restart CoinAudit".localized(), style: AlertStyle.none)
             return
         }
         
@@ -167,7 +167,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 // name sure there is atleast one value setup
                 if belowTextField.text! == "" && aboveTextField.text! == "" {
                     
-                    SweetAlert().showAlert("Alert Failed", subTitle: "Please enter an amount for above or below fields", style: AlertStyle.none)
+                    SweetAlert().showAlert("Alert Failed".localized(), subTitle: "Please enter an amount for above or below fields".localized(), style: AlertStyle.none)
                     return
                 }
             
@@ -190,10 +190,10 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 alerts.append(AlertEntry(id: id, coin: coin, symbol: symbol, below: below, belowCurrency: belowCurrency, above: above, aboveCurrency: aboveCurrency, action: action))
                 self.navigationController?.popViewController(animated: true)
             } else {
-                SweetAlert().showAlert("No internet connection. Alert could not be added")
+                SweetAlert().showAlert("No internet connection. Alert could not be added".localized())
             }
         } else {
-            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
+            SweetAlert().showAlert("Invalid Name".localized(), subTitle: "Enter Valid Coin Name".localized(), style: AlertStyle.none)
         }
     }
     
@@ -206,7 +206,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         var aboveCurrency: String = ""
         
         guard let id = notificationID else {
-            SweetAlert().showAlert("Alerts Disabled", subTitle: "Please allow notifications in your device settings and restart CoinAudit", style: AlertStyle.none)
+            SweetAlert().showAlert("Alerts Disabled".localized(), subTitle: "Please allow notifications in your device settings and restart CoinAudit".localized(), style: AlertStyle.none)
             return
         }
         
@@ -247,7 +247,7 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 
                 // name sure there is atlease one value setup
                 if belowTextField.text! == "" && aboveTextField.text! == "" {
-                    SweetAlert().showAlert("Alert Failed", subTitle: "Please enter an amount for above or below fields", style: AlertStyle.none)
+                    SweetAlert().showAlert("Alert Failed".localized(), subTitle: "Please enter an amount for above or below fields".localized(), style: AlertStyle.none)
                     return
                 }
     
@@ -259,10 +259,10 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
                 alerts[index] = AlertEntry(id: id, coin: coin, symbol: symbol, below: below, belowCurrency: belowCurrency, above: above, aboveCurrency: aboveCurrency, action: action)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                SweetAlert().showAlert("No internet connection. Alert could not be added")
+                SweetAlert().showAlert("No internet connection. Alert could not be added".localized())
             }
         } else {
-            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
+            SweetAlert().showAlert("Invalid Name".localized(), subTitle: "Enter Valid Coin Name".localized(), style: AlertStyle.none)
         }
     }
     

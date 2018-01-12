@@ -85,18 +85,18 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             switch walletEntryValue {
             case "WalletEntry1":
-                self.navigationItem.title = "Wallet 1"
+                self.navigationItem.title = "Wallet 1".localized()
             case "WalletEntry2":
-                self.navigationItem.title = "Wallet 2"
+                self.navigationItem.title = "Wallet 2".localized()
             case "WalletEntry3":
-                self.navigationItem.title = "Wallet 3"
+                self.navigationItem.title = "Wallet 3".localized()
             case "WalletEntry4":
-                self.navigationItem.title = "Wallet 4"
+                self.navigationItem.title = "Wallet 4".localized()
             case "WalletEntry5":
-                self.navigationItem.title = "Wallet 5"
+                self.navigationItem.title = "Wallet 5".localized()
             default:
                 walletEntryValue = "WalletEntry1"
-                self.navigationItem.title = "Wallet 1"
+                self.navigationItem.title = "Wallet 1".localized()
             }
         }
         
@@ -104,7 +104,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             updateList()
         } else {
             walletPercent.isHidden = true
-            SweetAlert().showAlert("Coin Data Not  Found", subTitle: "Please check your internet connection", style: AlertStyle.none)
+            SweetAlert().showAlert("Coin Data Not  Found".localized(), subTitle: "Please check your internet connection".localized(), style: AlertStyle.none)
         }
     }
     
@@ -281,7 +281,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.percentLabel.text = "-\(lossPercent)%"
                 cell.percentLabel.textColor = UIColor(hexString: "FF483E")
             } else {
-                cell.valueLabel.text = "Volume: \(amount)"
+                cell.valueLabel.text = "Volume: \(amount)".localized()
                 cell.percentLabel.text = ""
             }
         } else if walletValue == "value" {
@@ -304,7 +304,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.percentLabel.text = "-\(lossPercent)%"
                 cell.percentLabel.textColor = UIColor(hexString: "FF483E")
             } else {
-                cell.valueLabel.text = "Value: \(coinValue)"
+                cell.valueLabel.text = "Value: \(coinValue)".localized()
                 cell.percentLabel.text = ""
             }
         } else {
@@ -328,7 +328,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.percentLabel.text = "-\(lossPercent)%"
                 cell.percentLabel.textColor = UIColor(hexString: "FF483E")
             } else {
-                cell.valueLabel.text = "Value: \(coinValue)"
+                cell.valueLabel.text = "Value: \(coinValue)".localized()
                 cell.percentLabel.text = ""
             }
         }
@@ -434,7 +434,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let gainPercent = "\(gain / newValue * 100)".formatDecimal()
             
             let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 24), NSAttributedStringKey.foregroundColor : UIColor(hexString: "63DB37")]
-            let attributedString1 = NSMutableAttributedString(string:"Total Gain: ", attributes:attrs1)
+            let attributedString1 = NSMutableAttributedString(string:"Total Gain: ".localized(), attributes:attrs1)
             let attributedString2 = NSMutableAttributedString(string:"+\(gainPercent)%", attributes:attrs2)
             attributedString1.append(attributedString2)
             walletPercent.attributedText = attributedString1
@@ -453,7 +453,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let lossPercent = "\(loss / coinCost * 100)".formatDecimal()
             
             let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 24), NSAttributedStringKey.foregroundColor : UIColor(hexString: "FF483E")]
-            let attributedString1 = NSMutableAttributedString(string:"Total Lost: ", attributes:attrs1)
+            let attributedString1 = NSMutableAttributedString(string:"Total Lost: ".localized(), attributes:attrs1)
             let attributedString2 = NSMutableAttributedString(string:"-\(lossPercent)%", attributes:attrs2)
             attributedString1.append(attributedString2)
             walletPercent.attributedText = attributedString1
@@ -508,10 +508,10 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc func updateCoins() {
         if Connectivity.isConnectedToInternet {
-            SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
+            SwiftSpinner.show(duration: 1.5, title: "Updating Data...".localized())
             pullData()
         } else {
-            SweetAlert().showAlert("No internet connection")
+            SweetAlert().showAlert("No internet connection".localized())
         }
     }
     
@@ -523,27 +523,27 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch walletEntryValue {
         case "WalletEntry1":
             walletEntryValue = "WalletEntry5"
-            self.navigationItem.title = "Wallet 5"
+            self.navigationItem.title = "Wallet 5".localized()
             pageControl.currentPage = 4
         case "WalletEntry2":
             walletEntryValue = "WalletEntry1"
-            self.navigationItem.title = "Wallet 1"
+            self.navigationItem.title = "Wallet 1".localized()
             pageControl.currentPage = 0
         case "WalletEntry3":
             walletEntryValue = "WalletEntry2"
-            self.navigationItem.title = "Wallet 2"
+            self.navigationItem.title = "Wallet 2".localized()
             pageControl.currentPage = 1
         case "WalletEntry4":
             walletEntryValue = "WalletEntry3"
-            self.navigationItem.title = "Wallet 3"
+            self.navigationItem.title = "Wallet 3".localized()
             pageControl.currentPage = 2
         case "WalletEntry5":
             walletEntryValue = "WalletEntry4"
-            self.navigationItem.title = "Wallet 4"
+            self.navigationItem.title = "Wallet 4".localized()
             pageControl.currentPage = 3
         default:
             walletEntryValue = "WalletEntry1"
-            self.navigationItem.title = "Wallet 1"
+            self.navigationItem.title = "Wallet 1".localized()
             pageControl.currentPage = 0
         }
         
@@ -560,27 +560,27 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch walletEntryValue {
         case "WalletEntry1":
             walletEntryValue = "WalletEntry2"
-            self.navigationItem.title = "Wallet 2"
+            self.navigationItem.title = "Wallet 2".localized()
             pageControl.currentPage = 1
         case "WalletEntry2":
             walletEntryValue = "WalletEntry3"
-            self.navigationItem.title = "Wallet 3"
+            self.navigationItem.title = "Wallet 3".localized()
             pageControl.currentPage = 2
         case "WalletEntry3":
             walletEntryValue = "WalletEntry4"
-            self.navigationItem.title = "Wallet 4"
+            self.navigationItem.title = "Wallet 4".localized()
             pageControl.currentPage = 3
         case "WalletEntry4":
             walletEntryValue = "WalletEntry5"
-            self.navigationItem.title = "Wallet 5"
+            self.navigationItem.title = "Wallet 5".localized()
             pageControl.currentPage = 4
         case "WalletEntry5":
             walletEntryValue = "WalletEntry1"
-            self.navigationItem.title = "Wallet 1"
+            self.navigationItem.title = "Wallet 1".localized()
             pageControl.currentPage = 0
         default:
             walletEntryValue = "WalletEntry1"
-            self.navigationItem.title = "Wallet 1"
+            self.navigationItem.title = "Wallet 1".localized()
             pageControl.currentPage = 0
         }
         

@@ -23,6 +23,7 @@ struct CoinEntry {
     let percentChange1: String
     let percentChange24: String
     let percentChange7: String
+    let lastUpdated: String
 }
 
 extension CoinEntry {
@@ -50,17 +51,19 @@ extension CoinEntry {
         if let id = json[Key.id] as? String,
             let name = json[Key.name] as? String,
             let symbol = json[Key.symbol] as? String,
-            let rank = json[Key.rank] as? String {
+            let rank = json[Key.rank] as? String, let lastUpdated = json[Key.last_updated] {
             
             self.id = id
             self.name = name
             self.symbol = symbol
             self.rank = rank
+            self.lastUpdated = "\(lastUpdated)"
         } else {
             self.id = "bitcoin"
             self.name = "Bitcoin"
             self.symbol = "BTC"
             self.rank = "1"
+            self.lastUpdated = "unknown"
         }
         
         var priceUSD = json[Key.price_usd] as? String
@@ -113,7 +116,7 @@ extension CoinEntry {
         if totalSupply == nil {
             totalSupply = "unknown"
         }
-
+            
         self.priceUSD = priceUSD!
         self.priceBTC = priceBTC!
         self.volumeUSD = volumeUSD!

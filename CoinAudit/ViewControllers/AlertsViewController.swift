@@ -57,7 +57,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         } else {
             self.alertTableView.isHidden = true
-            SweetAlert().showAlert("Alerts Disabled", subTitle: "Please allow notifications in your device settings and restart CoinAudit", style: AlertStyle.none)
+            SweetAlert().showAlert("Alerts Disabled".localized(), subTitle: "Please allow notifications in your device settings and restart CoinAudit".localized(), style: AlertStyle.none)
         }
     }
 
@@ -117,7 +117,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 // remove from table view
                 self.alertTableView.deleteRows(at: [indexPath], with: .automatic)
             } else {
-                SweetAlert().showAlert("No internet connection. Delete Failed")
+                SweetAlert().showAlert("No internet connection. Delete Failed".localized())
             }
         }
     }
@@ -151,32 +151,32 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch alert.action {
         case .Above:
             if alert.aboveCurrency == "USD" {
-                cell.aboveLabel.text = "Value is above: $\(alert.above) \(alert.aboveCurrency)"
+                cell.aboveLabel.text = "Value is above: $\(alert.above) \(alert.aboveCurrency)".localized()
             } else {
-                cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+                cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)".localized()
             }
             cell.belowLabel.isHidden = true
         case .Below:
             if alert.belowCurrency == "USD" {
-                cell.belowLabel.text = "Value is below: $\(alert.below) \(alert.belowCurrency)"
+                cell.belowLabel.text = "Value is below: $\(alert.below) \(alert.belowCurrency)".localized()
             } else {
-                cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+                cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)".localized()
             }
             cell.aboveLabel.isHidden = true
         case .Both:
             if alert.aboveCurrency == "USD" {
-                cell.aboveLabel.text = "Value is above: $\(alert.above) \(alert.aboveCurrency)"
+                cell.aboveLabel.text = "Value is above: $\(alert.above) \(alert.aboveCurrency)".localized()
             } else {
-                cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)"
+                cell.aboveLabel.text = "Value is above: \(alert.above) \(alert.aboveCurrency)".localized()
             }
             
             if alert.belowCurrency == "USD" {
-                cell.belowLabel.text = "Value is below: $\(alert.below) \(alert.belowCurrency)"
+                cell.belowLabel.text = "Value is below: $\(alert.below) \(alert.belowCurrency)".localized()
             } else {
-                cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)"
+                cell.belowLabel.text = "Value is below: \(alert.below) \(alert.belowCurrency)".localized()
             }
         default:
-            cell.aboveLabel.text = "Alert failed to load"
+            cell.aboveLabel.text = "Alert failed to load".localized()
             cell.belowLabel.isHidden = true
         }
         
@@ -208,7 +208,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func updateData() {
         if Connectivity.isConnectedToInternet {
             // Provide using with loading spinner
-            SwiftSpinner.show("Updating Alerts...", animated: true)
+            SwiftSpinner.show("Updating Alerts...".localized(), animated: true)
             
             // reset alert array
             alerts.removeAll()
@@ -228,7 +228,7 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 SwiftSpinner.hide()
             }
         } else {
-            SweetAlert().showAlert("No internet connection")
+            SweetAlert().showAlert("No internet connection".localized())
             
         }
     }

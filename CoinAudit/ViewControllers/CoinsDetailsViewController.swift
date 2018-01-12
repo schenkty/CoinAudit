@@ -29,11 +29,13 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var PercentChangeLabels: [UILabel]!
     @IBOutlet var supplyUsed: UILabel!
     @IBOutlet var adView: GADBannerView!
+    @IBOutlet var lastUpdated: UILabel!
     
     var favorited: Bool = false
     var id: String = ""
     var url: String = ""
     var viewer: Bool = false
+    var name = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +138,7 @@ class CoinsDetailsViewController: UIViewController {
         } else {
             favorited = true
             favButton.backgroundColor = UIColor(hexString: "D65465")
-            favButton.setTitle("Favorited", for: .normal)
+            favButton.setTitle("Favorited".localized(), for: .normal)
             // save coin id to array
             favorites.append(id)
             favorites = favorites.sorted()
@@ -148,11 +150,27 @@ class CoinsDetailsViewController: UIViewController {
     func formatData(coin: CoinEntry) {
         // set name of coin
         self.navigationItem.title = coin.name
+        name = coin.name
         
         // format prices and set to labels
         priceUSDLabel.text = "Price USD: \(coin.priceUSD.formatUSD())".localized()
         priceBTCLabel.text = "Price BTC: \(coin.priceBTC)".localized()
         url = "https://coinmarketcap.com/currencies/\(coin.id)/"
+        
+        if coin.lastUpdated != "unknown" {
+            //Jan 12, 2018 1:15 AM UTC
+            let stamp = Double(coin.lastUpdated)!
+            let date = Date(timeIntervalSince1970: stamp)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(abbreviation: "UTC") //Set timezone that you want
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateFormat = "MMM dd, yyyy h:mm a" //Specify your format that you want
+            let strDate = dateFormatter.string(from: date)
+            
+            lastUpdated.text = "Last Updated: \(strDate) UTC"
+        } else {
+            lastUpdated.text = "Last Updated: \(coin.lastUpdated)".localized()
+        }
         
         if coin.marketCapUSD != "unknown" {
             marketCapLabel.text = "Market Cap: \(coin.marketCapUSD.formatUSD())".localized()
@@ -185,15 +203,15 @@ class CoinsDetailsViewController: UIViewController {
                 if (perCent > 0.0) {
                     // do positive stuff
                     supplyUsed.textColor = UIColor(hexString: "63DB37")
-                    supplyUsed.text = "\(perString)%".localized()
+                    supplyUsed.text = "\(perString)%"
                 } else if (perCent == 0.0) {
                     // do zero stuff
                     supplyUsed.textColor = UIColor(hexString: "63DB37")
-                    supplyUsed.text = "\(perString)%".localized()
+                    supplyUsed.text = "\(perString)%"
                 } else {
                     // do negative stuff
                     supplyUsed.textColor = UIColor(hexString: "FF483E")
-                    supplyUsed.text = "\(perString)%".localized()
+                    supplyUsed.text = "\(perString)%"
                 }
             } else {
                 supplyUsed.text = "Unknown"
@@ -277,9 +295,7 @@ class CoinsDetailsViewController: UIViewController {
     
     @objc func updateCoin() {
         if Connectivity.isConnectedToInternet {
-            let name = self.navigationController?.navigationBar.topItem?.title
-            
-            SwiftSpinner.show("Updating \(name!)...")
+            SwiftSpinner.show("Updating Data...".localized())
             // Pull Coin Data
             Alamofire.request("https://api.coinmarketcap.com/v1/ticker/\(id)/").responseJSON { response in
                 for coinJSON in (response.result.value as? [[String : AnyObject]])! {
@@ -294,7 +310,7 @@ class CoinsDetailsViewController: UIViewController {
             }
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
         } else {
-            SweetAlert().showAlert("No internet connection")
+            SweetAlert().showAlert("No internet connection".localized())
         }
     }
     

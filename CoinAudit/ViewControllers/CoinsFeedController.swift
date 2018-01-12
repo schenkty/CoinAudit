@@ -46,7 +46,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
         if Connectivity.isConnectedToInternet {
             self.updateData()
         } else {
-            SweetAlert().showAlert("No internet connection")
+            SweetAlert().showAlert("No internet connection".localized())
         }
     }
     

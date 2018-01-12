@@ -1,0 +1,81 @@
+/* 
+  Localizable.strings
+  CoinAudit
+
+  Created by Ty Schenk on 1/10/18.
+  Copyright © 2018 Ty Schenk. All rights reserved.
+*/
+
+"Add" = "Add";
+"Add Coin" = "Add Coin";
+"Alert Failed" = "Alert Failed";
+"Alert failed to load" = "Alert failed to load";
+"Alerts Disabled" = "Alerts Disabled";
+"All Coin Data has been removed" = "All Coin Data has been removed";
+"Amount 0.00" = "Amount 0.00";
+"Amount Missing" = "Amount Missing";
+"Are you sure?" = "Are you sure?";
+"Can not add coin data without a coin amount" = "Can not add coin data without a coin amount";
+"Can not add coin data without a coin cost" = "Can not add coin data without a coin cost";
+"Can not add coin data without a coin name" = "Can not add coin data without a coin name";
+"Cancel" = "Cancel";
+"Circulating Supply: \(coin.availableSupply)" = "Circulating Supply: \(coin.availableSupply)";
+"Circulating Supply: \(coin.availableSupply.formatDecimal())" = "Circulating Supply: \(coin.availableSupply.formatDecimal())";
+"Coin Data Not  Found" = "Coin Data Not  Found";
+"Cost Missing" = "Cost Missing";
+"Cost: $0.00" = "Cost: $0.00";
+"Cost: 0.00" = "Cost: 0.00";
+"Deleted!" = "Deleted!";
+"Done" = "Done";
+"Downloading Data..." = "Downloading Data...";
+"Edit Coin" = "Edit Coin";
+"Enter Valid Coin Name" = "Enter Valid Coin Name";
+"Favorite" = "Favorite";
+"Favorited" = "Favorited";
+"Invalid Name" = "Invalid Name";
+"Market Cap: \(coin.marketCapUSD)" = "Market Cap: \(coin.marketCapUSD)";
+"Market Cap: \(coin.marketCapUSD.formatUSD())" = "Market Cap: \(coin.marketCapUSD.formatUSD())";
+"Max Supply: \(coin.maxSupply)" = "Max Supply: \(coin.maxSupply)";
+"Max Supply: \(coin.maxSupply.formatDecimal())" = "Max Supply: \(coin.maxSupply.formatDecimal())";
+"Name Missing" = "Name Missing";
+"New Alert" = "New Alert";
+"New Entry" = "New Entry";
+"No coin data found" = "No coin data found";
+"No internet connection" = "No internet connection";
+"No internet connection. Alert could not be added" = "No internet connection. Alert could not be added";
+"No internet connection. Delete Failed" = "No internet connection. Delete Failed";
+"Please add the coin amount and price when purchased" = "Please add the coin amount and price when purchased";
+"Please allow notifications in your device settings and restart CoinAudit" = "Please allow notifications in your device settings and restart CoinAudit";
+"Please check your internet connection" = "Please check your internet connection";
+"Please edit the coin amount and price" = "Please edit the coin amount and price";
+"Please enter an amount for above or below fields" = "Please enter an amount for above or below fields";
+"Price BTC: \(coin.priceBTC)" = "Price BTC: \(coin.priceBTC)";
+"Price USD: \(coin.priceUSD.formatUSD())" = "Price USD: \(coin.priceUSD.formatUSD())";
+"Remove Favorite" = "Remove Favorite";
+"Search Coin Name" = "Search Coin Name";
+"Total Gain: " = "Total Gain: ";
+"Total Lost: " = "Total Lost: ";
+"Update Alert" = "Update Alert";
+"Updating Alerts..." = "Updating Alerts...";
+"Updating Data..." = "Updating Data...";
+"Updating \(id)..." = "Updating \(id)...";
+"Value is above: $\(alert.above) \(alert.aboveCurrency)" = "Value is above: $\(alert.above) \(alert.aboveCurrency)";
+"Value is above: \(alert.above) \(alert.aboveCurrency)" = "Value is above: \(alert.above) \(alert.aboveCurrency)";
+"Value is below: $\(alert.below) \(alert.belowCurrency)" = "Value is below: $\(alert.below) \(alert.belowCurrency)";
+"Value is below: \(alert.below) \(alert.belowCurrency)" = "Value is below: \(alert.below) \(alert.belowCurrency)";
+"Value: \(coinValue)" = "Value: \(coinValue)";
+"Version \(appVersion)" = "Version \(appVersion)";
+"Volume (24h): \(coin.volumeUSD)" = "Volume (24h): \(coin.volumeUSD)";
+"Volume (24h): \(coin.volumeUSD.formatUSD())" = "Volume (24h): \(coin.volumeUSD.formatUSD())";
+"Volume: \(amount)" = "Volume: \(amount)";
+"Wallet 1" = "Wallet 1";
+"Wallet 2" = "Wallet 2";
+"Wallet 3" = "Wallet 3";
+"Wallet 4" = "Wallet 4";
+"Wallet 5" = "Wallet 5";
+"Web" = "Web";
+"Yes, delete it!" = "Yes, delete it!";
+"You data will permanently delete!" = "You data will permanently delete!";
+"\(alert.coin) Alert" = "\(alert.coin) Alert";
+"\(coin.priceBTC) BTC" = "\(coin.priceBTC) BTC";
+"\(name) Entry" = "\(name) Entry"; 

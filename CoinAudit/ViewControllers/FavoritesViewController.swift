@@ -151,10 +151,10 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func updateCoins(_ sender: Any) {
         if Connectivity.isConnectedToInternet {
-            SwiftSpinner.show(duration: 1.5, title: "Updating Data...")
+            SwiftSpinner.show(duration: 1.5, title: "Updating Data...".localized())
             pullData()
         } else {
-            SweetAlert().showAlert("No internet connection")
+            SweetAlert().showAlert("No internet connection".localized())
         }
     }
     
