@@ -79,12 +79,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
                     }
                 // Unlock content
                 showAd = "No"
-                saveAdsSettings()
                 print("Ads Unlocked")
                 case .failed, .purchasing, .deferred:
                     break // do nothing
                 }
             }
+        }
+        
+        // Test whether the app's receipt exists.
+        if let url = Bundle.main.appStoreReceiptURL, let _ = try? Data(contentsOf: url) {
+            // The receipt exists. Do something.
+            showAd = "No"
+            print("Ads Unlocked")
+        } else {
+            // Validation fails. The receipt does not exist.
+            showAd = "Yes"
+            print("Ads Locked")
         }
     
         // Update Language

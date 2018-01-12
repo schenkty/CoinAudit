@@ -30,6 +30,7 @@ class CoinsDetailsViewController: UIViewController {
     @IBOutlet var supplyUsed: UILabel!
     @IBOutlet var adView: GADBannerView!
     @IBOutlet var lastUpdated: UILabel!
+    @IBOutlet weak var favBottom: NSLayoutConstraint!
     
     var favorited: Bool = false
     var id: String = ""
@@ -42,18 +43,6 @@ class CoinsDetailsViewController: UIViewController {
         // load favorites
         favorites = defaults.object(forKey:"CoinAuditFavorites") as? [String] ?? [String]()
         favorites = favorites.sorted()
-        
-        // MARK: Ad View
-        if showAd == "Yes" {
-            adView.adUnitID = GoogleAd.appID
-            adView.rootViewController = self
-            adView.load(GADRequest())
-        } else if showAd == "No" {
-        } else {
-            adView.adUnitID = GoogleAd.appID
-            adView.rootViewController = self
-            adView.load(GADRequest())
-        }
         
         let updateButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(updateCoin))
         updateButton.image = #imageLiteral(resourceName: "refresh")
@@ -73,10 +62,19 @@ class CoinsDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if showAd == "Yes" {
             adView.isHidden = false
+            favBottom.constant = 60.0
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
         } else if showAd == "No" {
             adView.isHidden = true
+            favBottom.constant = 10.0
         } else {
             adView.isHidden = false
+            favBottom.constant = 60.0
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
         }
         
         if entries.count != 0 && viewer == false {

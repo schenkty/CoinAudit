@@ -49,15 +49,17 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
         }
 
         nameTextField.filterItems(names)
-        nameTextField.inlineMode = true
+        nameTextField.inlineMode = false
         nameTextField.startSuggestingInmediately = true
+        nameTextField.theme.font = UIFont.systemFont(ofSize: 15)
+        nameTextField.theme.cellHeight = 40
+        
         nameTextField.delegate = self
         aboveTextField.delegate = self
         belowTextField.delegate = self
         nameTextField.addDoneButtonToKeyboard(myAction:  #selector(self.nameTextField.resignFirstResponder))
         belowTextField.addDoneButtonToKeyboard(myAction:  #selector(self.belowTextField.resignFirstResponder))
         aboveTextField.addDoneButtonToKeyboard(myAction:  #selector(self.aboveTextField.resignFirstResponder))
-        belowTextField.keyboardType = .decimalPad
         
         if new {
             self.navigationItem.title = "New Alert".localized()
@@ -289,9 +291,24 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.aboveSelector.tintColor = UIColor.white
             self.belowSelector.tintColor = UIColor.white
-            self.nameTextField.backgroundColor = UIColor.white
-            self.belowTextField.backgroundColor = UIColor.white
-            self.aboveTextField.backgroundColor = UIColor.white
+            self.nameTextField.backgroundColor = UIColor.black
+            self.belowTextField.backgroundColor = UIColor.black
+            self.aboveTextField.backgroundColor = UIColor.black
+            self.nameTextField.textColor = UIColor.white
+            self.belowTextField.textColor = UIColor.white
+            self.aboveTextField.textColor = UIColor.white
+            self.nameTextField.layer.borderColor = UIColor.white.cgColor
+            self.belowTextField.layer.borderColor = UIColor.white.cgColor
+            self.aboveTextField.layer.borderColor = UIColor.white.cgColor
+            self.nameTextField.layer.borderWidth = 1.0
+            self.belowTextField.layer.borderWidth = 1.0
+            self.aboveTextField.layer.borderWidth = 1.0
+            self.belowTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+            self.aboveTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+            self.nameTextField.theme.fontColor = UIColor.white
+            self.nameTextField.theme.placeholderColor = UIColor.lightGray
+            self.nameTextField.theme.bgColor = UIColor.black
+            
             for item in textLabels {
                 item.textColor = UIColor.white
             }
@@ -305,11 +322,27 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            
             self.nameTextField.backgroundColor = UIColor.white
             self.belowTextField.backgroundColor = UIColor.white
             self.aboveTextField.backgroundColor = UIColor.white
+            self.nameTextField.textColor = UIColor.black
+            self.belowTextField.textColor = UIColor.black
+            self.aboveTextField.textColor = UIColor.black
+            self.nameTextField.layer.borderColor = UIColor.black.cgColor
+            self.belowTextField.layer.borderColor = UIColor.black.cgColor
+            self.aboveTextField.layer.borderColor = UIColor.black.cgColor
+            self.nameTextField.layer.borderWidth = 1.0
+            self.belowTextField.layer.borderWidth = 1.0
+            self.aboveTextField.layer.borderWidth = 1.0
+            self.belowTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+            self.aboveTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
             self.aboveSelector.tintColor = UIColor(hexString: "017AFF")
             self.belowSelector.tintColor = UIColor(hexString: "017AFF")
+            self.nameTextField.theme.fontColor = UIColor.black
+            self.nameTextField.theme.placeholderColor = UIColor.lightGray
+            self.nameTextField.theme.bgColor = UIColor.white
+            
             for item in textLabels {
                 item.textColor = UIColor.black
             }

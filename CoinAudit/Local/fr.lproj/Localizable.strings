@@ -80,3 +80,5 @@
 "\(coin.priceBTC) BTC" = "\(coin.priceBTC) BTC";
 "\(name) Entry" = "\(name) Iscrizione";
 "Last Updated: \(coin.lastUpdated)" = "Ultimo aggiornamento: \(coin.lastUpdated)";
+"Value: \(tempUSD)" = "Value: \(tempUSD)";
+"Cost: \(tempCost)" = "Cost: \(tempCost)";

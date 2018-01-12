@@ -29,9 +29,7 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if showAd == "No" {
-            print("Ads Unlocked")
-        } else {
+        if showAd == "Yes" {
             interstitial = createAndLoadInterstitial()
         }
         

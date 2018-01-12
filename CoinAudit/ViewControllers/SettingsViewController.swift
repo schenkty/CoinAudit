@@ -12,6 +12,7 @@ import GoogleMobileAds
 import Alamofire
 import SwiftyStoreKit
 import Localize_Swift
+import SwiftTheme
 
 class SettingsViewController: UIViewController {
 
@@ -165,7 +166,6 @@ class SettingsViewController: UIViewController {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 showAd = "No"
-                saveAdsSettings()
                 if showAd == "Yes" {
                     self.adView.isHidden = false
                     self.purchaseButton.isHidden = false
@@ -204,7 +204,6 @@ class SettingsViewController: UIViewController {
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
                 showAd = "Yes"
-                saveAdsSettings()
                 if showAd == "Yes" {
                     self.adView.isHidden = false
                     self.purchaseButton.isHidden = false
@@ -225,7 +224,6 @@ class SettingsViewController: UIViewController {
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
                 showAd = "No"
-                saveAdsSettings()
                 if showAd == "Yes" {
                     self.adView.isHidden = false
                     self.purchaseButton.isHidden = false
@@ -313,45 +311,33 @@ class SettingsViewController: UIViewController {
     }
     
     func updateTheme() {
+        self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#000", "#FFF"]
+        self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#000", "#FFF"]
+        self.tabBarController?.tabBar.theme_tintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.navigationController?.navigationBar.theme_largeTitleTextAttributes =  [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.walletSelector.theme_tintColor = ["#FFF", "#000"]
+        self.themeSelector.theme_tintColor = ["#FFF", "#000"]
+        self.widgetPercentSelector.theme_tintColor = ["#FFF", "#000"]
+        self.walletSelector.theme_tintColor = ["#FFF", "#000"]
+        self.feedFormatSelector.theme_tintColor = ["#FFF", "#000"]
+        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        
+        for item in self.textLabels {
+            item.theme_textColor = ["#FFF", "#000"]
+        }
+        
+        UIApplication.shared.statusBarStyle = preferredStatusBarStyle
+        
         switch themeValue {
         case "dark":
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.view.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.walletSelector.tintColor = UIColor.white
-            self.themeSelector.tintColor = UIColor.white
-            self.widgetPercentSelector.tintColor = UIColor.white
-            self.walletSelector.tintColor = UIColor.white
-            self.feedFormatSelector.tintColor = UIColor.white
-            for item in self.textLabels {
-                item.textColor = UIColor.white
-            }
+            ThemeManager.setTheme(index: 0)
         default:
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.view.backgroundColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.walletSelector.tintColor = UIColor(hexString: "017AFF")
-            self.themeSelector.tintColor = UIColor(hexString: "017AFF")
-            self.widgetPercentSelector.tintColor = UIColor(hexString: "017AFF")
-            self.walletSelector.tintColor = UIColor(hexString: "017AFF")
-            self.feedFormatSelector.tintColor = UIColor(hexString: "017AFF")
-            for item in self.textLabels {
-                item.textColor = UIColor.black
-            }
+            ThemeManager.setTheme(index: 1)
         }
-        UIApplication.shared.statusBarStyle = preferredStatusBarStyle
     }
 }

@@ -70,8 +70,10 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     
         nameTextField.text = name
         nameTextField.filterItems(names)
-        nameTextField.inlineMode = true
+        nameTextField.inlineMode = false
         nameTextField.startSuggestingInmediately = true
+        nameTextField.theme.font = UIFont.systemFont(ofSize: 15)
+        nameTextField.theme.cellHeight = 40
         nameTextField.addDoneButtonToKeyboard(myAction:  #selector(self.nameTextField.resignFirstResponder))
     }
     
@@ -159,7 +161,8 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         // pull coin data from entries array
         guard let coinData = entries.first(where: { $0.name == name }) else {
             cell.amountLabel.text = "0.0"
-            cell.valueLabel.text = "0.00".formatUSD()
+            let tempValue = "0.00".formatUSD()
+            cell.valueLabel.text = "Value: \(tempValue)"
             return cell
         }
         
@@ -192,10 +195,11 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if priceFormat == "USD" {
             newValue = (Double(coin.amount)! * Double(coinData.priceUSD)!)
-            cell.valueLabel.text = "\(newValue)".formatUSD()
+            let tempUSD = "\(newValue)".formatUSD()
+            cell.valueLabel.text = "Value: \(tempUSD)".localized()
         } else {
             newValue = (Double(coin.amount)! * Double(coinData.priceBTC)!)
-            cell.valueLabel.text = "\(newValue) BTC"
+            cell.valueLabel.text = "Value: \(newValue) BTC"
         }
         
         // Theme Drawing code
@@ -463,10 +467,17 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if priceFormat == "USD" {
             let entryValue = (amount * Double(coinData.priceUSD)!)
-            valueLabel.text = "\(entryValue)".formatUSD()
+            let tempValue = "\(entryValue)".formatUSD()
+            let tempCost = "\(coinCost)".formatUSD()
+            valueLabel.text = "Value: \(tempValue)".localized()
         } else {
             let entryValue = (amount * Double(coinData.priceBTC)!)
-            valueLabel.text = "\(entryValue) BTC"
+            let tempCost = "\(coinCost)".formatUSD()
+            valueLabel.text = "Value: \(entryValue) BTC"
+        }
+        
+        if newValue == 0.0 {
+            valueLabel.text = ""
         }
         
         if total > 0 {
@@ -502,8 +513,16 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             self.navigationController?.navigationBar.tintColor = UIColor.white
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            nameTextField.backgroundColor = UIColor.white
+            nameTextField.backgroundColor = UIColor.black
+            nameTextField.textColor = UIColor.white
+            nameTextField.theme.fontColor = UIColor.white
+            nameTextField.theme.placeholderColor = UIColor.lightGray
+            nameTextField.theme.bgColor = UIColor.black
             valueLabel.textColor = UIColor.white
+            
+            nameTextField.layer.borderColor = UIColor.white.cgColor
+            nameTextField.layer.borderWidth = 1.0
+            
             for item in textLabels {
                 item.textColor = UIColor.white
             }
@@ -520,6 +539,11 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
             nameTextField.backgroundColor = UIColor.white
             valueLabel.textColor = UIColor.black
+            nameTextField.textColor = UIColor.black
+            nameTextField.layer.borderWidth = 0.0
+            nameTextField.theme.fontColor = UIColor.black
+            nameTextField.theme.placeholderColor = UIColor.lightGray
+            nameTextField.theme.bgColor = UIColor.white
             
             for item in textLabels {
                 item.textColor = UIColor.black

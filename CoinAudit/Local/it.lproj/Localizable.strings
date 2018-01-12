@@ -79,4 +79,6 @@
 "\(alert.coin) Alert" = "\(alert.coin) Alert";
 "\(coin.priceBTC) BTC" = "\(coin.priceBTC) BTC";
 "\(name) Entry" = "\(name) Entry";
-"Last Updated: \(coin.lastUpdated)" = "Last Updated: \(coin.lastUpdated)"; 
+"Last Updated: \(coin.lastUpdated)" = "Last Updated: \(coin.lastUpdated)";
+"Value: \(tempUSD)" = "Value: \(tempUSD)";
+"Cost: \(tempCost)" = "Cost: \(tempCost)";
