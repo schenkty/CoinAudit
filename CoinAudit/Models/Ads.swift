@@ -17,9 +17,9 @@ struct GoogleAd {
 // MARK: Remove Force String before Release
 // Yes = Show ads
 // No = Hide ads
-var showAd: String =  defaults.string(forKey: "CoinAuditAds") ?? "Yes"
+var showAd: String = defaults.string(forKey: "CAAds") ?? "Yes"
 
 func saveAdsSettings() {
-    defaults.set(showAd, forKey: "CoinAuditAds")
+    defaults.set(showAd, forKey: "CAAds")
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadViews"), object: nil)
 }

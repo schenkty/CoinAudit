@@ -104,7 +104,7 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
             updateList()
         } else {
             walletPercent.isHidden = true
-            SweetAlert().showAlert("Coin Data Not  Found".localized(), subTitle: "Please check your internet connection".localized(), style: AlertStyle.none)
+            SweetAlert().showAlert("Coin Data Not Found".localized(), subTitle: "Please check your internet connection".localized(), style: AlertStyle.none)
         }
     }
     

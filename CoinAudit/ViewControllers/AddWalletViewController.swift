@@ -43,21 +43,6 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         newButton.image = #imageLiteral(resourceName: "plus")
         self.navigationItem.rightBarButtonItem = newButton
         
-        // MARK: Ad View
-        if showAd == "Yes" {
-            adView.isHidden = false
-            adView.adUnitID = GoogleAd.appID
-            adView.rootViewController = self
-            adView.load(GADRequest())
-        } else if showAd == "No" {
-            adView.isHidden = true
-        } else {
-            adView.isHidden = false
-            adView.adUnitID = GoogleAd.appID
-            adView.rootViewController = self
-            adView.load(GADRequest())
-        }
-        
         if name == "Unknown" {
             self.navigationController?.popViewController(animated: true)
         } else if name != "" {
@@ -94,12 +79,18 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         if showAd == "Yes" {
             adView.isHidden = false
             tableViewBottom.constant = 50.0
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
         } else if showAd == "No" {
             adView.isHidden = true
             tableViewBottom.constant = 0.0
         } else {
             adView.isHidden = false
             tableViewBottom.constant = 50.0
+            adView.adUnitID = GoogleAd.appID
+            adView.rootViewController = self
+            adView.load(GADRequest())
         }
         
         self.walletTableView.reloadData()

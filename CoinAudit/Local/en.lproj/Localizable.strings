@@ -78,4 +78,5 @@
 "You data will permanently delete!" = "You data will permanently delete!";
 "\(alert.coin) Alert" = "\(alert.coin) Alert";
 "\(coin.priceBTC) BTC" = "\(coin.priceBTC) BTC";
-"\(name) Entry" = "\(name) Entry"; 
+"\(name) Entry" = "\(name) Entry";
+"Last Updated: \(coin.lastUpdated)" = "Last Updated: \(coin.lastUpdated)";

@@ -86,9 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OSSubscriptionObserver {
                 }
             }
         }
-        
+    
         // Update Language
-        //setLang()
+        setLang()
         
         return true
     }

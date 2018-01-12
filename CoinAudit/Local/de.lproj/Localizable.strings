@@ -21,7 +21,7 @@
 "Cancel" = "Cancel";
 "Circulating Supply: \(coin.availableSupply)" = "Circulating Supply: \(coin.availableSupply)";
 "Circulating Supply: \(coin.availableSupply.formatDecimal())" = "Circulating Supply: \(coin.availableSupply.formatDecimal())";
-"Coin Data Not  Found" = "Coin Data Not  Found";
+"Coin Data Not Found" = "Coin Data Not  Found";
 "Cost Missing" = "Cost Missing";
 "Cost: $0.00" = "Cost: $0.00";
 "Cost: 0.00" = "Cost: 0.00";
@@ -79,3 +79,4 @@
 "\(alert.coin) Alert" = "\(alert.coin) Alert";
 "\(coin.priceBTC) BTC" = "\(coin.priceBTC) BTC";
 "\(name) Entry" = "\(name) Entry"; 
+"Last Updated: \(coin.lastUpdated)" = "Last Updated: \(coin.lastUpdated)"; 
