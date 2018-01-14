@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import SwiftTheme
 import Localize_Swift
+import SwiftSpinner
 
 class WebViewController: UIViewController {
     
@@ -18,7 +19,9 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SwiftSpinner.show("Loading", animated: true)
         webView.load(URLRequest(url: URL(string: url)!))
+        SwiftSpinner.hide()
         self.navigationItem.title = "Web".localized()
     }
     
@@ -37,12 +40,5 @@ class WebViewController: UIViewController {
         self.navigationController?.navigationBar.theme_tintColor = ["#FFF", "#000"]
         self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
         self.navigationController?.navigationBar.theme_largeTitleTextAttributes =  [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
-        
-        switch themeValue {
-        case "dark":
-            ThemeManager.setTheme(index: 0)
-        default:
-            ThemeManager.setTheme(index: 1)
-        }
     }
 }

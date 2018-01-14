@@ -13,6 +13,7 @@ import Alamofire
 import SwiftSpinner
 import GoogleMobileAds
 import Localize_Swift
+import SwiftTheme
 
 class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -590,32 +591,16 @@ class WalletViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func updateTheme() {
-        // Theme Drawing code
-        switch themeValue {
-        case "dark":
-            self.view.backgroundColor = UIColor.black
-            bitcoinLabel.textColor = UIColor.white
-            totalLabel.textColor = UIColor.white
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            walletValueTotalLabel.textColor = UIColor.white
-            self.walletTableView.backgroundColor = UIColor.black
-            walletTotalView.backgroundColor = UIColor.black
-        default:
-            walletTotalView.backgroundColor = UIColor.white
-            self.walletTableView.backgroundColor = UIColor.white
-            self.view.backgroundColor = UIColor.white
-            bitcoinLabel.textColor = UIColor.black
-            totalLabel.textColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            walletValueTotalLabel.textColor = UIColor.black
-        }
+        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        self.bitcoinLabel.theme_textColor = ["#FFF", "#000"]
+        self.totalLabel.theme_textColor = ["#FFF", "#000"]
+        self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.navigationController?.navigationBar.theme_largeTitleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.walletValueTotalLabel.theme_textColor = ["#FFF", "#000"]
+        self.walletTableView.theme_backgroundColor = ["#000", "#FFF"]
+        self.walletTotalView.theme_backgroundColor = ["#000", "#FFF"]
     }
 }

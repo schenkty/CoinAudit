@@ -11,6 +11,7 @@ import Alamofire
 import SearchTextField
 import GoogleMobileAds
 import Localize_Swift
+import SwiftTheme
 
 class AddAlertViewController: UIViewController, UITextFieldDelegate{
     
@@ -279,73 +280,43 @@ class AddAlertViewController: UIViewController, UITextFieldDelegate{
     func updateTheme() {
         switch themeValue {
         case "dark":
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.view.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.aboveSelector.tintColor = UIColor.white
-            self.belowSelector.tintColor = UIColor.white
-            self.nameTextField.backgroundColor = UIColor.black
-            self.belowTextField.backgroundColor = UIColor.black
-            self.aboveTextField.backgroundColor = UIColor.black
-            self.nameTextField.textColor = UIColor.white
-            self.belowTextField.textColor = UIColor.white
-            self.aboveTextField.textColor = UIColor.white
-            self.nameTextField.layer.borderColor = UIColor.white.cgColor
-            self.belowTextField.layer.borderColor = UIColor.white.cgColor
-            self.aboveTextField.layer.borderColor = UIColor.white.cgColor
-            self.nameTextField.layer.borderWidth = 1.0
-            self.belowTextField.layer.borderWidth = 1.0
-            self.aboveTextField.layer.borderWidth = 1.0
-            self.belowTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
-            self.aboveTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
             self.nameTextField.theme.fontColor = UIColor.white
-            self.nameTextField.theme.placeholderColor = UIColor.lightGray
             self.nameTextField.theme.bgColor = UIColor.black
-            
-            for item in textLabels {
-                item.textColor = UIColor.white
-            }
         default:
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.view.backgroundColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            
-            self.nameTextField.backgroundColor = UIColor.white
-            self.belowTextField.backgroundColor = UIColor.white
-            self.aboveTextField.backgroundColor = UIColor.white
-            self.nameTextField.textColor = UIColor.black
-            self.belowTextField.textColor = UIColor.black
-            self.aboveTextField.textColor = UIColor.black
-            self.nameTextField.layer.borderColor = UIColor.black.cgColor
-            self.belowTextField.layer.borderColor = UIColor.black.cgColor
-            self.aboveTextField.layer.borderColor = UIColor.black.cgColor
-            self.nameTextField.layer.borderWidth = 1.0
-            self.belowTextField.layer.borderWidth = 1.0
-            self.aboveTextField.layer.borderWidth = 1.0
-            self.belowTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
-            self.aboveTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
-            self.aboveSelector.tintColor = UIColor(hexString: "017AFF")
-            self.belowSelector.tintColor = UIColor(hexString: "017AFF")
             self.nameTextField.theme.fontColor = UIColor.black
-            self.nameTextField.theme.placeholderColor = UIColor.lightGray
             self.nameTextField.theme.bgColor = UIColor.white
-            
-            for item in textLabels {
-                item.textColor = UIColor.black
-            }
+        }
+        self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
+        self.tabBarController?.tabBar.theme_tintColor = ["#FFF", "#000"]
+        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.navigationController?.navigationBar.theme_largeTitleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        
+        self.aboveSelector.theme_tintColor = ["#FFF", "#000"]
+        self.belowSelector.theme_tintColor = ["#FFF", "#000"]
+        self.nameTextField.theme_backgroundColor = ["#000", "#FFF"]
+        self.belowTextField.theme_backgroundColor = ["#000", "#FFF"]
+        self.aboveTextField.theme_backgroundColor = ["#000", "#FFF"]
+        self.nameTextField.theme_textColor = ["#FFF", "#000"]
+        self.belowTextField.theme_textColor = ["#FFF", "#000"]
+        self.aboveTextField.theme_textColor = ["#FFF", "#000"]
+        self.nameTextField.layer.theme_borderColor = ["#FFF", "#000"]
+        self.belowTextField.layer.theme_borderColor = ["#FFF", "#000"]
+        self.aboveTextField.layer.theme_borderColor = ["#FFF", "#000"]
+        self.nameTextField.layer.borderWidth = 1.0
+        self.belowTextField.layer.borderWidth = 1.0
+        self.aboveTextField.layer.borderWidth = 1.0
+        self.belowTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        self.aboveTextField.attributedPlaceholder = NSAttributedString(string:"$0.00", attributes:[NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        self.nameTextField.theme.placeholderColor = UIColor.lightGray
+        
+        for item in textLabels {
+            item.theme_textColor = ["#FFF", "#000"]
         }
     }
 }

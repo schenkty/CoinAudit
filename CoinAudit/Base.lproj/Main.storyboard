@@ -836,14 +836,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WdA-Bw-47o" userLabel="Chart View">
-                                <rect key="frame" x="15" y="30" width="345" height="150"/>
+                                <rect key="frame" x="15" y="30" width="345" height="0.0"/>
                                 <color key="backgroundColor" red="1" green="0.7107095272176851" blue="0.92011733230396953" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="ogU-t0-C9L"/>
+                                    <constraint firstAttribute="height" id="ogU-t0-C9L"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f15-4k-O35">
-                                <rect key="frame" x="15" y="190" width="345" height="362"/>
+                                <rect key="frame" x="15" y="40" width="345" height="512"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price USD:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9oX-5X-Mwn">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="21"/>

@@ -13,6 +13,7 @@ import SwiftSpinner
 import OneSignal
 import GoogleMobileAds
 import Localize_Swift
+import SwiftTheme
 
 class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADInterstitialDelegate {
     
@@ -223,30 +224,26 @@ class CoinsFeedController: UITableViewController, UISearchResultsUpdating, GADIn
             // TextField Color Customization
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
             
-            // Theme Color
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.tableView.backgroundColor = UIColor.black
-            self.view.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+            // set theme to dark mode
+            ThemeManager.setTheme(index: 0)
         default:
             // TextField Color Customization
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.black]
-            // Theme Color
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.tableView.backgroundColor = UIColor.white
-            self.view.backgroundColor = UIColor.white
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
+            
+            // set theme to light mode
+            ThemeManager.setTheme(index: 1)
         }
+        
+        self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
+        self.tabBarController?.tabBar.theme_tintColor = ["#FFF", "#000"]
+        self.tableView.theme_backgroundColor = ["#000", "#FFF"]
+        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.navigationController?.navigationBar.theme_largeTitleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+
         UIApplication.shared.statusBarStyle = preferredStatusBarStyle
     }
 }

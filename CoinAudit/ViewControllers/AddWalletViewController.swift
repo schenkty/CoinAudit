@@ -11,6 +11,7 @@ import CoreData
 import SearchTextField
 import GoogleMobileAds
 import Localize_Swift
+import SwiftTheme
 
 class AddWalletViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -468,11 +469,9 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         if priceFormat == "USD" {
             let entryValue = (amount * Double(coinData.priceUSD)!)
             let tempValue = "\(entryValue)".formatUSD()
-            let tempCost = "\(coinCost)".formatUSD()
             valueLabel.text = "Value: \(tempValue)".localized()
         } else {
             let entryValue = (amount * Double(coinData.priceBTC)!)
-            let tempCost = "\(coinCost)".formatUSD()
             valueLabel.text = "Value: \(entryValue) BTC"
         }
         
@@ -502,52 +501,35 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     func updateTheme() {
         switch themeValue {
         case "dark":
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.view.backgroundColor = UIColor.black
-            self.walletTableView.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            nameTextField.backgroundColor = UIColor.black
-            nameTextField.textColor = UIColor.white
             nameTextField.theme.fontColor = UIColor.white
-            nameTextField.theme.placeholderColor = UIColor.lightGray
             nameTextField.theme.bgColor = UIColor.black
-            valueLabel.textColor = UIColor.white
-            
-            nameTextField.layer.borderColor = UIColor.white.cgColor
             nameTextField.layer.borderWidth = 1.0
-            
-            for item in textLabels {
-                item.textColor = UIColor.white
-            }
         default:
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.view.backgroundColor = UIColor.white
-            self.walletTableView.backgroundColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            nameTextField.backgroundColor = UIColor.white
-            valueLabel.textColor = UIColor.black
-            nameTextField.textColor = UIColor.black
-            nameTextField.layer.borderWidth = 0.0
             nameTextField.theme.fontColor = UIColor.black
-            nameTextField.theme.placeholderColor = UIColor.lightGray
             nameTextField.theme.bgColor = UIColor.white
-            
-            for item in textLabels {
-                item.textColor = UIColor.black
-            }
+            nameTextField.layer.borderWidth = 1.0
+        }
+        
+        self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
+        self.tabBarController?.tabBar.theme_tintColor = ["#FFF", "#000"]
+        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        self.walletTableView.theme_backgroundColor = ["#000", "#FFF"]
+        self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.navigationController?.navigationBar.theme_largeTitleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        
+        nameTextField.theme_backgroundColor = ["#000", "#FFF"]
+        nameTextField.theme_textColor = ["#FFF", "#000"]
+        nameTextField.theme.placeholderColor = UIColor.lightGray
+        valueLabel.theme_textColor = ["#FFF", "#000"]
+        nameTextField.layer.theme_borderColor = ["#FFF", "#000"]
+        
+        for item in textLabels {
+            item.theme_textColor = ["#FFF", "#000"]
         }
     }
 }

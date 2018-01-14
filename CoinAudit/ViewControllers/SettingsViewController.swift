@@ -311,6 +311,13 @@ class SettingsViewController: UIViewController {
     }
     
     func updateTheme() {
+        switch themeValue {
+        case "dark":
+            ThemeManager.setTheme(index: 0)
+        default:
+            ThemeManager.setTheme(index: 1)
+        }
+        
         self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
         self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
         self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#000", "#FFF"]
@@ -332,12 +339,5 @@ class SettingsViewController: UIViewController {
         }
         
         UIApplication.shared.statusBarStyle = preferredStatusBarStyle
-        
-        switch themeValue {
-        case "dark":
-            ThemeManager.setTheme(index: 0)
-        default:
-            ThemeManager.setTheme(index: 1)
-        }
     }
 }

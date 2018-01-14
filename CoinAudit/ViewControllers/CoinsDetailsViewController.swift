@@ -13,6 +13,7 @@ import Alamofire
 import GoogleMobileAds
 import Sentry
 import Localize_Swift
+import SwiftTheme
 
 class CoinsDetailsViewController: UIViewController {
     
@@ -326,46 +327,24 @@ class CoinsDetailsViewController: UIViewController {
         self.show(controller, sender: self)
     }
     
-    func updateTheme() {
-        switch themeValue {
-        case "dark":
-            self.tabBarController?.tabBar.barTintColor = UIColor.black
-            self.tabBarController?.tabBar.tintColor = UIColor.white
-            self.view.backgroundColor = UIColor.black
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-            self.navigationController?.navigationBar.barTintColor = UIColor.black
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-            marketCapLabel.textColor = UIColor.white
-            volumeLabel.textColor = UIColor.white
-            circulatingSupplyLabel.textColor = UIColor.white
-            maxSupplyLabel.textColor = UIColor.white
-            priceUSDLabel.textColor = UIColor.white
-            priceBTCLabel.textColor = UIColor.white
-            for item in PercentChangeLabels {
-                item.textColor = UIColor.white
-            }
-        default:
-            self.tabBarController?.tabBar.barTintColor = UIColor.white
-            self.tabBarController?.tabBar.tintColor = UIColor.black
-            self.view.backgroundColor = UIColor.white
-            self.navigationItem.leftBarButtonItem?.tintColor = UIColor.black
-            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
-            marketCapLabel.textColor = UIColor.black
-            volumeLabel.textColor = UIColor.black
-            circulatingSupplyLabel.textColor = UIColor.black
-            maxSupplyLabel.textColor = UIColor.black
-            priceUSDLabel.textColor = UIColor.black
-            priceBTCLabel.textColor = UIColor.black
-            for item in PercentChangeLabels {
-                item.textColor = UIColor.black
-            }
+    func updateTheme() {        
+        self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
+        self.tabBarController?.tabBar.theme_tintColor = ["#FFF", "#000"]
+        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]
+        self.navigationController?.navigationBar.theme_tintColor = ["#FFF", "#000"]
+        self.navigationController?.navigationBar.theme_titleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        self.navigationController?.navigationBar.theme_largeTitleTextAttributes = [[NSAttributedStringKey.foregroundColor.rawValue : UIColor.white], [NSAttributedStringKey.foregroundColor.rawValue : UIColor.black]]
+        marketCapLabel.theme_textColor = ["#FFF", "#000"]
+        volumeLabel.theme_textColor = ["#FFF", "#000"]
+        circulatingSupplyLabel.theme_textColor = ["#FFF", "#000"]
+        maxSupplyLabel.theme_textColor = ["#FFF", "#000"]
+        priceUSDLabel.theme_textColor = ["#FFF", "#000"]
+        priceBTCLabel.theme_textColor = ["#FFF", "#000"]
+        for item in PercentChangeLabels {
+            item.theme_textColor = ["#FFF", "#000"]
         }
     }
     
