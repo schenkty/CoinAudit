@@ -11,19 +11,23 @@ import Foundation
 class WalletEntry: NSObject, NSCoding {
     var cost: String
     var amount: String
+    var date: String
     
-    init(cost: String, amount: String) {
+    init(cost: String, amount: String, date: String) {
         self.cost = cost
         self.amount = amount
+        self.date = date
     }
     
     required init(coder decoder: NSCoder) {
         self.cost = decoder.decodeObject(forKey: "cost") as? String ?? ""
         self.amount = decoder.decodeObject(forKey: "amount") as? String ?? ""
+        self.date = decoder.decodeObject(forKey: "date") as? String ?? ""
     }
     
     func encode(with coder: NSCoder) {
         coder.encode(cost, forKey: "cost")
         coder.encode(amount, forKey: "amount")
+        coder.encode(date, forKey: "date")
     }
 }

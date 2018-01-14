@@ -1337,11 +1337,11 @@
                                 <rect key="frame" x="0.0" y="199" width="375" height="468"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="walletValueCell" rowHeight="60" id="yvj-bp-d7S" customClass="WalletValueCell" customModule="CoinAudit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="walletValueCell" rowHeight="65" id="yvj-bp-d7S" customClass="WalletValueCell" customModule="CoinAudit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yvj-bp-d7S" id="9P2-Pe-8f3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raiblocks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzn-BI-cpl" userLabel="Amount Label">
@@ -1351,13 +1351,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value: $16,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EC-u4-umg" userLabel="Value Label">
-                                                    <rect key="frame" x="15" y="25" width="84.5" height="14.5"/>
+                                                    <rect key="frame" x="15" y="28" width="84.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="009.456%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ug-x6-fUI" userLabel="Percent Label">
-                                                    <rect key="frame" x="99.5" y="19.5" width="260.5" height="21"/>
+                                                    <rect key="frame" x="99.5" y="4" width="260.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="85" id="rMG-lb-wEV"/>
                                                     </constraints>
@@ -1365,20 +1365,42 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost: $7,500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la1-lo-8OC">
+                                                    <rect key="frame" x="15" y="45.5" width="245" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5:58 PM 12/31/20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpb-kZ-iT5">
+                                                    <rect key="frame" x="260" y="45.5" width="100" height="14.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="EEN-4V-r6F"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2EC-u4-umg" firstAttribute="leading" secondItem="Pzn-BI-cpl" secondAttribute="leading" id="72R-iG-COj"/>
+                                                <constraint firstItem="la1-lo-8OC" firstAttribute="leading" secondItem="2EC-u4-umg" secondAttribute="leading" id="7xe-fF-3d0"/>
                                                 <constraint firstItem="2ug-x6-fUI" firstAttribute="leading" secondItem="2EC-u4-umg" secondAttribute="trailing" id="CmE-Sv-QO9"/>
                                                 <constraint firstItem="2ug-x6-fUI" firstAttribute="leading" secondItem="Pzn-BI-cpl" secondAttribute="trailing" id="Dxp-K4-Dal"/>
-                                                <constraint firstItem="2ug-x6-fUI" firstAttribute="centerY" secondItem="9P2-Pe-8f3" secondAttribute="centerY" id="dmb-fk-MUt"/>
-                                                <constraint firstItem="2EC-u4-umg" firstAttribute="top" secondItem="Pzn-BI-cpl" secondAttribute="bottom" id="m5G-Aj-Gup"/>
+                                                <constraint firstItem="2ug-x6-fUI" firstAttribute="centerY" secondItem="Pzn-BI-cpl" secondAttribute="centerY" id="HMi-6e-S6e"/>
+                                                <constraint firstItem="mpb-kZ-iT5" firstAttribute="leading" secondItem="la1-lo-8OC" secondAttribute="trailing" id="ZDH-Zf-uVh"/>
+                                                <constraint firstItem="mpb-kZ-iT5" firstAttribute="centerY" secondItem="la1-lo-8OC" secondAttribute="centerY" id="cLJ-3a-mFh"/>
+                                                <constraint firstItem="la1-lo-8OC" firstAttribute="top" secondItem="2EC-u4-umg" secondAttribute="bottom" constant="3" id="fg5-9t-YsB"/>
+                                                <constraint firstItem="2EC-u4-umg" firstAttribute="top" secondItem="Pzn-BI-cpl" secondAttribute="bottom" constant="3" id="m5G-Aj-Gup"/>
                                                 <constraint firstItem="2ug-x6-fUI" firstAttribute="trailing" secondItem="9P2-Pe-8f3" secondAttribute="trailingMargin" id="ndH-Gs-9wh"/>
                                                 <constraint firstItem="Pzn-BI-cpl" firstAttribute="leading" secondItem="9P2-Pe-8f3" secondAttribute="leading" constant="15" id="s2u-Jz-OwV"/>
+                                                <constraint firstItem="mpb-kZ-iT5" firstAttribute="trailing" secondItem="2ug-x6-fUI" secondAttribute="trailing" id="spg-FV-uEL"/>
                                                 <constraint firstItem="Pzn-BI-cpl" firstAttribute="top" secondItem="9P2-Pe-8f3" secondAttribute="top" constant="4" id="w9e-gP-4yK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="amountLabel" destination="Pzn-BI-cpl" id="nFo-QC-uYH"/>
+                                            <outlet property="costLabel" destination="la1-lo-8OC" id="HOE-jG-8mR"/>
+                                            <outlet property="dateLabel" destination="mpb-kZ-iT5" id="N8O-0M-Yxw"/>
                                             <outlet property="percentLabel" destination="2ug-x6-fUI" id="DB1-mh-Loq"/>
                                             <outlet property="valueLabel" destination="2EC-u4-umg" id="EJx-Ff-pam"/>
                                         </connections>
@@ -1459,7 +1481,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYY-uS-D3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="1091"/>
+            <point key="canvasLocation" x="2048.8000000000002" y="1090.704647676162"/>
         </scene>
     </scenes>
     <resources>

@@ -288,6 +288,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     @objc func addCoin() {
         var cost = "0.00"
         var amount = "0.0"
+        var date = "00/00/00"
         
         if self.nameTextField.text! == "" {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -300,9 +301,11 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
             let amountTextField = alert.textFields![0] as UITextField
             let costTextField = alert.textFields![1] as UITextField
+            let dateTextField = alert.textFields![2] as UITextField
         
             cost = costTextField.text!
             amount = amountTextField.text!
+            date = dateTextField.text!
             
             if cost == "" {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -316,7 +319,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 return
             }
             
-            self.coins.append(WalletEntry(cost: cost, amount: amount))
+            self.coins.append(WalletEntry(cost: cost, amount: amount, date: date))
             print("Coin Added. Amount: \(amount) @ \(cost) each")
             self.saveButton()
         }
