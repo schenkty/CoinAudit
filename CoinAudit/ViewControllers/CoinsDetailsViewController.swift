@@ -330,7 +330,7 @@ class CoinsDetailsViewController: UIViewController {
     func updateTheme() {        
         self.tabBarController?.tabBar.theme_barTintColor = ["#000", "#FFF"]
         self.tabBarController?.tabBar.theme_tintColor = ["#FFF", "#000"]
-        self.view.theme_backgroundColor = ["#000", "#FFF"]
+        self.view.theme_backgroundColor = ["#000", "#fff"]
         self.navigationItem.leftBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
         self.navigationItem.rightBarButtonItem?.theme_tintColor = ["#FFF", "#000"]
         self.navigationController?.navigationBar.theme_barTintColor = ["#000", "#FFF"]

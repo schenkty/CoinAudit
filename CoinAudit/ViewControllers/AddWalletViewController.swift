@@ -37,6 +37,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         holdWalletEntry = true
         walletTableView.delegate = self
         walletTableView.dataSource = self
+        walletTableView.estimatedRowHeight = 65
         walletTableView.allowsSelectionDuringEditing = true
         
         // new entry button
@@ -169,12 +170,13 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let coin = coins[indexPath.row]
         
-        cell.amountLabel.text = "\(coinData.name): \(coin.amount)"
-        
         let coinCost: Double = (Double(coin.amount)! * Double(coin.cost)!)
         var newValue: Double = (Double(coin.amount)! * Double(coinData.priceUSD)!)
         
         let total = (newValue - coinCost)
+        
+        cell.amountLabel.text = "\(coinData.name): \(coin.amount)"
+        cell.costLabel.text = "\(coinCost)"
         
         if total > 0 {
             // Profit or gain

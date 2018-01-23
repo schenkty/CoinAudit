@@ -230,7 +230,6 @@ class AlertsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         } else {
             SweetAlert().showAlert("No internet connection".localized())
-            
         }
     }
     

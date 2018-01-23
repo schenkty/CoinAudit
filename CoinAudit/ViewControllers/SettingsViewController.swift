@@ -109,7 +109,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func clearData(_ sender: Any) {
-        SweetAlert().showAlert("Are you sure?".localized(), subTitle: "You data will permanently delete!".localized(), style: AlertStyle.warning, buttonTitle:"Cancel".localized(), buttonColor: UIColor.init(hexString: "C3C3C3") , otherButtonTitle:  "Yes, delete it!".localized(), otherButtonColor: UIColor.init(hexString: "E0755F")) { (isOtherButton) -> Void in
+        SweetAlert().showAlert("Are you sure?".localized(), subTitle: "You data will permanently delete!".localized(), style: AlertStyle.warning, buttonTitle:"Cancel".localized(), buttonColor: UIColor.init(hexString: "C3C3C3"), otherButtonTitle:  "Yes, delete it!".localized(), otherButtonColor: UIColor.init(hexString: "E0755F")) { (isOtherButton) -> Void in
             if isOtherButton == true {
                 return
             }

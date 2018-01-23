@@ -1068,7 +1068,7 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinWidget/CoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				INFOPLIST_FILE = CoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1090,7 +1090,7 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinWidget/CoinWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				INFOPLIST_FILE = CoinWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1224,7 +1224,7 @@
 				ASSETCATALOG_WARNINGS = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinAudit/CoinAudit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1254,7 +1254,7 @@
 				ASSETCATALOG_WARNINGS = NO;
 				CODE_SIGN_ENTITLEMENTS = CoinAudit/CoinAudit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1353,7 +1353,7 @@
 			baseConfigurationReference = CC5763BDF5CD83B3BA2CBE98 /* Pods-CoinAudit-CoinAuditNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				INFOPLIST_FILE = CoinAuditNotificationServiceExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1371,7 +1371,7 @@
 			baseConfigurationReference = 593DAEA5DC89769FEE0241C0 /* Pods-CoinAudit-CoinAuditNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 8AYF758EP8;
 				INFOPLIST_FILE = CoinAuditNotificationServiceExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
