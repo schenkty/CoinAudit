@@ -50,7 +50,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         } else if name != "" {
             new = false
             // pull coin index using provided name
-            self.navigationItem.title = "\(name) Entry".localized()
+            self.navigationItem.title = "\(name) Entry"
             
             // core data
             let coin = managedObjectContext.object(with: coinID)
@@ -61,7 +61,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             calculateValue()
         } else {
             new = true
-            self.navigationItem.title = "New Entry".localized()
+            self.navigationItem.title = "New Entry"
             percentLabel.text = ""
         }
         
@@ -199,7 +199,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         if priceFormat == "USD" {
             newValue = (Double(coin.amount)! * Double(coinData.priceUSD)!)
             let tempUSD = "\(newValue)".formatUSD()
-            cell.valueLabel.text = "Value: \(tempUSD)".localized()
+            cell.valueLabel.text = "Value: \(tempUSD)"
         } else {
             newValue = (Double(coin.amount)! * Double(coinData.priceBTC)!)
             cell.valueLabel.text = "Value: \(newValue) BTC"
@@ -229,7 +229,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         new = false
         
         // setup alert controller
-        let alert = UIAlertController(title: "Edit Coin".localized(), message: "Please edit the coin amount and price".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Edit Coin", message: "Please edit the coin amount and price", preferredStyle: UIAlertControllerStyle.alert)
         
         let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
             let amountTextField = alert.textFields![0] as UITextField
@@ -240,13 +240,13 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             
             if cost == "" {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-                SweetAlert().showAlert("Cost Missing".localized(), subTitle: "Can not add coin data without a coin cost".localized(), style: AlertStyle.error)
+                SweetAlert().showAlert("Cost Missing", subTitle: "Can not add coin data without a coin cost", style: AlertStyle.error)
                 return
             }
             
             if amount == "" {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-                SweetAlert().showAlert("Amount Missing".localized(), subTitle: "Can not add coin data without a coin amount".localized(), style: AlertStyle.error)
+                SweetAlert().showAlert("Amount Missing", subTitle: "Can not add coin data without a coin amount", style: AlertStyle.error)
                 return
             }
             
@@ -258,13 +258,13 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             self.new = tempNew
         }
         
-        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel) { (alertAction) in
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
             return
         }
         
         alert.addTextField { (amountTextField) in
-            amountTextField.placeholder = "Amount 0.00".localized()
+            amountTextField.placeholder = "Amount 0.00"
             amountTextField.keyboardType = .decimalPad
             amountTextField.text = self.coins[indexPath.row].amount
             
@@ -273,7 +273,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         alert.addTextField { (costTextField) in
-            costTextField.placeholder = "Cost: $0.00".localized()
+            costTextField.placeholder = "Cost: $0.00"
             costTextField.keyboardType = .decimalPad
             costTextField.text = "$\(self.coins[indexPath.row].cost)"
             
@@ -290,28 +290,25 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     @objc func addCoin() {
         var cost = "0.00"
         var amount = "0.0"
-        var date = "00/00/00"
         
         if self.nameTextField.text! == "" {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-            SweetAlert().showAlert("Name Missing".localized(), subTitle: "Can not add coin data without a coin name".localized(), style: AlertStyle.error)
+            SweetAlert().showAlert("Name Missing", subTitle: "Can not add coin data without a coin name", style: AlertStyle.error)
             return
         }
         
-        let alert = UIAlertController(title: "Add Coin".localized(), message: "Please add the coin amount and price when purchased".localized(), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add Coin", message: "Please add the coin amount and price when purchased", preferredStyle: UIAlertControllerStyle.alert)
         
         let save = UIAlertAction(title: "Save", style: .default) { (alertAction) in
             let amountTextField = alert.textFields![0] as UITextField
             let costTextField = alert.textFields![1] as UITextField
-            let dateTextField = alert.textFields![2] as UITextField
         
             cost = costTextField.text!
             amount = amountTextField.text!
-            date = dateTextField.text!
             
             if cost == "" {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-                SweetAlert().showAlert("Cost Missing".localized(), subTitle: "Can not add coin data without a coin cost".localized(), style: AlertStyle.error)
+                SweetAlert().showAlert("Cost Missing", subTitle: "Can not add coin data without a coin cost", style: AlertStyle.error)
                 return
             }
             
@@ -321,18 +318,18 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 return
             }
             
-            self.coins.append(WalletEntry(cost: cost, amount: amount, date: date))
+            self.coins.append(WalletEntry(cost: cost, amount: amount))
             print("Coin Added. Amount: \(amount) @ \(cost) each")
             self.saveButton()
         }
         
-        let cancel = UIAlertAction(title: "Cancel".localized(), style: .cancel) { (alertAction) in
-            UIApplication.shared.sendAction("resignFirstResponder", to:nil, from:nil, for:nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
             return
         }
         
         alert.addTextField { (amountTextField) in
-            amountTextField.placeholder = "Amount 0.00".localized()
+            amountTextField.placeholder = "Amount 0.00"
             amountTextField.keyboardType = .decimalPad
             
             let heightConstraint = NSLayoutConstraint(item: amountTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
@@ -340,7 +337,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         alert.addTextField { (costTextField) in
-            costTextField.placeholder = "Cost: 0.00".localized()
+            costTextField.placeholder = "Cost: 0.00"
             costTextField.keyboardType = .decimalPad
             
             let heightConstraint = NSLayoutConstraint(item: costTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30)
@@ -354,13 +351,14 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func saveButton() {
-        name = nameTextField.text!
+        guard let name = nameTextField.text else { return }
         if name != "" {
             if new {
                 saveCoin(name: name)
             } else {
                 updateCoin(name: name)
             }
+            self.walletTableView.reloadData()
         }
     }
     
@@ -402,7 +400,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         } else {
             print("Coin: \(name) is not Valid")
-            SweetAlert().showAlert("Invalid Name".localized(), subTitle: "Enter Valid Coin Name".localized(), style: AlertStyle.none)
+            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
         }
     }
     
@@ -446,7 +444,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
                 
             }
         } else {
-            SweetAlert().showAlert("Invalid Name".localized(), subTitle: "Enter Valid Coin Name".localized(), style: AlertStyle.none)
+            SweetAlert().showAlert("Invalid Name", subTitle: "Enter Valid Coin Name", style: AlertStyle.none)
         }
     }
     
@@ -474,7 +472,7 @@ class AddWalletViewController: UIViewController, UITableViewDelegate, UITableVie
         if priceFormat == "USD" {
             let entryValue = (amount * Double(coinData.priceUSD)!)
             let tempValue = "\(entryValue)".formatUSD()
-            valueLabel.text = "Value: \(tempValue)".localized()
+            valueLabel.text = "Value: \(tempValue)"
         } else {
             let entryValue = (amount * Double(coinData.priceBTC)!)
             valueLabel.text = "Value: \(entryValue) BTC"
